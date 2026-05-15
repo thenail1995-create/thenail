@@ -1,70 +1,33 @@
-# THE NAIL — Project Context
+# THE NAIL — Project Entry Point for Claude
 
-> Đọc file này TRƯỚC khi sửa code. Nó chứa quyết định + quy ước không có trong code.
-> **Chi tiết hiện tại của web → đọc thẳng `index.html`**, đừng duplicate ở đây.
+> **Đọc file này TRƯỚC mọi thay đổi.** Sau đó load các file tham khảo trong `docs/` tùy mục đích.
 
----
+## Tổng quan 30 giây
 
-## 🏠 Bối cảnh
+- **Web** giới thiệu tiệm nail của chị Trần Ngọc (vợ anh Hào), Quận 10 HCM.
+- **Live:** [thenail.vn](https://thenail.vn) · **Repo:** [thenail1995-create/thenail](https://github.com/thenail1995-create/thenail)
+- **Stack:** Static HTML/CSS/JS, **1 file `index.html` duy nhất**, deploy GitHub Pages.
+- **Phong cách:** Dark Luxury + Emerald + Kim tuyến.
 
-- **Tên tiệm:** The Nail — **Chủ:** Trần Ngọc (vợ, thợ chính) + Hào (chồng)
-- **Địa chỉ:** 521/54 Cách Mạng Tháng 8, P. Hoà Hưng, Q.10, TP.HCM
-- **Domain:** [thenail.vn](https://thenail.vn) — DNS qua ZoneDNS, mua tại Nhân Hòa
-- **Hosting:** GitHub Pages — repo [thenail1995-create/thenail](https://github.com/thenail1995-create/thenail)
-- **Tech:** Static HTML/CSS/JS — 1 file `index.html` duy nhất, không framework
+## 🗺️ Roadmap đọc tài liệu
 
-## 🎨 Định hướng thiết kế (KHÔNG đổi trừ khi user yêu cầu rõ)
+Tuỳ task, chọn file cần đọc:
 
-- **Phong cách:** Dark Luxury — đen sâu + accent emerald + hiệu ứng kim tuyến
-- **Tinh thần:** Boutique cao cấp, "ảnh là tác phẩm", tối giản, không hoa lá
-- **Tránh:** Emoji trong UI, màu rực, text overlay trên ảnh, framework JS, build step
-
-## 📝 Brand không đổi
-
-- Slogan EN: **your concept, my creation**
-- Slogan VI: **Ý tưởng bạn trao — Nghệ thuật tôi tạo**
-- Tagline: **Nail Studio by Trần Ngọc**
-- 3 giá trị: **Cá nhân hoá · Sáng tạo · Tỉ mỉ**
-
-## 💰 Cấu trúc 5 tier giá
-
-| Tier | Filter ID | Drive folder |
+| File | Khi nào đọc | Nội dung |
 |---|---|---|
-| 200—300k | `200-300` | `16ZTxMH0-7EmiZ7tgEGWfhRVizwJOodtL` |
-| 300—400k | `300-400` | `1yxzopC7iZX0N1j-UohW-H7iGW9Q2FsPB` |
-| 400—500k | `400-500` | `1GDsMSSmfkb8LxrNxUcvTpEPb1giGyI73` |
-| 500—700k | `500-700` | `1snLnf4KBGQjAJl4Y7u6yEru2CmIV6q_d` |
-| 800k+ | `800-plus` | `14WXwwL3sktdZaR-xAXBHa9ys-LNUjcuI` |
+| [`docs/brand.md`](./docs/brand.md) | Sửa text, slogan, copy, naming | Brand identity, slogan, giá trị cốt lõi, voice |
+| [`docs/design.md`](./docs/design.md) | Thêm/sửa giao diện, hiệu ứng | Bảng màu, font, design philosophy, 11 effects |
+| [`docs/tech.md`](./docs/tech.md) | Deploy, debug, đổi cấu trúc | Tech stack, hosting, DNS, structure, workflow |
+| [`docs/conventions.md`](./docs/conventions.md) | Trước MỌI commit | Do's, Don'ts, commit message rules |
+| [`docs/state.md`](./docs/state.md) | Update ảnh, theo dõi pending | Drive IDs, pending tasks, refs |
 
-**Gap 700-800k có chủ đích** — tiệm không có dịch vụ ở range này.
-**Folders đã share public** — render ảnh qua `https://lh3.googleusercontent.com/d/{ID}=w800`
+## ⚡ Quy tắc vàng
 
-## 🚫 Đừng tự ý
-
-- Đổi màu, font, slogan, tier giá
-- Thêm emoji vào UI / slogan
-- Thêm text overlay trên ảnh (user đã yêu cầu xoá hết)
-- Convert sang React / framework / build step
-- Tách CSS/JS ra file riêng
-
-## ✅ Khi user yêu cầu thay đổi
-
-- Edit `index.html` trực tiếp
-- Commit message tiếng Anh, imperative ngắn
-- Push → Pages tự rebuild 1-2 phút
-- **Update file này CHỈ KHI** quy ước/định hướng thay đổi, KHÔNG cho mỗi commit thường
-
-## 📌 Pending / việc còn lại
-
-- Thay 6 review mẫu bằng review thật từ Google Maps
-- Xác nhận số liệu Trust Stats (năm kinh nghiệm, số khách thật)
-- FB Page chưa đặt username (URL còn dạng `profile.php?id=...`)
-- Email `hello@thenail.vn` chưa setup
-
-## 🗃️ Drive assets quan trọng (read-only access)
-
-- Logo SVG: `1KvwKglwvZtn_q-1KDsnRBbkztWVmWp7R` (đã copy về `images/logo.svg`)
-- Design philosophy: `1OW34gEGGuhApzJO5kLnbdjRGu_aK-ZyT` (Velvet Silence)
+1. **Trạng thái HIỆN TẠI của web → đọc `index.html`**, đừng tin docs/
+2. **Docs ghi QUY ƯỚC + LÝ DO**, không ghi state hiện tại
+3. **Cập nhật docs CHỈ KHI** quy ước hoặc định hướng thay đổi
+4. **KHÔNG duplicate** thông tin giữa các file docs
+5. Đọc `docs/conventions.md` trước mọi commit — đó là "luật chơi"
 
 ---
 
