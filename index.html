@@ -336,15 +336,7 @@
       letter-spacing: 0.1em;
     }
     .nail-card .price-tag {
-      position: absolute;
-      top: 12px; right: 12px;
-      background: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(10px);
-      color: #10b981;
-      padding: 6px 12px;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      border: 1px solid rgba(16, 185, 129, 0.4);
+      display: none;
     }
 
     /* ===== CONTACT ===== */
@@ -443,13 +435,19 @@
       text-align: center;
     }
     .lightbox-content .ph {
-      width: 500px; max-width: 80vw;
+      width: min(700px, 85vw);
+      max-height: 75vh;
       aspect-ratio: 1;
       background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
       border: 1px solid rgba(4, 120, 87, 0.4);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
       margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+    .lightbox-content .ph img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      background: #0a0a0a;
     }
     .lightbox-content h3 {
       font-size: 32px;
@@ -1592,8 +1590,7 @@
     <button class="lightbox-close" onclick="closeLightbox()">×</button>
     <div class="lightbox-content">
       <div class="ph">
-        <div style="font-family: 'Cormorant Garamond', serif; font-size: 64px; color: rgba(16, 185, 129, 0.5);" id="lb-num">01</div>
-        <div style="color: #555; letter-spacing: 0.2em; margin-top: 12px;">ẢNH MẪU</div>
+        <img id="lb-img" src="" alt="" referrerpolicy="no-referrer">
       </div>
       <h3 id="lb-name">Tên mẫu</h3>
       <div class="price" id="lb-price">000.000đ</div>
@@ -1623,10 +1620,15 @@
     const lightbox = document.getElementById('lightbox');
     cards.forEach(card => {
       card.addEventListener('click', () => {
-        const num = card.querySelector('.num')?.textContent || '00';
+        const img = card.querySelector('img');
         const name = card.dataset.name || 'Mẫu nail';
         const range = card.dataset.range || '';
-        document.getElementById('lb-num').textContent = num;
+        const lbImg = document.getElementById('lb-img');
+        if (img && lbImg) {
+          // dùng URL cỡ lớn hơn (w1200 thay vì w800) cho lightbox
+          lbImg.src = img.src.replace('=w800', '=w1400');
+          lbImg.alt = name;
+        }
         document.getElementById('lb-name').textContent = name;
         document.getElementById('lb-price').textContent = range;
         lightbox.classList.add('active');
