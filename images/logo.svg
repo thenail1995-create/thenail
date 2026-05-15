@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="1600" height="1200" role="img" aria-labelledby="title desc">
+  <title id="title">The Nail by Ngọc Trần logo</title>
+  <desc id="desc">Black and emerald green streetwear style TN logo for The Nail by Ngọc Trần.</desc>
+
+  <defs>
+    <pattern id="diagonalStripes" patternUnits="userSpaceOnUse" width="36" height="36" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="36" stroke="#0b7f3a" stroke-width="2" opacity="0.5"/>
+    </pattern>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="8" dy="7" stdDeviation="0" flood-color="#05391d" flood-opacity="0.95"/>
+    </filter>
+
+    <style>
+      .bg { fill: #0a0b0a; }
+      .outer { fill: url(#diagonalStripes); opacity: 0.55; }
+      .green { fill: #159447; }
+      .white { fill: #f2f2ef; }
+      .stroke-green { stroke: #159447; }
+      .stroke-soft { stroke: #617060; }
+      .brand {
+        font-family: "Bebas Neue", "Oswald", "Arial Narrow", Impact, sans-serif;
+        font-weight: 800;
+        letter-spacing: 3px;
+      }
+      .small {
+        font-family: "Courier New", monospace;
+        letter-spacing: 2px;
+      }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1200" fill="#222"/>
+
+  <g transform="translate(230 40)">
+    <rect x="0" y="0" width="1140" height="1120" class="bg"/>
+    <rect x="0" y="0" width="1140" height="1120" class="outer"/>
+
+    <rect x="38" y="38" width="1064" height="1044" fill="#090a09" stroke="#159447" stroke-width="5"/>
+    <rect x="48" y="48" width="1044" height="1024" fill="none" stroke="#159447" stroke-width="2"/>
+
+    <circle cx="1052" cy="58" r="5" fill="#159447"/>
+    <circle cx="1066" cy="58" r="5" fill="#159447"/>
+    <circle cx="1080" cy="58" r="5" fill="#159447"/>
+
+    <g transform="translate(430 505)" filter="url(#shadow)">
+      <path class="green" d="M0 0h92v24H61v155H30V24H0z"/>
+      <path class="white" d="M105 0h56l31 145V0h31v179h-57L136 34v145h-31z"/>
+      <path fill="#159447" opacity="0.85" d="M152 0h9l31 145V0h8v157h-25z"/>
+    </g>
+
+    <line x1="58" y1="930" x2="1082" y2="930" class="stroke-green" stroke-width="3"/>
+    <line x1="58" y1="990" x2="1082" y2="990" class="stroke-soft" stroke-width="1.5" opacity="0.9"/>
+
+    <text x="570" y="985" class="brand white" font-size="55" text-anchor="middle">THE NAIL</text>
+    <text x="570" y="1028" class="small green" font-size="27" text-anchor="middle">by Ngọc Trần</text>
+    <text x="1082" y="1042" class="small" font-size="20" text-anchor="end" fill="#7b857b">EST. 2026</text>
+  </g>
+</svg>
