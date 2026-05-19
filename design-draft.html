@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE NAIL - Design Draft</title>
+  <meta name="description" content="Design draft cho THE NAIL - nail studio by Tran Ngoc tai Quan 10, TP.HCM." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #080808;
+      --band: #0e0e0d;
+      --surface: #141413;
+      --surface-soft: #191816;
+      --text: #f2eee8;
+      --muted: #aaa39a;
+      --quiet: #7d766d;
+      --line: rgba(255, 255, 255, 0.09);
+      --emerald: #047857;
+      --emerald-bright: #10b981;
+      --gold: #c8a96a;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body::selection { background: rgba(16, 185, 129, 0.28); color: var(--text); }
+    img { display: block; width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .serif { font-family: "Cormorant Garamond", serif; }
+    .eyebrow {
+      color: var(--emerald-bright);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      position: fixed;
+      z-index: 50;
+      top: 0;
+      left: 0;
+      right: 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 8, 8, 0.78);
+      backdrop-filter: blur(14px);
+    }
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 90;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--emerald), var(--gold), var(--emerald-bright));
+      box-shadow: 0 0 22px rgba(16, 185, 129, 0.42);
+      transform-origin: left center;
+    }
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      letter-spacing: 0.24em;
+      white-space: nowrap;
+    }
+    .brand span { color: var(--emerald-bright); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 124px 0 82px;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(4, 120, 87, 0.20), transparent 44%),
+        radial-gradient(circle at 18% 78%, rgba(16, 185, 129, 0.08), transparent 34%),
+        radial-gradient(circle at 82% 18%, rgba(200, 169, 106, 0.08), transparent 32%),
+        linear-gradient(180deg, #080808 0%, #121211 58%, #080808 100%);
+      animation: heroBreath 14s ease-in-out infinite alternate;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(0deg, var(--bg) 0%, rgba(8, 8, 8, 0.28) 42%, rgba(8, 8, 8, 0.68) 100%),
+        repeating-linear-gradient(115deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 10px);
+    }
+    .hero-content { width: min(840px, 100%); margin: 0 auto; }
+    .hero-content > * {
+      opacity: 0;
+      transform: translateY(22px);
+      animation: heroRise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    .hero-content > *:nth-child(2) { animation-delay: 0.12s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.24s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.36s; }
+    .hero-content > *:nth-child(5) { animation-delay: 0.48s; }
+    .hero h1 {
+      margin-top: 22px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(70px, 13vw, 150px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: 0.15em;
+      text-shadow: 0 18px 70px rgba(0, 0, 0, 0.72);
+    }
+    .hero-copy {
+      width: min(560px, 100%);
+      margin: 28px auto 0;
+      color: #ded8cf;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(25px, 3.2vw, 39px);
+      font-style: italic;
+      line-height: 1.14;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .hero-meta span {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(8, 8, 8, 0.34);
+      padding: 8px 12px;
+      backdrop-filter: blur(8px);
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 34px;
+    }
+    .btn {
+      min-height: 46px;
+      border: 1px solid var(--emerald);
+      background: transparent;
+      color: var(--emerald-bright);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 22px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.2) 44%, transparent 58%);
+      transform: translateX(-130%);
+      transition: transform 0.7s ease;
+    }
+    .btn:hover::after { transform: translateX(130%); }
+    .btn:hover { transform: translateY(-2px); border-color: var(--emerald-bright); }
+    .btn.primary { background: var(--emerald); color: #fff; }
+    .btn.primary:hover { background: var(--emerald-bright); color: #04100b; }
+
+    .stats {
+      padding: 34px 0;
+      background: #0c0c0c;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .stat {
+      min-height: 118px;
+      display: grid;
+      place-items: center;
+      gap: 4px;
+      background: #0c0c0c;
+      text-align: center;
+      padding: 22px 14px;
+    }
+    .stat strong {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--emerald-bright);
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 400;
+      line-height: 1;
+      background: linear-gradient(90deg, var(--emerald-bright), #a7f3d0, var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .stat span {
+      color: var(--quiet);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    section { padding: 92px 0; }
+    .section-head {
+      display: block;
+      width: min(760px, 100%);
+      margin: 0 auto 54px;
+      text-align: center;
+    }
+    .section-head h2 {
+      margin-top: 14px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 7vw, 74px);
+      font-weight: 400;
+      line-height: 1;
+    }
+    .section-head p { margin: 16px auto 0; color: var(--muted); font-size: 15px; }
+
+    .values {
+      background: var(--band);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .value {
+      min-height: 238px;
+      background: var(--band);
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, background 0.35s ease;
+    }
+    .value::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--emerald-bright), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.7s ease;
+    }
+    .value:hover { transform: translateY(-4px); background: #121210; }
+    .value:hover::before { transform: translateX(100%); }
+    .value strong {
+      color: var(--gold);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 58px;
+      font-weight: 400;
+      line-height: 1;
+    }
+    .value h3 {
+      margin-top: 24px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 36px;
+      font-weight: 500;
+    }
+    .value p { margin-top: 10px; color: var(--muted); font-size: 14px; }
+
+    .gallery-tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .tab {
+      flex: 0 0 auto;
+      min-height: 39px;
+      border: 1px solid var(--line);
+      background: #10100f;
+      color: var(--muted);
+      padding: 0 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .tab.active {
+      border-color: var(--emerald);
+      background: rgba(4, 120, 87, 0.22);
+      color: var(--text);
+    }
+    .gallery-note { color: var(--quiet); font-size: 13px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .nail-card {
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--surface);
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      box-shadow: none;
+      transform-style: preserve-3d;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+    }
+    .nail-card[hidden] { display: none; }
+    .nail-card img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+    .nail-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 28%),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.24), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .nail-card::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: 2;
+      pointer-events: none;
+      border: 1px solid rgba(16, 185, 129, 0.0);
+      transition: border-color 0.25s ease;
+    }
+    .nail-card:hover {
+      border-color: rgba(200, 169, 106, 0.45);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.42);
+    }
+    .nail-card:hover::before { opacity: 1; }
+    .nail-card:hover::after { border-color: rgba(16, 185, 129, 0.32); }
+    .nail-card:hover img { transform: scale(1.06); filter: brightness(1.08) saturate(1.04); }
+    .nail-card button {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      color: transparent;
+    }
+
+    .atelier {
+      background: var(--band);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .marquee {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #090909;
+      color: rgba(232, 230, 225, 0.72);
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-flex;
+      gap: 44px;
+      padding: 19px 0;
+      animation: marqueeMove 28s linear infinite;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(24px, 4vw, 42px);
+      font-style: italic;
+    }
+    .marquee-track span { color: var(--emerald-bright); }
+    .atelier-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(320px, 0.48fr);
+      gap: 44px;
+      align-items: stretch;
+    }
+    .atelier-photo {
+      min-height: 560px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      position: relative;
+    }
+    .atelier-photo img { height: 100%; object-fit: cover; }
+    .atelier-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(200, 169, 106, 0.16), transparent);
+      transform: translateX(-100%);
+      animation: slowSweep 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .atelier-list {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .atelier-item {
+      background: var(--band);
+      padding: 30px;
+    }
+    .atelier-item h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 33px;
+      font-weight: 500;
+    }
+    .atelier-item p { margin-top: 8px; color: var(--muted); font-size: 14px; }
+
+    .booking {
+      position: relative;
+      overflow: hidden;
+    }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.52fr) minmax(0, 0.7fr);
+      gap: 44px;
+      align-items: start;
+    }
+    .booking-panel {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .booking-panel::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--emerald), var(--gold), var(--emerald-bright));
+      animation: bookingGlow 3s ease-in-out infinite;
+    }
+    .booking-panel form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .field.full { grid-column: 1 / -1; }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--quiet);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      background: #0b0b0b;
+      color: var(--text);
+      padding: 13px 14px;
+      outline: none;
+    }
+    textarea { min-height: 118px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: var(--emerald-bright); }
+    .booking-panel .btn { width: 100%; margin-top: 4px; }
+    .contact-strip {
+      display: grid;
+      gap: 16px;
+      color: var(--muted);
+    }
+    .contact-strip h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 6vw, 70px);
+      font-weight: 400;
+      line-height: 0.96;
+    }
+    .contact-row {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      display: grid;
+      gap: 4px;
+    }
+    .contact-row b { color: var(--text); font-weight: 500; }
+    .map-wrap {
+      min-height: 280px;
+      border: 1px solid var(--line);
+      background: #0b0b0b;
+      overflow: hidden;
+      position: relative;
+    }
+    .map-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.08), inset 0 -70px 90px rgba(8, 8, 8, 0.22);
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      border: 0;
+      filter: grayscale(1) invert(0.92) contrast(0.92) brightness(0.82);
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+      color: var(--quiet);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.88);
+    }
+    .lightbox.active { display: flex; }
+    .lightbox.active .lightbox-inner { animation: modalIn 0.26s ease forwards; }
+    .lightbox-inner {
+      width: min(980px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(260px, 0.3fr);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .lightbox-image {
+      background: #050505;
+      max-height: 82vh;
+    }
+    .lightbox-image img {
+      height: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+    }
+    .lightbox-copy {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      justify-content: space-between;
+    }
+    .lightbox-copy h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 1;
+    }
+    .lightbox-copy p { color: var(--muted); font-size: 14px; }
+    .close {
+      align-self: flex-end;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .zalo-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 60;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      background: var(--emerald);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 18px 44px rgba(4, 120, 87, 0.35);
+      animation: zaloPulse 2.6s ease-in-out infinite;
+    }
+
+    .hero-sparkles {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .spark {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(167, 243, 208, 0.88);
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.72);
+      opacity: 0;
+      animation: sparkleFloat 5s ease-in-out infinite;
+    }
+    .spark.gold {
+      background: rgba(200, 169, 106, 0.88);
+      box-shadow: 0 0 16px rgba(200, 169, 106, 0.52);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nail-card.reveal {
+      transform: translateY(22px) scale(0.98);
+      transition-delay: var(--delay, 0ms);
+    }
+    .nail-card.reveal.visible {
+      transform: translateY(0) scale(1);
+    }
+
+    @keyframes heroBreath {
+      from { transform: scale(1) translate3d(0, 0, 0); filter: brightness(1); }
+      to { transform: scale(1.04) translate3d(0, -0.8%, 0); filter: brightness(1.08); }
+    }
+    @keyframes heroRise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes sparkleFloat {
+      0%, 100% { opacity: 0; transform: translate3d(0, 18px, 0) scale(0.7); }
+      18%, 70% { opacity: 1; }
+      50% { transform: translate3d(18px, -30px, 0) scale(1.2); }
+    }
+    @keyframes slowSweep {
+      0%, 35% { transform: translateX(-120%); opacity: 0; }
+      48% { opacity: 1; }
+      70%, 100% { transform: translateX(120%); opacity: 0; }
+    }
+    @keyframes bookingGlow {
+      0%, 100% { opacity: 0.42; }
+      50% { opacity: 1; }
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(14px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes zaloPulse {
+      0%, 100% { transform: translateY(0); box-shadow: 0 18px 44px rgba(4, 120, 87, 0.35); }
+      50% { transform: translateY(-4px); box-shadow: 0 22px 58px rgba(16, 185, 129, 0.48); }
+    }
+    @keyframes marqueeMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .atelier-grid,
+      .booking-grid,
+      .lightbox-inner {
+        grid-template-columns: 1fr;
+      }
+      .value-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .atelier-photo { min-height: 420px; }
+      .lightbox-copy { order: -1; }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 28px, 1160px); }
+      section { padding: 70px 0; }
+      .nav-inner { height: 64px; }
+      .brand { font-size: 21px; letter-spacing: 0.2em; }
+      .hero { min-height: 88vh; padding: 108px 0 48px; }
+      .hero::after {
+        background:
+          linear-gradient(0deg, var(--bg) 0%, rgba(8, 8, 8, 0.34) 48%, rgba(8, 8, 8, 0.78) 100%),
+          repeating-linear-gradient(115deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 10px);
+      }
+      .hero h1 { letter-spacing: 0.08em; }
+      .hero-meta span { width: 100%; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .gallery-tools { align-items: stretch; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .booking-panel { padding: 20px; }
+      .booking-panel form { grid-template-columns: 1fr; }
+      .map-wrap,
+      .map-wrap iframe { min-height: 230px; }
+      .lightbox { padding: 12px; }
+      .zalo-float { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+  <nav class="nav" aria-label="Dieu huong chinh">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">THE <span>NAIL</span></a>
+      <div class="nav-links">
+        <a href="#values">Giá trị</a>
+        <a href="#gallery">Mẫu nail</a>
+        <a href="#atelier">Phong cách</a>
+        <a href="#booking">Đặt lịch</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-sparkles" id="hero-sparkles" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-content">
+        <div class="eyebrow">Nail Studio by Tran Ngoc</div>
+        <h1>THE NAIL</h1>
+        <p class="hero-copy">Ý tưởng bạn trao, nghệ thuật tôi tạo.</p>
+        <div class="hero-meta">
+          <span>Quận 10, TP.HCM</span>
+          <span>9:00 - 22:00 hằng ngày</span>
+          <span>Tư vấn mẫu trước qua Zalo</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://zalo.me/0931415099" target="_blank" rel="noopener">Đặt lịch qua Zalo</a>
+          <a class="btn" href="#gallery">Xem mẫu nail</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="stats" aria-label="Diem noi bat cua The Nail">
+    <div class="wrap stats-grid">
+      <div class="stat">
+        <strong>80+</strong>
+        <span>Mẫu tham khảo</span>
+      </div>
+      <div class="stat">
+        <strong>5</strong>
+        <span>Tầm giá rõ</span>
+      </div>
+      <div class="stat">
+        <strong>1:1</strong>
+        <span>Tư vấn riêng</span>
+      </div>
+      <div class="stat">
+        <strong>Q10</strong>
+        <span>TP.HCM</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="values" id="values">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Tinh thần</div>
+          <h2>Không làm đại trà. Mỗi bộ móng có một gu riêng.</h2>
+        </div>
+        <p>THE NAIL tập trung vào những thiết kế vừa tay, đúng tông da, đúng dịp, và đủ tinh tế để khách vẫn thấy đẹp sau nhiều ngày sử dụng.</p>
+      </div>
+      <div class="value-grid">
+        <article class="value">
+          <strong>01</strong>
+          <div>
+            <h3>Cá nhân hóa</h3>
+            <p>Tư vấn theo dáng tay, màu da, phong cách thường ngày và mẫu khách muốn biến tấu.</p>
+          </div>
+        </article>
+        <article class="value">
+          <strong>02</strong>
+          <div>
+            <h3>Làm kỹ</h3>
+            <p>Ưu tiên form móng, bề mặt sạch, chi tiết rõ và độ bền hơn cảm giác làm nhanh.</p>
+          </div>
+        </article>
+        <article class="value">
+          <strong>03</strong>
+          <div>
+            <h3>Có gu</h3>
+            <p>Từ nhẹ nhàng đến nổi bật, thiết kế vẫn giữ độ tiết chế để nhìn sang và gọn.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Gallery</div>
+          <h2>Mẫu thật theo từng tầm giá.</h2>
+        </div>
+        <p>Chọn tầm giá để xem nhanh. Khi thích một mẫu, mở ảnh và gửi trực tiếp qua Zalo để tiệm tư vấn lịch và biến tấu phù hợp.</p>
+      </div>
+      <div class="gallery-tools">
+        <div class="tabs" aria-label="Loc gallery theo tam gia">
+          <button class="tab active" data-filter="all">Tất cả</button>
+          <button class="tab" data-filter="200-300">200-300k</button>
+          <button class="tab" data-filter="300-400">300-400k</button>
+          <button class="tab" data-filter="400-500">400-500k</button>
+          <button class="tab" data-filter="500-700">500-700k</button>
+          <button class="tab" data-filter="luxury">Luxury</button>
+        </div>
+        <p class="gallery-note">Ảnh sạch, không overlay để nhìn rõ chi tiết móng.</p>
+      </div>
+      <div class="gallery-grid">
+        <article class="nail-card" data-price="200-300" data-range="220k" data-src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1400"><img src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="Mẫu nail 220k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 220k</button></article>
+        <article class="nail-card" data-price="200-300" data-range="250k" data-src="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w1400"><img src="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w800" alt="Mẫu nail 250k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 250k</button></article>
+        <article class="nail-card" data-price="200-300" data-range="280k" data-src="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w1400"><img src="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w800" alt="Mẫu nail 280k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 280k</button></article>
+        <article class="nail-card" data-price="300-400" data-range="320k" data-src="https://lh3.googleusercontent.com/d/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ=w1400"><img src="https://lh3.googleusercontent.com/d/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ=w800" alt="Mẫu nail 320k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 320k</button></article>
+        <article class="nail-card" data-price="300-400" data-range="360k" data-src="https://lh3.googleusercontent.com/d/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR_=w1400"><img src="https://lh3.googleusercontent.com/d/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR_=w800" alt="Mẫu nail 360k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 360k</button></article>
+        <article class="nail-card" data-price="300-400" data-range="390k" data-src="https://lh3.googleusercontent.com/d/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ=w1400"><img src="https://lh3.googleusercontent.com/d/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ=w800" alt="Mẫu nail 390k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 390k</button></article>
+        <article class="nail-card" data-price="400-500" data-range="420k" data-src="https://lh3.googleusercontent.com/d/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF=w1400"><img src="https://lh3.googleusercontent.com/d/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF=w800" alt="Mẫu nail 420k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 420k</button></article>
+        <article class="nail-card" data-price="400-500" data-range="460k" data-src="https://lh3.googleusercontent.com/d/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv=w1400"><img src="https://lh3.googleusercontent.com/d/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv=w800" alt="Mẫu nail 460k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 460k</button></article>
+        <article class="nail-card" data-price="400-500" data-range="490k" data-src="https://lh3.googleusercontent.com/d/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D=w1400"><img src="https://lh3.googleusercontent.com/d/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D=w800" alt="Mẫu nail 490k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 490k</button></article>
+        <article class="nail-card" data-price="500-700" data-range="550k" data-src="https://lh3.googleusercontent.com/d/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k=w1400"><img src="https://lh3.googleusercontent.com/d/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k=w800" alt="Mẫu nail 550k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 550k</button></article>
+        <article class="nail-card" data-price="500-700" data-range="650k" data-src="https://lh3.googleusercontent.com/d/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn=w1400"><img src="https://lh3.googleusercontent.com/d/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn=w800" alt="Mẫu nail 650k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 650k</button></article>
+        <article class="nail-card" data-price="500-700" data-range="700k" data-src="https://lh3.googleusercontent.com/d/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm=w1400"><img src="https://lh3.googleusercontent.com/d/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm=w800" alt="Mẫu nail 700k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 700k</button></article>
+        <article class="nail-card" data-price="luxury" data-range="850k" data-src="https://lh3.googleusercontent.com/d/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N=w1400"><img src="https://lh3.googleusercontent.com/d/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N=w800" alt="Mẫu nail 850k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 850k</button></article>
+        <article class="nail-card" data-price="luxury" data-range="1000k" data-src="https://lh3.googleusercontent.com/d/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz=w1400"><img src="https://lh3.googleusercontent.com/d/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz=w800" alt="Mẫu nail 1000k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 1000k</button></article>
+        <article class="nail-card" data-price="luxury" data-range="1500k" data-src="https://lh3.googleusercontent.com/d/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb=w1400"><img src="https://lh3.googleusercontent.com/d/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb=w800" alt="Mẫu nail 1500k" loading="lazy" referrerpolicy="no-referrer"><button type="button">Mở mẫu 1500k</button></article>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div>Ý tưởng bạn trao <span>-</span> nghệ thuật tôi tạo <span>-</span> form móng sạch <span>-</span> chi tiết có gu <span>-</span></div>
+      <div>Ý tưởng bạn trao <span>-</span> nghệ thuật tôi tạo <span>-</span> form móng sạch <span>-</span> chi tiết có gu <span>-</span></div>
+    </div>
+  </div>
+
+  <section class="atelier" id="atelier">
+    <div class="wrap atelier-grid">
+      <div class="atelier-photo">
+        <img src="https://lh3.googleusercontent.com/d/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn=w1400" alt="Mẫu nail nghệ thuật của The Nail" loading="lazy" referrerpolicy="no-referrer" />
+      </div>
+      <div>
+        <div class="section-head" style="display:block;margin-bottom:28px">
+          <div class="eyebrow">Atelier</div>
+          <h2>Khách chọn vì sự vừa vặn.</h2>
+        </div>
+        <div class="atelier-list">
+          <article class="atelier-item">
+            <h3>Gửi mẫu trước</h3>
+            <p>Khách có thể gửi ảnh qua Zalo để được tư vấn tông màu, độ dài và mức giá phù hợp.</p>
+          </article>
+          <article class="atelier-item">
+            <h3>Tầm giá rõ</h3>
+            <p>Gallery chia theo mức giá để khách chọn nhanh mà không phải hỏi lại quá nhiều.</p>
+          </article>
+          <article class="atelier-item">
+            <h3>Thiết kế có tiết chế</h3>
+            <p>Không thêm chi tiết chỉ để nổi bật. Mỗi chi tiết cần làm bộ móng đẹp hơn.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking" id="booking">
+    <div class="wrap booking-grid">
+      <div class="contact-strip">
+        <div class="eyebrow">Đặt lịch</div>
+        <h2>Chọn mẫu, gửi Zalo, chốt lịch.</h2>
+        <p>Form chỉ tạo sẵn nội dung tin nhắn. Bạn vẫn xác nhận trực tiếp với tiệm qua Zalo trước khi đến.</p>
+        <div class="contact-row">
+          <b>Địa chỉ</b>
+          <span>521/54 Cách Mạng Tháng 8, P. Hoà Hưng, Q.10, TP.HCM</span>
+        </div>
+        <div class="contact-row">
+          <b>Liên hệ</b>
+          <span>0931 415 099</span>
+        </div>
+        <div class="contact-row">
+          <b>Giờ mở cửa</b>
+          <span>9:00 - 22:00 hằng ngày</span>
+        </div>
+        <div class="map-wrap" aria-label="Bản đồ The Nail">
+          <iframe
+            title="Bản đồ The Nail"
+            src="https://maps.google.com/maps?q=521%2F54+C%C3%A1ch+M%E1%BA%A1ng+Th%C3%A1ng+8%2C+Ph%C6%B0%E1%BB%9Dng+Ho%C3%A0+H%C6%B0ng%2C+Qu%E1%BA%ADn+10%2C+TPHCM&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+      <div class="booking-panel">
+        <form id="booking-form">
+          <div class="field">
+            <label for="name">Tên</label>
+            <input id="name" name="name" autocomplete="name" required placeholder="Tên của bạn" />
+          </div>
+          <div class="field">
+            <label for="phone">Số điện thoại</label>
+            <input id="phone" name="phone" autocomplete="tel" required placeholder="09xx xxx xxx" />
+          </div>
+          <div class="field">
+            <label for="date">Ngày</label>
+            <input id="date" name="date" type="date" />
+          </div>
+          <div class="field">
+            <label for="time">Giờ</label>
+            <select id="time" name="time">
+              <option>9:00 - 11:00</option>
+              <option>11:00 - 14:00</option>
+              <option>14:00 - 17:00</option>
+              <option>17:00 - 20:00</option>
+              <option>20:00 - 22:00</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="note">Ghi chú</label>
+            <textarea id="note" name="note" placeholder="Mẫu bạn thích, tầm giá, hoặc yêu cầu đặc biệt"></textarea>
+          </div>
+          <div class="field full">
+            <button class="btn primary" type="submit">Tạo tin nhắn Zalo</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>THE NAIL - Nail Studio by Tran Ngoc</span>
+      <span>thenail.vn</span>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Chi tiet mau nail">
+      <div class="lightbox-image">
+        <img id="lightbox-img" src="" alt="" />
+      </div>
+      <div class="lightbox-copy">
+        <button class="close" type="button" id="close-lightbox" aria-label="Dong">x</button>
+        <div>
+          <div class="eyebrow">Mẫu đang xem</div>
+          <h3 id="lightbox-title">Mẫu nail</h3>
+          <p id="lightbox-price">Tầm giá</p>
+        </div>
+        <a class="btn primary" id="send-sample" href="https://zalo.me/0931415099" target="_blank" rel="noopener">Gửi mẫu qua Zalo</a>
+      </div>
+    </div>
+  </div>
+
+  <a class="zalo-float" href="https://zalo.me/0931415099" target="_blank" rel="noopener" aria-label="Chat Zalo">Zalo</a>
+
+  <script>
+    const cards = [...document.querySelectorAll(".nail-card")];
+    const tabs = [...document.querySelectorAll(".tab")];
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxTitle = document.getElementById("lightbox-title");
+    const lightboxPrice = document.getElementById("lightbox-price");
+    const sendSample = document.getElementById("send-sample");
+    const progressBar = document.getElementById("scroll-progress");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
+      progressBar.style.width = `${Math.max(0, Math.min(100, progress))}%`;
+    }
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+
+    if (!prefersReducedMotion) {
+      const sparkles = document.getElementById("hero-sparkles");
+      for (let index = 0; index < 28; index += 1) {
+        const spark = document.createElement("span");
+        spark.className = index % 5 === 0 ? "spark gold" : "spark";
+        spark.style.left = `${8 + Math.random() * 86}%`;
+        spark.style.top = `${8 + Math.random() * 78}%`;
+        spark.style.animationDelay = `${Math.random() * 4.5}s`;
+        spark.style.animationDuration = `${4 + Math.random() * 4}s`;
+        const size = 2 + Math.random() * 4;
+        spark.style.width = `${size}px`;
+        spark.style.height = `${size}px`;
+        sparkles.appendChild(spark);
+      }
+
+      const revealItems = [
+        ...document.querySelectorAll(".stat, .section-head, .value, .marquee, .atelier-photo, .atelier-item, .contact-strip, .booking-panel, .footer"),
+        ...cards
+      ];
+      revealItems.forEach((item, index) => {
+        item.classList.add("reveal");
+        if (item.classList.contains("nail-card")) {
+          item.style.setProperty("--delay", `${(index % 8) * 45}ms`);
+        }
+      });
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+
+      const heroContent = document.querySelector(".hero-content");
+      window.addEventListener("scroll", () => {
+        const offset = Math.min(window.scrollY, window.innerHeight);
+        heroContent.style.transform = `translateY(${offset * 0.08}px)`;
+      }, { passive: true });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const filter = tab.dataset.filter;
+        tabs.forEach((item) => item.classList.remove("active"));
+        tab.classList.add("active");
+        cards.forEach((card, index) => {
+          card.hidden = filter !== "all" && card.dataset.price !== filter;
+          if (!card.hidden && !prefersReducedMotion) {
+            card.classList.remove("visible");
+            card.style.setProperty("--delay", `${(index % 6) * 35}ms`);
+            requestAnimationFrame(() => card.classList.add("visible"));
+          }
+        });
+      });
+    });
+
+    cards.forEach((card) => {
+      if (!prefersReducedMotion && window.matchMedia("(hover: hover)").matches) {
+        card.addEventListener("mousemove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateY(-3px)`;
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+      }
+
+      card.querySelector("button").addEventListener("click", () => {
+        const range = card.dataset.range;
+        const src = card.dataset.src;
+        lightboxImg.src = src;
+        lightboxImg.alt = `Mẫu nail ${range}`;
+        lightboxTitle.textContent = `Mẫu ${range}`;
+        lightboxPrice.textContent = `Tầm giá tham khảo: ${range}`;
+        window.pendingSampleMessage = `Chào The Nail, em muốn hỏi mẫu nail ${range} này: ${src}`;
+        sendSample.href = `https://zalo.me/0931415099?text=${encodeURIComponent(window.pendingSampleMessage)}`;
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+      });
+    });
+
+    sendSample.addEventListener("click", () => {
+      if (window.pendingSampleMessage && navigator.clipboard) {
+        navigator.clipboard.writeText(window.pendingSampleMessage).catch(() => {});
+      }
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("active");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImg.src = "";
+    }
+
+    document.getElementById("close-lightbox").addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeLightbox();
+    });
+
+    const dateInput = document.getElementById("date");
+    dateInput.min = new Date().toISOString().split("T")[0];
+
+    document.getElementById("booking-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const lines = [
+        "Chào The Nail, em muốn đặt lịch:",
+        `Tên: ${form.get("name")}`,
+        `SĐT: ${form.get("phone")}`,
+        `Ngày: ${form.get("date") || "em sẽ chốt sau"}`,
+        `Giờ: ${form.get("time")}`,
+        `Ghi chú: ${form.get("note") || "không có"}`
+      ];
+      const text = lines.join("\\n");
+      if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+      window.open(`https://zalo.me/0931415099?text=${encodeURIComponent(text)}`, "_blank");
+    });
+  </script>
+</body>
+</html>

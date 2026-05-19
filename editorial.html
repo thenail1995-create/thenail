@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE NAIL — Vol. I — Studio of Trần Ngọc</title>
+  <meta name="description" content="The Nail Vol. I — Một atelier nail tư tại Quận 10, Sài Gòn. Studio of Trần Ngọc." />
+
+  <!-- Editorial typography stack -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================
+       EDITORIAL × GALLERY × WABI-SABI
+       Inspired by: Aesop, The Row, Bottega Veneta,
+       Vanity Projects, Issey Miyake
+       ============================================ */
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0a;
+      --bg-warm: #14110d;
+      --ink: #e8e6e1;
+      --ink-soft: #a8a59f;
+      --ink-faint: #5a5852;
+      --emerald: #10b981;
+      --emerald-deep: #047857;
+      --cream: #d4c4a8;
+      --line: rgba(232, 230, 225, 0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    em, i { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+    /* ============================================
+       CUSTOM CURSOR
+       ============================================ */
+    .cursor, .cursor-trail {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      z-index: 9999;
+      transition: width 0.3s, height 0.3s, opacity 0.3s;
+    }
+    .cursor {
+      width: 8px; height: 8px;
+      background: var(--emerald);
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+    .cursor-trail {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      transform: translate(-50%, -50%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cursor.hover, .cursor-trail.hover {
+      width: 80px; height: 80px;
+      background: transparent;
+      border: 1px solid var(--emerald);
+    }
+    @media (hover: none) {
+      body { cursor: auto; }
+      .cursor, .cursor-trail { display: none; }
+    }
+
+    /* ============================================
+       NAVIGATION
+       ============================================ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: difference;
+      color: #fff;
+    }
+    nav .vol {
+      font-family: 'Manrope', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    nav .menu {
+      display: flex;
+      gap: 40px;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+    nav .menu a { transition: opacity 0.3s; }
+    nav .menu a:hover { opacity: 0.5; }
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      nav .menu { display: none; }
+    }
+
+    /* ============================================
+       HERO — Full bleed cinematic
+       ============================================ */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto 1fr;
+      grid-template-columns: 1fr;
+      position: relative;
+      padding: 120px 48px 48px;
+    }
+    .hero-marks {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .hero-marks .mark {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+    .hero-display {
+      text-align: center;
+      align-self: center;
+    }
+    .hero-display h1 {
+      font-family: 'Italiana', serif;
+      font-size: clamp(80px, 18vw, 260px);
+      letter-spacing: 0.04em;
+      line-height: 0.9;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .hero-display h1 .accent {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--emerald);
+      font-size: 0.4em;
+      display: block;
+      letter-spacing: 0.05em;
+      margin-top: 24px;
+    }
+    .hero-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 48px;
+    }
+    .hero-foot .lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(18px, 2.5vw, 26px);
+      max-width: 420px;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    .hero-foot .coords {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-align: right;
+    }
+    .hero-foot .coords div { margin-bottom: 6px; }
+    @media (max-width: 768px) {
+      .hero { padding: 100px 24px 32px; }
+      .hero-marks { flex-direction: column; gap: 12px; }
+      .hero-foot { flex-direction: column; align-items: start; gap: 24px; }
+      .hero-foot .coords { text-align: left; }
+    }
+
+    /* ============================================
+       MANIFESTO — Editorial opening paragraph
+       ============================================ */
+    .manifesto {
+      padding: 200px 48px;
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .chapter-label {
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      margin-bottom: 64px;
+      text-align: center;
+      font-weight: 500;
+    }
+    .chapter-label::before, .chapter-label::after {
+      content: '——';
+      margin: 0 16px;
+      letter-spacing: 0;
+      color: var(--ink-faint);
+    }
+    .lead-paragraph {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3.5vw, 40px);
+      line-height: 1.4;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      text-align: left;
+    }
+    .lead-paragraph .drop-cap {
+      font-family: 'Italiana', serif;
+      font-size: 4em;
+      line-height: 0.85;
+      float: left;
+      margin: 8px 16px 0 -8px;
+      color: var(--emerald);
+    }
+    .lead-paragraph em {
+      color: var(--emerald);
+      font-style: italic;
+    }
+    @media (max-width: 768px) {
+      .manifesto { padding: 100px 24px; }
+      .chapter-label { margin-bottom: 32px; }
+    }
+
+    /* ============================================
+       FEATURED — Magazine-style asymmetric layout
+       ============================================ */
+    .featured {
+      padding: 100px 48px 200px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 32px;
+      margin-top: 80px;
+    }
+    .featured-piece {
+      position: relative;
+    }
+    .featured-piece img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0%) contrast(1.05);
+      transition: filter 0.6s, transform 0.6s;
+    }
+    .featured-piece:hover img { filter: grayscale(0%) contrast(1.1); transform: scale(1.01); }
+    .featured-piece .meta {
+      margin-top: 16px;
+      display: flex;
+      gap: 16px;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      align-items: baseline;
+    }
+    .featured-piece .meta .num { color: var(--emerald); }
+    .featured-piece .meta .title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-transform: none;
+    }
+    .featured-piece.tall {
+      grid-column: 1 / 6;
+      aspect-ratio: 3 / 4;
+    }
+    .featured-piece.wide {
+      grid-column: 7 / 13;
+      grid-row: 1 / 3;
+      aspect-ratio: 3 / 5;
+      margin-top: 80px;
+    }
+    .featured-piece.medium {
+      grid-column: 2 / 7;
+      aspect-ratio: 5 / 4;
+      margin-top: 48px;
+    }
+    @media (max-width: 768px) {
+      .featured { padding: 60px 24px 100px; }
+      .featured-grid { grid-template-columns: 1fr; gap: 48px; margin-top: 48px; }
+      .featured-piece.tall,
+      .featured-piece.wide,
+      .featured-piece.medium {
+        grid-column: 1; grid-row: auto; margin-top: 0;
+        aspect-ratio: 4 / 5;
+      }
+    }
+
+    /* ============================================
+       CHAPTERS — Gallery grouped by tier
+       ============================================ */
+    .chapters { padding: 120px 0; background: var(--bg-warm); }
+    .chapter {
+      max-width: 1400px;
+      margin: 0 auto 200px;
+      padding: 0 48px;
+    }
+    .chapter:last-child { margin-bottom: 0; }
+    .chapter-header {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      margin-bottom: 80px;
+      align-items: start;
+    }
+    .chapter-num {
+      font-family: 'Italiana', serif;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 0.9;
+      color: var(--emerald);
+      letter-spacing: 0.02em;
+    }
+    .chapter-info h2 {
+      font-family: 'Italiana', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+      font-weight: 400;
+    }
+    .chapter-range {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      margin-bottom: 32px;
+    }
+    .chapter-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(18px, 2vw, 22px);
+      color: var(--ink-soft);
+      line-height: 1.5;
+      max-width: 520px;
+    }
+    .chapter-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 4px;
+    }
+    .chapter-gallery .piece {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      position: relative;
+      background: #1a1a1a;
+    }
+    .chapter-gallery .piece img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .chapter-gallery .piece:hover img { transform: scale(1.04); }
+    .chapter-gallery .piece .num {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: rgba(255, 255, 255, 0.5);
+      mix-blend-mode: difference;
+    }
+    @media (max-width: 768px) {
+      .chapter { padding: 0 24px; margin-bottom: 100px; }
+      .chapter-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
+      .chapter-gallery { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    }
+
+    /* ============================================
+       ARTISAN — Editorial profile of Trần Ngọc
+       ============================================ */
+    .artisan {
+      padding: 200px 48px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .artisan-layout {
+      display: grid;
+      grid-template-columns: 5fr 6fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 80px;
+    }
+    .artisan-portrait {
+      aspect-ratio: 3 / 4;
+      background: #1a1a1a;
+      position: relative;
+      overflow: hidden;
+    }
+    .artisan-portrait::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.4));
+    }
+    .artisan-portrait .placeholder-portrait {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Italiana', serif;
+      font-size: 120px;
+      color: rgba(16, 185, 129, 0.15);
+    }
+    .artisan-bio { max-width: 540px; }
+    .artisan-bio .artisan-num {
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 24px;
+    }
+    .artisan-bio h2 {
+      font-family: 'Italiana', serif;
+      font-size: clamp(48px, 6vw, 80px);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+    .artisan-bio .role {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--emerald);
+      margin-bottom: 48px;
+      letter-spacing: 0.05em;
+    }
+    .artisan-bio blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(22px, 2.5vw, 30px);
+      line-height: 1.4;
+      color: var(--ink);
+      padding-left: 24px;
+      border-left: 1px solid var(--emerald);
+      margin-bottom: 48px;
+    }
+    .artisan-bio .story {
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    @media (max-width: 768px) {
+      .artisan { padding: 100px 24px; }
+      .artisan-layout { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ============================================
+       VOICE — Reviews as editorial pull-quotes
+       ============================================ */
+    .voice {
+      padding: 200px 48px;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: var(--bg-warm);
+    }
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 48px;
+      margin-top: 80px;
+    }
+    .voice .review {
+      position: relative;
+    }
+    .voice .review p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(22px, 2.5vw, 32px);
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .voice .review p::before {
+      content: '"';
+      font-family: 'Italiana', serif;
+      font-size: 2.5em;
+      color: var(--emerald);
+      line-height: 0;
+      vertical-align: -0.5em;
+      margin-right: 8px;
+    }
+    .voice .review cite {
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .voice .review.r1 { grid-column: 1 / 7; }
+    .voice .review.r2 { grid-column: 8 / 13; margin-top: 80px; }
+    .voice .review.r3 { grid-column: 2 / 8; margin-top: 40px; }
+    .voice .review.r4 { grid-column: 9 / 13; }
+    .voice .review.r5 { grid-column: 1 / 6; margin-top: 80px; }
+    .voice .review.r6 { grid-column: 7 / 13; }
+    @media (max-width: 768px) {
+      .voice { padding: 100px 24px; }
+      .voice-grid { grid-template-columns: 1fr; gap: 64px; margin-top: 48px; }
+      .voice .review { grid-column: 1 !important; margin-top: 0 !important; }
+    }
+
+    /* ============================================
+       VISIT — Editorial invitation
+       ============================================ */
+    .visit {
+      padding: 240px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .visit h2 {
+      font-family: 'Italiana', serif;
+      font-size: clamp(64px, 10vw, 140px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      margin-bottom: 80px;
+      font-weight: 400;
+    }
+    .visit-address {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.6;
+      color: var(--ink);
+      margin-bottom: 64px;
+      font-style: normal;
+    }
+    .visit-hours {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      margin-bottom: 80px;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .visit-hours div { display: flex; flex-direction: column; gap: 12px; }
+    .visit-hours .value { color: var(--emerald); font-size: 14px; }
+    .visit-cta {
+      display: inline-block;
+      padding: 24px 64px;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      transition: all 0.4s;
+    }
+    .visit-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    @media (max-width: 768px) {
+      .visit { padding: 100px 24px; }
+      .visit-hours { flex-direction: column; gap: 32px; }
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer {
+      padding: 48px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    footer .center {
+      font-family: 'Italiana', serif;
+      letter-spacing: 0.3em;
+      color: var(--emerald);
+      font-size: 13px;
+    }
+    @media (max-width: 768px) {
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    }
+
+    /* ============================================
+       ENTRANCE ANIMATIONS
+       ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ============================================
+       LIGHTBOX
+       ============================================ */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(10, 10, 10, 0.97);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      padding: 64px;
+      cursor: none;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 32px; right: 32px;
+      width: 48px; height: 48px;
+      background: transparent;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      font-size: 18px;
+      cursor: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursor-trail"></div>
+
+  <!-- ============================================
+       NAV
+       ============================================ -->
+  <nav>
+    <div class="vol">Vol. I · MMXXVI</div>
+    <div class="menu">
+      <a href="#manifesto">Manifesto</a>
+      <a href="#works">Works</a>
+      <a href="#artisan">Artisan</a>
+      <a href="#voice">Voice</a>
+      <a href="#visit">Visit</a>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <section class="hero">
+    <div class="hero-marks">
+      <div class="mark">№ 001 — The Nail</div>
+      <div class="mark">Studio of Trần Ngọc</div>
+    </div>
+
+    <div class="hero-display">
+      <h1>
+        The Nail
+        <span class="accent">a private atelier · since 2026</span>
+      </h1>
+    </div>
+
+    <div class="hero-foot">
+      <p class="lead">
+        Mỗi bộ móng là một câu chuyện được kể bằng <em>sắc tay</em> —
+        chậm rãi, kiên nhẫn, không vội vàng.
+      </p>
+      <div class="coords">
+        <div>10°46′N · 106°40′E</div>
+        <div>Quận 10 — Sài Gòn</div>
+        <div>thenail.vn</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MANIFESTO
+       ============================================ -->
+  <section class="manifesto" id="manifesto">
+    <div class="chapter-label reveal">Manifesto</div>
+    <p class="lead-paragraph reveal">
+      <span class="drop-cap">T</span>ại The Nail, chúng tôi không sản xuất nail. Chúng tôi <em>kiến tạo</em> chúng — chậm rãi, có chủ đích, từng đường nét được trau chuốt như một thợ kim hoàn mài viên ngọc. Mỗi khách là một thế giới riêng; mỗi bộ móng là một câu chuyện chưa kể. <em>Ý tưởng bạn trao — Nghệ thuật tôi tạo.</em>
+    </p>
+  </section>
+
+  <!-- ============================================
+       FEATURED WORKS
+       ============================================ -->
+  <section class="featured" id="works">
+    <div class="chapter-label reveal">Selected Works</div>
+
+    <div class="featured-grid">
+      <article class="featured-piece tall reveal">
+        <img src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1000" alt="Velvet Pearl" loading="lazy" referrerpolicy="no-referrer">
+        <div class="meta">
+          <span class="num">№ 001</span>
+          <span class="title">Velvet Pearl</span>
+        </div>
+      </article>
+
+      <article class="featured-piece wide reveal">
+        <img src="https://lh3.googleusercontent.com/d/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn=w1200" alt="Bridal Whisper" loading="lazy" referrerpolicy="no-referrer">
+        <div class="meta">
+          <span class="num">№ 002</span>
+          <span class="title">Bridal Whisper</span>
+        </div>
+      </article>
+
+      <article class="featured-piece medium reveal">
+        <img src="https://lh3.googleusercontent.com/d/1x1smBa58U7JikT1R-c82bwe92SwqT1V_=w1000" alt="Atelier Édition" loading="lazy" referrerpolicy="no-referrer">
+        <div class="meta">
+          <span class="num">№ 003</span>
+          <span class="title">Atelier Édition</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CHAPTERS
+       ============================================ -->
+  <section class="chapters">
+
+    <article class="chapter">
+      <div class="chapter-header reveal">
+        <div class="chapter-num">Chapter I</div>
+        <div class="chapter-info">
+          <h2>Essentials</h2>
+          <div class="chapter-range">200 — 300 K · The Foundation</div>
+          <p class="chapter-intro">
+            Vẻ đẹp tinh khiết nhất thường nằm trong sự tiết chế. Một lớp gel mềm mại, một tông màu duy nhất — vẫn đủ để đôi tay trở nên đáng nhớ.
+          </p>
+        </div>
+      </div>
+      <div class="chapter-gallery" data-tier="200-300"></div>
+    </article>
+
+    <article class="chapter">
+      <div class="chapter-header reveal">
+        <div class="chapter-num">Chapter II</div>
+        <div class="chapter-info">
+          <h2>Adorned</h2>
+          <div class="chapter-range">300 — 400 K · The Detail</div>
+          <p class="chapter-intro">
+            Chi tiết bắt đầu lên tiếng. Ombre dịu dàng, marble tinh tế, ánh chrome thoáng qua — những nét vẽ đầu tiên của câu chuyện cá nhân.
+          </p>
+        </div>
+      </div>
+      <div class="chapter-gallery" data-tier="300-400"></div>
+    </article>
+
+    <article class="chapter">
+      <div class="chapter-header reveal">
+        <div class="chapter-num">Chapter III</div>
+        <div class="chapter-info">
+          <h2>Crafted</h2>
+          <div class="chapter-range">400 — 500 K · The Statement</div>
+          <p class="chapter-intro">
+            Đây là nơi nghệ thuật bắt đầu. Hoa 3D nở trên đầu ngón tay, đính đá lung linh như sao đêm, vẽ tay từng nét được suy tính.
+          </p>
+        </div>
+      </div>
+      <div class="chapter-gallery" data-tier="400-500"></div>
+    </article>
+
+    <article class="chapter">
+      <div class="chapter-header reveal">
+        <div class="chapter-num">Chapter IV</div>
+        <div class="chapter-info">
+          <h2>Bespoke</h2>
+          <div class="chapter-range">500 — 700 K · The Signature</div>
+          <p class="chapter-intro">
+            Mỗi bộ móng là độc bản, không có hai bộ giống nhau. Pha lê Swarovski, charm 3D thủ công, vẽ tay chi tiết — dành cho những đôi tay biết mình muốn gì.
+          </p>
+        </div>
+      </div>
+      <div class="chapter-gallery" data-tier="500-700"></div>
+    </article>
+
+    <article class="chapter">
+      <div class="chapter-header reveal">
+        <div class="chapter-num">Chapter V</div>
+        <div class="chapter-info">
+          <h2>Atelier</h2>
+          <div class="chapter-range">800 K+ · The Édition</div>
+          <p class="chapter-intro">
+            Sản phẩm đỉnh cao của xưởng. Tác phẩm dành cho cô dâu, cho khoảnh khắc duy nhất, cho những ai tin rằng đôi tay xứng đáng có một câu chuyện thật sự.
+          </p>
+        </div>
+      </div>
+      <div class="chapter-gallery" data-tier="800-plus"></div>
+    </article>
+
+  </section>
+
+  <!-- ============================================
+       ARTISAN
+       ============================================ -->
+  <section class="artisan" id="artisan">
+    <div class="chapter-label reveal">The Artisan</div>
+
+    <div class="artisan-layout">
+      <div class="artisan-portrait reveal">
+        <div class="placeholder-portrait">TN</div>
+      </div>
+
+      <div class="artisan-bio reveal">
+        <div class="artisan-num">№ 001 — Founder</div>
+        <h2>Trần Ngọc</h2>
+        <div class="role">Artist · Owner of The Nail</div>
+
+        <blockquote>
+          Tay người là nơi mềm mại nhất mà cũng mạnh mẽ nhất.
+          Tôi vẽ trên đó như vẽ lên giấy hảo hạng —
+          chỉ một lần, không có lần thứ hai.
+        </blockquote>
+
+        <p class="story">
+          Bắt đầu hành trình với nail từ năm 2020, Trần Ngọc xây dựng The Nail như một atelier tư nhân — nơi mỗi khách hàng được phục vụ 1:1, mỗi bộ móng là một dự án nghệ thuật riêng. Studio đặt tại Quận 10, Sài Gòn — không gian được thiết kế để khách thực sự được nghỉ ngơi và sáng tạo cùng nghệ nhân.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       VOICE (Reviews)
+       ============================================ -->
+  <section class="voice" id="voice">
+    <div class="chapter-label reveal">Voice</div>
+
+    <div class="voice-grid">
+      <blockquote class="review r1 reveal">
+        <p>Mình cực ưng bộ móng chị Ngọc làm. Tỉ mỉ từng đường nét, ngồi không thấy vội. Nhất định quay lại.</p>
+        <cite>— Linh Phương · April 2026</cite>
+      </blockquote>
+
+      <blockquote class="review r2 reveal">
+        <p>Tay nghề rất chắc, mẫu đẹp, không gian sạch sẽ và thơm tho.</p>
+        <cite>— Minh Anh · March 2026</cite>
+      </blockquote>
+
+      <blockquote class="review r3 reveal">
+        <p>Đã làm nail nhiều nơi nhưng đây là chỗ đầu tiên mình thấy yên tâm. Vẽ tay sắc nét, không lem.</p>
+        <cite>— Thanh Trúc · March 2026</cite>
+      </blockquote>
+
+      <blockquote class="review r4 reveal">
+        <p>Mẫu đúng hình mình gửi, không bị lệch. Giá hợp lý so với chất lượng.</p>
+        <cite>— Hồng Nhung · March 2026</cite>
+      </blockquote>
+
+      <blockquote class="review r5 reveal">
+        <p>Không gian sang, riêng tư. Chị Ngọc làm móng nhẹ tay. Sẽ giới thiệu bạn bè.</p>
+        <cite>— Anh Thư · February 2026</cite>
+      </blockquote>
+
+      <blockquote class="review r6 reveal">
+        <p>Đặt lịch qua Zalo cực nhanh. Đến đúng giờ là làm liền. Bộ móng giữ lâu hơn mình tưởng.</p>
+        <cite>— Phương Linh · February 2026</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============================================
+       VISIT
+       ============================================ -->
+  <section class="visit" id="visit">
+    <h2 class="reveal">Visit Us</h2>
+
+    <address class="visit-address reveal">
+      521/54 Cách Mạng Tháng 8<br>
+      P. Hoà Hưng — Quận 10<br>
+      TP. Hồ Chí Minh — Việt Nam
+    </address>
+
+    <div class="visit-hours reveal">
+      <div>
+        <div>Mon — Sun</div>
+        <div class="value">09:00 — 22:00</div>
+      </div>
+      <div>
+        <div>Contact</div>
+        <div class="value">0931 415 099</div>
+      </div>
+    </div>
+
+    <a href="https://zalo.me/0931415099" target="_blank" class="visit-cta reveal">
+      Begin a Conversation →
+    </a>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer>
+    <div>© MMXXVI — Studio of Trần Ngọc</div>
+    <div class="center">The Nail · Vol. I</div>
+    <div>thenail.vn</div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img src="" id="lb-img" alt="">
+  </div>
+
+  <script>
+    // ============================================
+    // PHOTO IDS BY TIER (synced with index.html)
+    // ============================================
+    const tierPhotos = {
+      "200-300": [
+        "1lseE--QmyFGUm5clHMp7YFMZESGIlXGY", "1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP",
+        "1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe", "18h6DMoUTIZHNlIa05yeUxwHni3mIneKq",
+        "15R-57T9UAgJU366mo1ehBbCdL__g_e0n", "1DB1ZURgeazTF8TExqop-9iaykK76pUZq",
+        "1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq", "1CVMao7oIWXajNlGhB5j08md97L3EFJQ2",
+        "1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr", "15_TA0WlU7HnrBVB1redzSknjkFmxsfQM",
+        "135oqrLfl6La-8UoyLQ-G-mijommxvH97", "1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB",
+      ],
+      "300-400": [
+        "1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ", "1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX_",
+        "1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV", "1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR_",
+        "1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p", "17IdH3UL72melhW6Mceg30GeUlSfXD7SZ",
+        "1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee", "16xoZP9KI8THym4ev3Ayetk1p8h6Me27w",
+        "1krPewtbBudfV3IkWi16qHwGssLqZgyYt", "1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo",
+        "1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y", "1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC",
+      ],
+      "400-500": [
+        "1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF", "1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8",
+        "1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa", "1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv",
+        "1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx", "1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D",
+        "17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1", "1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4",
+        "1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K", "1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL",
+        "1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka", "1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ",
+      ],
+      "500-700": [
+        "1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k", "1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb",
+        "1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av", "1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF",
+        "1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm", "1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR",
+        "1rIhThOBF47i43kiJrhslelS54OgYytIp", "1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW",
+        "1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D", "1bKBL_79FRCql-utY01i8AKVgTGdFAaRf",
+        "1lY3pzege3isnu005Uq7WtKd7HXgTWibo", "1juCmUppBVNxI3_AnhWk1brwMTz08K2V0",
+      ],
+      "800-plus": [
+        "1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N", "1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW",
+        "1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz", "1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8",
+        "170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb", "1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7",
+        "1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm", "1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds",
+      ],
+    };
+
+    // Populate each chapter gallery
+    document.querySelectorAll('.chapter-gallery').forEach(g => {
+      const tier = g.dataset.tier;
+      const photos = tierPhotos[tier] || [];
+      photos.forEach((id, i) => {
+        const piece = document.createElement('div');
+        piece.className = 'piece';
+        piece.innerHTML = `
+          <span class="num">№ ${String(i + 1).padStart(3, '0')}</span>
+          <img src="https://lh3.googleusercontent.com/d/${id}=w600" alt="" loading="lazy" referrerpolicy="no-referrer">
+        `;
+        piece.addEventListener('click', () => openLightbox(id));
+        g.appendChild(piece);
+      });
+    });
+
+    // ============================================
+    // CUSTOM CURSOR
+    // ============================================
+    const cursor = document.getElementById('cursor');
+    const trail = document.getElementById('cursor-trail');
+    let mx = 0, my = 0, tx = 0, ty = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+    function animateTrail() {
+      tx += (mx - tx) * 0.15;
+      ty += (my - ty) * 0.15;
+      trail.style.left = tx + 'px';
+      trail.style.top = ty + 'px';
+      requestAnimationFrame(animateTrail);
+    }
+    animateTrail();
+
+    document.querySelectorAll('a, .piece, .featured-piece, .visit-cta, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+        trail.classList.add('hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+        trail.classList.remove('hover');
+      });
+    });
+
+    // ============================================
+    // SCROLL REVEAL
+    // ============================================
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ============================================
+    // LIGHTBOX
+    // ============================================
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    function openLightbox(id) {
+      lbImg.src = `https://lh3.googleusercontent.com/d/${id}=w1600`;
+      lb.classList.add('active');
+    }
+    function closeLightbox() { lb.classList.remove('active'); }
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
