@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE NAIL — Quận 10, Sài Gòn</title>
+  <meta name="description" content="The Nail — Tiệm nail thủ công tại Quận 10, TP.HCM. Sang trọng, tinh tế, mẫu đa dạng theo từng tầm giá." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #e8e6e1;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ===== TYPOGRAPHY ===== */
+    .serif { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+
+    /* ===== LAYOUT ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 80px 0; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    nav .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      letter-spacing: 0.3em;
+      font-weight: 500;
+    }
+    nav .logo span { color: #047857; }
+    nav .links { display: flex; gap: 32px; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; }
+    nav .links a { transition: color 0.3s; }
+    nav .links a:hover { color: #10b981; }
+
+    /* HAMBURGER (MOBILE) */
+    .nav-toggle {
+      display: none;
+      width: 40px; height: 40px;
+      background: transparent;
+      border: 1px solid rgba(4, 120, 87, 0.4);
+      cursor: pointer;
+      position: relative;
+      z-index: 102;
+    }
+    .nav-toggle span {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 18px;
+      height: 1.5px;
+      background: #10b981;
+      transform-origin: center;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle span:nth-child(1) { transform: translate(-50%, -6px); }
+    .nav-toggle span:nth-child(2) { transform: translate(-50%, 0); }
+    .nav-toggle span:nth-child(3) { transform: translate(-50%, 6px); }
+    .nav-toggle.active span:nth-child(1) { transform: translate(-50%, 0) rotate(45deg); }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; }
+    .nav-toggle.active span:nth-child(3) { transform: translate(-50%, 0) rotate(-45deg); }
+
+    .nav-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 98;
+    }
+    .nav-backdrop.active { display: block; }
+
+    @media (max-width: 700px) {
+      nav .links {
+        position: fixed;
+        top: 0; right: 0;
+        width: 280px;
+        max-width: 80vw;
+        height: 100vh;
+        background: #0a0a0a;
+        flex-direction: column;
+        padding: 100px 32px 32px;
+        gap: 16px;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+        border-left: 1px solid rgba(4, 120, 87, 0.3);
+        z-index: 99;
+      }
+      nav .links.active { transform: translateX(0); }
+      nav .links a {
+        font-size: 15px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .nav-toggle { display: flex; align-items: center; justify-content: center; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(4, 120, 87, 0.12), transparent 50%),
+        linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
+      padding: 120px 24px 80px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(4, 120, 87, 0.05), transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(4, 120, 87, 0.05), transparent 40%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #10b981;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+    .hero h1 {
+      font-size: clamp(64px, 12vw, 140px);
+      letter-spacing: 0.15em;
+      line-height: 1;
+      margin-bottom: 32px;
+      font-weight: 300;
+      animation: title-float 5s ease-in-out infinite;
+    }
+    @keyframes title-float {
+      0%, 100% { transform: translateY(0); letter-spacing: 0.15em; }
+      50% { transform: translateY(-8px); letter-spacing: 0.18em; }
+    }
+    .hero h1 .the { color: #e8e6e1; font-weight: 300; }
+    .hero h1 .nail {
+      color: #10b981;
+      font-weight: 400;
+      margin-left: 0.3em;
+      background: linear-gradient(110deg, #047857 0%, #047857 25%, #10b981 40%, #6ee7b7 50%, #a7f3d0 55%, #6ee7b7 60%, #10b981 75%, #047857 100%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: nail-shimmer 4s linear infinite;
+    }
+    @keyframes nail-shimmer {
+      0% { background-position: 100% 50%; }
+      100% { background-position: -150% 50%; }
+    }
+    /* Slogans: same size, different effect (gentle pulse) */
+    .hero .slogan-en, .hero .slogan-vi {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+    .hero .slogan-en {
+      color: #10b981;
+      animation: slogan-breathe 3.6s ease-in-out infinite;
+    }
+    .hero .slogan-vi {
+      color: #e8e6e1;
+      margin-bottom: 48px;
+      animation: slogan-breathe 3.6s ease-in-out infinite;
+      animation-delay: 1.8s;
+    }
+    @keyframes slogan-breathe {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.015); }
+    }
+    .hero .meta {
+      display: flex; justify-content: center; gap: 32px;
+      font-size: 13px; letter-spacing: 0.1em;
+      color: #8a8780;
+      flex-wrap: wrap;
+    }
+    .hero .meta span { display: flex; align-items: center; gap: 8px; }
+    .hero .cta-group {
+      margin-top: 48px;
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      padding: 14px 32px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      border: 1px solid #047857;
+      background: transparent;
+      color: #10b981;
+    }
+    .btn:hover { background: #047857; color: #ffffff; }
+    .btn.solid { background: #047857; color: #ffffff; }
+    .btn.solid:hover { background: transparent; color: #10b981; }
+
+    /* ===== SECTION HEADING ===== */
+    .section-head {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-head .label {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #10b981;
+      margin-bottom: 16px;
+    }
+    .section-head h2 {
+      font-size: clamp(36px, 6vw, 56px);
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    .section-head h2 em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+    .section-head .divider {
+      width: 60px; height: 1px; background: #047857;
+      margin: 24px auto;
+    }
+    .section-head p {
+      max-width: 600px; margin: 0 auto;
+      color: #a8a59f; font-size: 16px;
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      background: #0d0d0d;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 32px;
+    }
+    .about-item {
+      text-align: center;
+      padding: 32px 24px;
+      border: 1px solid rgba(4, 120, 87, 0.2);
+      background: rgba(4, 120, 87, 0.03);
+      transition: all 0.3s;
+    }
+    .about-item:hover {
+      border-color: rgba(16, 185, 129, 0.5);
+      background: rgba(4, 120, 87, 0.08);
+    }
+    .about-item .icon { font-size: 28px; margin-bottom: 20px; color: #10b981; opacity: 0.7; }
+    .about-item h3 {
+      font-size: clamp(30px, 3.5vw, 42px);
+      margin-bottom: 16px;
+      color: #10b981;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+    .about-item p { color: #a8a59f; font-size: 14px; line-height: 1.7; }
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== TABS / FILTER ===== */
+    .tabs-wrap {
+      display: flex; justify-content: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .tab {
+      padding: 12px 24px;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #a8a59f;
+      transition: all 0.3s;
+    }
+    .tab:hover { border-color: #047857; color: #10b981; }
+    .tab.active {
+      background: #047857;
+      color: #ffffff;
+      border-color: #047857;
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    }
+    .nail-card {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+      border: 1px solid rgba(4, 120, 87, 0.15);
+      transition: all 0.4s;
+    }
+    .nail-card:hover {
+      border-color: rgba(16, 185, 129, 0.6);
+      transform: translateY(-4px);
+    }
+    .nail-card .placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #555;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+    }
+    .nail-card .placeholder .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      color: rgba(16, 185, 129, 0.5);
+      margin-bottom: 8px;
+    }
+    .nail-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s;
+    }
+    .nail-card:hover img { transform: scale(1.05); }
+    .nail-card .overlay { display: none; }
+    .nail-card .price-tag { display: none; }
+    .lightbox-content h3,
+    .lightbox-content .price { display: none; }
+
+    /* ===== CONTACT ===== */
+    .contact {
+      background: #0d0d0d;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 800px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    .contact-info h3 {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+    .contact-info .info-row {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .contact-info .info-row .icon {
+      color: #10b981; font-size: 20px;
+      min-width: 24px;
+    }
+    .contact-info .info-row .text { flex: 1; }
+    .contact-info .info-row .label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8a8780;
+      margin-bottom: 4px;
+    }
+    .contact-info .info-row .value {
+      font-size: 16px;
+      color: #e8e6e1;
+    }
+    .contact-info .social {
+      margin-top: 32px;
+      display: flex; gap: 12px;
+    }
+    .contact-info .social a {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(4, 120, 87, 0.4);
+      display: flex; align-items: center; justify-content: center;
+      color: #10b981;
+      transition: all 0.3s;
+    }
+    .contact-info .social a:hover {
+      background: #047857; color: #ffffff;
+    }
+    .map-wrap {
+      aspect-ratio: 4 / 3;
+      background: radial-gradient(ellipse at center, #141414, #0a0a0a);
+      border: 1px solid rgba(4, 120, 87, 0.2);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hand-map-svg {
+      width: 100%; height: 100%;
+      display: block;
+    }
+    /* Hand-drawn map elements */
+    .hm-street { fill: none; stroke: rgba(168, 165, 159, 0.3); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0; }
+    .hm-street-main { stroke: rgba(168, 165, 159, 0.5); stroke-width: 4; }
+    .hm-street-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 11px; fill: #8a8780; letter-spacing: 0.1em; }
+    .hm-landmark { fill: rgba(4, 120, 87, 0.15); stroke: rgba(16, 185, 129, 0.4); stroke-width: 1; }
+    .hm-landmark-label { font-family: 'Inter', sans-serif; font-size: 9px; fill: #a8a59f; letter-spacing: 0.15em; text-transform: uppercase; }
+    .hm-shop-pin { fill: #10b981; filter: drop-shadow(0 0 8px #10b981); }
+    .hm-shop-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; fill: #10b981; letter-spacing: 0.05em; }
+    .hm-shop-sub { font-family: 'Inter', sans-serif; font-size: 10px; fill: #e8e6e1; letter-spacing: 0.25em; text-transform: uppercase; }
+    .hm-decor { fill: rgba(16, 185, 129, 0.3); }
+    .hm-shop-pin {
+      transform-origin: 360px 240px;
+      animation: pin-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pin-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    .hm-shop-glow {
+      fill: rgba(16, 185, 129, 0.2);
+      transform-origin: 360px 240px;
+      animation: glow-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(2.5); opacity: 0; }
+    }
+    .map-actions {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+    }
+    .map-actions a {
+      padding: 10px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid #047857;
+      color: #10b981;
+      transition: all 0.3s;
+    }
+    .map-actions a:hover {
+      background: #047857;
+      color: #fff;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 12px;
+      color: #555;
+      letter-spacing: 0.15em;
+    }
+    footer .brand {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.3em;
+      color: #10b981;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox-content {
+      max-width: 90vw; max-height: 90vh;
+      text-align: center;
+    }
+    .lightbox-content .ph {
+      width: min(700px, 85vw);
+      max-height: 75vh;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+      border: 1px solid rgba(4, 120, 87, 0.4);
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+    .lightbox-content .ph img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      background: #0a0a0a;
+    }
+    .lightbox-content h3 {
+      font-size: 32px;
+      color: #10b981;
+      margin-top: 24px;
+    }
+    .lightbox-content .price {
+      color: #e8e6e1;
+      letter-spacing: 0.2em;
+      margin-top: 8px;
+    }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 24px;
+      background: transparent;
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #10b981;
+      width: 44px; height: 44px;
+      font-size: 20px;
+    }
+
+    /* ===== LOADING SPLASH ===== */
+    .loading-splash {
+      position: fixed; inset: 0;
+      background: #0a0a0a;
+      z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loading-splash.hidden { opacity: 0; visibility: hidden; }
+    .splash-content { text-align: center; padding: 24px; }
+    .splash-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(60px, 14vw, 140px);
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      animation: splash-fade-in 0.9s ease-out;
+    }
+    .splash-logo .the { color: #e8e6e1; font-weight: 300; }
+    .splash-logo .nail { color: #10b981; font-weight: 400; margin-left: 0.3em; }
+    .splash-line {
+      width: 0; height: 1px;
+      background: #10b981;
+      margin: 32px auto;
+      animation: splash-line 1.4s 0.3s ease-out forwards;
+    }
+    @keyframes splash-line { to { width: 180px; } }
+    .splash-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: #10b981;
+      font-size: clamp(22px, 3.5vw, 32px);
+      letter-spacing: 0.08em;
+      opacity: 0;
+      animation: splash-fade-in 1s 1s ease-out forwards;
+      margin-bottom: 12px;
+    }
+    .splash-tagline-vi {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: #e8e6e1;
+      font-size: clamp(22px, 3.5vw, 32px);
+      letter-spacing: 0.02em;
+      opacity: 0;
+      animation: splash-fade-in 1s 1.4s ease-out forwards;
+    }
+    @keyframes splash-fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== SCROLL PROGRESS BAR ===== */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #047857, #10b981, #6ee7b7);
+      z-index: 1001;
+      width: 0%;
+      transition: width 0.05s ease-out;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    }
+
+    /* ===== CURSOR SPARKLE TRAIL ===== */
+    .cursor-sparkle {
+      position: fixed;
+      pointer-events: none;
+      width: 4px; height: 4px;
+      background: #6ee7b7;
+      border-radius: 50%;
+      z-index: 9998;
+      animation: cursor-sparkle-fade 1s ease-out forwards;
+    }
+    @keyframes cursor-sparkle-fade {
+      0% { opacity: 1; transform: scale(1); box-shadow: 0 0 6px #10b981, 0 0 12px rgba(16, 185, 129, 0.4); }
+      100% { opacity: 0; transform: scale(0.3) translateY(-12px); }
+    }
+
+    /* ===== TEXT REVEAL LETTERS ===== */
+    .hero h1 .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: letter-reveal 0.7s cubic-bezier(0.5, 0, 0.5, 1) forwards;
+    }
+    @keyframes letter-reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== GLOW ON VALUE CARDS ===== */
+    .about-item { position: relative; overflow: hidden; }
+    .about-item::before {
+      content: '';
+      position: absolute;
+      width: 200%; height: 200%;
+      top: -50%; left: -50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.18), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .about-item:hover::before { opacity: 1; }
+    .about-item > * { position: relative; z-index: 1; }
+
+    /* Curtain reveal removed — gây đen ảnh khi có nhiều cards */
+
+    /* ===== HERO SPARKLES ===== */
+    .hero-sparkles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-sparkles span {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: #6ee7b7;
+      border-radius: 50%;
+      opacity: 0;
+      animation: sparkle-twinkle 3s infinite ease-in-out;
+    }
+    @keyframes sparkle-twinkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 0.9; transform: scale(1); box-shadow: 0 0 8px #10b981, 0 0 16px rgba(16, 185, 129, 0.4); }
+    }
+    .hero > div { position: relative; z-index: 2; }
+
+    /* ===== MARQUEE BAND ===== */
+    .marquee {
+      background: rgba(4, 120, 87, 0.04);
+      border-top: 1px solid rgba(4, 120, 87, 0.15);
+      border-bottom: 1px solid rgba(4, 120, 87, 0.15);
+      padding: 28px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+    .marquee::before, .marquee::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marquee::before {
+      left: 0;
+      background: linear-gradient(90deg, #0a0a0a, transparent);
+    }
+    .marquee::after {
+      right: 0;
+      background: linear-gradient(-90deg, #0a0a0a, transparent);
+    }
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee-scroll 40s linear infinite;
+    }
+    .marquee-track span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-style: italic;
+      color: #10b981;
+      padding-right: 56px;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .marquee-track .sep {
+      color: rgba(16, 185, 129, 0.4);
+      padding-right: 56px;
+    }
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ===== 3D TILT ===== */
+    .nail-card {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* ===== GLITTER / KIM TUYẾN ===== */
+    .glitter {
+      background: linear-gradient(
+        110deg,
+        #047857 0%,
+        #047857 20%,
+        #10b981 35%,
+        #6ee7b7 47%,
+        #a7f3d0 50%,
+        #6ee7b7 53%,
+        #10b981 65%,
+        #047857 80%,
+        #047857 100%
+      );
+      background-size: 250% 100%;
+      background-position: 100% 50%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: glitter-flow 6s linear infinite;
+    }
+    @keyframes glitter-flow {
+      0%   { background-position: 100% 50%; }
+      100% { background-position: -150% 50%; }
+    }
+
+    /* Glitter static — không animation, dùng cho text nhỏ */
+    .glitter-static {
+      background: linear-gradient(
+        135deg,
+        #047857 0%,
+        #34d399 30%,
+        #10b981 50%,
+        #34d399 70%,
+        #047857 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* ===== TRUST STATS ===== */
+    .stats {
+      background: #0d0d0d;
+      border-top: 1px solid rgba(4, 120, 87, 0.15);
+      border-bottom: 1px solid rgba(4, 120, 87, 0.15);
+      padding: 60px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-item .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 12px;
+      background: linear-gradient(110deg, #047857 0%, #047857 20%, #10b981 35%, #6ee7b7 47%, #a7f3d0 50%, #6ee7b7 53%, #10b981 65%, #047857 80%, #047857 100%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: glitter-flow 6s linear infinite;
+    }
+    .stat-item .label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #a8a59f;
+    }
+    @media (max-width: 700px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    }
+
+    /* ===== REVIEWS ===== */
+    .reviews {
+      background: #0d0d0d;
+    }
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .review-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .review-grid { grid-template-columns: 1fr; }
+    }
+    .review-card {
+      padding: 32px 24px;
+      border: 1px solid rgba(4, 120, 87, 0.15);
+      background: rgba(4, 120, 87, 0.03);
+      transition: all 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .review-card:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      transform: translateY(-4px);
+    }
+    .review-stars {
+      color: #10b981;
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    .review-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #c9c5bd;
+      margin-bottom: 24px;
+      line-height: 1.5;
+      flex: 1;
+    }
+    .review-author {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .review-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #047857, #10b981);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .review-meta .name {
+      font-size: 14px;
+      color: #e8e6e1;
+      letter-spacing: 0.05em;
+    }
+    .review-meta .date {
+      font-size: 11px;
+      color: #8a8780;
+      letter-spacing: 0.1em;
+      margin-top: 2px;
+    }
+
+    /* ===== BOOKING FORM ===== */
+    .booking-form {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-group {
+      display: flex; flex-direction: column;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8a8780;
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(4, 120, 87, 0.05);
+      border: 1px solid rgba(4, 120, 87, 0.2);
+      color: #e8e6e1;
+      padding: 14px 16px;
+      font-family: inherit;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #10b981;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-group select {
+      appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #10b981 50%), linear-gradient(135deg, #10b981 50%, transparent 50%);
+      background-position: calc(100% - 18px) center, calc(100% - 12px) center;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 36px;
+    }
+    .booking-submit {
+      grid-column: 1 / -1;
+      display: flex; justify-content: center;
+      margin-top: 16px;
+    }
+    @media (max-width: 600px) {
+      .booking-form { grid-template-columns: 1fr; }
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1100;
+      align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      background: #141414;
+      border: 1px solid rgba(4, 120, 87, 0.4);
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+    .modal-content h3 {
+      font-size: 28px;
+      color: #10b981;
+      margin-bottom: 8px;
+    }
+    .modal-content > p {
+      color: #a8a59f;
+      font-size: 14px;
+    }
+    .modal-content .preview {
+      background: rgba(4, 120, 87, 0.08);
+      border: 1px solid rgba(4, 120, 87, 0.2);
+      padding: 20px;
+      margin: 24px 0;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #c9c5bd;
+      white-space: pre-line;
+      font-family: 'Inter', sans-serif;
+    }
+    .modal-buttons {
+      display: flex; gap: 12px; justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== FLOATING SOCIAL STACK ===== */
+    .social-float-stack {
+      position: fixed;
+      bottom: 100px; right: 32px;
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .social-float-btn {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      transition: all 0.3s;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+    .social-float-btn:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    }
+    .social-float-btn.ig {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+    .social-float-btn.fb {
+      background: #1877F2;
+    }
+    .social-float-btn.threads {
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .social-float-btn svg { width: 22px; height: 22px; }
+    .social-float-btn .tooltip {
+      position: absolute;
+      right: 56px;
+      background: #141414;
+      color: #e8e6e1;
+      padding: 6px 12px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      border: 1px solid rgba(4, 120, 87, 0.3);
+      text-transform: uppercase;
+    }
+    .social-float-btn:hover .tooltip { opacity: 1; }
+    @media (max-width: 600px) {
+      .social-float-stack { right: 20px; bottom: 84px; gap: 10px; }
+      .social-float-btn { width: 42px; height: 42px; }
+      .social-float-btn svg { width: 19px; height: 19px; }
+      .social-float-btn .tooltip { display: none; }
+    }
+
+    /* ===== FLOATING ZALO ===== */
+    .zalo-float {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: #0084FF;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999;
+      box-shadow: 0 4px 24px rgba(0, 132, 255, 0.4);
+      transition: transform 0.3s;
+      color: #fff;
+    }
+    .zalo-float:hover { transform: scale(1.1); }
+    .zalo-float::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #0084FF;
+      opacity: 0.5;
+      animation: zalo-pulse 2s infinite;
+      z-index: -1;
+    }
+    .zalo-float svg { width: 30px; height: 30px; }
+    .zalo-float .zalo-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      color: #fff;
+      letter-spacing: -0.5px;
+      font-style: italic;
+    }
+    @keyframes zalo-pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+    .zalo-float .tooltip {
+      position: absolute;
+      right: 72px;
+      background: #141414;
+      color: #e8e6e1;
+      padding: 8px 16px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      border: 1px solid rgba(4, 120, 87, 0.3);
+      text-transform: uppercase;
+    }
+    .zalo-float:hover .tooltip { opacity: 1; }
+    @media (max-width: 600px) {
+      .zalo-float { bottom: 16px; right: 16px; width: 52px; height: 52px; }
+      .zalo-float svg { width: 26px; height: 26px; }
+      .zalo-float .tooltip { display: none; }
+    }
+
+    /* ===== FADE IN ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== LOADING SPLASH ===== -->
+  <div class="loading-splash" id="splash">
+    <div class="splash-content">
+      <div class="splash-logo"><span class="the">THE</span><span class="nail glitter">NAIL</span></div>
+      <div class="splash-line"></div>
+      <div class="splash-tagline">your concept, my creation</div>
+      <div class="splash-tagline-vi">Ý tưởng bạn trao — Nghệ thuật tôi tạo</div>
+    </div>
+  </div>
+
+  <!-- ===== SCROLL PROGRESS ===== -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="container">
+      <div class="logo">THE <span>NAIL</span></div>
+      <div class="links" id="nav-links">
+        <a href="#about">Giới thiệu</a>
+        <a href="#gallery">Mẫu nail</a>
+        <a href="#reviews">Đánh giá</a>
+        <a href="#booking">Đặt lịch</a>
+        <a href="#contact">Liên hệ</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-sparkles" aria-hidden="true"></div>
+    <div>
+      <div class="hero-tag">— Nail Studio by Trần Ngọc —</div>
+      <h1><span class="the">THE</span><span class="nail">NAIL</span></h1>
+      <p class="slogan-en">— your concept, my creation —</p>
+      <p class="slogan-vi">Ý tưởng bạn trao — Nghệ thuật tôi tạo</p>
+      <div class="meta">
+        <span>📍 Quận 10, TP.HCM</span>
+        <span>📞 0931 415 099</span>
+        <span>🕘 9:00 — 22:00</span>
+      </div>
+      <div class="cta-group">
+        <a href="#gallery" class="btn solid">Xem mẫu nail</a>
+        <a href="#contact" class="btn">Đặt lịch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-head">
+        <div class="label">— Giá trị của chúng tôi —</div>
+        <h2>Mỗi đôi tay — Một tác phẩm</h2>
+        <div class="divider"></div>
+        <p>Tại The Nail, chúng tôi tin rằng mỗi bộ móng là sự kết hợp giữa ý tưởng của bạn và tay nghề của chúng tôi.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-item">
+          <div class="icon">✦</div>
+          <h3 class="glitter">Cá nhân hoá</h3>
+          <p>Mỗi khách hàng là duy nhất. Mỗi bộ móng được điều chỉnh riêng theo gu, dáng tay và phong cách của bạn.</p>
+        </div>
+        <div class="about-item">
+          <div class="icon">✦</div>
+          <h3 class="glitter">Sáng tạo</h3>
+          <p>Không chỉ làm theo mẫu — chúng tôi cùng bạn kiến tạo nên thiết kế độc bản, mang dấu ấn của riêng bạn.</p>
+        </div>
+        <div class="about-item">
+          <div class="icon">✦</div>
+          <h3 class="glitter">Tỉ mỉ</h3>
+          <p>Từng đường nét được trau chuốt. Một bộ móng đẹp bắt nguồn từ sự kiên nhẫn — không vội, không qua loa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <div class="label">— Atelier —</div>
+        <h2><em>Bộ sưu tập</em></h2>
+        <div class="divider"></div>
+        <p>Mỗi đôi tay — một dấu ấn riêng. Tìm cảm hứng cho phong cách của bạn.</p>
+      </div>
+
+      <div class="tabs-wrap">
+        <button class="tab active" data-filter="all">Tất cả</button>
+        <button class="tab" data-filter="200-300">200 — 300k</button>
+        <button class="tab" data-filter="300-400">300 — 400k</button>
+        <button class="tab" data-filter="400-500">400 — 500k</button>
+        <button class="tab" data-filter="500-700">500 — 700k</button>
+        <button class="tab" data-filter="800-plus">800k+</button>
+      </div>
+
+      <div class="gallery" id="gallery-grid">
+        <!-- 200 — 300k -->
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
+          <img src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="Mẫu nail 220k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
+          <img src="https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w800" alt="Mẫu nail 240k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
+          <img src="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w800" alt="Mẫu nail 250k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
+          <img src="https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w800" alt="Mẫu nail 260k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
+          <img src="https://lh3.googleusercontent.com/d/15R-57T9UAgJU366mo1ehBbCdL__g_e0n=w800" alt="Mẫu nail 270k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
+          <img src="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w800" alt="Mẫu nail 280k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
+          <img src="https://lh3.googleusercontent.com/d/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq=w800" alt="Mẫu nail 290k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
+          <img src="https://lh3.googleusercontent.com/d/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2=w800" alt="Mẫu nail 220k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
+          <img src="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w800" alt="Mẫu nail 240k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
+          <img src="https://lh3.googleusercontent.com/d/15_TA0WlU7HnrBVB1redzSknjkFmxsfQM=w800" alt="Mẫu nail 250k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
+          <img src="https://lh3.googleusercontent.com/d/135oqrLfl6La-8UoyLQ-G-mijommxvH97=w800" alt="Mẫu nail 260k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
+          <img src="https://lh3.googleusercontent.com/d/1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB=w800" alt="Mẫu nail 270k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
+          <img src="https://lh3.googleusercontent.com/d/163NFAIVlRBJJyhFou7r1JMdWb2aVXJQr=w800" alt="Mẫu nail 280k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
+          <img src="https://lh3.googleusercontent.com/d/16Vlv2ZbLHddXJtDHf_JuxDvfH8rrZsiw=w800" alt="Mẫu nail 290k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
+          <img src="https://lh3.googleusercontent.com/d/1R6n4ci2qceGAEuCP06slXVWV9M7pu9dc=w800" alt="Mẫu nail 220k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
+          <img src="https://lh3.googleusercontent.com/d/1EO8myodG3wgILbanuwVz6NymkBvYWqnk=w800" alt="Mẫu nail 240k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
+          <img src="https://lh3.googleusercontent.com/d/1iUE7UlCv1PsP0qGnBKAoH8Gc15CGd8Sp=w800" alt="Mẫu nail 250k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
+          <img src="https://lh3.googleusercontent.com/d/1chRGSaJQBt1jY-HnmQelfQXsKD69qho3=w800" alt="Mẫu nail 260k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
+          <img src="https://lh3.googleusercontent.com/d/1GCPuUII3SsN5qZ22A6gMyRZkgYYFhJP9=w800" alt="Mẫu nail 270k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
+          <img src="https://lh3.googleusercontent.com/d/1scxmt4oSMJXKIQ8qnaNrV8r6YTyLkz3U=w800" alt="Mẫu nail 280k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+
+        <!-- 300 — 400k -->
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
+          <img src="https://lh3.googleusercontent.com/d/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ=w800" alt="Mẫu nail 320k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
+          <img src="https://lh3.googleusercontent.com/d/1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX_=w800" alt="Mẫu nail 340k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
+          <img src="https://lh3.googleusercontent.com/d/1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV=w800" alt="Mẫu nail 350k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
+          <img src="https://lh3.googleusercontent.com/d/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR_=w800" alt="Mẫu nail 360k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
+          <img src="https://lh3.googleusercontent.com/d/1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p=w800" alt="Mẫu nail 380k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
+          <img src="https://lh3.googleusercontent.com/d/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ=w800" alt="Mẫu nail 390k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
+          <img src="https://lh3.googleusercontent.com/d/1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee=w800" alt="Mẫu nail 320k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
+          <img src="https://lh3.googleusercontent.com/d/16xoZP9KI8THym4ev3Ayetk1p8h6Me27w=w800" alt="Mẫu nail 340k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
+          <img src="https://lh3.googleusercontent.com/d/1krPewtbBudfV3IkWi16qHwGssLqZgyYt=w800" alt="Mẫu nail 350k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
+          <img src="https://lh3.googleusercontent.com/d/1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo=w800" alt="Mẫu nail 360k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
+          <img src="https://lh3.googleusercontent.com/d/1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y=w800" alt="Mẫu nail 380k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
+          <img src="https://lh3.googleusercontent.com/d/1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC=w800" alt="Mẫu nail 390k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
+          <img src="https://lh3.googleusercontent.com/d/1QI2URULkrcTMpTwj2mTCs28aMYw0yxc5=w800" alt="Mẫu nail 320k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
+          <img src="https://lh3.googleusercontent.com/d/1i6kGM6s0UHvAb5LOWEJQVPxxCDT_EDE8=w800" alt="Mẫu nail 340k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
+          <img src="https://lh3.googleusercontent.com/d/18t_7xqAaz8lpPJNR5EoCsUTAoTxkHCMl=w800" alt="Mẫu nail 350k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
+          <img src="https://lh3.googleusercontent.com/d/15nZvalPybqrct7B7g6ey2E_gRDg0tg6I=w800" alt="Mẫu nail 360k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
+          <img src="https://lh3.googleusercontent.com/d/1aQpks3LTztk9VBxNa40porIXuvIYkoei=w800" alt="Mẫu nail 380k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
+          <img src="https://lh3.googleusercontent.com/d/1bKPtMEVii01P9HWmjnEzEDEWNn-Yho60=w800" alt="Mẫu nail 390k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
+          <img src="https://lh3.googleusercontent.com/d/1S5fnvazifUYhdmcXGr7YHn83DRnSsQ1f=w800" alt="Mẫu nail 320k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
+          <img src="https://lh3.googleusercontent.com/d/1fOX2JLKhBQlx4BGVye5jOFNUSc-TkGKB=w800" alt="Mẫu nail 340k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+
+        <!-- 400 — 500k -->
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
+          <img src="https://lh3.googleusercontent.com/d/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF=w800" alt="Mẫu nail 420k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
+          <img src="https://lh3.googleusercontent.com/d/1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8=w800" alt="Mẫu nail 440k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
+          <img src="https://lh3.googleusercontent.com/d/1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa=w800" alt="Mẫu nail 450k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
+          <img src="https://lh3.googleusercontent.com/d/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv=w800" alt="Mẫu nail 460k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
+          <img src="https://lh3.googleusercontent.com/d/1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx=w800" alt="Mẫu nail 480k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
+          <img src="https://lh3.googleusercontent.com/d/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D=w800" alt="Mẫu nail 490k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
+          <img src="https://lh3.googleusercontent.com/d/17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1=w800" alt="Mẫu nail 420k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
+          <img src="https://lh3.googleusercontent.com/d/1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4=w800" alt="Mẫu nail 440k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
+          <img src="https://lh3.googleusercontent.com/d/1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K=w800" alt="Mẫu nail 450k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
+          <img src="https://lh3.googleusercontent.com/d/1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL=w800" alt="Mẫu nail 460k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
+          <img src="https://lh3.googleusercontent.com/d/1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka=w800" alt="Mẫu nail 480k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
+          <img src="https://lh3.googleusercontent.com/d/1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ=w800" alt="Mẫu nail 490k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
+          <img src="https://lh3.googleusercontent.com/d/1K0rZkCiM2hyEZCZQkJACvtkyBuqNHhUn=w800" alt="Mẫu nail 420k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
+          <img src="https://lh3.googleusercontent.com/d/1QXDbRylzT3WAUWVc-yWkzaRbFAfRv3Z4=w800" alt="Mẫu nail 440k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
+          <img src="https://lh3.googleusercontent.com/d/1ROJpCAmJfjhtYadj686sDEplLbtKvs5t=w800" alt="Mẫu nail 450k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+
+        <!-- 500 — 700k -->
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
+          <img src="https://lh3.googleusercontent.com/d/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k=w800" alt="Mẫu nail 550k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
+          <img src="https://lh3.googleusercontent.com/d/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb=w800" alt="Mẫu nail 600k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
+          <img src="https://lh3.googleusercontent.com/d/1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av=w800" alt="Mẫu nail 620k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
+          <img src="https://lh3.googleusercontent.com/d/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn=w800" alt="Mẫu nail 650k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
+          <img src="https://lh3.googleusercontent.com/d/1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF=w800" alt="Mẫu nail 680k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
+          <img src="https://lh3.googleusercontent.com/d/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm=w800" alt="Mẫu nail 700k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
+          <img src="https://lh3.googleusercontent.com/d/1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR=w800" alt="Mẫu nail 550k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
+          <img src="https://lh3.googleusercontent.com/d/1rIhThOBF47i43kiJrhslelS54OgYytIp=w800" alt="Mẫu nail 600k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
+          <img src="https://lh3.googleusercontent.com/d/1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW=w800" alt="Mẫu nail 620k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
+          <img src="https://lh3.googleusercontent.com/d/1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D=w800" alt="Mẫu nail 650k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
+          <img src="https://lh3.googleusercontent.com/d/1bKBL_79FRCql-utY01i8AKVgTGdFAaRf=w800" alt="Mẫu nail 680k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
+          <img src="https://lh3.googleusercontent.com/d/1lY3pzege3isnu005Uq7WtKd7HXgTWibo=w800" alt="Mẫu nail 700k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
+          <img src="https://lh3.googleusercontent.com/d/1juCmUppBVNxI3_AnhWk1brwMTz08K2V0=w800" alt="Mẫu nail 550k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
+          <img src="https://lh3.googleusercontent.com/d/1DNheloiqsUAp-DODjkM0u-tVjdTP04q4=w800" alt="Mẫu nail 600k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
+          <img src="https://lh3.googleusercontent.com/d/185MiBYHWJD_pn1-WpWhA2xwbC7oGqIAW=w800" alt="Mẫu nail 620k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
+          <img src="https://lh3.googleusercontent.com/d/1XKmqO64qLuCp9feqwyyIp-_vEcfj5Yw0=w800" alt="Mẫu nail 650k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
+          <img src="https://lh3.googleusercontent.com/d/1tTYrEusS1g-Uo1OiglePhiFJgZBZX91D=w800" alt="Mẫu nail 680k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+
+        <!-- 800k+ -->
+        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
+          <img src="https://lh3.googleusercontent.com/d/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N=w800" alt="Mẫu nail 850k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
+          <img src="https://lh3.googleusercontent.com/d/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW=w800" alt="Mẫu nail 900k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
+          <img src="https://lh3.googleusercontent.com/d/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz=w800" alt="Mẫu nail 1000k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
+          <img src="https://lh3.googleusercontent.com/d/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8=w800" alt="Mẫu nail 1200k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1500k">
+          <img src="https://lh3.googleusercontent.com/d/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb=w800" alt="Mẫu nail 1500k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
+          <img src="https://lh3.googleusercontent.com/d/1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7=w800" alt="Mẫu nail 850k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
+          <img src="https://lh3.googleusercontent.com/d/1x1smBa58U7JikT1R-c82bwe92SwqT1V_=w800" alt="Mẫu nail 900k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
+          <img src="https://lh3.googleusercontent.com/d/1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm=w800" alt="Mẫu nail 1000k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
+          <img src="https://lh3.googleusercontent.com/d/1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds=w800" alt="Mẫu nail 1200k" loading="lazy" referrerpolicy="no-referrer">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE BAND ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>STUDIO CỦA NGỌC</span>
+      <span class="sep">✦</span>
+      <span>EST. 2026</span>
+      <span class="sep">✦</span>
+      <span>MỖI BỘ MÓNG — MỘT TÁC PHẨM</span>
+      <span class="sep">✦</span>
+      <span>NGHỀ TỪ ĐÔI BÀN TAY</span>
+      <span class="sep">✦</span>
+      <span>Q.10 — SAIGON</span>
+      <span class="sep">✦</span>
+      <span>thenail.vn</span>
+      <span class="sep">✦</span>
+      <span>STUDIO CỦA NGỌC</span>
+      <span class="sep">✦</span>
+      <span>EST. 2026</span>
+      <span class="sep">✦</span>
+      <span>MỖI BỘ MÓNG — MỘT TÁC PHẨM</span>
+      <span class="sep">✦</span>
+      <span>NGHỀ TỪ ĐÔI BÀN TAY</span>
+      <span class="sep">✦</span>
+      <span>Q.10 — SAIGON</span>
+      <span class="sep">✦</span>
+      <span>thenail.vn</span>
+      <span class="sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <div class="label">— Khách hàng nói gì —</div>
+        <h2>Lời cảm ơn từ khách hàng</h2>
+        <div class="divider"></div>
+        <p>Những review chân thật từ khách hàng đã trải nghiệm tại The Nail.</p>
+      </div>
+
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Mình cực ưng bộ móng chị Ngọc làm. Tỉ mỉ từng đường nét, ngồi không thấy vội. Nhất định quay lại!"</p>
+          <div class="review-author">
+            <div class="review-avatar">L</div>
+            <div class="review-meta">
+              <div class="name">Linh Phương</div>
+              <div class="date">15.04.2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Tay nghề rất chắc, mẫu đẹp, không gian sạch sẽ và thơm tho. Chị chủ tư vấn rất nhiệt tình."</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div class="review-meta">
+              <div class="name">Minh Anh</div>
+              <div class="date">28.03.2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Đã làm nail nhiều nơi nhưng đây là chỗ đầu tiên mình thấy yên tâm. Vẽ tay sắc nét, không lem."</p>
+          <div class="review-author">
+            <div class="review-avatar">T</div>
+            <div class="review-meta">
+              <div class="name">Thanh Trúc</div>
+              <div class="date">12.03.2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Mẫu nail đẹp đúng hình mình gửi, không bị lệch. Giá hợp lý so với chất lượng. Recommended!"</p>
+          <div class="review-author">
+            <div class="review-avatar">H</div>
+            <div class="review-meta">
+              <div class="name">Hồng Nhung</div>
+              <div class="date">02.03.2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Không gian sang, riêng tư, chị Ngọc làm móng nhẹ tay. Sẽ giới thiệu bạn bè đến."</p>
+          <div class="review-author">
+            <div class="review-avatar">A</div>
+            <div class="review-meta">
+              <div class="name">Anh Thư</div>
+              <div class="date">18.02.2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Đặt lịch qua Zalo cực nhanh. Đến đúng giờ là làm liền. Bộ móng giữ lâu hơn mình tưởng."</p>
+          <div class="review-author">
+            <div class="review-avatar">P</div>
+            <div class="review-meta">
+              <div class="name">Phương Linh</div>
+              <div class="date">05.02.2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING ===== -->
+  <section id="booking">
+    <div class="container">
+      <div class="section-head">
+        <div class="label">— Đặt lịch —</div>
+        <h2>Đặt lịch hẹn của bạn</h2>
+        <div class="divider"></div>
+        <p>Điền thông tin để chúng tôi giữ chỗ cho bạn. Gửi đi sẽ tự động mở Zalo với tin nhắn đã chuẩn bị sẵn.</p>
+      </div>
+
+      <form class="booking-form" id="booking-form">
+        <div class="form-group">
+          <label for="b-name">Họ tên</label>
+          <input type="text" id="b-name" required placeholder="Nguyễn Thị A">
+        </div>
+        <div class="form-group">
+          <label for="b-phone">Số điện thoại</label>
+          <input type="tel" id="b-phone" required placeholder="09xx xxx xxx">
+        </div>
+        <div class="form-group">
+          <label for="b-date">Ngày hẹn</label>
+          <input type="date" id="b-date" required>
+        </div>
+        <div class="form-group">
+          <label for="b-time">Giờ hẹn</label>
+          <select id="b-time" required>
+            <option value="">— Chọn giờ —</option>
+            <option>9:00</option>
+            <option>10:00</option>
+            <option>11:00</option>
+            <option>12:00</option>
+            <option>13:00</option>
+            <option>14:00</option>
+            <option>15:00</option>
+            <option>16:00</option>
+            <option>17:00</option>
+            <option>18:00</option>
+            <option>19:00</option>
+            <option>20:00</option>
+            <option>21:00</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="b-service">Dịch vụ mong muốn</label>
+          <select id="b-service" required>
+            <option value="">— Chọn dịch vụ —</option>
+            <option>200 — 300k</option>
+            <option>300 — 400k</option>
+            <option>400 — 500k</option>
+            <option>500 — 700k</option>
+            <option>800k+ (cao cấp)</option>
+            <option>Cần tư vấn</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label for="b-note">Ghi chú thêm (tuỳ chọn)</label>
+          <textarea id="b-note" placeholder="VD: Mẫu nail bạn thích, yêu cầu đặc biệt, đi cùng bạn..."></textarea>
+        </div>
+        <div class="booking-submit">
+          <button type="submit" class="btn solid">Gửi qua Zalo →</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <div class="label">— Liên hệ —</div>
+        <h2>Ghé thăm The Nail</h2>
+        <div class="divider"></div>
+        <p>Đặt lịch trước qua Zalo / Instagram để được ưu tiên giờ làm và tư vấn mẫu phù hợp.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3 class="serif">Thông tin liên hệ</h3>
+
+          <div class="info-row">
+            <div class="icon">📍</div>
+            <div class="text">
+              <div class="label">Địa chỉ</div>
+              <div class="value">521/54 Cách Mạng Tháng 8, P. Hoà Hưng, Q.10, TP.HCM</div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="icon">📞</div>
+            <div class="text">
+              <div class="label">Điện thoại / Zalo</div>
+              <div class="value">0931 415 099</div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="icon">🕘</div>
+            <div class="text">
+              <div class="label">Giờ mở cửa</div>
+              <div class="value">Thứ 2 — Chủ nhật · 9:00 — 22:00</div>
+            </div>
+          </div>
+
+          <div class="social">
+            <a href="https://zalo.me/0931415099" target="_blank" title="Zalo" aria-label="Zalo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.04 2 11c0 2.7 1.4 5.13 3.6 6.8L4 22l4.7-2.3c1 .2 2.2.3 3.3.3 5.52 0 10-4.04 10-9S17.52 2 12 2zm-4 9.5c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5v3c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-3zm3-2.5c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5v5.5c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5V9zm3 1.5c0-.28.22-.5.5-.5h1c.28 0 .5.22.5.5v4c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-4z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/thenail.1995/" target="_blank" title="Instagram" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61578662806202" target="_blank" title="Facebook" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+            </a>
+            <a href="https://www.threads.com/@thenail.1995" target="_blank" title="Threads" aria-label="Threads">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.85 1.205 8.605.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.144 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg>
+            </a>
+            <a href="https://maps.google.com/?q=521/54+CMT8+Q10+TPHCM" target="_blank" title="Google Maps" aria-label="Google Maps">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="map-wrap">
+          <svg class="hand-map-svg" viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg" aria-label="Bản đồ The Nail Studio">
+            <!-- Subtle dotted background grid -->
+            <defs>
+              <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="0.8" fill="rgba(168, 165, 159, 0.08)"/>
+              </pattern>
+              <filter id="rough">
+                <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="3"/>
+                <feDisplacementMap in="SourceGraphic" scale="1.5"/>
+              </filter>
+            </defs>
+            <rect width="720" height="540" fill="url(#dots)"/>
+
+            <!-- Main street: Cách Mạng Tháng 8 (horizontal) -->
+            <g filter="url(#rough)">
+              <path class="hm-street hm-street-main" d="M 0,250 Q 200,260 360,245 T 720,250"/>
+            </g>
+            <text class="hm-street-label" x="120" y="240" transform="rotate(-1, 120, 240)">CÁCH MẠNG THÁNG 8</text>
+
+            <!-- Cross streets -->
+            <g filter="url(#rough)">
+              <path class="hm-street" d="M 150,0 Q 145,150 152,250 Q 158,400 145,540"/>
+              <path class="hm-street" d="M 360,0 Q 355,140 362,245 Q 368,380 358,540"/>
+              <path class="hm-street" d="M 560,0 Q 555,150 562,250 Q 568,400 555,540"/>
+            </g>
+            <text class="hm-street-label" x="148" y="60" transform="rotate(-90, 148, 60)">3/2</text>
+            <text class="hm-street-label" x="362" y="60" transform="rotate(-90, 362, 60)">HOÀ HƯNG</text>
+            <text class="hm-street-label" x="562" y="60" transform="rotate(-90, 562, 60)">SƯ VẠN HẠNH</text>
+
+            <!-- Landmark blocks (rough sketches) -->
+            <g filter="url(#rough)">
+              <!-- Top-left block -->
+              <rect class="hm-landmark" x="40" y="80" width="80" height="130" rx="2"/>
+              <!-- Top-mid block -->
+              <rect class="hm-landmark" x="200" y="80" width="130" height="130" rx="2"/>
+              <!-- Top-right block -->
+              <rect class="hm-landmark" x="400" y="80" width="120" height="130" rx="2"/>
+              <!-- Far right -->
+              <rect class="hm-landmark" x="600" y="100" width="90" height="110" rx="2"/>
+              <!-- Bottom-left -->
+              <rect class="hm-landmark" x="40" y="300" width="80" height="150" rx="2"/>
+              <!-- Bottom-mid-left -->
+              <rect class="hm-landmark" x="200" y="300" width="120" height="150" rx="2"/>
+              <!-- Bottom-mid-right (where shop is - smaller block) -->
+              <rect class="hm-landmark" x="400" y="300" width="120" height="80" rx="2"/>
+              <!-- Bottom-right -->
+              <rect class="hm-landmark" x="600" y="300" width="90" height="150" rx="2"/>
+            </g>
+
+            <!-- Decorative elements: small trees, dots -->
+            <g class="hm-decor">
+              <circle cx="180" cy="240" r="3"/>
+              <circle cx="540" cy="245" r="3"/>
+              <circle cx="60" cy="260" r="2"/>
+              <circle cx="680" cy="248" r="2"/>
+              <!-- Tiny stars -->
+              <path d="M 270,500 l 1,3 l 3,0 l -2.5,2 l 1,3 l -2.5,-2 l -2.5,2 l 1,-3 l -2.5,-2 l 3,0 z" fill="rgba(16, 185, 129, 0.4)"/>
+              <path d="M 480,80 l 1,3 l 3,0 l -2.5,2 l 1,3 l -2.5,-2 l -2.5,2 l 1,-3 l -2.5,-2 l 3,0 z" fill="rgba(16, 185, 129, 0.4)"/>
+              <path d="M 80,440 l 1,3 l 3,0 l -2.5,2 l 1,3 l -2.5,-2 l -2.5,2 l 1,-3 l -2.5,-2 l 3,0 z" fill="rgba(16, 185, 129, 0.4)"/>
+            </g>
+
+            <!-- Shop location pin + glow -->
+            <circle class="hm-shop-glow" cx="360" cy="320" r="40"/>
+            <g class="hm-shop-pin">
+              <path d="M 360,288 C 348,288 340,296 340,308 C 340,325 360,348 360,348 C 360,348 380,325 380,308 C 380,296 372,288 360,288 Z"
+                    transform="translate(0, -65)"/>
+              <circle cx="360" cy="248" r="5" fill="#0a0a0a"/>
+            </g>
+
+            <!-- Shop label -->
+            <text class="hm-shop-label" x="360" y="200" text-anchor="middle">— The Nail —</text>
+            <text class="hm-shop-sub" x="360" y="220" text-anchor="middle">521/54 CMT8 · P. HOÀ HƯNG · Q.10</text>
+
+            <!-- "Bạn ở đây" curved arrow + note -->
+            <g style="opacity: 0.7;">
+              <path d="M 450,420 Q 420,400 395,360" fill="none" stroke="rgba(16, 185, 129, 0.6)" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <polygon points="395,360 400,368 388,365" fill="rgba(16, 185, 129, 0.7)"/>
+              <text class="hm-street-label" x="460" y="430" fill="#10b981">tới đây nhé</text>
+            </g>
+
+            <!-- Decorative compass top-right -->
+            <g transform="translate(660, 60)" style="opacity: 0.4;">
+              <circle r="22" fill="none" stroke="#8a8780" stroke-width="1"/>
+              <text x="0" y="-12" text-anchor="middle" font-family="Inter" font-size="9" fill="#8a8780">N</text>
+              <text x="0" y="18" text-anchor="middle" font-family="Inter" font-size="9" fill="#8a8780">S</text>
+              <line x1="0" y1="-15" x2="0" y2="15" stroke="#10b981" stroke-width="0.8"/>
+              <polygon points="0,-15 -3,-8 3,-8" fill="#10b981"/>
+            </g>
+          </svg>
+
+          <div class="map-actions">
+            <a href="https://maps.google.com/?q=521/54+CMT8+P.Hoa+Hung+Q10+TPHCM" target="_blank">Chỉ đường →</a>
+            <a href="https://zalo.me/0931415099" target="_blank">Hỏi qua Zalo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="brand glitter">THE NAIL</div>
+    <div>© 2026 thenail.vn · Quận 10, Sài Gòn · Tất cả quyền được bảo lưu</div>
+  </footer>
+
+  <!-- ===== BOOKING MODAL ===== -->
+  <div class="modal" id="booking-modal">
+    <div class="modal-content">
+      <h3>Sẵn sàng gửi qua Zalo</h3>
+      <p>Tin nhắn dưới đây đã được chuẩn bị. Bấm "Copy & Mở Zalo" — tin nhắn sẽ được copy, bạn chỉ cần dán vào chat Zalo.</p>
+      <div class="preview" id="message-preview"></div>
+      <div class="modal-buttons">
+        <button class="btn" onclick="closeBookingModal()">Đóng</button>
+        <button class="btn solid" onclick="sendToZalo()">Copy &amp; Mở Zalo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLOATING SOCIAL STACK ===== -->
+  <div class="social-float-stack">
+    <a href="https://www.threads.com/@thenail.1995" target="_blank" class="social-float-btn threads" aria-label="Threads">
+      <span class="tooltip">Threads</span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.85 1.205 8.605.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.144 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61578662806202" target="_blank" class="social-float-btn fb" aria-label="Facebook">
+      <span class="tooltip">Facebook</span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/thenail.1995/" target="_blank" class="social-float-btn ig" aria-label="Instagram">
+      <span class="tooltip">Instagram</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+    </a>
+  </div>
+
+  <!-- ===== FLOATING ZALO ===== -->
+  <a href="https://zalo.me/0931415099" target="_blank" class="zalo-float" aria-label="Chat Zalo với The Nail">
+    <span class="tooltip">Chat với The Nail</span>
+    <span class="zalo-text">Zalo</span>
+  </a>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <div class="lightbox-content">
+      <div class="ph">
+        <img id="lb-img" src="" alt="" referrerpolicy="no-referrer">
+      </div>
+      <h3 id="lb-name">Tên mẫu</h3>
+      <div class="price" id="lb-price">000.000đ</div>
+    </div>
+  </div>
+
+  <script>
+    // ===== TAB FILTER =====
+    const tabs = document.querySelectorAll('.tab');
+    const cards = document.querySelectorAll('.nail-card');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.price === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ===== LIGHTBOX =====
+    const lightbox = document.getElementById('lightbox');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        const name = card.dataset.name || 'Mẫu nail';
+        const range = card.dataset.range || '';
+        const lbImg = document.getElementById('lb-img');
+        if (img && lbImg) {
+          // dùng URL cỡ lớn hơn (w1200 thay vì w800) cho lightbox
+          lbImg.src = img.src.replace('=w800', '=w1400');
+          lbImg.alt = name;
+        }
+        document.getElementById('lb-name').textContent = name;
+        document.getElementById('lb-price').textContent = range;
+        lightbox.classList.add('active');
+      });
+    });
+    function closeLightbox() { lightbox.classList.remove('active'); }
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // ===== HAMBURGER MENU =====
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    const navBackdrop = document.getElementById('nav-backdrop');
+    function closeMobileMenu() {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+      navBackdrop.classList.remove('active');
+    }
+    function openMobileMenu() {
+      navToggle.classList.add('active');
+      navLinks.classList.add('active');
+      navBackdrop.classList.add('active');
+    }
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.contains('active') ? closeMobileMenu() : openMobileMenu();
+    });
+    navBackdrop.addEventListener('click', closeMobileMenu);
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+
+    // ===== LOADING SPLASH =====
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('splash').classList.add('hidden');
+      }, 2200);
+    });
+
+    // ===== SCROLL PROGRESS BAR =====
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
+    }, { passive: true });
+
+    // ===== TEXT REVEAL LETTERS (HERO H1) =====
+    // (function() {
+    // const h1 = document.querySelector('.hero h1');
+    // if (!h1) return;
+    // const newChildren = [];
+    // let charIndex = 0;
+    // h1.childNodes.forEach(node => {
+    // if (node.nodeType === 3) { // text node
+    // [...node.textContent].forEach(ch => {
+    // const span = document.createElement('span');
+    // span.className = 'letter';
+    // span.textContent = ch === ' ' ? ' ' : ch;
+    // span.style.animationDelay = (2.3 + charIndex * 0.06) + 's';
+    // charIndex++;
+    // newChildren.push(span);
+    // });
+    // } else {
+    // newChildren.push(node.cloneNode(true));
+    // }
+    // });
+    // h1.innerHTML = '';
+    // newChildren.forEach(c => h1.appendChild(c));
+    // })();
+
+    // ===== CURSOR SPARKLE TRAIL =====
+    const isTouch = window.matchMedia('(hover: none)').matches;
+    if (!isTouch) {
+      let lastSpawn = 0;
+      document.addEventListener('mousemove', (e) => {
+        const now = performance.now();
+        if (now - lastSpawn < 60) return;
+        lastSpawn = now;
+        const s = document.createElement('div');
+        s.className = 'cursor-sparkle';
+        s.style.left = (e.clientX + (Math.random() - 0.5) * 12) + 'px';
+        s.style.top = (e.clientY + (Math.random() - 0.5) * 12) + 'px';
+        const size = 2 + Math.random() * 3;
+        s.style.width = s.style.height = size + 'px';
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 1000);
+      }, { passive: true });
+    }
+
+    // ===== MAGNETIC BUTTONS =====
+    if (!isTouch) {
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = '';
+        });
+      });
+    }
+
+    // ===== HERO PARALLAX (desktop only) =====
+    const heroContent = document.querySelector('.hero > div:not(.hero-sparkles)');
+    if (heroContent && !isTouch) {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        if (scrolled < window.innerHeight) {
+          heroContent.style.transform = `translateY(${scrolled * 0.35}px)`;
+          heroContent.style.opacity = Math.max(0, 1 - scrolled / (window.innerHeight * 0.85));
+        }
+      }, { passive: true });
+    }
+
+    // Curtain reveal disabled — gây đen ảnh khi nhiều cards
+
+    // ===== HERO SPARKLES (giảm trên mobile để tiết kiệm pin) =====
+    const sparklesContainer = document.querySelector('.hero-sparkles');
+    if (sparklesContainer) {
+      const sparkleCount = isTouch ? 18 : 35;
+      for (let i = 0; i < sparkleCount; i++) {
+        const s = document.createElement('span');
+        s.style.left = Math.random() * 100 + '%';
+        s.style.top = Math.random() * 100 + '%';
+        s.style.animationDelay = Math.random() * 3 + 's';
+        s.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+        const size = 1 + Math.random() * 3;
+        s.style.width = s.style.height = size + 'px';
+        sparklesContainer.appendChild(s);
+      }
+    }
+
+    // ===== 3D TILT ON NAIL CARDS =====
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+    if (!isTouchDevice) {
+      document.querySelectorAll('.nail-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px) scale(1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    }
+
+    // ===== TRUST STATS COUNT-UP =====
+    const statsObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.num[data-target]').forEach(el => {
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            let current = 0;
+            const duration = 1500;
+            const startTime = performance.now();
+            function update(now) {
+              const progress = Math.min((now - startTime) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              current = target * eased;
+              el.textContent = Math.floor(current) + suffix;
+              if (progress < 1) requestAnimationFrame(update);
+              else el.textContent = target + suffix;
+            }
+            requestAnimationFrame(update);
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) statsObserver.observe(statsSection);
+
+    // ===== BOOKING FORM =====
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('b-date');
+    if (dateInput) dateInput.min = today;
+
+    document.getElementById('booking-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('b-name').value.trim();
+      const phone = document.getElementById('b-phone').value.trim();
+      const date = document.getElementById('b-date').value;
+      const time = document.getElementById('b-time').value;
+      const service = document.getElementById('b-service').value;
+      const note = document.getElementById('b-note').value.trim();
+
+      const dateFormatted = date ? date.split('-').reverse().join('/') : '';
+      const message = `Chào The Nail! Em muốn đặt lịch:
+• Tên: ${name}
+• SĐT: ${phone}
+• Ngày: ${dateFormatted}
+• Giờ: ${time}
+• Dịch vụ: ${service}${note ? '\n• Ghi chú: ' + note : ''}`;
+
+      document.getElementById('message-preview').textContent = message;
+      window._pendingMessage = message;
+      document.getElementById('booking-modal').classList.add('active');
+    });
+
+    function closeBookingModal() {
+      document.getElementById('booking-modal').classList.remove('active');
+    }
+
+    function sendToZalo() {
+      const msg = window._pendingMessage || '';
+      if (msg && navigator.clipboard) {
+        navigator.clipboard.writeText(msg).catch(() => {});
+      }
+      window.open('https://zalo.me/0931415099', '_blank');
+      closeBookingModal();
+    }
+
+    document.getElementById('booking-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'booking-modal') closeBookingModal();
+    });
+
+    // ===== FADE IN ON SCROLL =====
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('section').forEach(s => {
+      s.classList.add('fade-in');
+      observer.observe(s);
+    });
+  </script>
+
+</body>
+</html>
