@@ -119,8 +119,9 @@
     .hero {
       min-height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;       /* FIX: was row — caused scene to misalign */
+      align-items: center;          /* horizontal center (cross axis in column) */
+      justify-content: center;      /* vertical center (main axis in column) */
       background:
         radial-gradient(circle at 50% 30%, rgba(4, 120, 87, 0.12), transparent 50%),
         linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
@@ -137,7 +138,6 @@
       position: relative; z-index: 2;
       width: 100%;
       max-width: 1100px;
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -154,15 +154,13 @@
       width: 100%;
       max-width: 100%;
     }
-    /* DEBUG: tắt translateZ để xem có phải nguồn lệch không */
-    /*
+    /* 3D depth — varying Z for parallax feel on mouse/gyroscope */
     .hero .hero-tag { transform: translateZ(15px); }
     .hero h1 { transform: translateZ(40px); }
     .hero .slogan-en { transform: translateZ(25px); }
     .hero .slogan-vi { transform: translateZ(25px); }
     .hero .meta { transform: translateZ(15px); }
     .hero .cta-group { transform: translateZ(20px); }
-    */
     .hero-spotlight {
       position: absolute;
       width: 640px; height: 640px;
@@ -211,14 +209,12 @@
       line-height: 1;
       margin-bottom: 32px;
       font-weight: 300;
-      /* animation: title-float 5s ease-in-out infinite; DEBUG: tắt tạm */
+      animation: title-float 5s ease-in-out infinite;
     }
-    /*
     @keyframes title-float {
-      0%, 100% { transform: translateY(0); letter-spacing: 0.15em; }
-      50% { transform: translateY(-8px); letter-spacing: 0.18em; }
+      0%, 100% { transform: translateZ(40px) translateY(0); letter-spacing: 0.15em; }
+      50% { transform: translateZ(40px) translateY(-8px); letter-spacing: 0.18em; }
     }
-    */
     .hero h1 .the { color: #e8e6e1; font-weight: 300; }
     .hero h1 .nail {
       color: #10b981;
@@ -799,7 +795,10 @@
       0%, 100% { opacity: 0; transform: scale(0); }
       50% { opacity: 0.9; transform: scale(1); box-shadow: 0 0 8px #10b981, 0 0 16px rgba(16, 185, 129, 0.4); }
     }
-    .hero > div { position: relative; z-index: 2; }
+    /* Removed: .hero > div { position: relative; z-index: 2; }
+       Was overriding position:absolute on .hero-sparkles and .hero-spotlight
+       (specificity 0,1,1 vs 0,1,0), pushing 640px spotlight into normal flow
+       and breaking center alignment. Scene already has position:relative + z-index:2. */
 
     /* ===== MARQUEE BAND ===== */
     .marquee {
@@ -2169,9 +2168,20 @@
         }
       }
 
-      // DEBUG: tạm tắt rotation animation để cô lập vấn đề lệch
-      // function loop(now) { ... }
-      // requestAnimationFrame(loop);
+      // Ambient drift (rất nhẹ, không gây chóng mặt) + mouse + gyroscope blend
+      function loop(now) {
+        const t = (now - startTime) / 1000;
+        const driftX = Math.sin(t * 0.5) * 0.8;   // ±0.8°
+        const driftY = Math.cos(t * 0.4) * 0.5;   // ±0.5°
+        const rotX = -my * 6 + driftY + gy * 4;   // mouse > drift > gyro
+        const rotY =  mx * 6 + driftX + gx * 4;
+        heroScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        if (heroSpot && !isTouch) {
+          heroSpot.style.transform = `translate(${cx - 320}px, ${cy - 320}px)`;
+        }
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
 
       // Scroll parallax: hero fades when scrolling away
       window.addEventListener('scroll', () => {
@@ -2298,6 +2308,7 @@
       s.classList.add('fade-in');
       observer.observe(s);
     });
+
   </script>
 
 </body>
