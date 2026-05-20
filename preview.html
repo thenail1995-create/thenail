@@ -619,24 +619,26 @@
     }
     .loading-splash.hidden { opacity: 0; visibility: hidden; }
 
-    /* Content layer (behind curtains) */
+    /* Content layer (behind curtains) — kept narrow so it sits in the gap
+       between the two partially-opened curtain halves. */
     .splash-content {
       text-align: center;
       padding: 24px;
       position: relative;
       z-index: 1;
-      max-width: 92vw;
+      max-width: 50vw;
+      min-width: min(560px, 92vw);  /* never narrower than h1 needs */
     }
     .splash-h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(60px, 14vw, 160px);
-      letter-spacing: 0.15em;
+      font-size: clamp(44px, 8vw, 110px);   /* shrunk so it fits between the open curtains */
+      letter-spacing: 0.12em;
       margin: 0;
       line-height: 1;
       display: flex;
       justify-content: center;
       align-items: baseline;
-      gap: 0.25em;
+      gap: 0.2em;
     }
     .splash-h1 .the { color: #e8e6e1; font-weight: 300; }
     .splash-h1 .nail { color: #10b981; font-weight: 400; }
@@ -722,9 +724,10 @@
     }
     .curtain-strips .strip:last-child::after { display: none; }
 
-    /* Open like stage curtain: left half → slide LEFT, right half → slide RIGHT.
-       Stagger from outermost strips first (edges pulled by "ropes"),
-       innermost (center) last → fabric-pull feel. */
+    /* Open like stage curtain: 4 left strips → LEFT, 4 right strips → RIGHT.
+       Stop PARTIAL: photos remain visible on edges, center clears for THE NAIL.
+       Each strip slides 2× its width (-200% / +200%) → middle 50vw is clear,
+       photo flanks of ~25vw on each side stay visible. */
     .curtain-strips .strip:nth-child(1) { animation: strip-left  1.5s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
     .curtain-strips .strip:nth-child(2) { animation: strip-left  1.5s 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
     .curtain-strips .strip:nth-child(3) { animation: strip-left  1.5s 1.0s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
@@ -734,8 +737,8 @@
     .curtain-strips .strip:nth-child(7) { animation: strip-right 1.5s 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
     .curtain-strips .strip:nth-child(8) { animation: strip-right 1.5s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
 
-    @keyframes strip-left  { to { transform: translateX(-105%); } }
-    @keyframes strip-right { to { transform: translateX(105%);  } }
+    @keyframes strip-left  { to { transform: translateX(-200%); } }
+    @keyframes strip-right { to { transform: translateX(200%);  } }
 
     @media (prefers-reduced-motion: reduce) {
       .curtain-strips .strip { animation-duration: 0.4s !important; }
