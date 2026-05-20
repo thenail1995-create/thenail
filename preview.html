@@ -125,7 +125,7 @@
         linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
       padding: 120px 24px 80px;
       position: relative;
-      perspective: 1400px;
+      perspective: 2400px;
       perspective-origin: 50% 50%;
     }
     .hero-3d-scene {
@@ -133,32 +133,40 @@
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform;
       position: relative; z-index: 2;
+      width: 100%;
+      text-align: center;
     }
     .hero-3d-scene > * { transform-style: preserve-3d; }
-    .hero .hero-tag { transform: translateZ(40px); }
-    .hero h1 { transform: translateZ(140px); }
-    .hero .slogan-en { transform: translateZ(85px); }
-    .hero .slogan-vi { transform: translateZ(85px); }
-    .hero .meta { transform: translateZ(55px); }
-    .hero .cta-group { transform: translateZ(75px); }
+    /* Lightly layered depths — chỉ là nét chấm phá, không méo */
+    .hero .hero-tag { transform: translateZ(15px); }
+    .hero h1 { transform: translateZ(45px); }
+    .hero .slogan-en { transform: translateZ(28px); }
+    .hero .slogan-vi { transform: translateZ(28px); }
+    .hero .meta { transform: translateZ(18px); }
+    .hero .cta-group { transform: translateZ(25px); }
     .hero-spotlight {
       position: absolute;
       width: 640px; height: 640px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.18), transparent 60%);
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 60%);
       pointer-events: none;
-      filter: blur(50px);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+      filter: blur(60px);
+      transition: opacity 0.4s;
       opacity: 0;
       will-change: transform, opacity;
       z-index: 1;
-      top: 50%; left: 50%;
+      top: 0; left: 0;
       transform: translate(-50%, -50%);
     }
     .hero:hover .hero-spotlight { opacity: 1; }
     @media (max-width: 768px) {
-      .hero { perspective: none; }
-      .hero-3d-scene, .hero-3d-scene > * { transform: none !important; transform-style: flat; }
+      .hero { perspective: 3000px; }
+      .hero .hero-tag,
+      .hero h1,
+      .hero .slogan-en,
+      .hero .slogan-vi,
+      .hero .meta,
+      .hero .cta-group { transform: none; }
       .hero-spotlight { display: none; }
     }
     .hero::before {
@@ -2143,12 +2151,12 @@
       // Animation loop — always runs (passive drift + inputs)
       function loop(now) {
         const t = (now - startTime) / 1000;
-        // Passive drift: figure-8 pattern, very slow
-        const driftX = Math.sin(t * 0.45) * 2.5;
-        const driftY = Math.cos(t * 0.35) * 1.8;
-        // Combine inputs
-        const rotX = (-my * 12) + (-gy * 8) + driftY;
-        const rotY = (mx * 14) + (gx * 10) + driftX;
+        // Passive drift: rất nhẹ, gần như khó cảm nhận
+        const driftX = Math.sin(t * 0.35) * 0.8;
+        const driftY = Math.cos(t * 0.25) * 0.6;
+        // Combine inputs (giảm cường độ để không méo)
+        const rotX = (-my * 6) + (-gy * 5) + driftY;
+        const rotY = (mx * 7) + (gx * 6) + driftX;
         heroScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
         // Spotlight follows cursor (desktop only)
         if (heroSpot && !isTouch && (cx || cy)) {
