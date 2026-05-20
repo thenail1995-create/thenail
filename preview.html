@@ -118,15 +118,17 @@
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background:
         radial-gradient(circle at 50% 30%, rgba(4, 120, 87, 0.12), transparent 50%),
         linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
       padding: 120px 24px 80px;
       position: relative;
       perspective: 2400px;
-      perspective-origin: 50% 50%;
+      perspective-origin: center center;
+      overflow: hidden;
     }
     .hero-3d-scene {
       transform-style: preserve-3d;
@@ -134,16 +136,31 @@
       will-change: transform;
       position: relative; z-index: 2;
       width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
     }
-    .hero-3d-scene > * { transform-style: preserve-3d; }
-    /* Lightly layered depths — chỉ là nét chấm phá, không méo */
+    .hero-3d-scene > * { transform-style: preserve-3d; transform-origin: center center; }
+    /* Khử mọi possible offset — mọi child fill row tự center */
+    .hero-3d-scene > .hero-tag,
+    .hero-3d-scene > h1,
+    .hero-3d-scene > p,
+    .hero-3d-scene > .meta,
+    .hero-3d-scene > .cta-group {
+      width: 100%;
+      max-width: 100%;
+    }
+    /* Lightly layered depths — chỉ là nét chấm phá */
     .hero .hero-tag { transform: translateZ(15px); }
-    .hero h1 { transform: translateZ(45px); }
-    .hero .slogan-en { transform: translateZ(28px); }
-    .hero .slogan-vi { transform: translateZ(28px); }
-    .hero .meta { transform: translateZ(18px); }
-    .hero .cta-group { transform: translateZ(25px); }
+    .hero h1 { transform: translateZ(40px); }
+    .hero .slogan-en { transform: translateZ(25px); }
+    .hero .slogan-vi { transform: translateZ(25px); }
+    .hero .meta { transform: translateZ(15px); }
+    .hero .cta-group { transform: translateZ(20px); }
     .hero-spotlight {
       position: absolute;
       width: 640px; height: 640px;
