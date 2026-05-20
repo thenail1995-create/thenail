@@ -11,15 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Preload splash curtain images (so 8 strips render instantly with photos) -->
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400" />
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400" />
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400" />
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400" />
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400" />
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq=w400" />
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2=w400" />
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400" />
+  <!-- Preload splash curtain images (2 large nail photos, each split across 4 strips) -->
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200" fetchpriority="high" />
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w1200" fetchpriority="high" />
 
   <style>
     /* ===== RESET ===== */
@@ -689,19 +683,34 @@
       flex: 1;
       position: relative;
       background-color: #050505;    /* fallback while image loads */
-      background-size: cover;
-      background-position: center;
+      background-size: 400% 100%;   /* image spans 4 strips */
       will-change: transform;
       overflow: hidden;
     }
-    /* Dark overlay so strips read as "curtain material" not gallery photos */
+    /* Left half = image A (strips 1-4), right half = image B (strips 5-8) */
+    .curtain-strips .strip:nth-child(-n+4) {
+      background-image: var(--curtain-img-a);
+    }
+    .curtain-strips .strip:nth-child(n+5) {
+      background-image: var(--curtain-img-b);
+    }
+    /* Each strip shows a 25% slice of its image, seamless across 4 */
+    .curtain-strips .strip:nth-child(1),
+    .curtain-strips .strip:nth-child(5) { background-position: 0%       center; }
+    .curtain-strips .strip:nth-child(2),
+    .curtain-strips .strip:nth-child(6) { background-position: 33.333%  center; }
+    .curtain-strips .strip:nth-child(3),
+    .curtain-strips .strip:nth-child(7) { background-position: 66.666%  center; }
+    .curtain-strips .strip:nth-child(4),
+    .curtain-strips .strip:nth-child(8) { background-position: 100%     center; }
+    /* Subtle vignette so the 2 photos read as cohesive curtain, text stays legible */
     .curtain-strips .strip::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.85) 100%),
-        radial-gradient(circle at 50% 50%, rgba(4, 120, 87, 0.15), transparent 60%);
+        linear-gradient(180deg, rgba(10, 10, 10, 0.25) 0%, rgba(10, 10, 10, 0.55) 100%),
+        radial-gradient(circle at 50% 50%, transparent 30%, rgba(10, 10, 10, 0.45) 100%);
     }
     /* Vertical seam between strips — like fabric pleats */
     .curtain-strips .strip::after {
@@ -1252,15 +1261,17 @@
       <div class="splash-tagline">your concept, my creation</div>
       <div class="splash-tagline-vi">Ý tưởng bạn trao — Nghệ thuật tôi tạo</div>
     </div>
-    <div class="curtain-strips" aria-hidden="true">
-      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400')"></div>
-      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400')"></div>
-      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400')"></div>
-      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400')"></div>
-      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400')"></div>
-      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq=w400')"></div>
-      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2=w400')"></div>
-      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400')"></div>
+    <div class="curtain-strips" aria-hidden="true"
+         style="--curtain-img-a: url('https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200');
+                --curtain-img-b: url('https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w1200');">
+      <div class="strip"></div>
+      <div class="strip"></div>
+      <div class="strip"></div>
+      <div class="strip"></div>
+      <div class="strip"></div>
+      <div class="strip"></div>
+      <div class="strip"></div>
+      <div class="strip"></div>
     </div>
   </div>
 
