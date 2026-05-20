@@ -154,13 +154,15 @@
       width: 100%;
       max-width: 100%;
     }
-    /* Lightly layered depths — chỉ là nét chấm phá */
+    /* DEBUG: tắt translateZ để xem có phải nguồn lệch không */
+    /*
     .hero .hero-tag { transform: translateZ(15px); }
     .hero h1 { transform: translateZ(40px); }
     .hero .slogan-en { transform: translateZ(25px); }
     .hero .slogan-vi { transform: translateZ(25px); }
     .hero .meta { transform: translateZ(15px); }
     .hero .cta-group { transform: translateZ(20px); }
+    */
     .hero-spotlight {
       position: absolute;
       width: 640px; height: 640px;
@@ -209,12 +211,14 @@
       line-height: 1;
       margin-bottom: 32px;
       font-weight: 300;
-      animation: title-float 5s ease-in-out infinite;
+      /* animation: title-float 5s ease-in-out infinite; DEBUG: tắt tạm */
     }
+    /*
     @keyframes title-float {
       0%, 100% { transform: translateY(0); letter-spacing: 0.15em; }
       50% { transform: translateY(-8px); letter-spacing: 0.18em; }
     }
+    */
     .hero h1 .the { color: #e8e6e1; font-weight: 300; }
     .hero h1 .nail {
       color: #10b981;
@@ -2165,23 +2169,9 @@
         }
       }
 
-      // Animation loop — always runs (passive drift + inputs)
-      function loop(now) {
-        const t = (now - startTime) / 1000;
-        // Passive drift: rất nhẹ, gần như khó cảm nhận
-        const driftX = Math.sin(t * 0.35) * 0.8;
-        const driftY = Math.cos(t * 0.25) * 0.6;
-        // Combine inputs (giảm cường độ để không méo)
-        const rotX = (-my * 6) + (-gy * 5) + driftY;
-        const rotY = (mx * 7) + (gx * 6) + driftX;
-        heroScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-        // Spotlight follows cursor (desktop only)
-        if (heroSpot && !isTouch && (cx || cy)) {
-          heroSpot.style.transform = `translate(${cx - 320}px, ${cy - 320}px)`;
-        }
-        requestAnimationFrame(loop);
-      }
-      requestAnimationFrame(loop);
+      // DEBUG: tạm tắt rotation animation để cô lập vấn đề lệch
+      // function loop(now) { ... }
+      // requestAnimationFrame(loop);
 
       // Scroll parallax: hero fades when scrolling away
       window.addEventListener('scroll', () => {
