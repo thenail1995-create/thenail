@@ -722,18 +722,20 @@
     }
     .curtain-strips .strip:last-child::after { display: none; }
 
-    /* Alternating up/down with stagger — wave-like reveal from outside in */
-    .curtain-strips .strip:nth-child(1) { animation: strip-up   1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
-    .curtain-strips .strip:nth-child(2) { animation: strip-down 1.4s 0.95s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
-    .curtain-strips .strip:nth-child(3) { animation: strip-up   1.4s 1.1s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
-    .curtain-strips .strip:nth-child(4) { animation: strip-down 1.4s 1.25s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
-    .curtain-strips .strip:nth-child(5) { animation: strip-up   1.4s 1.25s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
-    .curtain-strips .strip:nth-child(6) { animation: strip-down 1.4s 1.1s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
-    .curtain-strips .strip:nth-child(7) { animation: strip-up   1.4s 0.95s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
-    .curtain-strips .strip:nth-child(8) { animation: strip-down 1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    /* Open like stage curtain: left half → slide LEFT, right half → slide RIGHT.
+       Stagger from outermost strips first (edges pulled by "ropes"),
+       innermost (center) last → fabric-pull feel. */
+    .curtain-strips .strip:nth-child(1) { animation: strip-left  1.5s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(2) { animation: strip-left  1.5s 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(3) { animation: strip-left  1.5s 1.0s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(4) { animation: strip-left  1.5s 1.1s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(5) { animation: strip-right 1.5s 1.1s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(6) { animation: strip-right 1.5s 1.0s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(7) { animation: strip-right 1.5s 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(8) { animation: strip-right 1.5s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
 
-    @keyframes strip-up   { to { transform: translateY(-105%); } }
-    @keyframes strip-down { to { transform: translateY(105%);  } }
+    @keyframes strip-left  { to { transform: translateX(-105%); } }
+    @keyframes strip-right { to { transform: translateX(105%);  } }
 
     @media (prefers-reduced-motion: reduce) {
       .curtain-strips .strip { animation-duration: 0.4s !important; }
