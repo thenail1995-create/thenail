@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE NAIL // CYBER-BIO NAIL TECH // EST.2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Major+Mono+Display&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================
+       CYBER Y2K — FULL CRAZY MODE
+       ============================================ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --bg: #0a0010;
+      --bg-dark: #050008;
+      --neon-green: #00FF88;
+      --neon-pink: #FF006E;
+      --neon-magenta: #FF00FF;
+      --neon-cyan: #00FFFF;
+      --chrome: linear-gradient(135deg, #c0c0c0, #ffffff, #808080, #ffffff, #c0c0c0);
+      --iridescent: linear-gradient(135deg, #ff006e, #b967ff, #00d4ff, #00ff88, #ff006e);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      overflow-x: hidden;
+      cursor: none;
+      position: relative;
+    }
+
+    /* ============================================
+       SCAN LINES OVERLAY (full-page CRT effect)
+       ============================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(
+          rgba(255, 255, 255, 0.02) 50%,
+          rgba(0, 0, 0, 0.12) 50%
+        );
+      background-size: 100% 3px;
+      pointer-events: none;
+      z-index: 9000;
+      mix-blend-mode: overlay;
+    }
+
+    /* Subtle screen flicker */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center,
+        transparent 0%,
+        rgba(0, 0, 0, 0.3) 100%);
+      pointer-events: none;
+      z-index: 9001;
+      animation: flicker 8s infinite;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50.0% { opacity: 0.97; }
+      50.1% { opacity: 1; }
+      55% { opacity: 0.98; }
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; cursor: none; }
+    button { font: inherit; cursor: none; background: transparent; border: none; color: inherit; }
+
+    /* ============================================
+       CUSTOM STAR CURSOR
+       ============================================ */
+    .cursor {
+      position: fixed;
+      width: 32px; height: 32px;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+    }
+    .cursor svg { width: 100%; height: 100%; filter: drop-shadow(0 0 8px var(--neon-pink)); }
+    .cursor.click { transform: translate(-50%, -50%) scale(1.5); }
+
+    .cursor-trail {
+      position: fixed;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.7;
+      animation: trail-fade 0.8s linear forwards;
+    }
+    @keyframes trail-fade {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0); }
+    }
+
+    /* ============================================
+       NAV — Top marquee bar
+       ============================================ */
+    .top-marquee {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--neon-pink);
+      color: #000;
+      padding: 8px 0;
+      overflow: hidden;
+      z-index: 100;
+      font-family: 'VT323', monospace;
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid var(--neon-magenta);
+    }
+    .marquee-track {
+      display: inline-flex;
+      animation: scroll-left 25s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-track span { padding: 0 32px; }
+    .marquee-track span::after { content: ' ✦ '; color: rgba(0,0,0,0.5); }
+    @keyframes scroll-left {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    nav.main-nav {
+      position: fixed; top: 40px; left: 0; right: 0;
+      z-index: 99;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 0, 16, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--neon-green);
+    }
+    nav .logo {
+      font-family: 'Major Mono Display', monospace;
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      color: var(--neon-green);
+      text-shadow: 0 0 12px var(--neon-green);
+    }
+    nav .logo .pink { color: var(--neon-pink); text-shadow: 0 0 12px var(--neon-pink); }
+    nav .menu {
+      display: flex;
+      gap: 32px;
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    nav .menu a {
+      position: relative;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    nav .menu a::before { content: '['; opacity: 0; transition: opacity 0.2s; margin-right: 4px; }
+    nav .menu a::after { content: ']'; opacity: 0; transition: opacity 0.2s; margin-left: 4px; }
+    nav .menu a:hover { color: var(--neon-pink); }
+    nav .menu a:hover::before, nav .menu a:hover::after { opacity: 1; }
+    @media (max-width: 768px) {
+      nav.main-nav .menu { display: none; }
+    }
+
+    /* ============================================
+       HERO — Massive glitched title
+       ============================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 140px 24px 80px;
+      position: relative;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 0, 110, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0, 255, 136, 0.12), transparent 50%);
+    }
+
+    /* Floating background grid */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      perspective: 500px;
+      transform: rotateX(60deg) translateY(100px) scale(2);
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+    }
+
+    .pre-title {
+      font-family: 'VT323', monospace;
+      font-size: 22px;
+      color: var(--neon-cyan);
+      letter-spacing: 0.3em;
+      margin-bottom: 32px;
+      text-shadow: 0 0 8px var(--neon-cyan);
+      text-align: center;
+    }
+    .pre-title .blink { animation: blink 1s steps(2) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Massive glitch title */
+    .glitch-title {
+      font-family: 'Major Mono Display', monospace;
+      font-size: clamp(70px, 16vw, 240px);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      line-height: 0.9;
+      text-align: center;
+      position: relative;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+    .glitch-title::before,
+    .glitch-title::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .glitch-title::before {
+      color: var(--neon-pink);
+      animation: glitch-1 3s infinite linear alternate;
+      z-index: -1;
+    }
+    .glitch-title::after {
+      color: var(--neon-green);
+      animation: glitch-2 2s infinite linear alternate;
+      z-index: -2;
+    }
+    @keyframes glitch-1 {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-4px, 2px); }
+      40% { transform: translate(-3px, -2px); }
+      60% { transform: translate(4px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+    @keyframes glitch-2 {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(3px, -3px); }
+      40% { transform: translate(-2px, 3px); }
+      60% { transform: translate(-4px, -2px); }
+      80% { transform: translate(2px, 2px); }
+    }
+
+    .sub-title {
+      margin-top: 48px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(20px, 3vw, 32px);
+      background: var(--iridescent);
+      background-size: 200% 200%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 6s linear infinite;
+      text-align: center;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .hero-meta {
+      margin-top: 64px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-family: 'VT323', monospace;
+      font-size: 18px;
+      color: var(--neon-green);
+      letter-spacing: 0.1em;
+    }
+    .hero-meta span {
+      padding: 6px 16px;
+      border: 1px solid var(--neon-green);
+      box-shadow: 0 0 12px rgba(0, 255, 136, 0.3) inset;
+    }
+
+    .hero-cta {
+      margin-top: 64px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cyber-btn {
+      padding: 16px 40px;
+      font-family: 'VT323', monospace;
+      font-size: 24px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 2px solid var(--neon-pink);
+      color: #fff;
+      background: linear-gradient(135deg, rgba(255,0,110,0.2), transparent);
+      position: relative;
+      transition: all 0.2s;
+      box-shadow: 0 0 0 var(--neon-pink), inset 0 0 16px rgba(255, 0, 110, 0.2);
+    }
+    .cyber-btn:hover {
+      background: var(--neon-pink);
+      color: #000;
+      box-shadow: 0 0 24px var(--neon-pink);
+      transform: translate(-2px, -2px);
+    }
+    .cyber-btn.green {
+      border-color: var(--neon-green);
+      box-shadow: 0 0 0 var(--neon-green), inset 0 0 16px rgba(0, 255, 136, 0.2);
+    }
+    .cyber-btn.green:hover {
+      background: var(--neon-green);
+      color: #000;
+      box-shadow: 0 0 24px var(--neon-green);
+    }
+
+    /* ============================================
+       SECTION HEADERS
+       ============================================ */
+    section { padding: 100px 32px; position: relative; }
+    .section-head {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-head .label {
+      font-family: 'VT323', monospace;
+      font-size: 22px;
+      color: var(--neon-pink);
+      letter-spacing: 0.4em;
+      margin-bottom: 16px;
+      text-shadow: 0 0 12px var(--neon-pink);
+    }
+    .section-head h2 {
+      font-family: 'Major Mono Display', monospace;
+      font-size: clamp(40px, 6vw, 72px);
+      letter-spacing: 0.05em;
+      background: var(--chrome);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
+    }
+
+    /* ============================================
+       ABOUT / VALUES
+       ============================================ */
+    .about {
+      background: linear-gradient(180deg, var(--bg), var(--bg-dark));
+    }
+    .values-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .value-card {
+      background: rgba(255, 0, 110, 0.05);
+      border: 1px solid var(--neon-pink);
+      padding: 40px 24px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .value-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: var(--iridescent);
+      background-size: 200% 200%;
+      animation: shimmer 4s linear infinite;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .value-card:hover::before { opacity: 1; }
+    .value-card:hover { background: rgba(0, 0, 0, 0.5); }
+    .value-card .num {
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+      color: var(--neon-cyan);
+      letter-spacing: 0.3em;
+      margin-bottom: 24px;
+    }
+    .value-card h3 {
+      font-family: 'Major Mono Display', monospace;
+      font-size: 32px;
+      color: var(--neon-green);
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      text-shadow: 0 0 12px var(--neon-green);
+    }
+    .value-card p {
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================
+       GALLERY
+       ============================================ */
+    .gallery-section {
+      background: var(--bg-dark);
+    }
+    .tier-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+    .tier-tab {
+      padding: 10px 24px;
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--neon-green);
+      color: var(--neon-green);
+      transition: all 0.2s;
+    }
+    .tier-tab:hover { background: rgba(0, 255, 136, 0.1); }
+    .tier-tab.active {
+      background: var(--neon-green);
+      color: #000;
+      box-shadow: 0 0 24px var(--neon-green);
+    }
+    .gallery {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .nail-card {
+      aspect-ratio: 1;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      transition: all 0.3s;
+    }
+    .nail-card:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 24px var(--neon-pink);
+      z-index: 2;
+    }
+    .nail-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: filter 0.3s, transform 0.3s;
+    }
+    .nail-card:hover img {
+      filter: hue-rotate(30deg) saturate(1.3);
+      transform: scale(1.05);
+    }
+    .nail-card::before {
+      content: 'CLICK >>';
+      position: absolute;
+      top: 12px; right: 12px;
+      font-family: 'VT323', monospace;
+      font-size: 14px;
+      color: var(--neon-cyan);
+      letter-spacing: 0.2em;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 4px 8px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 3;
+    }
+    .nail-card:hover::before { opacity: 1; }
+    @media (max-width: 768px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ============================================
+       MIDDLE MARQUEE - BIG NEON
+       ============================================ */
+    .mid-marquee {
+      background: var(--neon-green);
+      color: #000;
+      padding: 24px 0;
+      overflow: hidden;
+      transform: rotate(-2deg);
+      margin: 60px -10px;
+      box-shadow: 0 0 40px var(--neon-green);
+    }
+    .mid-marquee .marquee-track {
+      animation-duration: 20s;
+      font-family: 'Major Mono Display', monospace;
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    /* ============================================
+       VOICE (Reviews)
+       ============================================ */
+    .voice {
+      background: linear-gradient(180deg, var(--bg-dark), var(--bg));
+    }
+    .voice-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .review {
+      background: rgba(255, 0, 255, 0.03);
+      border: 1px dashed var(--neon-magenta);
+      padding: 32px 24px;
+      position: relative;
+    }
+    .review::before {
+      content: '>>';
+      position: absolute;
+      top: -12px; left: 24px;
+      font-family: 'VT323', monospace;
+      font-size: 24px;
+      color: var(--neon-magenta);
+      background: var(--bg);
+      padding: 0 8px;
+    }
+    .review .stars {
+      font-family: 'VT323', monospace;
+      font-size: 24px;
+      color: var(--neon-green);
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+    }
+    .review p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #ddd;
+      margin-bottom: 24px;
+    }
+    .review .author {
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+      color: var(--neon-cyan);
+      letter-spacing: 0.15em;
+    }
+    @media (max-width: 768px) {
+      .voice-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================
+       CONTACT
+       ============================================ */
+    .contact {
+      background: var(--bg);
+      text-align: center;
+    }
+    .contact-info {
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: 'VT323', monospace;
+      font-size: 22px;
+      line-height: 1.8;
+      color: var(--neon-green);
+    }
+    .contact-info .key { color: var(--neon-pink); }
+    .contact-info .terminal-line { margin: 8px 0; }
+    .contact-info .terminal-line::before {
+      content: '> ';
+      color: var(--neon-cyan);
+    }
+
+    .floating-zalo {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-magenta));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Major Mono Display', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      z-index: 500;
+      box-shadow: 0 0 32px var(--neon-pink);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer {
+      padding: 32px;
+      background: #000;
+      text-align: center;
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+      color: var(--neon-green);
+      letter-spacing: 0.2em;
+      border-top: 2px solid var(--neon-pink);
+    }
+    footer .glitch-mini {
+      color: var(--neon-pink);
+      text-shadow: 0 0 8px var(--neon-pink);
+    }
+
+    /* ============================================
+       LIGHTBOX
+       ============================================ */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      padding: 64px;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border: 2px solid var(--neon-green);
+      box-shadow: 0 0 64px var(--neon-green);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 32px; right: 32px;
+      width: 56px; height: 56px;
+      background: var(--neon-pink);
+      color: #000;
+      font-family: 'VT323', monospace;
+      font-size: 24px;
+      cursor: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom star cursor -->
+  <div class="cursor" id="cursor">
+    <svg viewBox="0 0 24 24" fill="#FF006E">
+      <path d="M12 2L14.39 9.04L22 9.27L16.04 13.97L18.18 21L12 17L5.82 21L7.96 13.97L2 9.27L9.61 9.04L12 2Z"/>
+    </svg>
+  </div>
+
+  <!-- Top marquee bar -->
+  <div class="top-marquee">
+    <div class="marquee-track">
+      <span>🌐 SYSTEM ONLINE</span><span>CYBER-BIO NAIL TECH</span><span>EST. 2026</span><span>STUDIO OF TRẦN NGỌC</span><span>QUẬN 10 // SAIGON</span><span>thenail.vn</span><span>YOUR CONCEPT / MY CREATION</span>
+      <span>🌐 SYSTEM ONLINE</span><span>CYBER-BIO NAIL TECH</span><span>EST. 2026</span><span>STUDIO OF TRẦN NGỌC</span><span>QUẬN 10 // SAIGON</span><span>thenail.vn</span><span>YOUR CONCEPT / MY CREATION</span>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <nav class="main-nav">
+    <div class="logo">THE<span class="pink">_</span>NAIL</div>
+    <div class="menu">
+      <a href="#about">About</a>
+      <a href="#gallery">Lab</a>
+      <a href="#voice">Voice</a>
+      <a href="#contact">Connect</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="grid-bg"></div>
+
+    <div class="pre-title">
+      &gt;&gt; INITIALIZING NAIL.EXE<span class="blink">_</span>
+    </div>
+
+    <h1 class="glitch-title" data-text="THE NAIL">THE NAIL</h1>
+
+    <div class="sub-title">
+      your concept — my creation
+    </div>
+
+    <div class="hero-meta">
+      <span>// QUẬN 10</span>
+      <span>// 0931 415 099</span>
+      <span>// 09:00 - 22:00</span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#gallery" class="cyber-btn">[ ENTER LAB ]</a>
+      <a href="https://zalo.me/0931415099" target="_blank" class="cyber-btn green">[ BOOK NOW ]</a>
+    </div>
+  </section>
+
+  <!-- ABOUT / VALUES -->
+  <section class="about" id="about">
+    <div class="section-head">
+      <div class="label">/// SYSTEM CORE ///</div>
+      <h2>VALUES.DAT</h2>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="num">[ 01 ]</div>
+        <h3>PERSONAL</h3>
+        <p>Mỗi khách là một người dùng độc nhất. Mỗi bộ móng được cấu hình riêng theo gu, dáng tay và phong cách của bạn.</p>
+      </div>
+      <div class="value-card">
+        <div class="num">[ 02 ]</div>
+        <h3>CREATE</h3>
+        <p>Không chỉ làm theo mẫu — chúng tôi cùng bạn kiến tạo nên thiết kế độc bản, mang dấu ấn của riêng bạn.</p>
+      </div>
+      <div class="value-card">
+        <div class="num">[ 03 ]</div>
+        <h3>PRECISION</h3>
+        <p>Từng đường nét được trau chuốt. Một bộ móng đẹp bắt nguồn từ kiên nhẫn — không vội, không qua loa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mid marquee -->
+  <div class="mid-marquee">
+    <div class="marquee-track">
+      <span>★ IDEA → CODE → CREATION</span><span>★ IDEA → CODE → CREATION</span><span>★ IDEA → CODE → CREATION</span>
+      <span>★ IDEA → CODE → CREATION</span><span>★ IDEA → CODE → CREATION</span><span>★ IDEA → CODE → CREATION</span>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-head">
+      <div class="label">/// SELECT TIER ///</div>
+      <h2>NAIL.LAB</h2>
+    </div>
+
+    <div class="tier-tabs">
+      <button class="tier-tab active" data-filter="all">[ ALL ]</button>
+      <button class="tier-tab" data-filter="200-300">200—300K</button>
+      <button class="tier-tab" data-filter="300-400">300—400K</button>
+      <button class="tier-tab" data-filter="400-500">400—500K</button>
+      <button class="tier-tab" data-filter="500-700">500—700K</button>
+      <button class="tier-tab" data-filter="800-plus">800K+</button>
+    </div>
+
+    <div class="gallery" id="gallery-grid"></div>
+  </section>
+
+  <!-- VOICE -->
+  <section class="voice" id="voice">
+    <div class="section-head">
+      <div class="label">/// USER FEEDBACK ///</div>
+      <h2>VOICE.LOG</h2>
+    </div>
+
+    <div class="voice-grid">
+      <div class="review">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>Mình cực ưng bộ móng chị Ngọc làm. Tỉ mỉ từng đường nét, ngồi không thấy vội.</p>
+        <div class="author">// LINH PHƯƠNG @ 04.2026</div>
+      </div>
+      <div class="review">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>Tay nghề rất chắc, mẫu đẹp, không gian sạch sẽ và thơm tho.</p>
+        <div class="author">// MINH ANH @ 03.2026</div>
+      </div>
+      <div class="review">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p>Đã làm nail nhiều nơi nhưng đây là chỗ đầu tiên mình thấy yên tâm. Vẽ tay sắc nét.</p>
+        <div class="author">// THANH TRÚC @ 03.2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-head">
+      <div class="label">/// ESTABLISH CONNECTION ///</div>
+      <h2>CONNECT.EXE</h2>
+    </div>
+
+    <div class="contact-info">
+      <div class="terminal-line"><span class="key">addr:</span> 521/54 Cách Mạng Tháng 8, P. Hoà Hưng, Q.10</div>
+      <div class="terminal-line"><span class="key">phone:</span> 0931 415 099</div>
+      <div class="terminal-line"><span class="key">hours:</span> Mon-Sun 09:00 - 22:00</div>
+      <div class="terminal-line"><span class="key">protocol:</span> Zalo / Instagram / Facebook / Threads</div>
+      <div class="terminal-line"><span class="key">status:</span> <span style="color: var(--neon-green);">ONLINE</span><span class="blink">_</span></div>
+    </div>
+  </section>
+
+  <!-- Floating Zalo -->
+  <a href="https://zalo.me/0931415099" target="_blank" class="floating-zalo">Zalo</a>
+
+  <!-- Footer -->
+  <footer>
+    © MMXXVI · <span class="glitch-mini">THE NAIL</span> · CYBER-BIO NAIL TECH · thenail.vn
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">X</button>
+    <img src="" id="lb-img" alt="">
+  </div>
+
+  <script>
+    // ============================================
+    // GALLERY DATA
+    // ============================================
+    const tierPhotos = {
+      "200-300": ["1lseE--QmyFGUm5clHMp7YFMZESGIlXGY","1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP","1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe","18h6DMoUTIZHNlIa05yeUxwHni3mIneKq","15R-57T9UAgJU366mo1ehBbCdL__g_e0n","1DB1ZURgeazTF8TExqop-9iaykK76pUZq","1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq","1CVMao7oIWXajNlGhB5j08md97L3EFJQ2","1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr","15_TA0WlU7HnrBVB1redzSknjkFmxsfQM","135oqrLfl6La-8UoyLQ-G-mijommxvH97","1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB"],
+      "300-400": ["1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ","1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX_","1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV","1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR_","1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p","17IdH3UL72melhW6Mceg30GeUlSfXD7SZ","1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee","16xoZP9KI8THym4ev3Ayetk1p8h6Me27w","1krPewtbBudfV3IkWi16qHwGssLqZgyYt","1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo","1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y","1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC"],
+      "400-500": ["1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF","1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8","1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa","1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv","1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx","1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D","17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1","1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4","1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K","1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL","1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka","1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ"],
+      "500-700": ["1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k","1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb","1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av","1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF","1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm","1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR","1rIhThOBF47i43kiJrhslelS54OgYytIp","1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW","1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D","1bKBL_79FRCql-utY01i8AKVgTGdFAaRf","1lY3pzege3isnu005Uq7WtKd7HXgTWibo","1juCmUppBVNxI3_AnhWk1brwMTz08K2V0"],
+      "800-plus": ["1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N","1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW","1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz","1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8","170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb","1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7","1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm","1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds"]
+    };
+
+    const grid = document.getElementById('gallery-grid');
+    Object.entries(tierPhotos).forEach(([tier, ids]) => {
+      ids.forEach(id => {
+        const card = document.createElement('div');
+        card.className = 'nail-card';
+        card.dataset.price = tier;
+        card.innerHTML = `<img src="https://lh3.googleusercontent.com/d/${id}=w800" alt="nail" loading="lazy" referrerpolicy="no-referrer">`;
+        card.addEventListener('click', () => {
+          document.getElementById('lb-img').src = `https://lh3.googleusercontent.com/d/${id}=w1400`;
+          document.getElementById('lightbox').classList.add('active');
+        });
+        grid.appendChild(card);
+      });
+    });
+
+    // Tier filter
+    document.querySelectorAll('.tier-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tier-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const f = tab.dataset.filter;
+        document.querySelectorAll('.nail-card').forEach(c => {
+          c.style.display = (f === 'all' || c.dataset.price === f) ? '' : 'none';
+        });
+      });
+    });
+
+    // Lightbox close
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target.id === 'lightbox') closeLightbox();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ============================================
+    // STAR CURSOR + TRAIL
+    // ============================================
+    const isTouch = window.matchMedia('(hover: none)').matches;
+    if (!isTouch) {
+      const cursor = document.getElementById('cursor');
+      let lastTrail = 0;
+      document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+
+        // Trail every 50ms
+        const now = Date.now();
+        if (now - lastTrail > 40) {
+          lastTrail = now;
+          const t = document.createElement('div');
+          t.className = 'cursor-trail';
+          const colors = ['#FF006E', '#00FF88', '#00FFFF', '#FF00FF'];
+          t.style.background = colors[Math.floor(Math.random() * colors.length)];
+          t.style.left = e.clientX + 'px';
+          t.style.top = e.clientY + 'px';
+          t.style.transform = 'translate(-50%, -50%)';
+          t.style.boxShadow = `0 0 12px ${t.style.background}`;
+          document.body.appendChild(t);
+          setTimeout(() => t.remove(), 800);
+        }
+      });
+      document.addEventListener('mousedown', () => cursor.classList.add('click'));
+      document.addEventListener('mouseup', () => cursor.classList.remove('click'));
+    } else {
+      document.body.style.cursor = 'auto';
+      document.getElementById('cursor').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
