@@ -125,6 +125,41 @@
         linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
       padding: 120px 24px 80px;
       position: relative;
+      perspective: 1400px;
+      perspective-origin: 50% 50%;
+    }
+    .hero-3d-scene {
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+      position: relative; z-index: 2;
+    }
+    .hero-3d-scene > * { transform-style: preserve-3d; }
+    .hero .hero-tag { transform: translateZ(40px); }
+    .hero h1 { transform: translateZ(140px); }
+    .hero .slogan-en { transform: translateZ(85px); }
+    .hero .slogan-vi { transform: translateZ(85px); }
+    .hero .meta { transform: translateZ(55px); }
+    .hero .cta-group { transform: translateZ(75px); }
+    .hero-spotlight {
+      position: absolute;
+      width: 640px; height: 640px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.18), transparent 60%);
+      pointer-events: none;
+      filter: blur(50px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+      opacity: 0;
+      will-change: transform, opacity;
+      z-index: 1;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero:hover .hero-spotlight { opacity: 1; }
+    @media (max-width: 768px) {
+      .hero { perspective: none; }
+      .hero-3d-scene, .hero-3d-scene > * { transform: none !important; transform-style: flat; }
+      .hero-spotlight { display: none; }
     }
     .hero::before {
       content: '';
@@ -554,20 +589,42 @@
     }
     .loading-splash.hidden { opacity: 0; visibility: hidden; }
     .splash-content { text-align: center; padding: 24px; }
-    .splash-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(60px, 14vw, 140px);
-      letter-spacing: 0.15em;
-      margin-bottom: 24px;
-      animation: splash-fade-in 0.9s ease-out;
+    /* SVG draw-in logo */
+    .splash-svg {
+      width: clamp(280px, 70vw, 800px);
+      height: auto;
+      margin: 0 auto 32px;
+      display: block;
     }
-    .splash-logo .the { color: #e8e6e1; font-weight: 300; }
-    .splash-logo .nail { color: #10b981; font-weight: 400; margin-left: 0.3em; }
+    .splash-svg .draw-text {
+      fill: transparent;
+      stroke-width: 1.2;
+      stroke-dasharray: 1400;
+      stroke-dashoffset: 1400;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 140px;
+      letter-spacing: 0.05em;
+    }
+    .splash-svg .draw-the {
+      stroke: #e8e6e1;
+      animation: stroke-draw 1.8s ease-out 0.2s forwards,
+                 stroke-fill-the 0.7s ease-out 1.9s forwards;
+    }
+    .splash-svg .draw-nail {
+      stroke: #10b981;
+      animation: stroke-draw 1.8s ease-out 0.6s forwards,
+                 stroke-fill-nail 0.7s ease-out 2.3s forwards;
+    }
+    @keyframes stroke-draw { to { stroke-dashoffset: 0; } }
+    @keyframes stroke-fill-the { to { fill: #e8e6e1; } }
+    @keyframes stroke-fill-nail { to { fill: #10b981; } }
+
     .splash-line {
       width: 0; height: 1px;
       background: #10b981;
       margin: 32px auto;
-      animation: splash-line 1.4s 0.3s ease-out forwards;
+      animation: splash-line 1.2s 2.7s ease-out forwards;
     }
     @keyframes splash-line { to { width: 180px; } }
     .splash-tagline {
@@ -577,7 +634,7 @@
       font-size: clamp(22px, 3.5vw, 32px);
       letter-spacing: 0.08em;
       opacity: 0;
-      animation: splash-fade-in 1s 1s ease-out forwards;
+      animation: splash-fade-in 0.7s 3s ease-out forwards;
       margin-bottom: 12px;
     }
     .splash-tagline-vi {
@@ -587,7 +644,7 @@
       font-size: clamp(22px, 3.5vw, 32px);
       letter-spacing: 0.02em;
       opacity: 0;
-      animation: splash-fade-in 1s 1.4s ease-out forwards;
+      animation: splash-fade-in 0.7s 3.4s ease-out forwards;
     }
     @keyframes splash-fade-in {
       from { opacity: 0; transform: translateY(20px); }
@@ -1104,7 +1161,10 @@
   <!-- ===== LOADING SPLASH ===== -->
   <div class="loading-splash" id="splash">
     <div class="splash-content">
-      <div class="splash-logo"><span class="the">THE</span><span class="nail glitter">NAIL</span></div>
+      <svg class="splash-svg" viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg" aria-label="THE NAIL">
+        <text class="draw-text draw-the" x="280" y="120" text-anchor="end">THE</text>
+        <text class="draw-text draw-nail" x="320" y="120" text-anchor="start">NAIL</text>
+      </svg>
       <div class="splash-line"></div>
       <div class="splash-tagline">your concept, my creation</div>
       <div class="splash-tagline-vi">Ý tưởng bạn trao — Nghệ thuật tôi tạo</div>
@@ -1133,9 +1193,10 @@
   <div class="nav-backdrop" id="nav-backdrop"></div>
 
   <!-- ===== HERO ===== -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="hero-sparkles" aria-hidden="true"></div>
-    <div>
+    <div class="hero-spotlight" id="hero-spotlight"></div>
+    <div class="hero-3d-scene" id="hero-scene">
       <div class="hero-tag">— Nail Studio by Trần Ngọc —</div>
       <h1><span class="the">THE</span><span class="nail">NAIL</span></h1>
       <p class="slogan-en">— your concept, my creation —</p>
@@ -1460,29 +1521,25 @@
   <!-- ===== MARQUEE BAND ===== -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>STUDIO CỦA NGỌC</span>
+      <span>MÙA CƯỚI 2026 — LỊCH NAIL CÔ DÂU CÒN TRỐNG THÁNG 6</span>
       <span class="sep">✦</span>
-      <span>EST. 2026</span>
+      <span>ƯU ĐÃI HÈ — GIẢM 10% MẪU MARBLE & 3D</span>
       <span class="sep">✦</span>
-      <span>MỖI BỘ MÓNG — MỘT TÁC PHẨM</span>
+      <span>ĐẶT TRƯỚC 7 NGÀY ĐỂ CHỌN GIỜ ĐẸP</span>
       <span class="sep">✦</span>
-      <span>NGHỀ TỪ ĐÔI BÀN TAY</span>
+      <span>KHÁCH MỚI — TƯ VẤN MẪU MIỄN PHÍ QUA ZALO</span>
       <span class="sep">✦</span>
-      <span>Q.10 — SAIGON</span>
+      <span>NHẮN 0931 415 099 — PHẢN HỒI TRONG 15 PHÚT</span>
       <span class="sep">✦</span>
-      <span>thenail.vn</span>
+      <span>MÙA CƯỚI 2026 — LỊCH NAIL CÔ DÂU CÒN TRỐNG THÁNG 6</span>
       <span class="sep">✦</span>
-      <span>STUDIO CỦA NGỌC</span>
+      <span>ƯU ĐÃI HÈ — GIẢM 10% MẪU MARBLE & 3D</span>
       <span class="sep">✦</span>
-      <span>EST. 2026</span>
+      <span>ĐẶT TRƯỚC 7 NGÀY ĐỂ CHỌN GIỜ ĐẸP</span>
       <span class="sep">✦</span>
-      <span>MỖI BỘ MÓNG — MỘT TÁC PHẨM</span>
+      <span>KHÁCH MỚI — TƯ VẤN MẪU MIỄN PHÍ QUA ZALO</span>
       <span class="sep">✦</span>
-      <span>NGHỀ TỪ ĐÔI BÀN TAY</span>
-      <span class="sep">✦</span>
-      <span>Q.10 — SAIGON</span>
-      <span class="sep">✦</span>
-      <span>thenail.vn</span>
+      <span>NHẮN 0931 415 099 — PHẢN HỒI TRONG 15 PHÚT</span>
       <span class="sep">✦</span>
     </div>
   </div>
@@ -1914,7 +1971,7 @@
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('splash').classList.add('hidden');
-      }, 2200);
+      }, 4200);
     });
 
     // ===== SCROLL PROGRESS BAR =====
@@ -1982,14 +2039,46 @@
       });
     }
 
-    // ===== HERO PARALLAX (desktop only) =====
-    const heroContent = document.querySelector('.hero > div:not(.hero-sparkles)');
-    if (heroContent && !isTouch) {
+    // ===== HERO 3D PARALLAX + SPOTLIGHT (desktop only) =====
+    const hero = document.getElementById('hero');
+    const heroScene = document.getElementById('hero-scene');
+    const heroSpot = document.getElementById('hero-spotlight');
+    if (hero && heroScene && !isTouch) {
+      let rafId = null;
+      let tx = 0, ty = 0;
+      let cx = 0, cy = 0;
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        tx = x; ty = y;
+        cx = e.clientX - rect.left;
+        cy = e.clientY - rect.top;
+        if (!rafId) rafId = requestAnimationFrame(updateHero);
+      });
+      hero.addEventListener('mouseleave', () => {
+        tx = 0; ty = 0;
+        if (!rafId) rafId = requestAnimationFrame(updateHero);
+      });
+      function updateHero() {
+        rafId = null;
+        // 3D rotation based on cursor
+        const rx = -ty * 12; // tilt X (vertical mouse → rotate around X axis)
+        const ry = tx * 14;  // tilt Y (horizontal → rotate around Y axis)
+        heroScene.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        // Spotlight follow
+        if (heroSpot && cx && cy) {
+          heroSpot.style.transform = `translate(${cx - 320}px, ${cy - 320}px)`;
+        }
+      }
+
+      // Scroll parallax: hero fades + lifts when scrolling away
       window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;
         if (scrolled < window.innerHeight) {
-          heroContent.style.transform = `translateY(${scrolled * 0.35}px)`;
-          heroContent.style.opacity = Math.max(0, 1 - scrolled / (window.innerHeight * 0.85));
+          const fade = Math.max(0, 1 - scrolled / (window.innerHeight * 0.95));
+          heroScene.style.opacity = fade;
         }
       }, { passive: true });
     }
