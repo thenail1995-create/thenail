@@ -11,6 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
+  <!-- Preload splash curtain images (so 8 strips render instantly with photos) -->
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400" />
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400" />
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400" />
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400" />
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400" />
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq=w400" />
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2=w400" />
+  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400" />
+
   <style>
     /* ===== RESET ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -667,59 +677,60 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Curtain panels (covering content initially) */
-    .curtain {
+    /* Nail-photo curtain: 8 vertical strips, alternating up/down stagger */
+    .curtain-strips {
       position: absolute;
-      top: 0; bottom: 0;
-      width: 50%;
-      background: #050505;
+      inset: 0;
+      display: flex;
       z-index: 2;
-      will-change: transform;
+      pointer-events: none;
     }
-    .curtain::after {
+    .curtain-strips .strip {
+      flex: 1;
+      position: relative;
+      background-color: #050505;    /* fallback while image loads */
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+      overflow: hidden;
+    }
+    /* Dark overlay so strips read as "curtain material" not gallery photos */
+    .curtain-strips .strip::before {
       content: '';
       position: absolute;
-      top: 0; bottom: 0;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.85) 100%),
+        radial-gradient(circle at 50% 50%, rgba(4, 120, 87, 0.15), transparent 60%);
+    }
+    /* Vertical seam between strips — like fabric pleats */
+    .curtain-strips .strip::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; right: 0;
       width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(16, 185, 129, 0.5), transparent);
+      background: linear-gradient(180deg, transparent, rgba(16, 185, 129, 0.25) 50%, transparent);
     }
-    .curtain-left {
-      left: 0;
-      background: linear-gradient(90deg, #0a0a0a 0%, #050505 100%);
-      animation: curtain-open-left 1.8s 0.6s cubic-bezier(0.76, 0, 0.24, 1) forwards;
-    }
-    .curtain-left::after { right: 0; }
-    .curtain-right {
-      right: 0;
-      background: linear-gradient(270deg, #0a0a0a 0%, #050505 100%);
-      animation: curtain-open-right 1.8s 0.6s cubic-bezier(0.76, 0, 0.24, 1) forwards;
-    }
-    .curtain-right::after { left: 0; }
-    @keyframes curtain-open-left {
-      to { transform: translateX(-100%); }
-    }
-    @keyframes curtain-open-right {
-      to { transform: translateX(100%); }
+    .curtain-strips .strip:last-child::after { display: none; }
+
+    /* Alternating up/down with stagger — wave-like reveal from outside in */
+    .curtain-strips .strip:nth-child(1) { animation: strip-up   1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(2) { animation: strip-down 1.4s 0.95s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(3) { animation: strip-up   1.4s 1.1s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(4) { animation: strip-down 1.4s 1.25s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(5) { animation: strip-up   1.4s 1.25s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(6) { animation: strip-down 1.4s 1.1s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(7) { animation: strip-up   1.4s 0.95s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+    .curtain-strips .strip:nth-child(8) { animation: strip-down 1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+
+    @keyframes strip-up   { to { transform: translateY(-105%); } }
+    @keyframes strip-down { to { transform: translateY(105%);  } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .curtain-strips .strip { animation-duration: 0.4s !important; }
     }
 
-    /* Decorative line on curtain edges (like stage rope) */
-    .curtain-rope {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 14px;
-      letter-spacing: 0.4em;
-      color: rgba(16, 185, 129, 0.4);
-      z-index: 3;
-      pointer-events: none;
-      animation: rope-fade 0.6s 1.8s ease-out forwards;
-      opacity: 1;
-    }
-    .curtain-rope.left { right: 50%; padding-right: 16px; }
-    .curtain-rope.right { left: 50%; padding-left: 16px; }
-    @keyframes rope-fade { to { opacity: 0; } }
+    /* (curtain-rope removed — strips now act as visual material) */
 
     /* ===== SCROLL PROGRESS BAR ===== */
     .scroll-progress {
@@ -1231,7 +1242,7 @@
 
 <body>
 
-  <!-- ===== LOADING SPLASH — CURTAIN REVEAL ===== -->
+  <!-- ===== LOADING SPLASH — NAIL-PHOTO CURTAIN ===== -->
   <div class="loading-splash" id="splash">
     <div class="splash-content">
       <h1 class="splash-h1">
@@ -1241,11 +1252,15 @@
       <div class="splash-tagline">your concept, my creation</div>
       <div class="splash-tagline-vi">Ý tưởng bạn trao — Nghệ thuật tôi tạo</div>
     </div>
-    <div class="curtain curtain-left">
-      <span class="curtain-rope left">◆ THE NAIL ◆</span>
-    </div>
-    <div class="curtain curtain-right">
-      <span class="curtain-rope right">EST. 2026</span>
+    <div class="curtain-strips" aria-hidden="true">
+      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400')"></div>
+      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400')"></div>
+      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400')"></div>
+      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400')"></div>
+      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400')"></div>
+      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq=w400')"></div>
+      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2=w400')"></div>
+      <div class="strip" style="background-image: url('https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400')"></div>
     </div>
   </div>
 
