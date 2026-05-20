@@ -579,52 +579,43 @@
       font-size: 20px;
     }
 
-    /* ===== LOADING SPLASH ===== */
+    /* ===== LOADING SPLASH — CURTAIN REVEAL ===== */
     .loading-splash {
       position: fixed; inset: 0;
       background: #0a0a0a;
       z-index: 10000;
       display: flex; align-items: center; justify-content: center;
       transition: opacity 0.8s, visibility 0.8s;
+      overflow: hidden;
     }
     .loading-splash.hidden { opacity: 0; visibility: hidden; }
-    .splash-content { text-align: center; padding: 24px; }
-    /* SVG draw-in logo */
-    .splash-svg {
-      width: clamp(280px, 70vw, 800px);
-      height: auto;
-      margin: 0 auto 32px;
-      display: block;
-    }
-    .splash-svg .draw-text {
-      fill: transparent;
-      stroke-width: 1.2;
-      stroke-dasharray: 1400;
-      stroke-dashoffset: 1400;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 140px;
-      letter-spacing: 0.05em;
-    }
-    .splash-svg .draw-the {
-      stroke: #e8e6e1;
-      animation: stroke-draw 1.8s ease-out 0.2s forwards,
-                 stroke-fill-the 0.7s ease-out 1.9s forwards;
-    }
-    .splash-svg .draw-nail {
-      stroke: #10b981;
-      animation: stroke-draw 1.8s ease-out 0.6s forwards,
-                 stroke-fill-nail 0.7s ease-out 2.3s forwards;
-    }
-    @keyframes stroke-draw { to { stroke-dashoffset: 0; } }
-    @keyframes stroke-fill-the { to { fill: #e8e6e1; } }
-    @keyframes stroke-fill-nail { to { fill: #10b981; } }
 
+    /* Content layer (behind curtains) */
+    .splash-content {
+      text-align: center;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+      max-width: 92vw;
+    }
+    .splash-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(60px, 14vw, 160px);
+      letter-spacing: 0.15em;
+      margin: 0;
+      line-height: 1;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.25em;
+    }
+    .splash-h1 .the { color: #e8e6e1; font-weight: 300; }
+    .splash-h1 .nail { color: #10b981; font-weight: 400; }
     .splash-line {
       width: 0; height: 1px;
       background: #10b981;
-      margin: 32px auto;
-      animation: splash-line 1.2s 2.7s ease-out forwards;
+      margin: 36px auto 24px;
+      animation: splash-line 1.2s 2.4s ease-out forwards;
     }
     @keyframes splash-line { to { width: 180px; } }
     .splash-tagline {
@@ -634,7 +625,7 @@
       font-size: clamp(22px, 3.5vw, 32px);
       letter-spacing: 0.08em;
       opacity: 0;
-      animation: splash-fade-in 0.7s 3s ease-out forwards;
+      animation: splash-fade-in 0.7s 2.7s ease-out forwards;
       margin-bottom: 12px;
     }
     .splash-tagline-vi {
@@ -644,12 +635,66 @@
       font-size: clamp(22px, 3.5vw, 32px);
       letter-spacing: 0.02em;
       opacity: 0;
-      animation: splash-fade-in 0.7s 3.4s ease-out forwards;
+      animation: splash-fade-in 0.7s 3.1s ease-out forwards;
     }
     @keyframes splash-fade-in {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Curtain panels (covering content initially) */
+    .curtain {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 50%;
+      background: #050505;
+      z-index: 2;
+      will-change: transform;
+    }
+    .curtain::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(16, 185, 129, 0.5), transparent);
+    }
+    .curtain-left {
+      left: 0;
+      background: linear-gradient(90deg, #0a0a0a 0%, #050505 100%);
+      animation: curtain-open-left 1.8s 0.6s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    }
+    .curtain-left::after { right: 0; }
+    .curtain-right {
+      right: 0;
+      background: linear-gradient(270deg, #0a0a0a 0%, #050505 100%);
+      animation: curtain-open-right 1.8s 0.6s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    }
+    .curtain-right::after { left: 0; }
+    @keyframes curtain-open-left {
+      to { transform: translateX(-100%); }
+    }
+    @keyframes curtain-open-right {
+      to { transform: translateX(100%); }
+    }
+
+    /* Decorative line on curtain edges (like stage rope) */
+    .curtain-rope {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 0.4em;
+      color: rgba(16, 185, 129, 0.4);
+      z-index: 3;
+      pointer-events: none;
+      animation: rope-fade 0.6s 1.8s ease-out forwards;
+      opacity: 1;
+    }
+    .curtain-rope.left { right: 50%; padding-right: 16px; }
+    .curtain-rope.right { left: 50%; padding-left: 16px; }
+    @keyframes rope-fade { to { opacity: 0; } }
 
     /* ===== SCROLL PROGRESS BAR ===== */
     .scroll-progress {
@@ -1158,16 +1203,21 @@
 
 <body>
 
-  <!-- ===== LOADING SPLASH ===== -->
+  <!-- ===== LOADING SPLASH — CURTAIN REVEAL ===== -->
   <div class="loading-splash" id="splash">
     <div class="splash-content">
-      <svg class="splash-svg" viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg" aria-label="THE NAIL">
-        <text class="draw-text draw-the" x="280" y="120" text-anchor="end">THE</text>
-        <text class="draw-text draw-nail" x="320" y="120" text-anchor="start">NAIL</text>
-      </svg>
+      <h1 class="splash-h1">
+        <span class="the">THE</span><span class="nail">NAIL</span>
+      </h1>
       <div class="splash-line"></div>
       <div class="splash-tagline">your concept, my creation</div>
       <div class="splash-tagline-vi">Ý tưởng bạn trao — Nghệ thuật tôi tạo</div>
+    </div>
+    <div class="curtain curtain-left">
+      <span class="curtain-rope left">◆ THE NAIL ◆</span>
+    </div>
+    <div class="curtain curtain-right">
+      <span class="curtain-rope right">EST. 2026</span>
     </div>
   </div>
 
@@ -2039,41 +2089,76 @@
       });
     }
 
-    // ===== HERO 3D PARALLAX + SPOTLIGHT (desktop only) =====
+    // ===== HERO 3D — Ambient drift + mouse + gyroscope =====
     const hero = document.getElementById('hero');
     const heroScene = document.getElementById('hero-scene');
     const heroSpot = document.getElementById('hero-spotlight');
-    if (hero && heroScene && !isTouch) {
-      let rafId = null;
-      let tx = 0, ty = 0;
-      let cx = 0, cy = 0;
+    if (hero && heroScene) {
+      let mx = 0, my = 0;     // mouse offset (-0.5 to 0.5)
+      let gx = 0, gy = 0;     // gyroscope offset
+      let cx = 0, cy = 0;     // raw cursor for spotlight
+      const startTime = performance.now();
 
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        tx = x; ty = y;
-        cx = e.clientX - rect.left;
-        cy = e.clientY - rect.top;
-        if (!rafId) rafId = requestAnimationFrame(updateHero);
-      });
-      hero.addEventListener('mouseleave', () => {
-        tx = 0; ty = 0;
-        if (!rafId) rafId = requestAnimationFrame(updateHero);
-      });
-      function updateHero() {
-        rafId = null;
-        // 3D rotation based on cursor
-        const rx = -ty * 12; // tilt X (vertical mouse → rotate around X axis)
-        const ry = tx * 14;  // tilt Y (horizontal → rotate around Y axis)
-        heroScene.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-        // Spotlight follow
-        if (heroSpot && cx && cy) {
-          heroSpot.style.transform = `translate(${cx - 320}px, ${cy - 320}px)`;
+      // Desktop: mouse moves the scene
+      if (!isTouch) {
+        hero.addEventListener('mousemove', (e) => {
+          const rect = hero.getBoundingClientRect();
+          mx = (e.clientX - rect.left) / rect.width - 0.5;
+          my = (e.clientY - rect.top) / rect.height - 0.5;
+          cx = e.clientX - rect.left;
+          cy = e.clientY - rect.top;
+        });
+        hero.addEventListener('mouseleave', () => { mx = 0; my = 0; });
+      }
+
+      // Mobile: gyroscope — tilt phone to rotate scene
+      function startGyro() {
+        window.addEventListener('deviceorientation', (e) => {
+          // beta = front/back tilt (-180..180), gamma = left/right (-90..90)
+          if (e.gamma !== null && e.beta !== null) {
+            gx = Math.max(-1, Math.min(1, e.gamma / 35));
+            gy = Math.max(-1, Math.min(1, (e.beta - 50) / 35));
+          }
+        }, true);
+      }
+      if (isTouch) {
+        // iOS 13+ requires explicit permission triggered by user gesture
+        if (typeof DeviceOrientationEvent !== 'undefined' &&
+            typeof DeviceOrientationEvent.requestPermission === 'function') {
+          // Add an invisible activation prompt that waits for first tap
+          const prompt = () => {
+            DeviceOrientationEvent.requestPermission().then(state => {
+              if (state === 'granted') startGyro();
+            }).catch(() => {});
+            document.removeEventListener('touchstart', prompt);
+            document.removeEventListener('click', prompt);
+          };
+          document.addEventListener('touchstart', prompt, { once: true });
+          document.addEventListener('click', prompt, { once: true });
+        } else {
+          startGyro();
         }
       }
 
-      // Scroll parallax: hero fades + lifts when scrolling away
+      // Animation loop — always runs (passive drift + inputs)
+      function loop(now) {
+        const t = (now - startTime) / 1000;
+        // Passive drift: figure-8 pattern, very slow
+        const driftX = Math.sin(t * 0.45) * 2.5;
+        const driftY = Math.cos(t * 0.35) * 1.8;
+        // Combine inputs
+        const rotX = (-my * 12) + (-gy * 8) + driftY;
+        const rotY = (mx * 14) + (gx * 10) + driftX;
+        heroScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        // Spotlight follows cursor (desktop only)
+        if (heroSpot && !isTouch && (cx || cy)) {
+          heroSpot.style.transform = `translate(${cx - 320}px, ${cy - 320}px)`;
+        }
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+
+      // Scroll parallax: hero fades when scrolling away
       window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;
         if (scrolled < window.innerHeight) {
