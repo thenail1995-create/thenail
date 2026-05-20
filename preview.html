@@ -213,7 +213,10 @@
       line-height: 1;
       margin-bottom: 32px;
       font-weight: 300;
-      animation: title-float 5s ease-in-out infinite;
+      /* Start title-float AFTER splash hides (3.7s + 0.8s fade = 4.5s)
+         so JS measurement of hero h1 is stable, and the splash→hero
+         hand-off lands on a stationary target. */
+      animation: title-float 5s 4.6s ease-in-out infinite;
     }
     @keyframes title-float {
       0%, 100% { transform: translateZ(40px) translateY(0); letter-spacing: 0.15em; }
@@ -619,10 +622,10 @@
     }
     .loading-splash.hidden { opacity: 0; visibility: hidden; }
 
-    /* Content layer (behind curtains) — kept narrow so it sits in the gap
-       between the two partially-opened curtain halves.
-       At stage 2 (3.0s) it scales 1.4× to match the hero h1 size,
-       making the splash→hero transition visually continuous. */
+    /* V2: splash h1 morphs to EXACT hero h1 position via JS-measured CSS vars.
+       Slogans + line fade out at stage 2 (no morph), so when splash bg fades
+       the only thing visible is the h1 — already sitting precisely where hero
+       h1 sits → zero jump. */
     .splash-content {
       text-align: center;
       padding: 24px;
@@ -630,20 +633,24 @@
       z-index: 1;
       max-width: 50vw;
       min-width: min(560px, 92vw);
-      transform-origin: center center;
-      animation: splash-content-morph 0.7s 3.0s cubic-bezier(0.5, 0, 0.2, 1) forwards;
-    }
-    @keyframes splash-content-morph {
-      to { transform: scale(1.6); }   /* 88px splash h1 × 1.6 ≈ 140px hero h1 */
     }
     .splash-h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 7vw, 88px);    /* scaled 1.6× ≈ hero h1 clamp(64, 12vw, 140) */
-      letter-spacing: 0.15em;               /* match hero exactly */
+      font-size: clamp(40px, 7vw, 88px);
+      letter-spacing: 0.15em;
       margin: 0;
       line-height: 1;
       font-weight: 400;
-      /* no flex/gap — matches hero "THENAIL" inline layout */
+      transform-origin: center center;
+      /* JS sets --splash-h1-target-y and --splash-h1-target-scale on load+resize */
+      animation: splash-h1-morph 0.7s 3.0s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+    }
+    @keyframes splash-h1-morph {
+      to {
+        transform:
+          translateY(var(--splash-h1-target-y, 0))
+          scale(var(--splash-h1-target-scale, 1.6));
+      }
     }
     .splash-h1 .the { color: #e8e6e1; font-weight: 300; }
     .splash-h1 .nail { color: #10b981; font-weight: 400; }
@@ -651,9 +658,12 @@
       width: 0; height: 1px;
       background: #10b981;
       margin: 36px auto 24px;
-      animation: splash-line 1.0s 1.8s ease-out forwards;
+      animation:
+        splash-line       1.0s 1.8s ease-out forwards,
+        splash-line-out   0.4s 3.0s ease-in  forwards;
     }
     @keyframes splash-line { to { width: 180px; } }
+    @keyframes splash-line-out { to { opacity: 0; width: 0; } }
     .splash-tagline {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
@@ -661,7 +671,9 @@
       font-size: clamp(22px, 3.5vw, 32px);
       letter-spacing: 0.08em;
       opacity: 0;
-      animation: splash-fade-in 0.6s 2.1s ease-out forwards;
+      animation:
+        splash-fade-in  0.6s 2.1s ease-out forwards,
+        splash-fade-out 0.4s 3.0s ease-in  forwards;
       margin-bottom: 12px;
     }
     .splash-tagline-vi {
@@ -671,11 +683,16 @@
       font-size: clamp(22px, 3.5vw, 32px);
       letter-spacing: 0.02em;
       opacity: 0;
-      animation: splash-fade-in 0.6s 2.5s ease-out forwards;
+      animation:
+        splash-fade-in  0.6s 2.5s ease-out forwards,
+        splash-fade-out 0.4s 3.0s ease-in  forwards;
     }
     @keyframes splash-fade-in {
       from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes splash-fade-out {
+      to { opacity: 0; transform: translateY(-8px); }
     }
 
     /* Nail-photo curtain: 8 vertical strips, alternating up/down stagger */
@@ -2116,10 +2133,56 @@
     navBackdrop.addEventListener('click', closeMobileMenu);
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
 
-    // ===== LOADING SPLASH =====
-    // Splash hide timing: stage 2 (full curtain open + content scale) ends ~3.7s.
-    // Hide splash right after so hero (visible behind with matching h1 size+position)
-    // takes over without a jump.
+    // ===== LOADING SPLASH (V2 — true position sync) =====
+    // Measure where hero h1 actually renders, compute the exact translateY + scale
+    // needed to land splash h1 on top of it. Write the values into CSS vars used
+    // by the splash-h1-morph keyframes. Re-run on resize so it survives orientation
+    // changes mid-splash.
+    function syncSplashH1ToHeroH1() {
+      const heroH1 = document.querySelector('.hero h1');
+      const splashH1 = document.querySelector('.splash-h1');
+      if (!heroH1 || !splashH1) return;
+
+      // Temporarily clear any transform so we measure the pre-morph splash position.
+      const prevTransform = splashH1.style.transform;
+      splashH1.style.transform = 'none';
+
+      const heroRect = heroH1.getBoundingClientRect();
+      const splashRect = splashH1.getBoundingClientRect();
+      const heroFont = parseFloat(getComputedStyle(heroH1).fontSize);
+      const splashFont = parseFloat(getComputedStyle(splashH1).fontSize);
+
+      splashH1.style.transform = prevTransform;
+
+      if (!heroFont || !splashFont) return;
+
+      const heroCenterY  = heroRect.top  + heroRect.height  / 2;
+      const splashCenterY = splashRect.top + splashRect.height / 2;
+
+      // SCALE: font-size ratio (NOT box width ratio — hero h1 box is full scene
+      // width 1100px which has nothing to do with the text size).
+      const scale = heroFont / splashFont;
+
+      // TRANSLATE: box-center delta (text is centered single-line, so box-center
+      // closely tracks visual-text-center).
+      const offsetY = heroCenterY - splashCenterY;
+
+      const root = document.documentElement;
+      root.style.setProperty('--splash-h1-target-y', offsetY.toFixed(2) + 'px');
+      root.style.setProperty('--splash-h1-target-scale', scale.toFixed(4));
+    }
+
+    // Run once when fonts + layout are stable, plus on resize.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(syncSplashH1ToHeroH1);
+    } else {
+      window.addEventListener('load', syncSplashH1ToHeroH1);
+    }
+    syncSplashH1ToHeroH1();   // first attempt synchronously in case fonts already cached
+    window.addEventListener('resize', syncSplashH1ToHeroH1, { passive: true });
+
+    // Hide splash AFTER stage-2 morph completes. Hero h1 is at the same coords +
+    // same size as splash h1 at this moment, so the cross-fade is invisible.
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('splash').classList.add('hidden');
