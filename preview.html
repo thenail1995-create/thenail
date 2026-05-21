@@ -14,8 +14,9 @@
   <!-- Preload splash curtain images (desktop: 2 large for 8-strip curtain) -->
   <link rel="preload" as="image" media="(min-width: 769px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200" fetchpriority="high" />
   <link rel="preload" as="image" media="(min-width: 769px)" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w1200" fetchpriority="high" />
-  <!-- Mobile splash: 1 nail photo split as a curtain. Preload only on phones. -->
-  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" fetchpriority="high" />
+  <!-- Mobile splash: 2 different nail photos forming a curtain. Preload only on phones. -->
+  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w600" fetchpriority="high" />
+  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w600" fetchpriority="high" />
 
   <style>
     /* ===== RESET ===== */
@@ -868,16 +869,13 @@
         will-change: transform;
       }
       .mosaic-photo {
-        position: absolute;
-        top: 0;
-        width: 200%;                      /* spans both halves = full photo */
+        width: 100%;
         height: 100%;
-        object-fit: cover;                /* keep native aspect, crop edges if needed */
+        object-fit: cover;                /* preserve native aspect */
         object-position: center;
+        display: block;
         pointer-events: none;
       }
-      .mosaic-half.left  .mosaic-photo { left:  0; }   /* image anchored to viewport left */
-      .mosaic-half.right .mosaic-photo { right: 0; }   /* image anchored to viewport right */
       /* Dark overlay on top of the photo for atmosphere */
       .mosaic-half::before {
         content: '';
@@ -1481,10 +1479,10 @@
     </div>
     <div class="splash-mosaic" aria-hidden="true">
       <div class="mosaic-half left">
-        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
+        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w600" alt="" />
       </div>
       <div class="mosaic-half right">
-        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
+        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w600" alt="" />
       </div>
     </div>
   </div>
