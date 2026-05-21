@@ -835,21 +835,12 @@
       .curtain-strips .strip { animation-duration: 0.4s !important; }
     }
 
-    /* ===== MOBILE SPLASH — SINGLE PHOTO, SPLIT-CURTAIN ===== */
+    /* ===== MOBILE SPLASH — SINGLE FULLSCREEN PHOTO, FADE → TEXT ===== */
     /* Default: mobile splash hidden on desktop (8-strip curtain runs instead). */
     .splash-mosaic { display: none; }
 
-    /* Half-slide keyframes — partial open (stage 1) then full off (stage 2),
-       mirroring the desktop curtain's 2-stage rhythm. */
-    @keyframes mhalf-left-open    { to { transform: translateX(-80%);  } }
-    @keyframes mhalf-left-finish  {
-      from { transform: translateX(-80%);  opacity: 1; }
-      to   { transform: translateX(-150%); opacity: 0; }
-    }
-    @keyframes mhalf-right-open   { to { transform: translateX(80%);   } }
-    @keyframes mhalf-right-finish {
-      from { transform: translateX(80%);  opacity: 1; }
-      to   { transform: translateX(150%); opacity: 0; }
+    @keyframes mobile-photo-out {
+      to { opacity: 0; transform: scale(1.06); }
     }
     @keyframes splash-mobile-enter {
       from { opacity: 0; transform: translateY(12px); }
@@ -857,87 +848,62 @@
     }
 
     @media (max-width: 768px) {
-      /* Hide the desktop 8-strip curtain; mobile uses a single-photo split */
+      /* Hide the desktop 8-strip curtain */
       .curtain-strips { display: none; }
 
       .splash-mosaic {
-        display: flex;
+        display: block;
         position: absolute;
         inset: 0;
-        z-index: 2;
+        z-index: 2;                      /* photo ABOVE text — text is behind, no overlap */
         overflow: hidden;
         pointer-events: none;
-      }
-      .mosaic-half {
-        flex: 1;
-        position: relative;
         background-color: #050505;       /* fallback while image loads */
-        overflow: hidden;
-        will-change: transform, opacity;
       }
-      /* Each half holds the SAME full image but anchored to its own outer
-         edge — together they show one continuous, un-distorted photo. */
       .mosaic-photo {
-        position: absolute;
-        top: 0;
-        width: 200%;                     /* spans both halves (= 100vw) */
+        width: 100%;
         height: 100%;
-        object-fit: cover;               /* preserve aspect, crop if needed */
+        object-fit: cover;
         object-position: center;
-        pointer-events: none;
+        display: block;
+        animation: mobile-photo-out 0.9s 2.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       }
-      .mosaic-half.left  .mosaic-photo { left:  0; }   /* image left edge at viewport left */
-      .mosaic-half.right .mosaic-photo { right: 0; }   /* image right edge at viewport right */
-      /* Dark overlay (above the img) so text remains legible as halves part */
-      .mosaic-half::before {
+      /* Subtle vignette overlay above the photo */
+      .splash-mosaic::after {
         content: '';
         position: absolute;
         inset: 0;
-        z-index: 1;
+        pointer-events: none;
         background:
-          linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.55) 100%),
-          radial-gradient(circle at 50% 50%, transparent 35%, rgba(10,10,10,0.45) 100%);
-      }
-      /* Soft emerald seam down the middle (where the curtain "parts") */
-      .mosaic-half.left::after {
-        content: '';
-        position: absolute;
-        top: 0; bottom: 0; right: 0;
-        width: 1px;
-        z-index: 2;
-        background: linear-gradient(180deg, transparent, rgba(16,185,129,0.35) 50%, transparent);
+          linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.50) 100%),
+          radial-gradient(circle at 50% 50%, transparent 40%, rgba(10,10,10,0.4) 100%);
+        animation: mobile-photo-out 0.9s 2.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
       }
 
-      /* 2-stage curtain animation (same beat as the desktop 8-strip version) */
-      .mosaic-half.left {
-        animation:
-          mhalf-left-open    1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards,
-          mhalf-left-finish  0.7s 3.0s cubic-bezier(0.6,  0, 0.2,  1) forwards;
-      }
-      .mosaic-half.right {
-        animation:
-          mhalf-right-open    1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards,
-          mhalf-right-finish  0.7s 3.0s cubic-bezier(0.6,  0, 0.2,  1) forwards;
-      }
-
+      /* Splash text: hidden behind the photo until the photo fades, then
+         pops in. The photo is z-index 2; text is z-index 1 so the photo
+         visually masks the text the whole time it's present. */
       .splash-content {
         max-width: 92vw;
         min-width: 0;
         width: 92vw;
         padding: 16px;
-        z-index: 3;                    /* above mosaic */
+        z-index: 1;
+        opacity: 0;
+        animation: splash-mobile-enter 0.6s 2.5s ease-out forwards;
       }
       /* Smaller h1 + tighter letter-spacing so it always fits the screen */
       .splash-h1 {
         font-size: clamp(36px, 11vw, 64px);
         letter-spacing: 0.1em;
-        white-space: nowrap;           /* never wrap — visually a single word */
+        white-space: nowrap;
       }
-      .splash-line { margin: 24px auto 16px; }
+      /* On mobile keep splash minimal: just photo → THE NAIL → hero.
+         Slogans appear in the hero itself (no need to also show in splash). */
+      .splash-line,
       .splash-tagline,
       .splash-tagline-vi {
-        font-size: clamp(16px, 4.2vw, 22px);
-        letter-spacing: 0.04em;
+        display: none;
       }
     }
 
@@ -1476,12 +1442,7 @@
       <div class="strip"></div>
     </div>
     <div class="splash-mosaic" aria-hidden="true">
-      <div class="mosaic-half left">
-        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
-      </div>
-      <div class="mosaic-half right">
-        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
-      </div>
+      <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
     </div>
   </div>
 
