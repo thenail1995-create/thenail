@@ -232,9 +232,11 @@
       line-height: 1;
       margin-bottom: 32px;
       font-weight: 300;
-      /* V3: title-float starts only after splash fully hides (3.5s + 1.4s fade = 4.9s)
-         so the splash→hero hand-off lands on a perfectly stationary h1. */
+      /* Title-float starts after splash hides — different per breakpoint */
       animation: title-float 5s 4.9s ease-in-out infinite;
+    }
+    @media (max-width: 768px) {
+      .hero h1 { animation: title-float 5s 5.5s ease-in-out infinite; }
     }
     @keyframes title-float {
       0%, 100% { transform: translateZ(40px) translateY(0); letter-spacing: 0.15em; }
@@ -835,54 +837,73 @@
       .curtain-strips .strip { animation-duration: 0.4s !important; }
     }
 
-    /* ===== MOBILE SPLASH — SINGLE FULLSCREEN PHOTO, FADE → TEXT ===== */
-    /* Default: mobile splash hidden on desktop (8-strip curtain runs instead). */
+    /* ===== MOBILE SPLASH — SEQUENTIAL: curtain → text+slogan → hero ===== */
+    /* Default hidden on desktop (8-strip curtain runs instead). */
     .splash-mosaic { display: none; }
 
-    @keyframes mobile-photo-out {
-      to { opacity: 0; transform: scale(1.06); }
-    }
+    @keyframes mhalf-left-full  { to { transform: translateX(-105%); } }
+    @keyframes mhalf-right-full { to { transform: translateX(105%);  } }
     @keyframes splash-mobile-enter {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 768px) {
-      /* Hide the desktop 8-strip curtain */
       .curtain-strips { display: none; }
 
+      /* 1 photo, split into 2 halves like a curtain */
       .splash-mosaic {
-        display: block;
+        display: flex;
         position: absolute;
         inset: 0;
-        z-index: 2;                      /* photo ABOVE text — text is behind, no overlap */
+        z-index: 2;                       /* curtain ABOVE text — text revealed only after open */
         overflow: hidden;
         pointer-events: none;
-        background-color: #050505;       /* fallback while image loads */
+      }
+      .mosaic-half {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        background-color: #050505;
+        will-change: transform;
       }
       .mosaic-photo {
-        width: 100%;
+        position: absolute;
+        top: 0;
+        width: 200%;                      /* spans both halves = full photo */
         height: 100%;
-        object-fit: cover;
+        object-fit: cover;                /* keep native aspect, crop edges if needed */
         object-position: center;
-        display: block;
-        animation: mobile-photo-out 0.9s 2.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        pointer-events: none;
       }
-      /* Subtle vignette overlay above the photo */
-      .splash-mosaic::after {
+      .mosaic-half.left  .mosaic-photo { left:  0; }   /* image anchored to viewport left */
+      .mosaic-half.right .mosaic-photo { right: 0; }   /* image anchored to viewport right */
+      /* Dark overlay on top of the photo for atmosphere */
+      .mosaic-half::before {
         content: '';
         position: absolute;
         inset: 0;
-        pointer-events: none;
+        z-index: 1;
         background:
-          linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.50) 100%),
-          radial-gradient(circle at 50% 50%, transparent 40%, rgba(10,10,10,0.4) 100%);
-        animation: mobile-photo-out 0.9s 2.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          linear-gradient(180deg, rgba(10,10,10,0.22) 0%, rgba(10,10,10,0.45) 100%),
+          radial-gradient(circle at 50% 50%, transparent 35%, rgba(10,10,10,0.35) 100%);
+      }
+      /* Soft emerald seam down the centerline */
+      .mosaic-half.left::after {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0; right: 0;
+        width: 1px;
+        z-index: 2;
+        background: linear-gradient(180deg, transparent, rgba(16,185,129,0.4) 50%, transparent);
       }
 
-      /* Splash text: hidden behind the photo until the photo fades, then
-         pops in. The photo is z-index 2; text is z-index 1 so the photo
-         visually masks the text the whole time it's present. */
+      /* Curtain opens FULLY in one stage (halves slide off-screen).
+         No partial state with text peeking through. */
+      .mosaic-half.left  { animation: mhalf-left-full  1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+      .mosaic-half.right { animation: mhalf-right-full 1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
+
+      /* Text BEHIND curtain (z-index 1 < 2). Stays hidden until curtain done. */
       .splash-content {
         max-width: 92vw;
         min-width: 0;
@@ -890,20 +911,37 @@
         padding: 16px;
         z-index: 1;
         opacity: 0;
-        animation: splash-mobile-enter 0.6s 2.5s ease-out forwards;
+        animation: splash-mobile-enter 0.6s 2.3s ease-out forwards;
       }
-      /* Smaller h1 + tighter letter-spacing so it always fits the screen */
       .splash-h1 {
         font-size: clamp(36px, 11vw, 64px);
         letter-spacing: 0.1em;
         white-space: nowrap;
+        /* Mobile-specific morph delay: 3.6s so slogans can be visible first */
+        animation:
+          splash-h1-breathe 4s 2.3s ease-in-out infinite,
+          splash-h1-morph   1.0s 3.6s cubic-bezier(0.3, 0, 0.2, 1) forwards;
       }
-      /* On mobile keep splash minimal: just photo → THE NAIL → hero.
-         Slogans appear in the hero itself (no need to also show in splash). */
-      .splash-line,
+      .splash-line {
+        margin: 18px auto 14px;
+        animation:
+          splash-line     0.8s 2.5s ease-out forwards,
+          splash-line-out 0.4s 3.6s ease-in  forwards;
+      }
       .splash-tagline,
       .splash-tagline-vi {
-        display: none;
+        font-size: clamp(16px, 4.2vw, 22px);
+        letter-spacing: 0.04em;
+      }
+      .splash-tagline {
+        animation:
+          splash-fade-in  0.5s 2.7s ease-out forwards,
+          splash-fade-out 0.4s 3.6s ease-in  forwards;
+      }
+      .splash-tagline-vi {
+        animation:
+          splash-fade-in  0.5s 2.9s ease-out forwards,
+          splash-fade-out 0.4s 3.6s ease-in  forwards;
       }
     }
 
@@ -1442,7 +1480,12 @@
       <div class="strip"></div>
     </div>
     <div class="splash-mosaic" aria-hidden="true">
-      <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
+      <div class="mosaic-half left">
+        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
+      </div>
+      <div class="mosaic-half right">
+        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
+      </div>
     </div>
   </div>
 
@@ -2290,22 +2333,22 @@
     syncSplashH1ToHeroH1();   // first attempt synchronously in case fonts already cached
     window.addEventListener('resize', syncSplashH1ToHeroH1, { passive: true });
 
-    // V3: start fading bg DURING the morph (not after) so they feel like one
-    // continuous "scene change" instead of two separate steps. Bg fade takes
-    // 1.4s; activating it at 3500ms means it finishes ~4900ms, overlapping with
-    // morph (3.0–4.2s), strip fade-out (3.0–4.0s), and hero element entrances
-    // (3.8–5.2s). All four threads resolve together.
+    // Mobile splash runs sequentially (curtain → text+slogans → hero) and is
+    // longer than desktop's overlapping version. Use different timings per
+    // viewport so each one peaks at the right beat.
     window.addEventListener('load', () => {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const splashHideAt  = isMobile ? 4100 : 3500;
+      const driftActiveAt = isMobile ? 5500 : 4900;
+
       setTimeout(() => {
         document.getElementById('splash').classList.add('hidden');
-      }, 3500);
-      // Activate hero ambient drift right when splash visibility is fully gone,
-      // so the now-fully-visible hero starts breathing instead of sitting frozen.
+      }, splashHideAt);
       setTimeout(() => {
         if (typeof window.__activateHeroDrift === 'function') {
           window.__activateHeroDrift();
         }
-      }, 4900);
+      }, driftActiveAt);
     });
 
     // ===== SCROLL PROGRESS BAR =====
