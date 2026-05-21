@@ -833,6 +833,40 @@
       .curtain-strips .strip { animation-duration: 0.4s !important; }
     }
 
+    /* ===== MOBILE SPLASH ===== */
+    /* On phones the 8-strip curtain doesn't read — strips are too thin (~40px),
+       the photos become unreadable streaks, and the middle gap can't fit the
+       h1 + slogans. On small screens we drop the curtain entirely and keep
+       just the text + bg fade. JS-measured h1 morph still aligns with hero h1,
+       so the splash→hero hand-off stays seamless. */
+    @keyframes splash-mobile-enter {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+      .curtain-strips { display: none; }
+      .splash-content {
+        max-width: 92vw;
+        min-width: 0;
+        width: 92vw;
+        padding: 16px;
+        opacity: 0;
+        animation: splash-mobile-enter 0.7s 0.2s ease-out forwards;
+      }
+      /* Smaller h1 + tighter letter-spacing so it always fits the screen */
+      .splash-h1 {
+        font-size: clamp(36px, 11vw, 64px);
+        letter-spacing: 0.1em;
+        white-space: nowrap;        /* never wrap — visually a single word */
+      }
+      .splash-line { margin: 24px auto 16px; }
+      .splash-tagline,
+      .splash-tagline-vi {
+        font-size: clamp(16px, 4.2vw, 22px);
+        letter-spacing: 0.04em;
+      }
+    }
+
     /* (curtain-rope removed — strips now act as visual material) */
 
     /* ===== SCROLL PROGRESS BAR ===== */
