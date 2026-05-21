@@ -11,9 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Preload splash curtain images (2 large nail photos, each split across 4 strips) -->
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200" fetchpriority="high" />
-  <link rel="preload" as="image" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w1200" fetchpriority="high" />
+  <!-- Preload splash curtain images (desktop: 2 large for 8-strip curtain) -->
+  <link rel="preload" as="image" media="(min-width: 769px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200" fetchpriority="high" />
+  <link rel="preload" as="image" media="(min-width: 769px)" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w1200" fetchpriority="high" />
+  <!-- Preload mobile mosaic photos (6 smaller w400) — only on phones -->
+  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400" />
+  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400" />
+  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400" />
+  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400" />
+  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400" />
+  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400" />
 
   <style>
     /* ===== RESET ===== */
@@ -833,31 +840,76 @@
       .curtain-strips .strip { animation-duration: 0.4s !important; }
     }
 
-    /* ===== MOBILE SPLASH ===== */
-    /* On phones the 8-strip curtain doesn't read — strips are too thin (~40px),
-       the photos become unreadable streaks, and the middle gap can't fit the
-       h1 + slogans. On small screens we drop the curtain entirely and keep
-       just the text + bg fade. JS-measured h1 morph still aligns with hero h1,
-       so the splash→hero hand-off stays seamless. */
+    /* ===== MOBILE SPLASH — MOSAIC GRID ===== */
+    /* Default: mosaic hidden, only the 8-strip curtain shows.
+       Desktop unchanged. */
+    .splash-mosaic { display: none; }
+
+    /* On phones (≤768px) the curtain is replaced by a 2×3 mosaic of nail
+       photos that fade out center-last (outer tiles disappear first, the
+       middle two reveal the THE NAIL text last → dramatic). */
+    @keyframes splash-mosaic-tile-fade {
+      0%   { opacity: 1; transform: scale(1);    }
+      100% { opacity: 0; transform: scale(0.94); }
+    }
     @keyframes splash-mobile-enter {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+
     @media (max-width: 768px) {
       .curtain-strips { display: none; }
+
+      .splash-mosaic {
+        display: grid;
+        position: absolute;
+        inset: 0;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows:    1fr 1fr 1fr;
+        gap: 2px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .mosaic-tile {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-color: #050505;     /* fallback while image loads */
+        overflow: hidden;
+        will-change: opacity, transform;
+      }
+      /* Dark overlay so the underlying text reads as it's revealed */
+      .mosaic-tile::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.65) 100%),
+          radial-gradient(circle at 50% 50%, transparent 40%, rgba(10,10,10,0.5) 100%);
+      }
+      /* Center-out stagger: tiles 1,2 (top), 5,6 (bottom) fade first;
+         tiles 3,4 (middle row, where THE NAIL sits) fade last. */
+      .mosaic-tile:nth-child(1) { animation: splash-mosaic-tile-fade 0.8s 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+      .mosaic-tile:nth-child(2) { animation: splash-mosaic-tile-fade 0.8s 0.85s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+      .mosaic-tile:nth-child(5) { animation: splash-mosaic-tile-fade 0.8s 1.0s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+      .mosaic-tile:nth-child(6) { animation: splash-mosaic-tile-fade 0.8s 1.15s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+      .mosaic-tile:nth-child(3) { animation: splash-mosaic-tile-fade 0.9s 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+      .mosaic-tile:nth-child(4) { animation: splash-mosaic-tile-fade 0.9s 1.65s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
       .splash-content {
         max-width: 92vw;
         min-width: 0;
         width: 92vw;
         padding: 16px;
+        z-index: 3;                    /* above mosaic */
         opacity: 0;
-        animation: splash-mobile-enter 0.7s 0.2s ease-out forwards;
+        animation: splash-mobile-enter 0.7s 2.0s ease-out forwards;
       }
       /* Smaller h1 + tighter letter-spacing so it always fits the screen */
       .splash-h1 {
         font-size: clamp(36px, 11vw, 64px);
         letter-spacing: 0.1em;
-        white-space: nowrap;        /* never wrap — visually a single word */
+        white-space: nowrap;           /* never wrap — visually a single word */
       }
       .splash-line { margin: 24px auto 16px; }
       .splash-tagline,
@@ -1400,6 +1452,14 @@
       <div class="strip"></div>
       <div class="strip"></div>
       <div class="strip"></div>
+    </div>
+    <div class="splash-mosaic" aria-hidden="true">
+      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400')"></div>
+      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400')"></div>
+      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400')"></div>
+      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400')"></div>
+      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400')"></div>
+      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400')"></div>
     </div>
   </div>
 
