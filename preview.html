@@ -205,7 +205,24 @@
       text-transform: uppercase;
       color: #10b981;
       margin-bottom: 24px;
-      opacity: 0.9;
+      opacity: 0;     /* V3: fades in during splash exit so the scene assembles smoothly */
+      animation: hero-entrance 1.0s 3.8s ease-out forwards;
+    }
+    /* All hero pieces EXCEPT the h1 fade in during splash exit (h1 is the
+       "shared" element — it already morphs in from splash). */
+    .hero .slogan-en,
+    .hero .slogan-vi,
+    .hero .meta,
+    .hero .cta-group {
+      opacity: 0;
+      animation: hero-entrance 1.0s 3.9s ease-out forwards;
+    }
+    .hero .slogan-vi { animation-delay: 4.0s; }
+    .hero .meta      { animation-delay: 4.1s; }
+    .hero .cta-group { animation-delay: 4.2s; }
+    @keyframes hero-entrance {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     .hero h1 {
       font-size: clamp(64px, 12vw, 140px);
@@ -213,10 +230,9 @@
       line-height: 1;
       margin-bottom: 32px;
       font-weight: 300;
-      /* Start title-float AFTER splash hides (3.7s + 0.8s fade = 4.5s)
-         so JS measurement of hero h1 is stable, and the splash→hero
-         hand-off lands on a stationary target. */
-      animation: title-float 5s 4.6s ease-in-out infinite;
+      /* V3: title-float starts only after splash fully hides (3.5s + 1.4s fade = 4.9s)
+         so the splash→hero hand-off lands on a perfectly stationary h1. */
+      animation: title-float 5s 4.9s ease-in-out infinite;
     }
     @keyframes title-float {
       0%, 100% { transform: translateZ(40px) translateY(0); letter-spacing: 0.15em; }
@@ -611,21 +627,22 @@
       font-size: 20px;
     }
 
-    /* ===== LOADING SPLASH — CURTAIN REVEAL ===== */
+    /* ===== LOADING SPLASH — NAIL-PHOTO CURTAIN ===== */
     .loading-splash {
       position: fixed; inset: 0;
       background: #0a0a0a;
       z-index: 10000;
       display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.8s, visibility 0.8s;
+      /* V3: longer fade so it overlaps with the h1 morph + hero element fade-ins */
+      transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 1.4s;
       overflow: hidden;
     }
     .loading-splash.hidden { opacity: 0; visibility: hidden; }
 
-    /* V2: splash h1 morphs to EXACT hero h1 position via JS-measured CSS vars.
-       Slogans + line fade out at stage 2 (no morph), so when splash bg fades
-       the only thing visible is the h1 — already sitting precisely where hero
-       h1 sits → zero jump. */
+    /* V3: morph + bg fade OVERLAP, splash h1 has same breathing rhythm as hero h1.
+       Hero non-h1 elements fade in during splash fade so the scene assembles
+       progressively instead of popping into existence. */
     .splash-content {
       text-align: center;
       padding: 24px;
@@ -643,13 +660,22 @@
       font-weight: 400;
       transform-origin: center center;
       /* JS sets --splash-h1-target-y and --splash-h1-target-scale on load+resize */
-      animation: splash-h1-morph 0.7s 3.0s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+      /* Layered animation: subtle breathing (matches hero h1 title-float) +
+         morph to hero h1 at stage 2 */
+      animation:
+        splash-h1-breathe 4s 0.6s ease-in-out infinite,
+        splash-h1-morph  1.2s 3.0s cubic-bezier(0.3, 0, 0.2, 1) forwards;
+    }
+    @keyframes splash-h1-breathe {
+      0%, 100% { letter-spacing: 0.15em; }
+      50%      { letter-spacing: 0.175em; }
     }
     @keyframes splash-h1-morph {
       to {
         transform:
           translateY(var(--splash-h1-target-y, 0))
           scale(var(--splash-h1-target-scale, 1.6));
+        letter-spacing: 0.15em;   /* lock to hero's letter-spacing at the end */
       }
     }
     .splash-h1 .the { color: #e8e6e1; font-weight: 300; }
@@ -792,10 +818,16 @@
         strip-right-finish 0.7s 3.0s  cubic-bezier(0.6,  0, 0.2,  1) forwards;
     }
 
-    @keyframes strip-left-open   { to { transform: translateX(-150%); } }
-    @keyframes strip-left-finish { from { transform: translateX(-150%); } to { transform: translateX(-450%); } }
+    @keyframes strip-left-open    { to { transform: translateX(-150%); } }
+    @keyframes strip-left-finish  {
+      from { transform: translateX(-150%); opacity: 1; }
+      to   { transform: translateX(-450%); opacity: 0; }
+    }
     @keyframes strip-right-open   { to { transform: translateX(150%);  } }
-    @keyframes strip-right-finish { from { transform: translateX(150%);  } to { transform: translateX(450%);  } }
+    @keyframes strip-right-finish {
+      from { transform: translateX(150%);  opacity: 1; }
+      to   { transform: translateX(450%);  opacity: 0; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       .curtain-strips .strip { animation-duration: 0.4s !important; }
@@ -2181,12 +2213,22 @@
     syncSplashH1ToHeroH1();   // first attempt synchronously in case fonts already cached
     window.addEventListener('resize', syncSplashH1ToHeroH1, { passive: true });
 
-    // Hide splash AFTER stage-2 morph completes. Hero h1 is at the same coords +
-    // same size as splash h1 at this moment, so the cross-fade is invisible.
+    // V3: start fading bg DURING the morph (not after) so they feel like one
+    // continuous "scene change" instead of two separate steps. Bg fade takes
+    // 1.4s; activating it at 3500ms means it finishes ~4900ms, overlapping with
+    // morph (3.0–4.2s), strip fade-out (3.0–4.0s), and hero element entrances
+    // (3.8–5.2s). All four threads resolve together.
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('splash').classList.add('hidden');
-      }, 3700);
+      }, 3500);
+      // Activate hero ambient drift right when splash visibility is fully gone,
+      // so the now-fully-visible hero starts breathing instead of sitting frozen.
+      setTimeout(() => {
+        if (typeof window.__activateHeroDrift === 'function') {
+          window.__activateHeroDrift();
+        }
+      }, 4900);
     });
 
     // ===== SCROLL PROGRESS BAR =====
@@ -2305,20 +2347,32 @@
         }
       }
 
-      // Ambient drift (rất nhẹ, không gây chóng mặt) + mouse + gyroscope blend
+      // Ambient drift (rất nhẹ, không gây chóng mặt) + mouse + gyroscope blend.
+      // V3: hold still during splash so the splash→hero h1 hand-off lands on a
+      // perfectly stationary target. Drift starts only after splash is hidden.
+      let driftActive = false;
+      let driftStartTime = 0;
       function loop(now) {
-        const t = (now - startTime) / 1000;
-        const driftX = Math.sin(t * 0.5) * 0.8;   // ±0.8°
-        const driftY = Math.cos(t * 0.4) * 0.5;   // ±0.5°
-        const rotX = -my * 6 + driftY + gy * 4;   // mouse > drift > gyro
-        const rotY =  mx * 6 + driftX + gx * 4;
-        heroScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-        if (heroSpot && !isTouch) {
-          heroSpot.style.transform = `translate(${cx - 320}px, ${cy - 320}px)`;
+        if (driftActive) {
+          const t = (now - driftStartTime) / 1000;
+          const driftX = Math.sin(t * 0.5) * 0.8;
+          const driftY = Math.cos(t * 0.4) * 0.5;
+          const rotX = -my * 6 + driftY + gy * 4;
+          const rotY =  mx * 6 + driftX + gx * 4;
+          heroScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+          if (heroSpot && !isTouch) {
+            heroSpot.style.transform = `translate(${cx - 320}px, ${cy - 320}px)`;
+          }
         }
         requestAnimationFrame(loop);
       }
       requestAnimationFrame(loop);
+
+      // Expose activator so the splash-hide timer can flip drift on
+      window.__activateHeroDrift = (when) => {
+        driftStartTime = when || performance.now();
+        driftActive = true;
+      };
 
       // Scroll parallax: hero fades when scrolling away
       window.addEventListener('scroll', () => {
