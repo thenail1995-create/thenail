@@ -14,13 +14,8 @@
   <!-- Preload splash curtain images (desktop: 2 large for 8-strip curtain) -->
   <link rel="preload" as="image" media="(min-width: 769px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200" fetchpriority="high" />
   <link rel="preload" as="image" media="(min-width: 769px)" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w1200" fetchpriority="high" />
-  <!-- Preload mobile mosaic photos (6 smaller w400) — only on phones -->
-  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400" />
-  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400" />
-  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400" />
-  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400" />
-  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400" />
-  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400" />
+  <!-- Mobile splash: 1 nail photo split as a curtain. Preload only on phones. -->
+  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" fetchpriority="high" />
 
   <style>
     /* ===== RESET ===== */
@@ -840,17 +835,21 @@
       .curtain-strips .strip { animation-duration: 0.4s !important; }
     }
 
-    /* ===== MOBILE SPLASH — MOSAIC GRID ===== */
-    /* Default: mosaic hidden, only the 8-strip curtain shows.
-       Desktop unchanged. */
+    /* ===== MOBILE SPLASH — SINGLE PHOTO, SPLIT-CURTAIN ===== */
+    /* Default: mobile splash hidden on desktop (8-strip curtain runs instead). */
     .splash-mosaic { display: none; }
 
-    /* On phones (≤768px) the curtain is replaced by a 2×3 mosaic of nail
-       photos that fade out center-last (outer tiles disappear first, the
-       middle two reveal the THE NAIL text last → dramatic). */
-    @keyframes splash-mosaic-tile-fade {
-      0%   { opacity: 1; transform: scale(1);    }
-      100% { opacity: 0; transform: scale(0.94); }
+    /* Half-slide keyframes — partial open (stage 1) then full off (stage 2),
+       mirroring the desktop curtain's 2-stage rhythm. */
+    @keyframes mhalf-left-open    { to { transform: translateX(-80%);  } }
+    @keyframes mhalf-left-finish  {
+      from { transform: translateX(-80%);  opacity: 1; }
+      to   { transform: translateX(-150%); opacity: 0; }
+    }
+    @keyframes mhalf-right-open   { to { transform: translateX(80%);   } }
+    @keyframes mhalf-right-finish {
+      from { transform: translateX(80%);  opacity: 1; }
+      to   { transform: translateX(150%); opacity: 0; }
     }
     @keyframes splash-mobile-enter {
       from { opacity: 0; transform: translateY(12px); }
@@ -858,43 +857,58 @@
     }
 
     @media (max-width: 768px) {
+      /* Hide the desktop 8-strip curtain; mobile uses a single-photo split */
       .curtain-strips { display: none; }
 
       .splash-mosaic {
-        display: grid;
+        display: flex;
         position: absolute;
         inset: 0;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows:    1fr 1fr 1fr;
-        gap: 2px;
         z-index: 2;
+        overflow: hidden;
         pointer-events: none;
       }
-      .mosaic-tile {
+      .mosaic-half {
+        flex: 1;
         position: relative;
-        background-size: cover;
-        background-position: center;
-        background-color: #050505;     /* fallback while image loads */
-        overflow: hidden;
-        will-change: opacity, transform;
+        background-image: var(--mobile-img);
+        background-size: 200% 100%;     /* image spans both halves */
+        background-color: #050505;       /* fallback while image loads */
+        will-change: transform, opacity;
       }
-      /* Dark overlay so the underlying text reads as it's revealed */
-      .mosaic-tile::before {
+      /* Each half shows its own slice of the single photo so they line up
+         seamlessly before sliding apart. */
+      .mosaic-half.left  { background-position:   0% center; }
+      .mosaic-half.right { background-position: 100% center; }
+      /* Dark overlay so text remains legible as halves slide apart */
+      .mosaic-half::before {
         content: '';
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.65) 100%),
-          radial-gradient(circle at 50% 50%, transparent 40%, rgba(10,10,10,0.5) 100%);
+          linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.55) 100%),
+          radial-gradient(circle at 50% 50%, transparent 35%, rgba(10,10,10,0.45) 100%);
       }
-      /* Center-out stagger: tiles 1,2 (top), 5,6 (bottom) fade first;
-         tiles 3,4 (middle row, where THE NAIL sits) fade last. */
-      .mosaic-tile:nth-child(1) { animation: splash-mosaic-tile-fade 0.8s 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-      .mosaic-tile:nth-child(2) { animation: splash-mosaic-tile-fade 0.8s 0.85s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-      .mosaic-tile:nth-child(5) { animation: splash-mosaic-tile-fade 0.8s 1.0s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-      .mosaic-tile:nth-child(6) { animation: splash-mosaic-tile-fade 0.8s 1.15s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-      .mosaic-tile:nth-child(3) { animation: splash-mosaic-tile-fade 0.9s 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-      .mosaic-tile:nth-child(4) { animation: splash-mosaic-tile-fade 0.9s 1.65s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+      /* Soft emerald seam down the middle (where the curtain "parts") */
+      .mosaic-half.left::after {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0; right: 0;
+        width: 1px;
+        background: linear-gradient(180deg, transparent, rgba(16,185,129,0.35) 50%, transparent);
+      }
+
+      /* 2-stage curtain animation (same beat as the desktop 8-strip version) */
+      .mosaic-half.left {
+        animation:
+          mhalf-left-open    1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards,
+          mhalf-left-finish  0.7s 3.0s cubic-bezier(0.6,  0, 0.2,  1) forwards;
+      }
+      .mosaic-half.right {
+        animation:
+          mhalf-right-open    1.4s 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards,
+          mhalf-right-finish  0.7s 3.0s cubic-bezier(0.6,  0, 0.2,  1) forwards;
+      }
 
       .splash-content {
         max-width: 92vw;
@@ -902,8 +916,6 @@
         width: 92vw;
         padding: 16px;
         z-index: 3;                    /* above mosaic */
-        opacity: 0;
-        animation: splash-mobile-enter 0.7s 2.0s ease-out forwards;
       }
       /* Smaller h1 + tighter letter-spacing so it always fits the screen */
       .splash-h1 {
@@ -1453,13 +1465,10 @@
       <div class="strip"></div>
       <div class="strip"></div>
     </div>
-    <div class="splash-mosaic" aria-hidden="true">
-      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400')"></div>
-      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400')"></div>
-      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400')"></div>
-      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400')"></div>
-      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400')"></div>
-      <div class="mosaic-tile" style="background-image: url('https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400')"></div>
+    <div class="splash-mosaic" aria-hidden="true"
+         style="--mobile-img: url('https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800');">
+      <div class="mosaic-half left"></div>
+      <div class="mosaic-half right"></div>
     </div>
   </div>
 
