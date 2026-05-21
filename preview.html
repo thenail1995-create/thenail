@@ -441,9 +441,27 @@
     }
     .nail-card img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s;
+      opacity: 0;
+      transition: transform 0.6s, opacity 0.5s ease-out;
     }
+    .nail-card img.loaded { opacity: 1; }
     .nail-card:hover img { transform: scale(1.05); }
+    /* Subtle pulse animation while image still loading */
+    .nail-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), transparent 60%);
+      animation: nail-card-pulse 2s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .nail-card:has(img.loaded)::before { animation: none; opacity: 0; transition: opacity 0.5s; }
+    @keyframes nail-card-pulse {
+      0%, 100% { opacity: 0.5; }
+      50%      { opacity: 1;   }
+    }
+    .nail-card img { position: relative; z-index: 1; }
     .nail-card .overlay { display: none; }
     .nail-card .price-tag { display: none; }
     .lightbox-content h3,
@@ -630,6 +648,68 @@
       color: #10b981;
       width: 44px; height: 44px;
       font-size: 20px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(16, 185, 129, 0.15); }
+
+    /* Prev / next navigation */
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #10b981;
+      width: 52px; height: 52px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      z-index: 1001;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox-nav.prev { left: 24px; }
+    .lightbox-nav.next { right: 24px; }
+    .lightbox-nav:hover {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.7);
+    }
+    .lightbox-nav:active { transform: translateY(-50%) scale(0.94); }
+    @media (max-width: 600px) {
+      .lightbox-nav {
+        width: 44px; height: 44px;
+        font-size: 28px;
+      }
+      .lightbox-nav.prev { left: 8px; }
+      .lightbox-nav.next { right: 8px; }
+    }
+
+    /* Loading spinner while large lightbox image fetches */
+    .lb-spinner {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px; height: 40px;
+      border: 2px solid rgba(16, 185, 129, 0.2);
+      border-top-color: #10b981;
+      border-radius: 50%;
+      animation: lb-spin 0.8s linear infinite;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+    .lb-spinner.show { opacity: 1; }
+    @keyframes lb-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    /* Photo counter (1 / 12) */
+    .lb-counter {
+      margin-top: 12px;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: rgba(232, 230, 225, 0.5);
+      font-variant-numeric: tabular-nums;
     }
 
     /* ===== LOADING SPLASH — NAIL-PHOTO CURTAIN ===== */
@@ -1583,255 +1663,255 @@
       <div class="gallery" id="gallery-grid">
         <!-- 200 — 300k -->
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="Mẫu nail 220k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400" alt="Mẫu nail 220k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w800" alt="Mẫu nail 240k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400" alt="Mẫu nail 240k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w800" alt="Mẫu nail 250k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400" alt="Mẫu nail 250k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w800" alt="Mẫu nail 260k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400" alt="Mẫu nail 260k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="https://lh3.googleusercontent.com/d/15R-57T9UAgJU366mo1ehBbCdL__g_e0n=w800" alt="Mẫu nail 270k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/15R-57T9UAgJU366mo1ehBbCdL__g_e0n=w400" alt="Mẫu nail 270k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w800" alt="Mẫu nail 280k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400" alt="Mẫu nail 280k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
-          <img src="https://lh3.googleusercontent.com/d/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq=w800" alt="Mẫu nail 290k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq=w400" alt="Mẫu nail 290k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="https://lh3.googleusercontent.com/d/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2=w800" alt="Mẫu nail 220k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2=w400" alt="Mẫu nail 220k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w800" alt="Mẫu nail 240k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400" alt="Mẫu nail 240k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="https://lh3.googleusercontent.com/d/15_TA0WlU7HnrBVB1redzSknjkFmxsfQM=w800" alt="Mẫu nail 250k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/15_TA0WlU7HnrBVB1redzSknjkFmxsfQM=w400" alt="Mẫu nail 250k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="https://lh3.googleusercontent.com/d/135oqrLfl6La-8UoyLQ-G-mijommxvH97=w800" alt="Mẫu nail 260k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/135oqrLfl6La-8UoyLQ-G-mijommxvH97=w400" alt="Mẫu nail 260k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="https://lh3.googleusercontent.com/d/1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB=w800" alt="Mẫu nail 270k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB=w400" alt="Mẫu nail 270k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="https://lh3.googleusercontent.com/d/163NFAIVlRBJJyhFou7r1JMdWb2aVXJQr=w800" alt="Mẫu nail 280k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/163NFAIVlRBJJyhFou7r1JMdWb2aVXJQr=w400" alt="Mẫu nail 280k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
-          <img src="https://lh3.googleusercontent.com/d/16Vlv2ZbLHddXJtDHf_JuxDvfH8rrZsiw=w800" alt="Mẫu nail 290k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/16Vlv2ZbLHddXJtDHf_JuxDvfH8rrZsiw=w400" alt="Mẫu nail 290k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="https://lh3.googleusercontent.com/d/1R6n4ci2qceGAEuCP06slXVWV9M7pu9dc=w800" alt="Mẫu nail 220k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1R6n4ci2qceGAEuCP06slXVWV9M7pu9dc=w400" alt="Mẫu nail 220k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="https://lh3.googleusercontent.com/d/1EO8myodG3wgILbanuwVz6NymkBvYWqnk=w800" alt="Mẫu nail 240k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1EO8myodG3wgILbanuwVz6NymkBvYWqnk=w400" alt="Mẫu nail 240k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="https://lh3.googleusercontent.com/d/1iUE7UlCv1PsP0qGnBKAoH8Gc15CGd8Sp=w800" alt="Mẫu nail 250k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1iUE7UlCv1PsP0qGnBKAoH8Gc15CGd8Sp=w400" alt="Mẫu nail 250k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="https://lh3.googleusercontent.com/d/1chRGSaJQBt1jY-HnmQelfQXsKD69qho3=w800" alt="Mẫu nail 260k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1chRGSaJQBt1jY-HnmQelfQXsKD69qho3=w400" alt="Mẫu nail 260k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="https://lh3.googleusercontent.com/d/1GCPuUII3SsN5qZ22A6gMyRZkgYYFhJP9=w800" alt="Mẫu nail 270k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1GCPuUII3SsN5qZ22A6gMyRZkgYYFhJP9=w400" alt="Mẫu nail 270k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="https://lh3.googleusercontent.com/d/1scxmt4oSMJXKIQ8qnaNrV8r6YTyLkz3U=w800" alt="Mẫu nail 280k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1scxmt4oSMJXKIQ8qnaNrV8r6YTyLkz3U=w400" alt="Mẫu nail 280k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 300 — 400k -->
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="https://lh3.googleusercontent.com/d/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ=w800" alt="Mẫu nail 320k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ=w400" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="https://lh3.googleusercontent.com/d/1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX_=w800" alt="Mẫu nail 340k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX_=w400" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="https://lh3.googleusercontent.com/d/1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV=w800" alt="Mẫu nail 350k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV=w400" alt="Mẫu nail 350k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="https://lh3.googleusercontent.com/d/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR_=w800" alt="Mẫu nail 360k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR_=w400" alt="Mẫu nail 360k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="https://lh3.googleusercontent.com/d/1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p=w800" alt="Mẫu nail 380k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p=w400" alt="Mẫu nail 380k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="https://lh3.googleusercontent.com/d/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ=w800" alt="Mẫu nail 390k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ=w400" alt="Mẫu nail 390k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="https://lh3.googleusercontent.com/d/1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee=w800" alt="Mẫu nail 320k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee=w400" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="https://lh3.googleusercontent.com/d/16xoZP9KI8THym4ev3Ayetk1p8h6Me27w=w800" alt="Mẫu nail 340k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/16xoZP9KI8THym4ev3Ayetk1p8h6Me27w=w400" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="https://lh3.googleusercontent.com/d/1krPewtbBudfV3IkWi16qHwGssLqZgyYt=w800" alt="Mẫu nail 350k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1krPewtbBudfV3IkWi16qHwGssLqZgyYt=w400" alt="Mẫu nail 350k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="https://lh3.googleusercontent.com/d/1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo=w800" alt="Mẫu nail 360k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo=w400" alt="Mẫu nail 360k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="https://lh3.googleusercontent.com/d/1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y=w800" alt="Mẫu nail 380k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y=w400" alt="Mẫu nail 380k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="https://lh3.googleusercontent.com/d/1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC=w800" alt="Mẫu nail 390k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC=w400" alt="Mẫu nail 390k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="https://lh3.googleusercontent.com/d/1QI2URULkrcTMpTwj2mTCs28aMYw0yxc5=w800" alt="Mẫu nail 320k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1QI2URULkrcTMpTwj2mTCs28aMYw0yxc5=w400" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="https://lh3.googleusercontent.com/d/1i6kGM6s0UHvAb5LOWEJQVPxxCDT_EDE8=w800" alt="Mẫu nail 340k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1i6kGM6s0UHvAb5LOWEJQVPxxCDT_EDE8=w400" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="https://lh3.googleusercontent.com/d/18t_7xqAaz8lpPJNR5EoCsUTAoTxkHCMl=w800" alt="Mẫu nail 350k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/18t_7xqAaz8lpPJNR5EoCsUTAoTxkHCMl=w400" alt="Mẫu nail 350k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="https://lh3.googleusercontent.com/d/15nZvalPybqrct7B7g6ey2E_gRDg0tg6I=w800" alt="Mẫu nail 360k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/15nZvalPybqrct7B7g6ey2E_gRDg0tg6I=w400" alt="Mẫu nail 360k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="https://lh3.googleusercontent.com/d/1aQpks3LTztk9VBxNa40porIXuvIYkoei=w800" alt="Mẫu nail 380k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1aQpks3LTztk9VBxNa40porIXuvIYkoei=w400" alt="Mẫu nail 380k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="https://lh3.googleusercontent.com/d/1bKPtMEVii01P9HWmjnEzEDEWNn-Yho60=w800" alt="Mẫu nail 390k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1bKPtMEVii01P9HWmjnEzEDEWNn-Yho60=w400" alt="Mẫu nail 390k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="https://lh3.googleusercontent.com/d/1S5fnvazifUYhdmcXGr7YHn83DRnSsQ1f=w800" alt="Mẫu nail 320k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1S5fnvazifUYhdmcXGr7YHn83DRnSsQ1f=w400" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="https://lh3.googleusercontent.com/d/1fOX2JLKhBQlx4BGVye5jOFNUSc-TkGKB=w800" alt="Mẫu nail 340k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1fOX2JLKhBQlx4BGVye5jOFNUSc-TkGKB=w400" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 400 — 500k -->
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="https://lh3.googleusercontent.com/d/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF=w800" alt="Mẫu nail 420k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF=w400" alt="Mẫu nail 420k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="https://lh3.googleusercontent.com/d/1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8=w800" alt="Mẫu nail 440k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8=w400" alt="Mẫu nail 440k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="https://lh3.googleusercontent.com/d/1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa=w800" alt="Mẫu nail 450k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa=w400" alt="Mẫu nail 450k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
-          <img src="https://lh3.googleusercontent.com/d/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv=w800" alt="Mẫu nail 460k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv=w400" alt="Mẫu nail 460k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
-          <img src="https://lh3.googleusercontent.com/d/1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx=w800" alt="Mẫu nail 480k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx=w400" alt="Mẫu nail 480k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
-          <img src="https://lh3.googleusercontent.com/d/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D=w800" alt="Mẫu nail 490k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D=w400" alt="Mẫu nail 490k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="https://lh3.googleusercontent.com/d/17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1=w800" alt="Mẫu nail 420k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1=w400" alt="Mẫu nail 420k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="https://lh3.googleusercontent.com/d/1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4=w800" alt="Mẫu nail 440k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4=w400" alt="Mẫu nail 440k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="https://lh3.googleusercontent.com/d/1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K=w800" alt="Mẫu nail 450k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K=w400" alt="Mẫu nail 450k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
-          <img src="https://lh3.googleusercontent.com/d/1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL=w800" alt="Mẫu nail 460k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL=w400" alt="Mẫu nail 460k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
-          <img src="https://lh3.googleusercontent.com/d/1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka=w800" alt="Mẫu nail 480k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka=w400" alt="Mẫu nail 480k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
-          <img src="https://lh3.googleusercontent.com/d/1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ=w800" alt="Mẫu nail 490k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ=w400" alt="Mẫu nail 490k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="https://lh3.googleusercontent.com/d/1K0rZkCiM2hyEZCZQkJACvtkyBuqNHhUn=w800" alt="Mẫu nail 420k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1K0rZkCiM2hyEZCZQkJACvtkyBuqNHhUn=w400" alt="Mẫu nail 420k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="https://lh3.googleusercontent.com/d/1QXDbRylzT3WAUWVc-yWkzaRbFAfRv3Z4=w800" alt="Mẫu nail 440k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1QXDbRylzT3WAUWVc-yWkzaRbFAfRv3Z4=w400" alt="Mẫu nail 440k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="https://lh3.googleusercontent.com/d/1ROJpCAmJfjhtYadj686sDEplLbtKvs5t=w800" alt="Mẫu nail 450k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1ROJpCAmJfjhtYadj686sDEplLbtKvs5t=w400" alt="Mẫu nail 450k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 500 — 700k -->
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="https://lh3.googleusercontent.com/d/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k=w800" alt="Mẫu nail 550k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k=w400" alt="Mẫu nail 550k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="https://lh3.googleusercontent.com/d/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb=w800" alt="Mẫu nail 600k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb=w400" alt="Mẫu nail 600k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="https://lh3.googleusercontent.com/d/1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av=w800" alt="Mẫu nail 620k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av=w400" alt="Mẫu nail 620k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="https://lh3.googleusercontent.com/d/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn=w800" alt="Mẫu nail 650k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn=w400" alt="Mẫu nail 650k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="https://lh3.googleusercontent.com/d/1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF=w800" alt="Mẫu nail 680k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF=w400" alt="Mẫu nail 680k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
-          <img src="https://lh3.googleusercontent.com/d/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm=w800" alt="Mẫu nail 700k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm=w400" alt="Mẫu nail 700k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="https://lh3.googleusercontent.com/d/1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR=w800" alt="Mẫu nail 550k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR=w400" alt="Mẫu nail 550k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="https://lh3.googleusercontent.com/d/1rIhThOBF47i43kiJrhslelS54OgYytIp=w800" alt="Mẫu nail 600k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1rIhThOBF47i43kiJrhslelS54OgYytIp=w400" alt="Mẫu nail 600k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="https://lh3.googleusercontent.com/d/1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW=w800" alt="Mẫu nail 620k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW=w400" alt="Mẫu nail 620k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="https://lh3.googleusercontent.com/d/1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D=w800" alt="Mẫu nail 650k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D=w400" alt="Mẫu nail 650k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="https://lh3.googleusercontent.com/d/1bKBL_79FRCql-utY01i8AKVgTGdFAaRf=w800" alt="Mẫu nail 680k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1bKBL_79FRCql-utY01i8AKVgTGdFAaRf=w400" alt="Mẫu nail 680k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
-          <img src="https://lh3.googleusercontent.com/d/1lY3pzege3isnu005Uq7WtKd7HXgTWibo=w800" alt="Mẫu nail 700k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1lY3pzege3isnu005Uq7WtKd7HXgTWibo=w400" alt="Mẫu nail 700k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="https://lh3.googleusercontent.com/d/1juCmUppBVNxI3_AnhWk1brwMTz08K2V0=w800" alt="Mẫu nail 550k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1juCmUppBVNxI3_AnhWk1brwMTz08K2V0=w400" alt="Mẫu nail 550k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="https://lh3.googleusercontent.com/d/1DNheloiqsUAp-DODjkM0u-tVjdTP04q4=w800" alt="Mẫu nail 600k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1DNheloiqsUAp-DODjkM0u-tVjdTP04q4=w400" alt="Mẫu nail 600k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="https://lh3.googleusercontent.com/d/185MiBYHWJD_pn1-WpWhA2xwbC7oGqIAW=w800" alt="Mẫu nail 620k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/185MiBYHWJD_pn1-WpWhA2xwbC7oGqIAW=w400" alt="Mẫu nail 620k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="https://lh3.googleusercontent.com/d/1XKmqO64qLuCp9feqwyyIp-_vEcfj5Yw0=w800" alt="Mẫu nail 650k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1XKmqO64qLuCp9feqwyyIp-_vEcfj5Yw0=w400" alt="Mẫu nail 650k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="https://lh3.googleusercontent.com/d/1tTYrEusS1g-Uo1OiglePhiFJgZBZX91D=w800" alt="Mẫu nail 680k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1tTYrEusS1g-Uo1OiglePhiFJgZBZX91D=w400" alt="Mẫu nail 680k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 800k+ -->
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
-          <img src="https://lh3.googleusercontent.com/d/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N=w800" alt="Mẫu nail 850k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N=w400" alt="Mẫu nail 850k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
-          <img src="https://lh3.googleusercontent.com/d/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW=w800" alt="Mẫu nail 900k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW=w400" alt="Mẫu nail 900k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
-          <img src="https://lh3.googleusercontent.com/d/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz=w800" alt="Mẫu nail 1000k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz=w400" alt="Mẫu nail 1000k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
-          <img src="https://lh3.googleusercontent.com/d/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8=w800" alt="Mẫu nail 1200k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8=w400" alt="Mẫu nail 1200k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1500k">
-          <img src="https://lh3.googleusercontent.com/d/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb=w800" alt="Mẫu nail 1500k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb=w400" alt="Mẫu nail 1500k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
-          <img src="https://lh3.googleusercontent.com/d/1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7=w800" alt="Mẫu nail 850k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7=w400" alt="Mẫu nail 850k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
-          <img src="https://lh3.googleusercontent.com/d/1x1smBa58U7JikT1R-c82bwe92SwqT1V_=w800" alt="Mẫu nail 900k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1x1smBa58U7JikT1R-c82bwe92SwqT1V_=w400" alt="Mẫu nail 900k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
-          <img src="https://lh3.googleusercontent.com/d/1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm=w800" alt="Mẫu nail 1000k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm=w400" alt="Mẫu nail 1000k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
-          <img src="https://lh3.googleusercontent.com/d/1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds=w800" alt="Mẫu nail 1200k" loading="lazy" referrerpolicy="no-referrer">
+          <img src="https://lh3.googleusercontent.com/d/1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds=w400" alt="Mẫu nail 1200k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
       </div>
     </div>
@@ -2214,13 +2294,17 @@
 
   <!-- ===== LIGHTBOX ===== -->
   <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Đóng">×</button>
+    <button class="lightbox-nav prev" id="lb-prev" aria-label="Ảnh trước">‹</button>
+    <button class="lightbox-nav next" id="lb-next" aria-label="Ảnh kế">›</button>
     <div class="lightbox-content">
       <div class="ph">
         <img id="lb-img" src="" alt="" referrerpolicy="no-referrer">
+        <div class="lb-spinner" id="lb-spinner"></div>
       </div>
       <h3 id="lb-name">Tên mẫu</h3>
       <div class="price" id="lb-price">000.000đ</div>
+      <div class="lb-counter"><span id="lb-current">1</span> / <span id="lb-total">1</span></div>
     </div>
   </div>
 
@@ -2243,28 +2327,111 @@
       });
     });
 
-    // ===== LIGHTBOX =====
-    const lightbox = document.getElementById('lightbox');
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        const img = card.querySelector('img');
-        const name = card.dataset.name || 'Mẫu nail';
-        const range = card.dataset.range || '';
-        const lbImg = document.getElementById('lb-img');
-        if (img && lbImg) {
-          // dùng URL cỡ lớn hơn (w1200 thay vì w800) cho lightbox
-          lbImg.src = img.src.replace('=w800', '=w1400');
-          lbImg.alt = name;
-        }
-        document.getElementById('lb-name').textContent = name;
-        document.getElementById('lb-price').textContent = range;
-        lightbox.classList.add('active');
-      });
+    // ===== LIGHTBOX (with prev/next + keyboard + swipe) =====
+    const lightbox  = document.getElementById('lightbox');
+    const lbImg     = document.getElementById('lb-img');
+    const lbName    = document.getElementById('lb-name');
+    const lbPrice   = document.getElementById('lb-price');
+    const lbCurrent = document.getElementById('lb-current');
+    const lbTotal   = document.getElementById('lb-total');
+    const lbSpinner = document.getElementById('lb-spinner');
+    const lbPrev    = document.getElementById('lb-prev');
+    const lbNext    = document.getElementById('lb-next');
+
+    // Track which cards are currently visible (filter-aware)
+    function getVisibleCards() {
+      return Array.from(cards).filter(c => c.style.display !== 'none');
+    }
+    let lbIndex = -1;
+    let lbVisible = [];
+
+    function showLightboxAt(i) {
+      if (!lbVisible.length) return;
+      // Wrap around
+      lbIndex = ((i % lbVisible.length) + lbVisible.length) % lbVisible.length;
+      const card  = lbVisible[lbIndex];
+      const img   = card.querySelector('img');
+      const name  = card.dataset.name  || 'Mẫu nail';
+      const range = card.dataset.range || '';
+      if (img && lbImg) {
+        // Use w1400 (large) for lightbox quality
+        lbImg.src = img.src.replace('=w400', '=w1400');
+        lbImg.alt = name;
+        // Show spinner until the big image finishes
+        lbSpinner.classList.add('show');
+        lbImg.style.opacity = '0';
+        lbImg.onload = () => {
+          lbSpinner.classList.remove('show');
+          lbImg.style.opacity = '1';
+        };
+      }
+      lbName.textContent  = name;
+      lbPrice.textContent = range;
+      lbCurrent.textContent = (lbIndex + 1).toString();
+      lbTotal.textContent   = lbVisible.length.toString();
+    }
+
+    function openLightbox(card) {
+      lbVisible = getVisibleCards();
+      const i = lbVisible.indexOf(card);
+      if (i === -1) return;
+      lightbox.classList.add('active');
+      showLightboxAt(i);
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lbImg.onload = null;
+    }
+    function lightboxPrev() { showLightboxAt(lbIndex - 1); }
+    function lightboxNext() { showLightboxAt(lbIndex + 1); }
+
+    // Wire up cards → open
+    cards.forEach(card => card.addEventListener('click', () => openLightbox(card)));
+
+    // Mark gallery imgs as .loaded when they finish so they fade in
+    // (CSS sets opacity:0 by default + transitions opacity on .loaded)
+    document.querySelectorAll('.nail-card img').forEach(img => {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('loaded');
+      } else {
+        img.addEventListener('load',  () => img.classList.add('loaded'));
+        img.addEventListener('error', () => img.classList.add('loaded'));
+      }
     });
-    function closeLightbox() { lightbox.classList.remove('active'); }
+
+    // Wire up nav buttons
+    lbPrev.addEventListener('click', (e) => { e.stopPropagation(); lightboxPrev(); });
+    lbNext.addEventListener('click', (e) => { e.stopPropagation(); lightboxNext(); });
+
+    // Backdrop click to close
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
+
+    // Keyboard: Esc close, ←/→ navigate
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowLeft')   lightboxPrev();
+      if (e.key === 'ArrowRight')  lightboxNext();
+    });
+
+    // Touch swipe: left/right to navigate
+    let touchStartX = 0;
+    let touchStartY = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].screenX - touchStartX;
+      const dy = e.changedTouches[0].screenY - touchStartY;
+      // Horizontal swipe (filter out vertical scrolls)
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        if (dx > 0) lightboxPrev();
+        else        lightboxNext();
+      }
+    }, { passive: true });
 
     // ===== HAMBURGER MENU =====
     const navToggle = document.getElementById('nav-toggle');
