@@ -871,20 +871,29 @@
       .mosaic-half {
         flex: 1;
         position: relative;
-        background-image: var(--mobile-img);
-        background-size: 200% 100%;     /* image spans both halves */
         background-color: #050505;       /* fallback while image loads */
+        overflow: hidden;
         will-change: transform, opacity;
       }
-      /* Each half shows its own slice of the single photo so they line up
-         seamlessly before sliding apart. */
-      .mosaic-half.left  { background-position:   0% center; }
-      .mosaic-half.right { background-position: 100% center; }
-      /* Dark overlay so text remains legible as halves slide apart */
+      /* Each half holds the SAME full image but anchored to its own outer
+         edge — together they show one continuous, un-distorted photo. */
+      .mosaic-photo {
+        position: absolute;
+        top: 0;
+        width: 200%;                     /* spans both halves (= 100vw) */
+        height: 100%;
+        object-fit: cover;               /* preserve aspect, crop if needed */
+        object-position: center;
+        pointer-events: none;
+      }
+      .mosaic-half.left  .mosaic-photo { left:  0; }   /* image left edge at viewport left */
+      .mosaic-half.right .mosaic-photo { right: 0; }   /* image right edge at viewport right */
+      /* Dark overlay (above the img) so text remains legible as halves part */
       .mosaic-half::before {
         content: '';
         position: absolute;
         inset: 0;
+        z-index: 1;
         background:
           linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.55) 100%),
           radial-gradient(circle at 50% 50%, transparent 35%, rgba(10,10,10,0.45) 100%);
@@ -895,6 +904,7 @@
         position: absolute;
         top: 0; bottom: 0; right: 0;
         width: 1px;
+        z-index: 2;
         background: linear-gradient(180deg, transparent, rgba(16,185,129,0.35) 50%, transparent);
       }
 
@@ -1465,10 +1475,13 @@
       <div class="strip"></div>
       <div class="strip"></div>
     </div>
-    <div class="splash-mosaic" aria-hidden="true"
-         style="--mobile-img: url('https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800');">
-      <div class="mosaic-half left"></div>
-      <div class="mosaic-half right"></div>
+    <div class="splash-mosaic" aria-hidden="true">
+      <div class="mosaic-half left">
+        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
+      </div>
+      <div class="mosaic-half right">
+        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w800" alt="" />
+      </div>
     </div>
   </div>
 
