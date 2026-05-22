@@ -2416,17 +2416,38 @@
       if (e.key === 'ArrowRight')  lightboxNext();
     });
 
-    // Touch swipe: left/right to navigate
+    // Touch swipe: left/right to navigate — but ONLY for single-finger gestures.
+    // Pinch-to-zoom (2+ fingers) was being misread as a swipe; we now cancel
+    // tracking the moment a second finger lands.
+    let swipeActive = false;
     let touchStartX = 0;
     let touchStartY = 0;
+    let touchStartId = null;
     lightbox.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-      touchStartY = e.changedTouches[0].screenY;
+      if (e.touches.length === 1) {
+        swipeActive  = true;
+        touchStartX  = e.touches[0].screenX;
+        touchStartY  = e.touches[0].screenY;
+        touchStartId = e.touches[0].identifier;
+      } else {
+        swipeActive = false;        // multi-touch — definitely not a swipe
+      }
     }, { passive: true });
+    lightbox.addEventListener('touchmove', (e) => {
+      // If user adds a 2nd finger mid-gesture (pinch), cancel the swipe
+      if (e.touches.length > 1) swipeActive = false;
+    }, { passive: true });
+    lightbox.addEventListener('touchcancel', () => { swipeActive = false; }, { passive: true });
     lightbox.addEventListener('touchend', (e) => {
-      const dx = e.changedTouches[0].screenX - touchStartX;
-      const dy = e.changedTouches[0].screenY - touchStartY;
-      // Horizontal swipe (filter out vertical scrolls)
+      if (!swipeActive) return;
+      swipeActive = false;
+      // Must be the same finger we started with, and all fingers up
+      if (e.touches.length > 0) return;
+      const t = Array.from(e.changedTouches).find(x => x.identifier === touchStartId);
+      if (!t) return;
+      const dx = t.screenX - touchStartX;
+      const dy = t.screenY - touchStartY;
+      // Horizontal swipe (filter out vertical scrolls and tiny accidental moves)
       if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
         if (dx > 0) lightboxPrev();
         else        lightboxNext();
