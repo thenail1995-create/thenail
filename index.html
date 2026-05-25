@@ -2523,22 +2523,25 @@
     window.addEventListener('resize', syncSplashH1ToHeroH1, { passive: true });
 
     // Mobile splash runs sequentially (curtain → text+slogans → hero) and is
-    // longer than desktop's overlapping version. Use different timings per
-    // viewport so each one peaks at the right beat.
-    window.addEventListener('load', () => {
+    // longer than desktop's overlapping version. Different timings per viewport.
+    // IMPORTANT: schedule with setTimeout directly (NOT inside window.load) so
+    // splash hides on a fixed deadline even if a remote image is slow/blocked.
+    // The script tag is at the end of <body>, so the DOM exists by now.
+    {
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
       const splashHideAt  = isMobile ? 4100 : 3500;
       const driftActiveAt = isMobile ? 5500 : 4900;
 
       setTimeout(() => {
-        document.getElementById('splash').classList.add('hidden');
+        const sp = document.getElementById('splash');
+        if (sp) sp.classList.add('hidden');
       }, splashHideAt);
       setTimeout(() => {
         if (typeof window.__activateHeroDrift === 'function') {
           window.__activateHeroDrift();
         }
       }, driftActiveAt);
-    });
+    }
 
     // ===== SCROLL PROGRESS BAR =====
     const progressBar = document.getElementById('scroll-progress');
