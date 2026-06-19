@@ -1,227 +1,237 @@
-# The Nail — Air-Style Preview Design
+# The Nail — Thiết kế bản thử nghiệm theo phong cách Air
 
-## Objective
+## Mục tiêu
 
-Create a standalone test page that closely reproduces the layout language,
-interaction rhythm, responsive behavior, and atmospheric visual treatment of
-the current `air.inc` homepage, while replacing its product content with the
-approved The Nail brand content.
+Tạo một trang thử nghiệm độc lập, tái hiện sát ngôn ngữ bố cục, nhịp chuyển
+động, cách hiển thị responsive và không khí thị giác của trang chủ
+`air.inc`, đồng thời thay toàn bộ nội dung sản phẩm của Air bằng nội dung đã
+được duyệt của The Nail.
 
-The preview must not modify or replace the production `index.html`.
+Bản thử nghiệm không được sửa hoặc thay thế file `index.html` đang chạy chính
+thức.
 
-## Deliverable
+## Sản phẩm bàn giao
 
-- New standalone file: `air-style-preview.html`
-- Vanilla HTML, CSS, and JavaScript in one file
-- Existing `index.html` and production behavior remain untouched
-- Existing The Nail image URLs, business details, prices, slogans, and contact
-  links are reused
-- No build step, framework, analytics, cookie banner, or data storage
+- Tạo file độc lập mới: `air-style-preview.html`
+- Toàn bộ HTML, CSS và JavaScript thuần nằm trong một file
+- Giữ nguyên `index.html` và mọi hoạt động của website chính thức
+- Tái sử dụng ảnh, thông tin tiệm, bảng giá, slogan và đường dẫn liên hệ hiện có
+  của The Nail
+- Không có bước build, framework, công cụ phân tích, thông báo cookie hoặc lưu
+  trữ dữ liệu
 
-## Reference Hierarchy
+## Thứ tự ưu tiên của nguồn tham khảo
 
-1. `https://air.inc/` is the visual and interaction reference.
-2. The Refero Air style page supplies implementation tokens and design rules.
-3. The Nail project files are authoritative for business content and imagery.
+1. `https://air.inc/` là nguồn tham khảo chính về giao diện và chuyển động.
+2. Trang hướng dẫn phong cách Air trên Refero cung cấp token và nguyên tắc
+   thiết kế để triển khai.
+3. Các file hiện có của dự án The Nail là nguồn chính xác cho nội dung kinh
+   doanh và hình ảnh.
 
-The implementation will recreate the reference experience without copying
-Air's source code, logo, product UI, or proprietary media. Atmospheric cloud
-and translucent-glass visuals will be recreated with original CSS, SVG,
-canvas, gradients, or newly produced local assets.
+Phần triển khai sẽ tái tạo trải nghiệm tham khảo nhưng không sao chép mã nguồn,
+logo, giao diện sản phẩm hoặc tài nguyên độc quyền của Air. Hình ảnh bầu trời,
+mây và vật thể kính trong suốt sẽ được dựng mới bằng CSS, SVG, canvas, gradient
+hoặc tài nguyên mới được tạo riêng.
 
-## Visual System
+## Hệ thống hình ảnh
 
-### Color and surfaces
+### Màu sắc và bề mặt
 
-- Sky-canvas blue is the dominant full-page atmosphere.
-- White and translucent frosted-glass surfaces provide content contrast.
-- A single vivid blue is reserved for interactive outlines and active states.
-- Shadows remain minimal; blur, borders, opacity, and surface color establish
-  depth.
+- Màu xanh bầu trời là không khí chủ đạo trên toàn trang.
+- Bề mặt trắng và kính mờ trong suốt tạo độ tương phản cho nội dung.
+- Chỉ dùng một màu xanh lam nổi bật cho viền tương tác và trạng thái đang chọn.
+- Hạn chế bóng đổ; chiều sâu được tạo bằng blur, đường viền, độ trong suốt và
+  màu bề mặt.
 
-### Typography
+### Kiểu chữ
 
-- Functional text uses a clean grotesk/sans-serif substitute.
-- Hero display text uses an extremely large compressed face.
-- Select editorial phrases use an expressive cursive face.
-- Type scales fluidly with `clamp()` and preserves the oversized Air-like
-  composition without causing horizontal overflow.
+- Chữ chức năng dùng font sans-serif hiện đại, rõ ràng.
+- Chữ lớn ở hero dùng font cô đọng, kích thước rất lớn.
+- Một số câu mang tính biên tập dùng font viết tay giàu biểu cảm.
+- Kích thước chữ thay đổi linh hoạt bằng `clamp()` để giữ cảm giác phóng đại
+  giống Air mà không gây tràn ngang màn hình.
 
-### Shape and spacing
+### Hình khối và khoảng cách
 
-- Rounded image and feature surfaces use approximately 11–14px radii.
-- Buttons use compact outlined treatments and 8px or pill radii.
-- Sections are full-bleed with large breathing room and controlled inner grids.
+- Ảnh và khối nội dung dùng bo góc khoảng 11–14px.
+- Nút có viền mảnh, kiểu gọn, bo góc 8px hoặc dạng viên thuốc.
+- Các section tràn toàn chiều rộng, có nhiều khoảng thở và lưới nội dung được
+  kiểm soát rõ ràng.
 
-## Page Architecture
+## Cấu trúc trang
 
-### 1. Persistent navigation
+### 1. Thanh điều hướng cố định
 
-An Air-like transparent/frosted navigation sits over the opening scene.
+Thanh điều hướng trong suốt hoặc kính mờ, nằm trên cảnh mở đầu như Air.
 
 - Logo: The Nail
-- Links: Mẫu nail, Dịch vụ, Bảng giá, Về tiệm
-- Utility action: Instagram
-- Primary action: Đặt lịch
-- Mobile: compact logo, booking action, and menu drawer
+- Liên kết: Mẫu nail, Dịch vụ, Bảng giá, Về tiệm
+- Hành động phụ: Instagram
+- Hành động chính: Đặt lịch
+- Trên điện thoại: logo gọn, nút đặt lịch và menu mở rộng
 
-### 2. Full-screen atmospheric hero
+### 2. Hero bầu trời toàn màn hình
 
-The opening composition stays deliberately close to Air:
+Phần mở đầu được giữ sát tinh thần của Air:
 
-- Blue sky and large soft clouds
-- Translucent tubular/glass forms moving through the scene
-- Oversized `THE NAIL` display treatment
-- Brand line: `your concept, my creation`
-- Vietnamese slogan: `Ý tưởng bạn trao — Nghệ thuật tôi tạo`
-- Outlined actions for booking and viewing nail work
+- Bầu trời xanh và những đám mây mềm, kích thước lớn
+- Các dải ống hoặc vật thể kính trong suốt chuyển động trong khung cảnh
+- Chữ `THE NAIL` rất lớn
+- Câu thương hiệu: `your concept, my creation`
+- Slogan tiếng Việt: `Ý tưởng bạn trao — Nghệ thuật tôi tạo`
+- Nút viền để đặt lịch và xem mẫu nail
 
-The hero uses layered depth, slow autonomous movement, pointer parallax on
-capable desktop devices, and a lighter static composition on mobile.
+Hero có nhiều lớp chiều sâu, chuyển động tự động chậm, parallax theo con trỏ
+trên máy tính phù hợp và phiên bản tĩnh nhẹ hơn trên điện thoại.
 
-### 3. Organize / Approve / Multiply-style selector
+### 3. Bộ chọn ba trạng thái theo phong cách Air
 
-Air's three-state product selector is adapted to The Nail:
+Cụm `Organize / Approve / Multiply` của Air được chuyển thành hành trình của
+khách hàng tại The Nail:
 
 - Khám phá
 - Chọn mẫu
 - Đặt lịch
 
-Each state updates the accompanying image composition and short explanatory
-copy. This creates an Air-like interaction while describing the actual salon
-journey.
+Mỗi trạng thái thay đổi bố cục ảnh và phần mô tả ngắn đi kèm. Cách tương tác
+vẫn giống Air nhưng nội dung phản ánh đúng quy trình của tiệm.
 
-### 4. Creative gallery narrative
+### 4. Khu trưng bày mẫu nail
 
-The product-feature storytelling becomes a nail-art gallery:
+Phần kể chuyện về tính năng sản phẩm của Air được chuyển thành gallery nail:
 
-- Large editorial heading
-- Filterable price tiers already used by The Nail
-- Clean nail images with no text or price overlay
-- Alternating large imagery and frosted information surfaces
-- Air-like reveal, scale, and crossfade transitions
-- Lightbox remains image-only
+- Tiêu đề lớn mang phong cách tạp chí
+- Bộ lọc theo các khoảng giá hiện có của The Nail
+- Ảnh nail sạch, không chèn chữ hoặc giá lên ảnh
+- Xen kẽ ảnh lớn và bề mặt thông tin kính mờ
+- Hiệu ứng xuất hiện, phóng nhẹ và chuyển ảnh giống nhịp của Air
+- Lightbox chỉ hiển thị ảnh
 
-### 5. Service intelligence section
+### 5. Khu dịch vụ tương tác
 
-Air's feature tabs and product panels become service categories:
+Các tab tính năng và bảng sản phẩm của Air được chuyển thành nhóm dịch vụ:
 
 - Chăm sóc nền móng
-- Gel & hiệu ứng
+- Gel và hiệu ứng
 - Vẽ design thủ công
 - Nối và tạo phom
 
-Each category contains real The Nail service descriptions and price ranges.
-Panels animate on selection with restrained blur, opacity, and vertical motion.
+Mỗi nhóm dùng nội dung và khoảng giá thật của The Nail. Khi chuyển tab, bảng
+nội dung thay đổi bằng hiệu ứng blur, opacity và di chuyển dọc nhẹ.
 
-### 6. Brand values and salon story
+### 6. Giá trị thương hiệu và câu chuyện tiệm
 
-Air's large feature blocks are mapped to the fixed brand values:
+Các khối tính năng cỡ lớn của Air được chuyển thành ba giá trị cố định:
 
 - Cá nhân hoá
 - Sáng tạo
 - Tỉ mỉ
 
-The section retains large alternating typography, expansive sky surfaces, and
-scroll-linked image movement.
+Section giữ kiểu chữ lớn xen kẽ, bề mặt bầu trời rộng và chuyển động ảnh liên
+kết với thao tác cuộn trang.
 
-### 7. Price overview
+### 7. Tổng quan bảng giá
 
-The current service prices are preserved and presented in an Air-like modular
-grid. Pricing will not be invented or changed. The section directs uncertain
-customers to send a reference image through Zalo.
+Giữ nguyên các dịch vụ và mức giá hiện tại, trình bày lại bằng lưới module theo
+phong cách Air. Không tự tạo hoặc thay đổi giá. Khách chưa chắc về chi phí sẽ
+được hướng dẫn gửi ảnh mẫu qua Zalo để tư vấn.
 
-### 8. Booking conversion section
+### 8. Khu chuyển đổi đặt lịch
 
-Air's final lead form becomes a booking inquiry:
+Form nhận tư vấn cuối trang của Air được chuyển thành form đặt lịch:
 
-- Customer name
-- Phone number
-- Preferred date/time
-- Service or price tier
-- Optional request
+- Tên khách hàng
+- Số điện thoại
+- Ngày và giờ mong muốn
+- Dịch vụ hoặc khoảng giá
+- Yêu cầu thêm nếu có
 
-Submitting does not store information. It composes the current message and
-opens the existing Zalo contact.
+Form không lưu thông tin. Khi gửi, trang sẽ soạn sẵn nội dung hiện tại và mở
+kênh Zalo đang dùng của The Nail.
 
-### 9. Contact and footer
+### 9. Thông tin liên hệ và footer
 
-- Correct address, phone number, opening hours, and social links
-- Large Air-like closing statement
-- Compact footer navigation
-- Mobile sticky booking action
+- Đúng địa chỉ, số điện thoại, giờ mở cửa và các liên kết mạng xã hội
+- Câu kết cỡ lớn theo phong cách Air
+- Điều hướng footer gọn
+- Nút đặt lịch cố định trên điện thoại
 
-## Motion System
+## Hệ thống chuyển động
 
-- Native scrolling only; no scroll hijacking
-- `requestAnimationFrame` for scroll-linked transforms
-- Intersection Observer for section and text reveals
-- Layered hero parallax and gentle glass-object drift
-- Tab content crossfades
-- Gallery cards reveal through clipping and scale
-- Navigation changes surface treatment after leaving the hero
-- Buttons use subtle magnetic or pointer-follow behavior on fine pointers only
-- `prefers-reduced-motion: reduce` disables autonomous and scroll-linked motion
-- Touch devices receive reduced effects and no cursor-dependent interactions
+- Giữ thao tác cuộn tự nhiên, không chiếm quyền điều khiển cuộn trang
+- Dùng `requestAnimationFrame` cho chuyển động liên kết với vị trí cuộn
+- Dùng Intersection Observer để kích hoạt section và chữ xuất hiện
+- Hero có parallax nhiều lớp và vật thể kính trôi nhẹ
+- Nội dung tab chuyển bằng crossfade
+- Thẻ gallery xuất hiện bằng hiệu ứng cắt khung và phóng nhẹ
+- Thanh điều hướng đổi bề mặt sau khi rời khỏi hero
+- Nút có hiệu ứng hút hoặc đi theo con trỏ nhẹ, chỉ áp dụng trên thiết bị có
+  chuột chính xác
+- Khi người dùng bật `prefers-reduced-motion: reduce`, các chuyển động tự động
+  và chuyển động theo scroll sẽ được tắt
+- Thiết bị cảm ứng dùng ít hiệu ứng hơn và không phụ thuộc vào con trỏ
 
-Motion should feel soft and spatial. It must not reproduce animations by
-extracting Air's code; timing and easing will be recreated from observation.
+Chuyển động phải mềm, có chiều sâu và thoáng. Không trích xuất mã hiệu ứng của
+Air; thời gian và easing sẽ được dựng lại qua quan sát.
 
-## Responsive Behavior
+## Responsive
 
-- Mobile-first content and booking flow
-- Hero remains visually complete on a small phone without hiding the CTA
-- Oversized display text scales down safely
-- Heavy atmospheric layers are simplified below 700px
-- Gallery: two columns on common phones, one column only when necessary
-- Service panels and pricing stack vertically
-- Tap targets are at least 44px
-- No hover-only access to content
+- Ưu tiên trải nghiệm và quy trình đặt lịch trên điện thoại
+- Hero phải hiển thị đầy đủ trên điện thoại nhỏ, không che mất nút hành động
+- Chữ cỡ lớn tự thu nhỏ an toàn
+- Giảm bớt các lớp hình ảnh nặng dưới 700px
+- Gallery hiển thị hai cột trên điện thoại thông thường, chỉ chuyển một cột khi
+  màn hình quá hẹp
+- Bảng dịch vụ và bảng giá xếp dọc trên màn hình nhỏ
+- Vùng bấm tối thiểu 44px
+- Không có nội dung nào chỉ xem được bằng hover
 
-## Content Rules
+## Quy tắc nội dung
 
-- Preserve the approved slogans and three brand values verbatim.
-- Preserve the current address, phone, hours, social handles, and price ranges.
-- Preserve the rule that nail images contain no text or price overlays.
-- Do not add fabricated reviews, offers, discounts, or business claims.
-- Vietnamese is the primary language; existing short English brand phrases may
-  remain where already approved.
+- Giữ nguyên từng chữ của hai slogan đã duyệt và ba giá trị thương hiệu.
+- Giữ nguyên địa chỉ, số điện thoại, giờ mở cửa, tài khoản mạng xã hội và các
+  khoảng giá hiện tại.
+- Giữ nguyên quy tắc không chèn chữ hoặc giá lên ảnh nail.
+- Không thêm review, ưu đãi, giảm giá hoặc tuyên bố kinh doanh không có nguồn.
+- Tiếng Việt là ngôn ngữ chính; các câu thương hiệu tiếng Anh ngắn đã được
+  duyệt có thể giữ lại.
 
-## Technical Boundaries
+## Giới hạn kỹ thuật
 
-- Single standalone HTML file with inline CSS and JavaScript
-- Reuse the current public Google image URLs
-- Local SVG/CSS/canvas may be used for original atmospheric graphics
-- External font requests are allowed only where already consistent with this
-  static project; robust fallback fonts are required
-- No GSAP, Lenis, React, Vue, Tailwind, npm, or build tooling
-- No changes to production files during preview implementation
+- Một file HTML độc lập, CSS và JavaScript viết trực tiếp trong file
+- Tái sử dụng các URL ảnh công khai hiện tại trên Google
+- Có thể dùng SVG, CSS hoặc canvas tự tạo cho hình ảnh bầu trời và vật thể
+- Chỉ dùng font ngoài nếu phù hợp với cấu trúc website tĩnh hiện tại và phải có
+  font dự phòng ổn định
+- Không dùng GSAP, Lenis, React, Vue, Tailwind, npm hoặc công cụ build
+- Không sửa bất kỳ file website chính thức nào trong lúc làm bản thử nghiệm
 
-## Verification
+## Kiểm thử
 
-The preview will be checked at:
+Bản thử nghiệm sẽ được kiểm tra ở các kích thước:
 
-- Desktop: 1440×900 and 1280×720
-- Tablet: 768×1024
-- Mobile: 390×844 and 375×667
+- Máy tính: 1440×900 và 1280×720
+- Máy tính bảng: 768×1024
+- Điện thoại: 390×844 và 375×667
 
-Acceptance checks:
+Các điều kiện nghiệm thu:
 
-- No console errors
-- All navigation, tabs, gallery filters, lightbox, menu, and booking actions work
-- Zalo and social links use the existing destinations
-- No horizontal overflow
-- Reduced-motion mode remains usable
-- Images lazy-load below the fold
-- Existing production `index.html` is unchanged
-- The page communicates The Nail content while visibly matching Air's overall
-  layout, atmosphere, component language, and motion character
+- Không có lỗi console
+- Thanh điều hướng, tab, bộ lọc gallery, lightbox, menu và thao tác đặt lịch
+  đều hoạt động
+- Zalo và mạng xã hội dùng đúng liên kết hiện có
+- Không tràn ngang màn hình
+- Chế độ giảm chuyển động vẫn sử dụng tốt
+- Ảnh bên dưới màn hình đầu tiên được lazy-load
+- File `index.html` chính thức không thay đổi
+- Trang truyền tải đúng nội dung The Nail nhưng nhìn rõ ràng giống Air về bố
+  cục tổng thể, không khí, ngôn ngữ component và đặc tính chuyển động
 
-## Out of Scope
+## Ngoài phạm vi
 
-- Replacing the production homepage
-- Deploying or pushing the preview
-- Copying Air source code or proprietary assets
-- Backend booking storage
-- New pricing, reviews, promotions, or business claims
-- Additional pages or a framework migration
+- Thay thế trang chủ chính thức
+- Deploy hoặc push bản thử nghiệm
+- Sao chép mã nguồn hoặc tài nguyên độc quyền của Air
+- Lưu dữ liệu đặt lịch ở backend
+- Thêm giá, review, chương trình khuyến mãi hoặc tuyên bố kinh doanh mới
+- Làm thêm trang con hoặc chuyển đổi sang framework
