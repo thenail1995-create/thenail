@@ -3,3 +3,12 @@
 .idea/
 *.log
 node_modules/
+
+# Tệp tạm / local (không deploy)
+.wrangler/
+.claude/
+.mcp.json
+_verify-*.png
+_real-menu.jpg
+_mt.html
+_xem-mobile.html
