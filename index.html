@@ -2,10 +2,17 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="referrer" content="no-referrer" />   <!-- ảnh Google Drive (kể cả CSS background rèm splash) cần no-referrer mới load -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />   <!-- ảnh đã host local trên thenail.vn nên không cần no-referrer; policy này tốt cho analytics/SEO -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>THE NAIL — Quận 10, Sài Gòn</title>
   <meta name="description" content="The Nail — Tiệm nail thủ công tại Quận 10, TP.HCM. Sang trọng, tinh tế, mẫu đa dạng theo từng tầm giá." />
+
+  <!-- URL chuẩn (canonical) — tránh Google coi nhiều phiên bản URL là trùng lặp -->
+  <link rel="canonical" href="https://thenail.vn/" />
+
+  <!-- Google Search Console: vào search.google.com/search-console > thêm thenail.vn > chọn "Thẻ HTML",
+       copy mã rồi dán vào content bên dưới và BỎ dấu comment (xoá <!-- và -->) -->
+  <!-- <meta name="google-site-verification" content="DAN_MA_XAC_MINH_VAO_DAY" /> -->
 
   <!-- ===== Open Graph / chia sẻ Zalo · Facebook · Messenger ===== -->
   <meta property="og:type" content="website" />
@@ -13,12 +20,12 @@
   <meta property="og:title" content="The Nail — Nail Studio Quận 10, Sài Gòn" />
   <meta property="og:description" content="Tiệm nail thủ công · 517/15 Nguyễn Tri Phương, Q.10. Mẫu đa dạng theo từng tầm giá. Đặt lịch qua Zalo 0931 415 099." />
   <meta property="og:url" content="https://thenail.vn/" />
-  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200" />
+  <meta property="og:image" content="https://thenail.vn/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp" />
   <meta property="og:locale" content="vi_VN" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="The Nail — Nail Studio Quận 10, Sài Gòn" />
   <meta name="twitter:description" content="Tiệm nail thủ công · 517/15 Nguyễn Tri Phương, Q.10. Đặt lịch qua Zalo 0931 415 099." />
-  <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200" />
+  <meta name="twitter:image" content="https://thenail.vn/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp" />
 
   <!-- ===== Structured data — Google hiện tiệm kèm địa chỉ/giờ/map ===== -->
   <script type="application/ld+json">
@@ -26,7 +33,7 @@
     "@context": "https://schema.org",
     "@type": "NailSalon",
     "name": "The Nail",
-    "image": "https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200",
+    "image": "https://thenail.vn/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp",
     "url": "https://thenail.vn/",
     "telephone": "+84931415099",
     "priceRange": "200.000₫–1.500.000₫",
@@ -62,11 +69,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Preload splash curtain images (desktop: 2 large for 8-strip curtain) -->
-  <link rel="preload" as="image" media="(min-width: 769px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200" fetchpriority="high" />
-  <link rel="preload" as="image" media="(min-width: 769px)" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w1200" fetchpriority="high" />
+  <link rel="preload" as="image" media="(min-width: 769px)" href="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp" fetchpriority="high" />
+  <link rel="preload" as="image" media="(min-width: 769px)" href="/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w1200.webp" fetchpriority="high" />
   <!-- Mobile splash: 2 different nail photos forming a curtain. Preload only on phones. -->
-  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w600" fetchpriority="high" />
-  <link rel="preload" as="image" media="(max-width: 768px)" href="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w600" fetchpriority="high" />
+  <link rel="preload" as="image" media="(max-width: 768px)" href="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w600.webp" fetchpriority="high" />
+  <link rel="preload" as="image" media="(max-width: 768px)" href="/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w600.webp" fetchpriority="high" />
 
   <style>
     /* ===== RESET ===== */
@@ -1731,6 +1738,20 @@
       .fade-in { opacity: 1; transform: none; transition: none; }
     }
   </style>
+
+  <!-- ===== Google Analytics 4 (đo lượng khách) =====
+       CÁCH LẤY MÃ: vào analytics.google.com > tạo tài khoản + property cho thenail.vn
+       > Luồng dữ liệu Web > copy "Measurement ID" dạng G-XXXXXXXXXX.
+       Thay G-XXXXXXXXXX (cả 2 chỗ) bằng mã thật rồi BỎ dấu comment bao quanh khối <script>. -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
 </head>
 
 <body>
@@ -1738,16 +1759,16 @@
   <!-- ===== LOADING SPLASH — NAIL-PHOTO CURTAIN ===== -->
   <div class="loading-splash" id="splash">
     <div class="splash-content">
-      <h1 class="splash-h1">
+      <div class="splash-h1">
         <img src="/images/the-nail-logo-no-card.svg" alt="The Nail" />
-      </h1>
+      </div>
       <div class="splash-line"></div>
       <div class="splash-tagline">your concept, my creation</div>
       <div class="splash-tagline-vi">Ý tưởng bạn trao — Nghệ thuật tôi tạo</div>
     </div>
     <div class="curtain-strips" aria-hidden="true"
-         style="--curtain-img-a: url('https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w1200');
-                --curtain-img-b: url('https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w1200');">
+         style="--curtain-img-a: url('/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp');
+                --curtain-img-b: url('/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w1200.webp');">
       <div class="strip"></div>
       <div class="strip"></div>
       <div class="strip"></div>
@@ -1759,10 +1780,10 @@
     </div>
     <div class="splash-mosaic" aria-hidden="true">
       <div class="mosaic-half left">
-        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w600" alt="" />
+        <img class="mosaic-photo" src="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w600.webp" alt="" />
       </div>
       <div class="mosaic-half right">
-        <img class="mosaic-photo" src="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w600" alt="" />
+        <img class="mosaic-photo" src="/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w600.webp" alt="" />
       </div>
     </div>
   </div>
@@ -1811,14 +1832,14 @@
       <p class="slogan-vi"><span class="sg">Ý tưởng bạn trao —</span> <span class="sg">Nghệ thuật tôi tạo</span></p>
     </div>
     <div class="hero-scatter" aria-hidden="true">
-      <figure class="scatter-card"><div class="sc-float"><img src="https://lh3.googleusercontent.com/d/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb=w600" alt="Mẫu nail cao cấp 1.5tr" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1.5tr</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="https://lh3.googleusercontent.com/d/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz=w600" alt="Mẫu nail cao cấp 1tr" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1tr</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="https://lh3.googleusercontent.com/d/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N=w600" alt="Mẫu nail cao cấp 850k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">850k</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="https://lh3.googleusercontent.com/d/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm=w600" alt="Mẫu nail cao cấp 700k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">700k</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="https://lh3.googleusercontent.com/d/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn=w600" alt="Mẫu nail cao cấp 650k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">650k</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="https://lh3.googleusercontent.com/d/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8=w600" alt="Mẫu nail cao cấp 1.2tr" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1.2tr</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="https://lh3.googleusercontent.com/d/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW=w600" alt="Mẫu nail cao cấp 900k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">900k</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="https://lh3.googleusercontent.com/d/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb=w600" alt="Mẫu nail cao cấp 600k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">600k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb_w600.webp" alt="Mẫu nail cao cấp 1.5tr" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1.5tr</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz_w600.webp" alt="Mẫu nail cao cấp 1tr" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1tr</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N_w600.webp" alt="Mẫu nail cao cấp 850k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">850k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm_w600.webp" alt="Mẫu nail cao cấp 700k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">700k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn_w600.webp" alt="Mẫu nail cao cấp 650k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">650k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8_w600.webp" alt="Mẫu nail cao cấp 1.2tr" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1.2tr</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW_w600.webp" alt="Mẫu nail cao cấp 900k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">900k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb_w600.webp" alt="Mẫu nail cao cấp 600k" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">600k</span></div></figure>
     </div>
   </section>
 
@@ -1873,255 +1894,255 @@
       <div class="gallery" id="gallery-grid">
         <!-- 200 — 300k -->
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="https://lh3.googleusercontent.com/d/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY=w400" alt="Mẫu nail 220k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w400.webp" alt="Mẫu nail 220k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="https://lh3.googleusercontent.com/d/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP=w400" alt="Mẫu nail 240k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP_w400.webp" alt="Mẫu nail 240k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="https://lh3.googleusercontent.com/d/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe=w400" alt="Mẫu nail 250k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe_w400.webp" alt="Mẫu nail 250k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="https://lh3.googleusercontent.com/d/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq=w400" alt="Mẫu nail 260k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq_w400.webp" alt="Mẫu nail 260k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="https://lh3.googleusercontent.com/d/15R-57T9UAgJU366mo1ehBbCdL__g_e0n=w400" alt="Mẫu nail 270k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/15R-57T9UAgJU366mo1ehBbCdL__g_e0n_w400.webp" alt="Mẫu nail 270k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="https://lh3.googleusercontent.com/d/1DB1ZURgeazTF8TExqop-9iaykK76pUZq=w400" alt="Mẫu nail 280k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1DB1ZURgeazTF8TExqop-9iaykK76pUZq_w400.webp" alt="Mẫu nail 280k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
-          <img src="https://lh3.googleusercontent.com/d/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq=w400" alt="Mẫu nail 290k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq_w400.webp" alt="Mẫu nail 290k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="https://lh3.googleusercontent.com/d/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2=w400" alt="Mẫu nail 220k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2_w400.webp" alt="Mẫu nail 220k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="https://lh3.googleusercontent.com/d/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr=w400" alt="Mẫu nail 240k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w400.webp" alt="Mẫu nail 240k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="https://lh3.googleusercontent.com/d/15_TA0WlU7HnrBVB1redzSknjkFmxsfQM=w400" alt="Mẫu nail 250k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/15_TA0WlU7HnrBVB1redzSknjkFmxsfQM_w400.webp" alt="Mẫu nail 250k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="https://lh3.googleusercontent.com/d/135oqrLfl6La-8UoyLQ-G-mijommxvH97=w400" alt="Mẫu nail 260k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/135oqrLfl6La-8UoyLQ-G-mijommxvH97_w400.webp" alt="Mẫu nail 260k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="https://lh3.googleusercontent.com/d/1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB=w400" alt="Mẫu nail 270k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB_w400.webp" alt="Mẫu nail 270k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="https://lh3.googleusercontent.com/d/163NFAIVlRBJJyhFou7r1JMdWb2aVXJQr=w400" alt="Mẫu nail 280k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/163NFAIVlRBJJyhFou7r1JMdWb2aVXJQr_w400.webp" alt="Mẫu nail 280k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
-          <img src="https://lh3.googleusercontent.com/d/16Vlv2ZbLHddXJtDHf_JuxDvfH8rrZsiw=w400" alt="Mẫu nail 290k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/16Vlv2ZbLHddXJtDHf_JuxDvfH8rrZsiw_w400.webp" alt="Mẫu nail 290k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="https://lh3.googleusercontent.com/d/1R6n4ci2qceGAEuCP06slXVWV9M7pu9dc=w400" alt="Mẫu nail 220k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1R6n4ci2qceGAEuCP06slXVWV9M7pu9dc_w400.webp" alt="Mẫu nail 220k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="https://lh3.googleusercontent.com/d/1EO8myodG3wgILbanuwVz6NymkBvYWqnk=w400" alt="Mẫu nail 240k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1EO8myodG3wgILbanuwVz6NymkBvYWqnk_w400.webp" alt="Mẫu nail 240k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="https://lh3.googleusercontent.com/d/1iUE7UlCv1PsP0qGnBKAoH8Gc15CGd8Sp=w400" alt="Mẫu nail 250k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1iUE7UlCv1PsP0qGnBKAoH8Gc15CGd8Sp_w400.webp" alt="Mẫu nail 250k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="https://lh3.googleusercontent.com/d/1chRGSaJQBt1jY-HnmQelfQXsKD69qho3=w400" alt="Mẫu nail 260k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1chRGSaJQBt1jY-HnmQelfQXsKD69qho3_w400.webp" alt="Mẫu nail 260k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="https://lh3.googleusercontent.com/d/1GCPuUII3SsN5qZ22A6gMyRZkgYYFhJP9=w400" alt="Mẫu nail 270k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1GCPuUII3SsN5qZ22A6gMyRZkgYYFhJP9_w400.webp" alt="Mẫu nail 270k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="https://lh3.googleusercontent.com/d/1scxmt4oSMJXKIQ8qnaNrV8r6YTyLkz3U=w400" alt="Mẫu nail 280k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1scxmt4oSMJXKIQ8qnaNrV8r6YTyLkz3U_w400.webp" alt="Mẫu nail 280k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 300 — 400k -->
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="https://lh3.googleusercontent.com/d/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ=w400" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ_w400.webp" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="https://lh3.googleusercontent.com/d/1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX_=w400" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX__w400.webp" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="https://lh3.googleusercontent.com/d/1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV=w400" alt="Mẫu nail 350k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV_w400.webp" alt="Mẫu nail 350k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="https://lh3.googleusercontent.com/d/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR_=w400" alt="Mẫu nail 360k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR__w400.webp" alt="Mẫu nail 360k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="https://lh3.googleusercontent.com/d/1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p=w400" alt="Mẫu nail 380k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p_w400.webp" alt="Mẫu nail 380k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="https://lh3.googleusercontent.com/d/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ=w400" alt="Mẫu nail 390k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ_w400.webp" alt="Mẫu nail 390k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="https://lh3.googleusercontent.com/d/1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee=w400" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee_w400.webp" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="https://lh3.googleusercontent.com/d/16xoZP9KI8THym4ev3Ayetk1p8h6Me27w=w400" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/16xoZP9KI8THym4ev3Ayetk1p8h6Me27w_w400.webp" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="https://lh3.googleusercontent.com/d/1krPewtbBudfV3IkWi16qHwGssLqZgyYt=w400" alt="Mẫu nail 350k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1krPewtbBudfV3IkWi16qHwGssLqZgyYt_w400.webp" alt="Mẫu nail 350k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="https://lh3.googleusercontent.com/d/1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo=w400" alt="Mẫu nail 360k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo_w400.webp" alt="Mẫu nail 360k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="https://lh3.googleusercontent.com/d/1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y=w400" alt="Mẫu nail 380k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y_w400.webp" alt="Mẫu nail 380k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="https://lh3.googleusercontent.com/d/1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC=w400" alt="Mẫu nail 390k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC_w400.webp" alt="Mẫu nail 390k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="https://lh3.googleusercontent.com/d/1QI2URULkrcTMpTwj2mTCs28aMYw0yxc5=w400" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1QI2URULkrcTMpTwj2mTCs28aMYw0yxc5_w400.webp" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="https://lh3.googleusercontent.com/d/1i6kGM6s0UHvAb5LOWEJQVPxxCDT_EDE8=w400" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1i6kGM6s0UHvAb5LOWEJQVPxxCDT_EDE8_w400.webp" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="https://lh3.googleusercontent.com/d/18t_7xqAaz8lpPJNR5EoCsUTAoTxkHCMl=w400" alt="Mẫu nail 350k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/18t_7xqAaz8lpPJNR5EoCsUTAoTxkHCMl_w400.webp" alt="Mẫu nail 350k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="https://lh3.googleusercontent.com/d/15nZvalPybqrct7B7g6ey2E_gRDg0tg6I=w400" alt="Mẫu nail 360k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/15nZvalPybqrct7B7g6ey2E_gRDg0tg6I_w400.webp" alt="Mẫu nail 360k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="https://lh3.googleusercontent.com/d/1aQpks3LTztk9VBxNa40porIXuvIYkoei=w400" alt="Mẫu nail 380k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1aQpks3LTztk9VBxNa40porIXuvIYkoei_w400.webp" alt="Mẫu nail 380k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="https://lh3.googleusercontent.com/d/1bKPtMEVii01P9HWmjnEzEDEWNn-Yho60=w400" alt="Mẫu nail 390k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1bKPtMEVii01P9HWmjnEzEDEWNn-Yho60_w400.webp" alt="Mẫu nail 390k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="https://lh3.googleusercontent.com/d/1S5fnvazifUYhdmcXGr7YHn83DRnSsQ1f=w400" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1S5fnvazifUYhdmcXGr7YHn83DRnSsQ1f_w400.webp" alt="Mẫu nail 320k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="https://lh3.googleusercontent.com/d/1fOX2JLKhBQlx4BGVye5jOFNUSc-TkGKB=w400" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1fOX2JLKhBQlx4BGVye5jOFNUSc-TkGKB_w400.webp" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 400 — 500k -->
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="https://lh3.googleusercontent.com/d/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF=w400" alt="Mẫu nail 420k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF_w400.webp" alt="Mẫu nail 420k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="https://lh3.googleusercontent.com/d/1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8=w400" alt="Mẫu nail 440k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8_w400.webp" alt="Mẫu nail 440k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="https://lh3.googleusercontent.com/d/1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa=w400" alt="Mẫu nail 450k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa_w400.webp" alt="Mẫu nail 450k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
-          <img src="https://lh3.googleusercontent.com/d/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv=w400" alt="Mẫu nail 460k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv_w400.webp" alt="Mẫu nail 460k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
-          <img src="https://lh3.googleusercontent.com/d/1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx=w400" alt="Mẫu nail 480k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx_w400.webp" alt="Mẫu nail 480k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
-          <img src="https://lh3.googleusercontent.com/d/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D=w400" alt="Mẫu nail 490k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D_w400.webp" alt="Mẫu nail 490k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="https://lh3.googleusercontent.com/d/17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1=w400" alt="Mẫu nail 420k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1_w400.webp" alt="Mẫu nail 420k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="https://lh3.googleusercontent.com/d/1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4=w400" alt="Mẫu nail 440k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4_w400.webp" alt="Mẫu nail 440k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="https://lh3.googleusercontent.com/d/1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K=w400" alt="Mẫu nail 450k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K_w400.webp" alt="Mẫu nail 450k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
-          <img src="https://lh3.googleusercontent.com/d/1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL=w400" alt="Mẫu nail 460k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL_w400.webp" alt="Mẫu nail 460k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
-          <img src="https://lh3.googleusercontent.com/d/1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka=w400" alt="Mẫu nail 480k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka_w400.webp" alt="Mẫu nail 480k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
-          <img src="https://lh3.googleusercontent.com/d/1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ=w400" alt="Mẫu nail 490k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ_w400.webp" alt="Mẫu nail 490k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="https://lh3.googleusercontent.com/d/1K0rZkCiM2hyEZCZQkJACvtkyBuqNHhUn=w400" alt="Mẫu nail 420k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1K0rZkCiM2hyEZCZQkJACvtkyBuqNHhUn_w400.webp" alt="Mẫu nail 420k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="https://lh3.googleusercontent.com/d/1QXDbRylzT3WAUWVc-yWkzaRbFAfRv3Z4=w400" alt="Mẫu nail 440k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1QXDbRylzT3WAUWVc-yWkzaRbFAfRv3Z4_w400.webp" alt="Mẫu nail 440k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="https://lh3.googleusercontent.com/d/1ROJpCAmJfjhtYadj686sDEplLbtKvs5t=w400" alt="Mẫu nail 450k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1ROJpCAmJfjhtYadj686sDEplLbtKvs5t_w400.webp" alt="Mẫu nail 450k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 500 — 700k -->
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="https://lh3.googleusercontent.com/d/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k=w400" alt="Mẫu nail 550k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k_w400.webp" alt="Mẫu nail 550k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="https://lh3.googleusercontent.com/d/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb=w400" alt="Mẫu nail 600k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb_w400.webp" alt="Mẫu nail 600k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="https://lh3.googleusercontent.com/d/1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av=w400" alt="Mẫu nail 620k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av_w400.webp" alt="Mẫu nail 620k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="https://lh3.googleusercontent.com/d/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn=w400" alt="Mẫu nail 650k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn_w400.webp" alt="Mẫu nail 650k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="https://lh3.googleusercontent.com/d/1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF=w400" alt="Mẫu nail 680k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF_w400.webp" alt="Mẫu nail 680k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
-          <img src="https://lh3.googleusercontent.com/d/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm=w400" alt="Mẫu nail 700k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm_w400.webp" alt="Mẫu nail 700k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="https://lh3.googleusercontent.com/d/1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR=w400" alt="Mẫu nail 550k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR_w400.webp" alt="Mẫu nail 550k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="https://lh3.googleusercontent.com/d/1rIhThOBF47i43kiJrhslelS54OgYytIp=w400" alt="Mẫu nail 600k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1rIhThOBF47i43kiJrhslelS54OgYytIp_w400.webp" alt="Mẫu nail 600k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="https://lh3.googleusercontent.com/d/1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW=w400" alt="Mẫu nail 620k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW_w400.webp" alt="Mẫu nail 620k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="https://lh3.googleusercontent.com/d/1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D=w400" alt="Mẫu nail 650k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D_w400.webp" alt="Mẫu nail 650k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="https://lh3.googleusercontent.com/d/1bKBL_79FRCql-utY01i8AKVgTGdFAaRf=w400" alt="Mẫu nail 680k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1bKBL_79FRCql-utY01i8AKVgTGdFAaRf_w400.webp" alt="Mẫu nail 680k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
-          <img src="https://lh3.googleusercontent.com/d/1lY3pzege3isnu005Uq7WtKd7HXgTWibo=w400" alt="Mẫu nail 700k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1lY3pzege3isnu005Uq7WtKd7HXgTWibo_w400.webp" alt="Mẫu nail 700k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="https://lh3.googleusercontent.com/d/1juCmUppBVNxI3_AnhWk1brwMTz08K2V0=w400" alt="Mẫu nail 550k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1juCmUppBVNxI3_AnhWk1brwMTz08K2V0_w400.webp" alt="Mẫu nail 550k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="https://lh3.googleusercontent.com/d/1DNheloiqsUAp-DODjkM0u-tVjdTP04q4=w400" alt="Mẫu nail 600k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1DNheloiqsUAp-DODjkM0u-tVjdTP04q4_w400.webp" alt="Mẫu nail 600k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="https://lh3.googleusercontent.com/d/185MiBYHWJD_pn1-WpWhA2xwbC7oGqIAW=w400" alt="Mẫu nail 620k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/185MiBYHWJD_pn1-WpWhA2xwbC7oGqIAW_w400.webp" alt="Mẫu nail 620k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="https://lh3.googleusercontent.com/d/1XKmqO64qLuCp9feqwyyIp-_vEcfj5Yw0=w400" alt="Mẫu nail 650k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1XKmqO64qLuCp9feqwyyIp-_vEcfj5Yw0_w400.webp" alt="Mẫu nail 650k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="https://lh3.googleusercontent.com/d/1tTYrEusS1g-Uo1OiglePhiFJgZBZX91D=w400" alt="Mẫu nail 680k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1tTYrEusS1g-Uo1OiglePhiFJgZBZX91D_w400.webp" alt="Mẫu nail 680k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 800k+ -->
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
-          <img src="https://lh3.googleusercontent.com/d/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N=w400" alt="Mẫu nail 850k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N_w400.webp" alt="Mẫu nail 850k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
-          <img src="https://lh3.googleusercontent.com/d/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW=w400" alt="Mẫu nail 900k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW_w400.webp" alt="Mẫu nail 900k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
-          <img src="https://lh3.googleusercontent.com/d/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz=w400" alt="Mẫu nail 1000k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz_w400.webp" alt="Mẫu nail 1000k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
-          <img src="https://lh3.googleusercontent.com/d/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8=w400" alt="Mẫu nail 1200k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8_w400.webp" alt="Mẫu nail 1200k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1500k">
-          <img src="https://lh3.googleusercontent.com/d/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb=w400" alt="Mẫu nail 1500k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb_w400.webp" alt="Mẫu nail 1500k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
-          <img src="https://lh3.googleusercontent.com/d/1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7=w400" alt="Mẫu nail 850k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7_w400.webp" alt="Mẫu nail 850k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
-          <img src="https://lh3.googleusercontent.com/d/1x1smBa58U7JikT1R-c82bwe92SwqT1V_=w400" alt="Mẫu nail 900k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1x1smBa58U7JikT1R-c82bwe92SwqT1V__w400.webp" alt="Mẫu nail 900k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
-          <img src="https://lh3.googleusercontent.com/d/1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm=w400" alt="Mẫu nail 1000k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm_w400.webp" alt="Mẫu nail 1000k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
         <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
-          <img src="https://lh3.googleusercontent.com/d/1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds=w400" alt="Mẫu nail 1200k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          <img src="/images/gallery/1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds_w400.webp" alt="Mẫu nail 1200k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
       </div>
     </div>
@@ -3386,9 +3407,11 @@
   .ai-head .ai-x { margin-left: auto; background: none; border: none; color: #F4F0E6; opacity: .8; cursor: pointer; font-size: 22px; line-height: 1; padding: 4px; }
   .ai-head .ai-x:hover { opacity: 1; }
 
-  .ai-body { flex: 1; overflow-y: auto; padding: 16px 14px 6px; display: flex; flex-direction: column; gap: 10px; background:
+  .ai-body { flex: 1; min-height: 0; overflow-y: auto; padding: 16px 14px 6px; display: flex; flex-direction: column; gap: 10px; background:
     radial-gradient(120% 60% at 50% 0, rgba(158,68,38,.05), transparent 60%); }
+  .ai-body > * { flex-shrink: 0; }   /* FIX: bong bóng chat không bị co/cắt chữ khi nội dung dài (lỗi "chỉ hiện 1 dòng tới khi bấm gửi") */
   .ai-msg { max-width: 84%; padding: 9px 13px; border-radius: 15px; font-size: 14px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word; }
+  .ai-msg img.ai-photo { display: block; max-width: 200px; width: 100%; border-radius: 10px; margin-bottom: 6px; }
   .ai-msg.bot { align-self: flex-start; background: #EFE8D8; color: #34402F; border-bottom-left-radius: 5px; }
   .ai-msg.me { align-self: flex-end; background: #9E4426; color: #F7EFE6; border-bottom-right-radius: 5px; }
   .ai-typing { align-self: flex-start; background: #EFE8D8; border-radius: 15px; border-bottom-left-radius: 5px; padding: 11px 14px; display: inline-flex; gap: 4px; }
@@ -3414,6 +3437,12 @@
   .ai-foot button { flex: 0 0 auto; width: 42px; height: 42px; border: none; border-radius: 50%; background: #9E4426; color: #F4F0E6; cursor: pointer; display: grid; place-items: center; }
   .ai-foot button:hover { background: #8a3a20; }
   .ai-foot button:disabled { opacity: .5; cursor: default; }
+  .ai-attach { flex: 0 0 auto; width: 42px; height: 42px; border: 1px solid rgba(46,74,60,.2); border-radius: 50%; background:#fff; color:#2E4A3C; cursor: pointer; display: grid; place-items: center; }
+  .ai-attach:hover { background: rgba(46,74,60,.06); border-color:#2E4A3C; }
+  .ai-pending { display:flex; align-items:center; gap:10px; padding:8px 12px; border-top:1px solid rgba(46,74,60,.10); background:#FBF7EF; }
+  .ai-pending img { width:42px; height:42px; object-fit:cover; border-radius:8px; flex:0 0 auto; }
+  .ai-pending .ai-pending-tx { font-size:12.5px; color:#4A5A50; }
+  .ai-pending .ai-pending-x { margin-left:auto; background:none; border:none; color:#9E4426; cursor:pointer; font-size:20px; line-height:1; padding:2px 4px; }
 
   @media (max-width: 600px) {
     .ai-fab { left: 14px; bottom: 76px; padding: 10px 15px 10px 11px; font-size: 12.5px; }   /* tránh thanh dưới (.mbar) */
@@ -3437,7 +3466,12 @@
     <button class="ai-x" id="ai-x" aria-label="Đóng">×</button>
   </header>
   <div class="ai-body" id="ai-body"></div>
+  <div class="ai-pending" id="ai-pending" hidden></div>
   <form class="ai-foot" id="ai-form">
+    <input id="ai-file" type="file" accept="image/*" hidden>
+    <button type="button" class="ai-attach" id="ai-attach" aria-label="Gửi ảnh mẫu nail" title="Gửi ảnh mẫu để hỏi giá">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+    </button>
     <input id="ai-input" type="text" autocomplete="off" placeholder="Nhập tin nhắn…" data-en-ph="Type a message…" aria-label="Nhập tin nhắn">
     <button type="submit" id="ai-send" aria-label="Gửi">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -3459,11 +3493,51 @@
   var form = document.getElementById('ai-form');
   var input = document.getElementById('ai-input');
   var sendBtn = document.getElementById('ai-send');
+  var fileInput = document.getElementById('ai-file');
+  var attachBtn = document.getElementById('ai-attach');
+  var pendingEl = document.getElementById('ai-pending');
   if (!fab || !panel) return;
 
   var isEN = function () { return document.documentElement.getAttribute('data-lang') === 'en'; };
-  var history = [];      // [{role, content}]
+  var history = [];          // [{role, content}] — chỉ lưu chữ cho nhẹ
   var started = false;
+  var pendingImage = null;   // {dataUrl, b64, mediaType} — ảnh đang chờ gửi
+
+  // ===== Ảnh: nén về tối đa 1024px + JPEG q0.82 để payload nhỏ (ảnh điện thoại 4MB → ~150KB) =====
+  var MAX_DIM = 1024;
+  function handleFile(file) {
+    if (!file || file.type.indexOf('image/') !== 0) return;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var img = new Image();
+      img.onload = function () {
+        var w = img.width, h = img.height;
+        var scale = Math.min(1, MAX_DIM / Math.max(w, h));
+        var cw = Math.round(w * scale), ch = Math.round(h * scale);
+        var cv = document.createElement('canvas'); cv.width = cw; cv.height = ch;
+        cv.getContext('2d').drawImage(img, 0, 0, cw, ch);
+        var dataUrl = cv.toDataURL('image/jpeg', 0.82);
+        pendingImage = { dataUrl: dataUrl, b64: dataUrl.split(',')[1], mediaType: 'image/jpeg' };
+        renderPending();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+  function renderPending() {
+    if (!pendingImage) { pendingEl.hidden = true; pendingEl.innerHTML = ''; return; }
+    pendingEl.hidden = false;
+    pendingEl.innerHTML = '';
+    var im = document.createElement('img'); im.src = pendingImage.dataUrl; im.alt = '';
+    var tx = document.createElement('span'); tx.className = 'ai-pending-tx';
+    tx.textContent = isEN() ? 'Photo attached — add a note or just send' : 'Đã đính ảnh — thêm ghi chú hoặc bấm gửi';
+    var x = document.createElement('button'); x.type = 'button'; x.className = 'ai-pending-x'; x.textContent = '×';
+    x.setAttribute('aria-label', isEN() ? 'Remove photo' : 'Bỏ ảnh');
+    x.addEventListener('click', function () { pendingImage = null; fileInput.value = ''; renderPending(); });
+    pendingEl.appendChild(im); pendingEl.appendChild(tx); pendingEl.appendChild(x);
+  }
+  attachBtn.addEventListener('click', function () { fileInput.click(); });
+  fileInput.addEventListener('change', function () { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
 
   function scrollDown() { body.scrollTop = body.scrollHeight; }
 
@@ -3566,13 +3640,23 @@
   });
 
   function handleSend(text) {
+    text = (text || '').trim();
+    var img = pendingImage;
+    if (!text && !img) return;
     input.value = '';
-    addMsg(text, 'me');
-    history.push({ role: 'user', content: text });
+    pendingImage = null; fileInput.value = ''; renderPending();
+
+    // Bong bóng của khách — kèm ảnh nếu có
+    var me = document.createElement('div'); me.className = 'ai-msg me';
+    if (img) { var ph = document.createElement('img'); ph.className = 'ai-photo'; ph.src = img.dataUrl; ph.alt = ''; me.appendChild(ph); }
+    if (text) { me.appendChild(document.createTextNode(text)); }
+    body.appendChild(me); scrollDown();
+
+    history.push({ role: 'user', content: text || (isEN() ? '[customer sent a nail photo]' : '[khách gửi 1 ảnh mẫu nail]') });
     sendBtn.disabled = true;
     var typing = addTyping();
 
-    respond(text).then(function (raw) {
+    respond(text, img).then(function (raw) {
       typing.remove(); sendBtn.disabled = false;
       var parsed = extractBooking(raw || '');
       if (parsed.text) { addMsg(parsed.text, 'bot'); history.push({ role: 'assistant', content: raw }); }
@@ -3585,11 +3669,19 @@
   }
 
   // Gọi AI thật (Worker) hoặc DEMO nếu chưa cấu hình endpoint
-  function respond(text) {
+  function respond(text, img) {
     if (AI_CFG.endpoint) {
+      // Gửi lịch sử dạng chữ; nếu có ảnh thì gắn vào tin nhắn cuối (multimodal) — chỉ gửi 1 lần
+      var out = history.map(function (m) { return { role: m.role, content: m.content }; });
+      if (img && out.length) {
+        out[out.length - 1].content = [
+          { type: 'image', source: { type: 'base64', media_type: img.mediaType, data: img.b64 } },
+          { type: 'text', text: text || (isEN() ? 'Please look at this nail design and give a price estimate.' : 'Bạn xem mẫu nail này giúp mình và báo giá ước lượng nhé.') }
+        ];
+      }
       return fetch(AI_CFG.endpoint, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history })
+        body: JSON.stringify({ messages: out })
       }).then(function (r) { return r.json(); })
         .then(function (d) { if (d && d.reply) return d.reply; throw new Error('no reply'); });
     }

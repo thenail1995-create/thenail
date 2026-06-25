@@ -1,0 +1,4 @@
+name = "thenail-bot"
+main = "thenail-bot-worker.js"
+compatibility_date = "2025-06-01"
+account_id = "fd74ef0b23a00e15846a9bea345f5037"

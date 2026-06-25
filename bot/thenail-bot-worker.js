@@ -12,7 +12,42 @@
  */
 
 const MODEL = 'claude-haiku-4-5-20251001';
-const MAX_TOKENS = 700;
+const MAX_TOKENS = 800;
+
+// QUAN TRỌNG: gọi Anthropic QUA Cloudflare AI Gateway (gateway tên "thenail").
+// Lý do: gọi thẳng api.anthropic.com từ Cloudflare Worker bị Anthropic chặn IP → 403 "Request not allowed"
+// (đã test: key gọi trực tiếp từ máy = 200 OK, nhưng qua Worker = 403). AI Gateway vượt được chặn này.
+const ANTHROPIC_URL = 'https://gateway.ai.cloudflare.com/v1/fd74ef0b23a00e15846a9bea345f5037/thenail/anthropic/v1/messages';
+
+// Ảnh khách gửi (báo giá): chỉ nhận các định dạng này, base64 tối đa ~5MB
+const ALLOWED_MEDIA = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+const MAX_IMG_B64 = 5 * 1024 * 1024;
+
+// Lọc & làm sạch nội dung 1 tin nhắn: cho phép chuỗi chữ HOẶC mảng block (text + image).
+// Chỉ cho phép block image trong tin của 'user' (yêu cầu của Anthropic API).
+function sanitizeContent(content, role) {
+  if (typeof content === 'string') {
+    const t = content.slice(0, 2000);
+    return t.length ? t : null;
+  }
+  if (Array.isArray(content)) {
+    const blocks = [];
+    for (const b of content) {
+      if (!b || typeof b !== 'object') continue;
+      if (b.type === 'text' && typeof b.text === 'string' && b.text.length) {
+        blocks.push({ type: 'text', text: b.text.slice(0, 2000) });
+      } else if (
+        role === 'user' && b.type === 'image' && b.source && b.source.type === 'base64' &&
+        ALLOWED_MEDIA.includes(b.source.media_type) &&
+        typeof b.source.data === 'string' && b.source.data.length <= MAX_IMG_B64
+      ) {
+        blocks.push({ type: 'image', source: { type: 'base64', media_type: b.source.media_type, data: b.source.data } });
+      }
+    }
+    return blocks.length ? blocks : null;
+  }
+  return null;
+}
 
 // Chỉ cho phép các origin này gọi Worker (chống lạm dụng). Thêm domain khi cần.
 const ALLOWED_ORIGINS = [
@@ -57,6 +92,13 @@ Lưu ý khi báo giá: nói rõ "k" hoặc "nghìn", và nhắc giá cuối tu�
 3) Khi đã đủ 5 mục trên, tóm tắt lại cho khách xác nhận, RỒI ở CUỐI tin nhắn thêm đúng 1 dòng máy đọc (khách sẽ không thấy dòng này, web tự xử lý):
 [[BOOKING]]{"name":"...","phone":"...","date":"...","time":"...","service":"..."}
    Chỉ xuất dòng [[BOOKING]] khi đã có ĐỦ cả 5 mục.
+
+# Khi khách GỬI ẢNH mẫu nail (để hỏi giá)
+- Xem ảnh và mô tả ngắn mẫu: kiểu dáng (móng dài/ngắn, vuông/almond...), kỹ thuật nhìn thấy (sơn gel, mắt mèo/chrome, vẽ tay, úp/nối/đắp gel, đính đá, charm, tráng gương...).
+- ƯỚC LƯỢNG một KHOẢNG giá bằng cách cộng các hạng mục liên quan trong MENU (vd: nối móng đắp gel 200 + vẽ design 20–50 + đính đá 5–50 → khoảng 230–300k). KHÔNG đưa con số cứng.
+- LUÔN nói rõ đây là giá ƯỚC LƯỢNG; giá chính xác còn tuỳ độ dài/độ khó và sẽ được chị Ngọc báo qua Zalo 0931 415 099. Mời khách gửi lại ảnh qua Zalo để chốt giá.
+- Mẫu nghệ thuật cầu kỳ có thể 600k–1.5tr — cứ nói thẳng khoảng đó nếu mẫu phức tạp.
+- Nếu ảnh KHÔNG phải mẫu nail, lịch sự nói tiệm chỉ tư vấn mẫu nail và mời khách hỏi tiếp.
 
 # Giới hạn
 - Bạn KHÔNG tự xác nhận đã đặt thành công. Hãy nói: thông tin sẽ được gửi cho tiệm qua Zalo để xác nhận giờ.
@@ -103,16 +145,17 @@ export default {
     // Nhận lịch sử hội thoại: [{role:'user'|'assistant', content:'...'}]
     const history = Array.isArray(payload.messages) ? payload.messages : [];
     const messages = history
-      .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+      .filter((m) => m && (m.role === 'user' || m.role === 'assistant'))
       .slice(-20) // giới hạn để tiết kiệm token
-      .map((m) => ({ role: m.role, content: m.content.slice(0, 2000) }));
+      .map((m) => ({ role: m.role, content: sanitizeContent(m.content, m.role) }))
+      .filter((m) => m.content !== null);
 
     if (!messages.length || messages[messages.length - 1].role !== 'user') {
       return json({ error: 'Thiếu tin nhắn của khách' }, 400, origin);
     }
 
     try {
-      const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      const resp = await fetch(ANTHROPIC_URL, {
         method: 'POST',
         headers: {
           'x-api-key': env.ANTHROPIC_API_KEY,
