@@ -961,7 +961,13 @@ $('#con').oninput=e=>{state.con=+e.target.value/100;$('#conVal').textContent=e.t
 $('#btnWarm').onclick=()=>{state.warm=0.42;state.sat=1.22;state.bri=1.06;state.con=1.1;syncColor();render();};
 $('#btnResetColor').onclick=()=>{state.warm=0;state.sat=1;state.bri=1;state.con=1;syncColor();render();};
 
-window.addEventListener('resize',layout);
+// mobile: cuộn trang làm thanh địa chỉ ẩn/hiện → resize "giả" chỉ đổi chiều cao chút ít, bỏ qua kẻo giấy co giãn theo nhịp cuộn
+let lastVW=window.innerWidth, lastVH=window.innerHeight;
+window.addEventListener('resize',()=>{
+  const w=window.innerWidth, h=window.innerHeight;
+  if(w===lastVW && Math.abs(h-lastVH)<150) return;
+  lastVW=w; lastVH=h; layout();
+});
 logoImg.onload=layout;
 layout();
 if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{})); }
