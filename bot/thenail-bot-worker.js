@@ -6,6 +6,9 @@
  * - Nạp sẵn menu + thông tin tiệm vào system prompt → bot trả lời đúng giá thật.
  * - Khi gom đủ thông tin đặt lịch, bot xuất 1 dòng máy đọc:  [[BOOKING]]{...json...}
  *   → website bắt dòng này để hiện nút "Gửi qua Zalo".
+ * - MỚI (2026-07-06): bắt [[BOOKING]] và SĐT khách nhắn → báo ngay về Telegram anh Hào
+ *   + lưu vào KV (binding LEADS) → Hermes đọc qua GET /leads cho morning digest.
+ *   Secrets thêm: TELEGRAM_BOT_TOKEN, LEADS_READ_KEY.
  *
  * Deploy: xem bot/README-chatbot.md
  * Model:  claude-haiku-4-5-20251001 (rẻ, nhanh, tiếng Việt tốt). Đổi MODEL nếu muốn Sonnet.
@@ -18,6 +21,9 @@ const MAX_TOKENS = 800;
 // Lý do: gọi thẳng api.anthropic.com từ Cloudflare Worker bị Anthropic chặn IP → 403 "Request not allowed"
 // (đã test: key gọi trực tiếp từ máy = 200 OK, nhưng qua Worker = 403). AI Gateway vượt được chặn này.
 const ANTHROPIC_URL = 'https://gateway.ai.cloudflare.com/v1/fd74ef0b23a00e15846a9bea345f5037/thenail/anthropic/v1/messages';
+
+// Telegram chat nhận thông báo lead/booking (trùng home chat của Hermes)
+const TELEGRAM_CHAT_ID = '6161456868';
 
 // Ảnh khách gửi (báo giá): chỉ nhận các định dạng này, base64 tối đa ~5MB
 const ALLOWED_MEDIA = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
@@ -132,13 +138,98 @@ function json(body, status, origin) {
   });
 }
 
+// Lấy phần chữ trong tin nhắn cuối của khách (bỏ qua block ảnh)
+function lastUserText(messages) {
+  const m = messages[messages.length - 1];
+  if (!m || m.role !== 'user') return '';
+  if (typeof m.content === 'string') return m.content;
+  if (Array.isArray(m.content)) {
+    return m.content.filter((b) => b.type === 'text').map((b) => b.text).join(' ');
+  }
+  return '';
+}
+
+// Báo về Telegram anh Hào. Nuốt lỗi — không được ảnh hưởng phản hồi cho khách.
+async function notifyTelegram(env, text) {
+  if (!env.TELEGRAM_BOT_TOKEN) return;
+  try {
+    await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text }),
+    });
+  } catch {}
+}
+
+// Lưu lead vào KV (giữ 90 ngày) để Hermes đọc qua GET /leads
+async function saveLead(env, lead) {
+  if (!env.LEADS) return;
+  try {
+    const at = new Date().toISOString();
+    const key = `lead:${at}:${Math.random().toString(36).slice(2, 8)}`;
+    await env.LEADS.put(key, JSON.stringify({ at, ...lead }), { expirationTtl: 60 * 60 * 24 * 90 });
+  } catch {}
+}
+
+// Bắt booking ([[BOOKING]] trong trả lời của bot) hoặc SĐT khách để lại → Telegram + KV
+async function captureLead(env, reply, messages) {
+  try {
+    const bk = reply.match(/\[\[BOOKING\]\]\s*(\{[\s\S]*?\})/);
+    if (bk) {
+      let info = null;
+      try { info = JSON.parse(bk[1]); } catch {}
+      if (info) {
+        const text = [
+          '🔔 BOOKING MỚI từ web thenail.vn',
+          `Tên: ${info.name || '?'}`,
+          `SĐT: ${info.phone || '?'}`,
+          `Ngày: ${info.date || '?'} · Giờ: ${info.time || '?'}`,
+          `Dịch vụ: ${info.service || '?'}`,
+          '→ Nhắn khách qua Zalo để xác nhận lịch.',
+        ].join('\n');
+        await Promise.all([notifyTelegram(env, text), saveLead(env, { type: 'booking', ...info })]);
+        return;
+      }
+    }
+    // Chưa thành booking nhưng khách để lại SĐT trong tin nhắn cuối → vẫn là lead đáng báo
+    const t = lastUserText(messages);
+    const phone = (t.match(/(?:\+84|0)\d[\d .\-]{7,12}\d/) || [])[0];
+    if (phone) {
+      const text = `📞 LEAD từ web thenail.vn — khách để lại SĐT: ${phone}\nTin nhắn: "${t.slice(0, 300)}"`;
+      await Promise.all([notifyTelegram(env, text), saveLead(env, { type: 'phone', phone, message: t.slice(0, 300) })]);
+    }
+  } catch {}
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const origin = request.headers.get('Origin') || '';
+    const url = new URL(request.url);
 
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders(origin) });
     }
+
+    // Hermes đọc leads cho morning digest: GET /leads?since=<ISO> + header x-leads-key
+    if (request.method === 'GET' && url.pathname === '/leads') {
+      if (!env.LEADS_READ_KEY || request.headers.get('x-leads-key') !== env.LEADS_READ_KEY) {
+        return json({ error: 'Unauthorized' }, 401, origin);
+      }
+      if (!env.LEADS) return json({ leads: [] }, 200, origin);
+      const since = url.searchParams.get('since') || '';
+      const list = await env.LEADS.list({ prefix: 'lead:', limit: 1000 });
+      const names = list.keys
+        .map((k) => k.name)
+        .filter((n) => !since || n.slice(5) >= since)
+        .slice(-100); // tối đa 100 lead gần nhất
+      const leads = [];
+      for (const name of names) {
+        const v = await env.LEADS.get(name);
+        if (v) { try { leads.push(JSON.parse(v)); } catch {} }
+      }
+      return json({ leads }, 200, origin);
+    }
+
     if (request.method !== 'POST') {
       return json({ error: 'Method not allowed' }, 405, origin);
     }
@@ -192,6 +283,9 @@ export default {
         .map((b) => b.text)
         .join('\n')
         .trim();
+
+      // Bắt booking/lead và báo Telegram + lưu KV — chạy nền, không chặn phản hồi cho khách
+      ctx.waitUntil(captureLead(env, reply, messages));
 
       return json({ reply }, 200, origin);
     } catch (err) {

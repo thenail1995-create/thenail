@@ -51,3 +51,16 @@ Lưu lại → mở web → chat thử. Giờ bot trả lời bằng **Claude th
 Widget này chỉ trả lời khách **trên website**. Muốn bot tự rep khách nhắn thẳng vào **Zalo / Facebook / Instagram**:
 - Cần **Zalo OA (Official Account) + duyệt Open API** cho Zalo, và **Facebook Page + Meta app** cho Messenger/IG.
 - Worker này tái dùng được (cùng "bộ não"), chỉ thêm phần nhận webhook từ từng kênh. Báo Claude khi muốn làm.
+
+
+---
+
+## ✅ Đã bật (2026-07-06) — Lead tự bay về Telegram + Hermes đọc được
+
+Worker đã được nâng cấp và deploy lại (không cần làm gì thêm):
+
+- **Khách chốt đặt lịch** (bot xuất `[[BOOKING]]`) hoặc **để lại SĐT** → Worker gửi thông báo ngay về Telegram anh Hào (chat `6161456868`, dùng bot của Hermes). Secret: `TELEGRAM_BOT_TOKEN`.
+- **Mọi lead lưu vào KV** (binding `LEADS`, giữ 90 ngày). Đọc bằng `GET /leads?since=<ISO-UTC>` + header `x-leads-key` (secret `LEADS_READ_KEY`; bản sao nằm ở `THENAIL_LEADS_KEY` trong `~/.hermes/.env` trên laptop WSL).
+- **Cron `morning-lead-digest` của Hermes** (6:30 sáng) tự kéo leads web vào báo cáo hằng ngày.
+- Bản sao vận hành trên laptop: `~/thenail-bot/` (WSL Ubuntu). Deploy: `cd ~/thenail-bot && CI=true npx -y wrangler deploy` (wrangler login tài khoản `psnhaotur1@gmail.com`).
+- Lưu ý: sửa giá/menu → sửa `SYSTEM_PROMPT` trong worker **và** mục Menu trên `index.html` cho khớp.
