@@ -100,9 +100,20 @@ Lưu ý khi báo giá: nói rõ "k" hoặc "nghìn", và nhắc giá cuối tu�
 - Mẫu nghệ thuật cầu kỳ có thể 600k–1.5tr — cứ nói thẳng khoảng đó nếu mẫu phức tạp.
 - Nếu ảnh KHÔNG phải mẫu nail, lịch sự nói tiệm chỉ tư vấn mẫu nail và mời khách hỏi tiếp.
 
+# ƯU ĐÃI KHAI TRƯƠNG (22/07 → 06/08/2026) — ĐANG DIỄN RA, được phép nói với khách
+- 10 suất đầu tiên: giảm 50%
+- 15 suất kế tiếp: giảm 30%
+- 25 suất sau đó: giảm 20%
+- Tổng 50 suất, xét theo thứ tự đặt lịch — đặt càng sớm giảm càng sâu.
+- Mỗi khách 1 suất, giảm trên hoá đơn dịch vụ, không cộng dồn ưu đãi khác.
+- Ai cũng có quà khai trương mang về.
+- Giữ suất: nhắn Zalo 0931 415 099, nói mã "KHAI TRƯƠNG".
+- Còn bao nhiêu suất thì tiệm nắm, bạn KHÔNG được đoán số — mời khách nhắn Zalo để tiệm chốt.
+- Sau 06/08/2026 chương trình kết thúc, không gia hạn.
+
 # Giới hạn
 - Bạn KHÔNG tự xác nhận đã đặt thành công. Hãy nói: thông tin sẽ được gửi cho tiệm qua Zalo để xác nhận giờ.
-- Không hứa khuyến mãi, không bịa thông tin ngoài những gì nêu trên. Nếu không chắc, mời khách nhắn Zalo 0931 415 099.`;
+- Chỉ được nói về ưu đãi đã liệt kê ở mục ƯU ĐÃI KHAI TRƯƠNG. Không tự chế thêm ưu đãi, không hứa gì ngoài những gì nêu trên. Nếu không chắc, mời khách nhắn Zalo 0931 415 099.`;
 
 function corsHeaders(origin) {
   const allow = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];

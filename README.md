@@ -30,7 +30,7 @@ CLAUDE.md        # context cho Claude AI khi update
 
 ## Liên hệ tiệm
 
-- 📍 521/54 Cách Mạng Tháng 8, P. Hoà Hưng, Q.10, TP.HCM
+- 📍 517/15 Nguyễn Tri Phương, P. Diên Hồng, Q.10, TP.HCM
 - 📞 0931 415 099
 - 🕘 9:00 — 22:00 hàng ngày
 - 📷 [@thenail.1995](https://www.instagram.com/thenail.1995/)

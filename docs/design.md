@@ -1,3 +1,20 @@
+> ⚠️ **CẬP NHẬT 2026-06-17 — Redesign "Vintage Sage & Cream".**
+> Web chuyển từ *Dark Luxury Emerald* (nền tối) sang tông **Sage (xanh rêu) + Kem** —
+> hoài cổ, ấm, tối giản; vẫn **kế thừa màu xanh** emerald gốc của The Nail.
+>
+> Bảng màu mới (nguồn: Color Hunt "vintage", xem `index.html` :root):
+> - Nền kem `#fdf6ed` · Card `#fffdf9` · Be cát `#e7dccd`
+> - Sage nhấn `#778873` · Sage đậm (nút) `#4a5848`
+> - Chữ `#2f352c` · Chữ phụ `#6f7468`
+>
+> Cấu trúc mới: splash nhanh, hero ảnh parallax, bento stats, **mục Bảng giá (4 nhóm)**,
+> form đặt lịch soạn sẵn tin Zalo, dock đặt lịch nổi ở mobile, lightbox chỉ-ảnh.
+> Font giữ nguyên Cormorant Garamond + Inter. Quy ước **ảnh sạch (không overlay chữ/giá)** vẫn áp dụng.
+>
+> Phần "Dark Luxury" bên dưới là lịch sử thiết kế cũ — giữ lại để tham khảo.
+
+---
+
 # Design System
 
 ## 🎨 Triết lý thiết kế

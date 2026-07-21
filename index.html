@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />   <!-- ảnh đã host local trên thenail.vn nên không cần no-referrer; policy này tốt cho analytics/SEO -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tiệm Nail Quận 10 · Vẽ Móng Nghệ Thuật — The Nail, Nguyễn Tri Phương</title>
+  <title>Khai Trương 22/7 — Giảm Tới 50% · The Nail, Tiệm Nail Quận 10</title>
   <meta name="description" content="The Nail — tiệm nail đẹp ở 517/15 Nguyễn Tri Phương, Quận 10, Sài Gòn. Vẽ móng nghệ thuật, sơn gel, nối móng, đắp gel theo từng tầm giá. Đặt lịch Zalo 0931 415 099." />
 
   <!-- URL chuẩn (canonical) — tránh Google coi nhiều phiên bản URL là trùng lặp -->
@@ -20,15 +20,19 @@
   <!-- ===== Open Graph / chia sẻ Zalo · Facebook · Messenger ===== -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="The Nail" />
-  <meta property="og:title" content="Tiệm nail Quận 10 — The Nail · Vẽ móng nghệ thuật, Nguyễn Tri Phương" />
-  <meta property="og:description" content="Tiệm nail thủ công ở Nguyễn Tri Phương, Q.10. Vẽ móng nghệ thuật, sơn gel, nối móng theo từng tầm giá. Đặt lịch Zalo 0931 415 099." />
+  <meta property="og:title" content="Khai trương 22/7 — Giảm tới 50% · The Nail, tiệm nail Quận 10" />
+  <meta property="og:description" content="Mừng khai trương nhà mới 517/15 Nguyễn Tri Phương, Q.10 — 22/7 đến 6/8: 10 suất đầu giảm 50%, 15 suất kế 30%, 25 suất sau 20%, kèm quà. Giữ suất Zalo 0931 415 099, nói mã KHAI TRƯƠNG." />
   <meta property="og:url" content="https://thenail.vn/" />
-  <meta property="og:image" content="https://thenail.vn/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp" />
+  <meta property="og:image" content="https://thenail.vn/images/og-khai-truong-1200x630.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="The Nail — khai trương 22/7, giảm tới 50%, tiệm nail Quận 10" />
   <meta property="og:locale" content="vi_VN" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tiệm nail Quận 10 — The Nail · Nguyễn Tri Phương" />
-  <meta name="twitter:description" content="Vẽ móng nghệ thuật · sơn gel · nối móng tại Nguyễn Tri Phương, Q.10. Đặt lịch Zalo 0931 415 099." />
-  <meta name="twitter:image" content="https://thenail.vn/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp" />
+  <meta name="twitter:title" content="Khai trương 22/7 — Giảm tới 50% · The Nail Quận 10" />
+  <meta name="twitter:description" content="22/7 → 6/8: giảm tới 50%, chỉ 50 suất. Zalo 0931 415 099 · mã KHAI TRƯƠNG." />
+  <meta name="twitter:image" content="https://thenail.vn/images/og-khai-truong-1200x630.jpg" />
 
   <!-- ===== Structured data — Google hiện tiệm kèm địa chỉ/giờ/map ===== -->
   <script type="application/ld+json">
@@ -928,7 +932,7 @@
                   visibility 1.4s;
       overflow: hidden;
     }
-    .loading-splash.hidden { opacity: 0; visibility: hidden; }
+    .loading-splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
     /* V3: morph + bg fade OVERLAP, splash h1 has same breathing rhythm as hero h1.
        Hero non-h1 elements fade in during splash fade so the scene assembles
@@ -1823,6 +1827,91 @@
   </nav>
   <div class="nav-backdrop" id="nav-backdrop"></div>
 
+  <!-- ===== KHAI TRƯƠNG · ƯU ĐÃI VÀNG (22/7 → 6/8) ===== -->
+  <style>
+    .kt-pop { position: fixed; inset: 0; z-index: 10001; display: none;
+      background: rgba(46,74,60,.44); backdrop-filter: blur(3px);
+      align-items: flex-start; justify-content: center; padding: 20px;
+      overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .kt-pop.open { display: flex; animation: kt-fade .35s ease; }
+    @keyframes kt-fade { from { opacity: 0; } to { opacity: 1; } }
+    .kt-card { position: relative; margin: auto; width: 100%; max-width: 452px; text-align: center;
+      background: #FBF7EF; color: #2E4A3C; padding: 16px 16px 22px;
+      border: 1px solid rgba(158,68,38,.3); box-shadow: 0 40px 90px rgba(46,74,60,.34);
+      animation: kt-rise .5s cubic-bezier(.16,1,.3,1); }
+    @keyframes kt-rise { from { opacity: 0; transform: translateY(24px) scale(.97); } to { opacity: 1; transform: none; } }
+    .kt-card::after { content: ""; position: absolute; inset: 9px; border: 1px solid rgba(46,74,60,.18); pointer-events: none; }
+    .kt-poster { display: block; width: 100%; height: auto; border: 1px solid rgba(46,74,60,.12); }
+    .kt-x { position: absolute; top: 8px; right: 10px; width: 44px; height: 44px; border: none;
+      background: transparent; font-size: 30px; line-height: 1; color: #3E5548; opacity: .55; cursor: pointer; transition: opacity .2s, transform .2s; }
+    .kt-x:hover { opacity: 1; transform: rotate(90deg); }
+    .kt-eyebrow { font-size: 12px; letter-spacing: .28em; font-weight: 700; text-transform: uppercase; color: #9E4426; }
+    .kt-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 54px; line-height: 1.02; margin-top: 6px; color: #2E4A3C; }
+    .kt-date { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 700; font-size: 24px; color: #C05A33; margin-top: 4px; }
+    .kt-tiers { margin: 22px 0 4px; display: flex; flex-direction: column; gap: 0; text-align: left; }
+    .kt-tier { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 13px 16px; border-bottom: 1px solid rgba(46,74,60,.16); }
+    .kt-tier:first-child { background: #9E4426; color: #FBF7EF; border-bottom-color: transparent; box-shadow: 0 12px 26px rgba(158,68,38,.24); }
+    .kt-tier:first-child .kt-pct { color: #FBF7EF; }
+    .kt-tier:last-child { border-bottom: none; }
+    .kt-lbl { font-size: 15px; font-weight: 600; }
+    .kt-pct { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 34px; line-height: 1; color: #9E4426; white-space: nowrap; }
+    .kt-gift { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 20px; color: #2E4A3C; margin-top: 16px; }
+    .kt-cta { display: block; margin-top: 22px; background: #9E4426; color: #FBF7EF; text-decoration: none;
+      font-size: 15px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 16px 20px; transition: background .2s, transform .2s; }
+    .kt-cta:hover { background: #C05A33; transform: translateY(-2px); }
+    .kt-link2 { display: inline-block; margin-top: 14px; font-size: 13px; color: #3E5548; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+    .kt-link2:hover { color: #9E4426; }
+    .kt-note { font-size: 12px; color: rgba(46,74,60,.6); margin-top: 12px; letter-spacing: .02em; }
+    /* floating button — góc dưới PHẢI (tránh chatbot bên trái) */
+    .kt-fab { position: fixed; right: 20px; bottom: 24px; z-index: 9985;
+      display: inline-flex; align-items: center; gap: 9px; padding: 12px 17px;
+      background: #9E4426; color: #FBF7EF; border: none; cursor: pointer; border-radius: 40px;
+      font-family: inherit; font-size: 13.5px; font-weight: 700; letter-spacing: .02em;
+      box-shadow: 0 12px 30px rgba(158,68,38,.34); opacity: 0; transform: translateY(16px);
+      transition: transform .25s, background .2s, box-shadow .2s; }
+    .kt-fab.show { opacity: 1; transform: none; }
+    .kt-fab:hover { background: #C05A33; transform: translateY(-2px); box-shadow: 0 16px 38px rgba(158,68,38,.42); }
+    .kt-fab-badge { background: #FBF7EF; color: #9E4426; font-weight: 800; font-size: 12px; padding: 2px 8px; border-radius: 20px; letter-spacing: 0; }
+    @media (max-width: 520px) {
+      .kt-card { padding: 40px 24px 30px; }
+      .kt-title { font-size: 46px; }
+    }
+    @media (max-width: 820px) {   /* khop breakpoint thanh .mbar */
+      .kt-fab { right: 12px; bottom: 86px; padding: 10px 14px; font-size: 12.5px; }
+    }
+    @media (max-height: 700px) {   /* man thap / xoay ngang: thu gon cho vua man hinh */
+      .kt-card { padding: 28px 22px 22px; }
+      .kt-title { font-size: 36px; }
+      .kt-date { font-size: 20px; }
+      .kt-pct { font-size: 26px; }
+      .kt-tier { padding: 9px 14px; }
+      .kt-gift { font-size: 16px; margin-top: 10px; }
+      .kt-cta { margin-top: 14px; padding: 13px 18px; }
+      .kt-tiers { margin: 14px 0 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .kt-pop.open, .kt-card, .kt-fab { animation: none; transition: none; }
+    }
+  </style>
+  <div class="kt-pop" id="kt-pop" role="dialog" aria-modal="true" aria-label="Ưu đãi khai trương The Nail">
+    <div class="kt-card">
+      <button class="kt-x" id="kt-x" aria-label="Đóng">×</button>
+      <img class="kt-poster" src="/images/poster-khai-truong-w800.webp"
+           srcset="/images/poster-khai-truong-w800.webp 800w, /images/poster-khai-truong-w1200.webp 1200w"
+           sizes="(max-width: 520px) 92vw, 420px"
+           width="800" height="1686" decoding="async"
+           alt="The Nail khai trương 22/7 đến 6/8: 10 suất đầu giảm 50%, 15 suất kế giảm 30%, 25 suất sau giảm 20%, tại 517/15 Nguyễn Tri Phương, Quận 10">
+      <a class="kt-cta" href="https://zalo.me/0931415099" target="_blank" rel="noopener" data-en="Reserve via Zalo 0931 415 099">Giữ suất · Zalo 0931 415 099</a>
+      <span class="kt-link2" id="kt-booking" data-en="Or view the menu &amp; book">Hoặc xem menu &amp; đặt lịch</span>
+      <div class="kt-note" data-en="Book early — 50 slots only. Quote code “KHAI TRUONG”.">Đặt sớm — chỉ 50 suất. Nói mã “KHAI TRƯƠNG”.</div>
+    </div>
+  </div>
+  <button class="kt-fab" id="kt-fab" type="button" aria-label="Xem ưu đãi khai trương">
+    <span data-en="Opening offer">Ưu đãi khai trương</span>
+    <span class="kt-fab-badge">−50%</span>
+  </button>
+
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
     <div class="hero-sparkles" aria-hidden="true"></div>
@@ -2016,6 +2105,45 @@
         </div>
         <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
           <img src="/images/gallery/1fOX2JLKhBQlx4BGVye5jOFNUSc-TkGKB_w400.webp" alt="Mẫu nail 340k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1oDP3RQ9w0jnSnhROJgvffAqL-4GcsSy9_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1ZH3AfUs1cKY2whH29H1k0b_mf0SKaZWl_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/15Sdm2mTdVKFwiA9BBUtAWDmGqvTAmE_D_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1YxoPgPC0V0zmg2E__jbake0b2xtQ294J_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/13Oq-qgQtE-HOcLk2shUvN4Ld-bfQLBxo_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1E8Glkh8JcCRWoxysV5N5Ml6DWzn3n815_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1BZ0ywzAJRMeKMBJlngWgv3wwwpqI9qb1_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1i3-fxKYzR1RTGnycD_MI5fztD2GhcOnz_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1lA3rgvEgneNPIEpo06zCaFsScBuJGpqV_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1kHExmNOQN7arVqJLYQ7FR8-cnmBCAJ1m_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1NMlvk3Xqe92Pd5cW9pVrTsF3Jr8-vWHE_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1qJqnt84BtdPSj0chvBtN2YSAmEQ41dO3_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        </div>
+        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1PPR-FO6DjpTEv3462bTnMFpDoULaXCS6_w400.webp" alt="Mẫu nail 300 — 400k" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 400 — 500k -->
@@ -2371,12 +2499,12 @@
   <!-- ===== BOOKING MODAL ===== -->
   <div class="modal" id="booking-modal">
     <div class="modal-content">
-      <h3>Sẵn sàng gửi qua Zalo</h3>
-      <p>Tin nhắn dưới đây đã được chuẩn bị. Bấm "Copy & Mở Zalo" — tin nhắn sẽ được copy, bạn chỉ cần dán vào chat Zalo.</p>
+      <h3 data-en="Ready to send via Zalo">Sẵn sàng gửi qua Zalo</h3>
+      <p data-en="Your message is ready. Tap &quot;Copy &amp; Open Zalo&quot; — it will be copied, just paste it into the Zalo chat.">Tin nhắn dưới đây đã được chuẩn bị. Bấm "Copy & Mở Zalo" — tin nhắn sẽ được copy, bạn chỉ cần dán vào chat Zalo.</p>
       <div class="preview" id="message-preview"></div>
       <div class="modal-buttons">
-        <button class="btn" onclick="closeBookingModal()">Đóng</button>
-        <button class="btn solid" onclick="sendToZalo()">Copy &amp; Mở Zalo</button>
+        <button class="btn" onclick="closeBookingModal()" data-en="Close">Đóng</button>
+        <button class="btn solid" onclick="sendToZalo()" data-en="Copy &amp; Open Zalo">Copy &amp; Mở Zalo</button>
       </div>
     </div>
   </div>
@@ -2914,7 +3042,8 @@
 • SĐT: ${phone}
 • Ngày: ${dateFormatted}
 • Giờ: ${time}
-• Dịch vụ: ${service}${note ? '\n• Ghi chú: ' + note : ''}`;
+• Dịch vụ: ${service}${note ? '\n• Ghi chú: ' + note : ''}
+• Mã ưu đãi: KHAI TRƯƠNG`;
 
       document.getElementById('message-preview').textContent = message;
       window._pendingMessage = message;
@@ -3340,8 +3469,11 @@
       var el = document.querySelector(e[0]);
       if (el && !el.hasAttribute('data-en')) el.setAttribute('data-en', e[1]);
     });
-    var nodes = [].slice.call(document.querySelectorAll('[data-en]'));
-    nodes.forEach(function (el) { if (!el.hasAttribute('data-vi')) el.setAttribute('data-vi', el.textContent); });
+    var nodes = [].slice.call(document.querySelectorAll('[data-en],[data-vi]'));
+    nodes.forEach(function (el) {
+      if (!el.hasAttribute('data-vi')) el.setAttribute('data-vi', el.textContent);
+      if (!el.hasAttribute('data-en')) el.setAttribute('data-en', el.textContent);
+    });
     var phNodes = [].slice.call(document.querySelectorAll('[data-en-ph]'));
     phNodes.forEach(function (el) { if (!el.hasAttribute('data-vi-ph')) el.setAttribute('data-vi-ph', el.getAttribute('placeholder') || ''); });
     function setLang(lang) {
@@ -3450,8 +3582,8 @@
   .ai-pending .ai-pending-tx { font-size:12.5px; color:#4A5A50; }
   .ai-pending .ai-pending-x { margin-left:auto; background:none; border:none; color:#9E4426; cursor:pointer; font-size:20px; line-height:1; padding:2px 4px; }
 
-  @media (max-width: 600px) {
-    .ai-fab { left: 14px; bottom: 76px; padding: 10px 15px 10px 11px; font-size: 12.5px; }   /* tránh thanh dưới (.mbar) */
+  @media (max-width: 820px) {   /* khop breakpoint thanh .mbar */
+    .ai-fab { left: 14px; bottom: 86px; padding: 10px 15px 10px 11px; font-size: 12.5px; }   /* tránh thanh dưới (.mbar) */
     .ai-panel { left: 8px; right: 8px; width: auto; bottom: 8px; height: min(76vh, 560px); }
   }
 </style>
@@ -3718,5 +3850,58 @@
 })();
 </script>
 
+  <script>
+  /* Khai trương · Ưu Đãi Vàng popup + fab */
+  (function () {
+    var pop = document.getElementById('kt-pop'), fab = document.getElementById('kt-fab');
+    if (!pop || !fab) return;
+    var x = document.getElementById('kt-x'), book = document.getElementById('kt-booking');
+
+    /* Het chuong trinh (sau 6/8/2026) thi khong hien gi nua - khoi phai nho go tay */
+    if (Date.now() > new Date('2026-08-07T00:00:00+07:00').getTime()) return;
+
+    /* Mo popup: khoa cuon nen lai, khong thi khach vuot thi nen chay con popup dung yen */
+    var luuY = 0;
+    function open() {
+      luuY = window.scrollY;
+      pop.classList.add('open');
+      document.body.style.position = 'fixed';
+      document.body.style.top = (-luuY) + 'px';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+    }
+    function close() {
+      pop.classList.remove('open');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      window.scrollTo(0, luuY);
+    }
+
+    /* Nho trong 24 gio bang localStorage. sessionStorage chet theo tab, ma Zalo/Facebook
+       hay mo tab moi moi lan bam link -> cung mot khach bi popup chan mat nhieu lan trong ngay. */
+    var KEY = 'tn-kt-2207-den';
+    var den = 0; try { den = +localStorage.getItem(KEY) || 0; } catch (e) {}
+
+    /* Doi rem mo dau (splash) tan HAN roi moi bung popup.
+       Rem an luc 4100ms (dt) / 3500ms (may ban) + 1400ms mo dan. Bung som hon la popup nam khuat. */
+    var laDienThoai = window.matchMedia('(max-width: 768px)').matches;
+    var remTanLuc = (laDienThoai ? 4100 : 3500) + 1400 + 150;
+
+    if (Date.now() > den) {
+      setTimeout(function () {
+        open();   /* chi danh dau "da xem" SAU khi popup that su hien ra */
+        try { localStorage.setItem(KEY, Date.now() + 24 * 60 * 60 * 1000); } catch (e) {}
+      }, remTanLuc);
+    }
+    setTimeout(function () { fab.classList.add('show'); }, remTanLuc + 400);
+    fab.addEventListener('click', open);
+    x.addEventListener('click', close);
+    if (book) book.addEventListener('click', function () { close(); location.hash = '#booking'; });
+    pop.addEventListener('click', function (e) { if (e.target === pop) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
+  </script>
 </body>
 </html>
