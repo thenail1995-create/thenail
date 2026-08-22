@@ -19,7 +19,7 @@
 ├── .gitignore
 ├── .last-deploy      # touch file để trigger Pages rebuild khi cần
 ├── README.md         # Cho người xem GitHub
-├── CLAUDE.md         # Entry point cho AI
+├── .claude/CLAUDE.md # Entry point cho AI (Jekyll không publish thư mục dấu chấm)
 └── docs/             # Tài liệu chi tiết
     ├── brand.md
     ├── design.md

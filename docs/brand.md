@@ -7,7 +7,7 @@
   - Chị **Trần Ngọc** — thợ nail chính, nghệ nhân
   - Anh **Hào** (chồng) — quản lý, điều hành web
 - **Mô hình:** Tiệm nail private cao cấp, mở rộng dần
-- **Địa chỉ:** 521/54 Cách Mạng Tháng 8, P. Hoà Hưng, Q.10, TP.HCM
+- **Địa chỉ:** 517/15 Nguyễn Tri Phương, P. Diên Hồng, Q.10, TP.HCM (tiệm nằm trong hẻm)
 - **SĐT / Zalo:** 0931 415 099
 - **Giờ mở:** 9:00 — 22:00 hàng ngày
 

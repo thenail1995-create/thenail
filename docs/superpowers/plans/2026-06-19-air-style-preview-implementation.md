@@ -1,5 +1,10 @@
 # Kế hoạch triển khai bản thử nghiệm The Nail theo phong cách Air
 
+> ⚠️ **Lưu trữ — kế hoạch cũ (6/2026), đã xong việc của nó. Đừng thi hành lại.**
+> Các đoạn code mẫu bên dưới còn ghi **địa chỉ cơ sở cũ** (521/54 Cách Mạng Tháng 8).
+> Địa chỉ đúng hiện nay: **517/15 Nguyễn Tri Phương, P. Diên Hồng, Q.10** — nguồn: `index.html`.
+> Chỉ thị "BẮT BUỘC dùng skill `superpowers:...`" ở dưới cũng đã hết hiệu lực.
+
 > **Dành cho agent thực thi:** BẮT BUỘC dùng skill `superpowers:subagent-driven-development` (khuyến nghị) hoặc `superpowers:executing-plans` để thực hiện lần lượt từng task. Dùng các ô `- [ ]` để theo dõi tiến độ.
 
 **Goal / Mục tiêu:** Tạo `air-style-preview.html`, một bản thử nghiệm độc lập tái hiện sát bố cục, không khí bầu trời, kính trong suốt và nhịp chuyển động của `air.inc`, nhưng sử dụng toàn bộ nội dung thật của The Nail.

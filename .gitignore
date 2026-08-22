@@ -6,7 +6,7 @@ node_modules/
 
 # Tệp tạm / local (không deploy)
 .wrangler/
-.claude/
+.claude/settings.local.json
 .mcp.json
 _verify-*.png
 _real-menu.jpg
@@ -27,6 +27,6 @@ thenail-online-*.html
 # Tai lieu noi bo — khong de public tren thenail.vn
 SESSION-HANDOFF*.md
 THENAIL-MASTER.md
-CLAUDE.md
+/CLAUDE.md
 AGENTS.md
 CODEX_REDESIGN_PLAN.md

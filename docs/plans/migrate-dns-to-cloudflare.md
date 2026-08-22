@@ -7,7 +7,7 @@
 >
 > **Thực thi bởi:** Bất kỳ agent có Bash + curl + jq (Claude Code, Codex, etc.)
 >
-> **Đọc trước:** `CLAUDE.md`, `docs/tech.md` (phần DNS), `docs/state.md`
+> **Đọc trước:** `.claude/CLAUDE.md`, `docs/tech.md` (phần DNS), `docs/state.md`
 
 ---
 

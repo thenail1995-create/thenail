@@ -25,7 +25,7 @@ của chị Trần Ngọc.
 ```
 index.html       # toàn bộ web — 1 file duy nhất
 images/logo.svg  # logo riêng
-CLAUDE.md        # context cho Claude AI khi update
+.claude/CLAUDE.md  # context cho Claude AI (không publish ra web)
 ```
 
 ## Liên hệ tiệm

@@ -1,98 +1,63 @@
-# Conventions — Do's & Don'ts
+# Conventions — Ranh giới
 
-## ✅ Do's
+> File này ghi **ranh giới không được vượt** và **lý do**.
+> Nó không ghi các bước thao tác — cách làm là việc của người thực thi.
+>
+> Trạng thái hiện tại của web nằm trong `index.html`, không nằm ở đây.
 
-### Code
+## Ranh giới thương hiệu
 
-- **Edit `index.html` trực tiếp** — single-file architecture, đừng tách
-- **Inline CSS/JS** trong `<style>` và `<script>` tags
-- **Vanilla JS** thuần, không add framework
-- **Comment section rõ ràng:** `/* ===== SECTION NAME ===== */`
-- **Mobile-first responsive** — test breakpoint 700px, 600px
+- Không tự đổi slogan, tên tiệm, hay 3 giá trị cốt lõi
+- Không thêm emoji vào UI, slogan, nav, footer
+- Không phủ chữ hay giá lên ảnh nail — ảnh là tác phẩm
+- Không đổi hệ màu tổng thể hay bộ font (Cormorant Garamond + Inter)
+- Không dùng lời giật gân: "GIẢM SỐC", "Giá rẻ bất ngờ", "Free 100%"
+  — đi ngược tinh thần tiệm
 
-### Git
+## Ranh giới nội dung
 
-- **Commit message:** tiếng Anh, imperative mode, ngắn gọn
-  - Tốt: `Add new photos for tier 400-500`
-  - Không: `tôi đã thêm ảnh nail mới vào folder 400-500`
-- **Commit ngay sau mỗi thay đổi** logic, đừng gom nhiều thay đổi
-- **Push lên main** sau commit — Pages tự rebuild
+Đây là web của doanh nghiệp thật. Sai dữ liệu thì khách đi lạc hoặc mất khách.
 
-### UX
+- Không tự đổi địa chỉ, số điện thoại, giờ mở cửa
+- Không tự thêm hay xoá mức giá
+- Không tự thay review, và **tuyệt đối không tự sinh review giả**
+- Cần một dữ kiện của tiệm thì đọc `index.html`, đừng lấy từ trí nhớ
 
-- **Test sau mỗi push** — mở thenail.vn xem có lỗi không
-- **Hard reload** (Cmd+Shift+R) nếu thấy CSS không update
-- **Test mobile** trước khi push (DevTools device mode)
+## Ranh giới kỹ thuật
 
-### Hỏi user khi không chắc
+- Giữ kiến trúc một file: không tách CSS/JS ra ngoài
+- Không thêm framework, không thêm build step, không thêm npm/yarn
+- Không thêm dependency CDN ngoài nếu chưa thật cần
+- Không thêm analytics, tracking, cookie banner hay popup khi chưa hỏi
+- Không force push lên `main`
 
-- Đổi màu, font, slogan, tier giá
-- Thêm section mới hoặc xoá section cũ
-- Đổi cấu trúc thư mục
-- Convert sang stack khác
+## Ranh giới riêng tư
 
-## 🚫 Don'ts (tuyệt đối tránh)
+Repo này **chính là web root**. File commit lên đọc được công khai tại
+`thenail.vn/<tên-file>`. Trước khi commit file mới, tự hỏi:
+*người lạ đọc được file này có sao không?*
 
-### Design
+Ghi chú nội bộ để trong thư mục bắt đầu bằng dấu chấm (`.claude/`) —
+Jekyll không publish những thư mục đó.
 
-- ❌ Thêm emoji vào UI / slogan / nav / footer
-- ❌ Thêm text overlay lên ảnh nail (đã xoá theo yêu cầu user)
-- ❌ Đổi tone màu chính (giữ Dark Luxury Emerald)
-- ❌ Đổi font (Cormorant Garamond + Inter)
-- ❌ Thêm icon to/giật gân
-- ❌ Thêm khuyến mãi giật gân kiểu "GIẢM GIÁ -50%"
+## Git
 
-### Tech
+- `main` là nhánh deploy: push lên là web đổi ngay. Nhánh phụ + pull request
+  dùng khi muốn xem lại trước khi lên sóng.
+- Commit message: tiếng Anh, imperative mood, nói rõ **vì sao** chứ không chỉ *cái gì*
+  - Tốt: `Fix stale shop address in brand docs`
+  - Kém: `update file`
 
-- ❌ Tách CSS/JS ra file riêng (giữ single-file)
-- ❌ Add npm/yarn/build step
-- ❌ Convert sang React/Vue/framework
-- ❌ Add analytics tracking khi chưa hỏi user
-- ❌ Add cookie/popup
-- ❌ Thêm dependency external (CDN) không cần thiết
+## Khi nào cập nhật `docs/`
 
-### Content
+Cập nhật khi **quy ước hoặc định hướng đổi** — không phải mỗi lần sửa code:
 
-- ❌ Tự đổi địa chỉ, SĐT, giờ mở cửa
-- ❌ Tự đổi slogan
-- ❌ Tự thêm/xoá tier giá
-- ❌ Tự thay review (user phải provide review thật)
-- ❌ Tự sinh review giả thêm
+- Có quy ước mới, hoặc rebrand
+- Có asset quan trọng mới (vd thêm folder ảnh Drive)
+- Rút được bài học từ thử nghiệm (vd thử màu X, chị Ngọc không thích)
 
-### Workflow
+Không cập nhật cho: đổi ảnh, sửa typo, fix bug nhỏ, tinh chỉnh CSS thông thường.
 
-- ❌ Update CLAUDE.md / docs cho mỗi commit nhỏ
-- ❌ Sửa file mà không commit
-- ❌ Force push lên main
-- ❌ Tạo branch khác (single main branch project)
-
-## 📝 Cập nhật docs
-
-Chỉ cập nhật `docs/*.md` khi:
-
-- ✅ **Quy ước mới** (vd: "từ giờ luôn watermark ảnh")
-- ✅ **Định hướng thay đổi** (vd: rebrand)
-- ✅ **Asset mới quan trọng** (vd: thêm Drive folder mới)
-- ✅ **Bài học từ thử nghiệm** (vd: thử màu X user không thích)
-
-KHÔNG cập nhật cho:
-
-- ❌ Thêm/đổi ảnh hàng ngày
-- ❌ Đổi giá ảnh
-- ❌ Sửa typo
-- ❌ Fix bug nhỏ
-- ❌ Tinh chỉnh CSS/JS thông thường
-
-## 🎯 Pattern: User nói → Bạn làm gì
-
-| User nói | Action chuẩn |
-|---|---|
-| "Thêm ảnh tier X" | Scan Drive folder X, replace cards, push |
-| "Đổi slogan" | Update HTML + `docs/brand.md`, push |
-| "Đổi giá ảnh Y" | Update `data-range` + lightbox price, push |
-| "Thay review" | Replace `.review-card` elements, push |
-| "Đổi địa chỉ/SĐT/giờ" | Update Contact section + Hero meta, push |
-| "Update stats" | Update `data-target` trong stats section |
-| "Thêm hiệu ứng" | Add CSS animation + JS handler, update `docs/design.md` nếu là effect lớn |
-| "Bỏ hiệu ứng" | Comment/xoá CSS + JS, update `docs/design.md` |
-| "Đổi cách hoạt động X" | Hỏi rõ trước khi làm, có thể update `docs/conventions.md` |
+> Docs mô tả chi tiết kỹ thuật sẽ mục ruỗng. Bảng màu trong `docs/design.md`
+> từng trễ hai lần redesign, địa chỉ trong `docs/brand.md` từng là cơ sở cũ.
+> Ghi *lý do*, đừng ghi *state*.
