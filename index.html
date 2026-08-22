@@ -1842,7 +1842,6 @@
     gtag('config', 'G-BR3REE6VSL');
   </script>
   <style>
-    .intro, .faq { background: #F4F0E6; position: relative; z-index: 1; }
     .intro p { max-width: 760px; margin: 0 auto 1.2em; color: #4A5A50; line-height: 1.8; }
     .intro p:last-child { margin-bottom: 0; }
     .faq details { border-top: 1px solid rgba(46,74,60,.22); padding: 1.15rem 0; }
@@ -3186,10 +3185,20 @@
   section.hero, section#hero { position: sticky !important; top: 0 !important; z-index: 0; }
   /* BỎ hiệu ứng hero mờ dần khi cuộn (JS gán opacity inline) → Hero luôn nét khi About trượt lên */
   #hero-scene { opacity: 1 !important; }
-  section.about   { background: #EFE8D8; z-index: 1; }
+  section.intro {
+    position: sticky !important; top: 0 !important;
+    height: 100vh !important; min-height: 100vh !important;
+    overflow: hidden !important;
+    display: flex !important; flex-direction: column; justify-content: center;
+    padding: 96px 0 56px !important;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -28px 64px rgba(28,38,30,0.24);
+    background: #F4F0E6; z-index: 1;
+  }
+  section.about   { background: #EFE8D8; z-index: 2; }
   /* Gallery hiện ĐẦY ĐỦ ảnh → cuộn bình thường (KHÔNG ghim, KHÔNG ép 100vh) nên không cắt ảnh, không dead-scroll; vẫn trượt đè lên About nhờ nền đặc + z-index */
   section#gallery {
-    background: #F5F1E6; z-index: 2;
+    background: #F5F1E6; z-index: 3;
     position: relative !important; top: auto !important;
     height: auto !important; min-height: 100vh !important;
     overflow: visible !important;
@@ -3200,7 +3209,7 @@
   }
   /* Menu: GHIM (sticky) như Booking/Liên hệ → section sau (Đặt lịch) trượt đè lên → có hiệu ứng parallax stack. overflow:visible + height auto/min 100vh để không cắt nội dung */
   section#menu {
-    background: #EAE3D2; z-index: 3;
+    background: #EAE3D2; z-index: 4;
     position: sticky !important; top: 0 !important;
     height: auto !important; min-height: 100vh !important;
     overflow: visible !important;
@@ -3211,7 +3220,7 @@
   }
   /* Booking: GHIM lại (có hiệu ứng trượt đè) nhưng overflow:visible (không cắt) + cả Booking & Contact đều ghim nên không lòi nút ra footer */
   section#booking {
-    background: #E3E8DF; z-index: 4;
+    background: #E3E8DF; z-index: 5;
     position: sticky !important; top: 0 !important;
     height: auto !important; min-height: 100vh !important;
     overflow: visible !important;
@@ -3219,7 +3228,7 @@
   }
   /* Liên hệ: GHIM lại (trượt đè lên Booking) — overflow:visible nên không cắt icon; padding-bottom rộng để icon cách xa mép footer */
   section.contact {
-    background: #ECE2D0; z-index: 5;
+    background: #ECE2D0; z-index: 6;
     position: sticky !important; top: 0 !important;
     height: auto !important; min-height: 100vh !important;
     overflow: visible !important;
@@ -3228,8 +3237,19 @@
   /* Ẩn dải marquee (ticker khuyến mãi) giữa Gallery↔Booking — nó nằm xen giữa nên tạo "khoảng hở" phá hiệu ứng chồng. Bản cuối có thể đặt lại chỗ khác. */
   .marquee { display: none !important; }
 
+  section.faq {
+    position: sticky !important; top: 0 !important;
+    height: auto !important; min-height: 100vh !important;
+    overflow: visible !important;
+    display: flex !important; flex-direction: column; justify-content: center;
+    padding: 96px 0 72px !important;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -28px 64px rgba(28,38,30,0.24);
+    background: #EFE8D8; z-index: 7;
+  }
+
   /* footer cũng là 1 lớp trượt phủ section Liên hệ ở cuối */
-  footer { position: relative; z-index: 6; border-radius: 30px 30px 0 0; box-shadow: 0 -10px 24px rgba(28,38,30,0.08); }
+  footer { position: relative; z-index: 8; border-radius: 30px 30px 0 0; box-shadow: 0 -10px 24px rgba(28,38,30,0.08); }
 
   /* ===== NAV thu gọn khi cuộn: vẫn GHIM (đã fixed), bỏ tầng thông tin (📍 SĐT 🕘), chỉ còn logo + nút ===== */
   .nav-info { overflow: hidden; max-height: 60px; transition: max-height .35s ease, padding .3s ease, opacity .3s ease, border-color .3s ease; }
@@ -3257,7 +3277,7 @@
   @media (max-width: 820px) {
     /* bỏ GHIM (sticky) để khỏi che/giật, NHƯNG giữ dáng thẻ chồng */
     section.hero, section#hero,
-    section.about, section#gallery, section#menu, section#booking, section.contact {
+    section.intro, section.about, section#gallery, section#menu, section#booking, section.contact, section.faq {
       position: static !important; top: auto !important;
       height: auto !important; min-height: 0 !important;
       overflow: visible !important;
