@@ -81,11 +81,14 @@
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sạch da", "serviceType": "Chăm sóc móng" }, "price": "30000", "priceCurrency": "VND" },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Phá gel", "serviceType": "Chăm sóc móng" }, "price": "30000", "priceCurrency": "VND" },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sơn gel", "serviceType": "Sơn móng" }, "price": "70000", "priceCurrency": "VND" },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sơn thạch, sơn nhũ", "serviceType": "Sơn móng" }, "price": "90000", "priceCurrency": "VND" },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Úp móng gel", "serviceType": "Nối móng" }, "price": "100000", "priceCurrency": "VND" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sơn thạch", "serviceType": "Sơn móng" }, "price": "90000", "priceCurrency": "VND" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sơn nhũ", "serviceType": "Sơn móng" }, "price": "110000", "priceCurrency": "VND" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sơn BIAB", "serviceType": "Sơn móng" }, "price": "130000", "priceCurrency": "VND" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Úp móng gel", "serviceType": "Nối móng" }, "price": "120000", "priceCurrency": "VND" },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Refill móng gel", "serviceType": "Nối móng" }, "price": "140000", "priceCurrency": "VND" },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sơn mắt mèo, sơn chrome", "serviceType": "Sơn móng" }, "price": "150000", "priceCurrency": "VND" },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Nối móng đắp gel", "serviceType": "Nối móng" }, "price": "200000", "priceCurrency": "VND" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Nối móng đắp gel", "serviceType": "Nối móng" }, "price": "250000", "priceCurrency": "VND" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Đắp gel móng thật", "serviceType": "Chăm sóc móng" }, "price": "200000", "priceCurrency": "VND" },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vẽ design nghệ thuật", "serviceType": "Nail art" }, "price": "20000", "priceCurrency": "VND" },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Charm, đính đá", "serviceType": "Nail art" }, "price": "5000", "priceCurrency": "VND" }
       ]
@@ -107,7 +110,7 @@
       {
         "@type": "Question",
         "name": "Làm nail ở Quận 10 giá bao nhiêu tiền?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Tại The Nail, sơn gel từ 70.000₫, sơn thạch và sơn nhũ 90.000₫, sơn mắt mèo và chrome 150.000₫, úp móng gel 100.000₫, refill 140.000₫, nối móng đắp gel 200.000₫, vẽ design từ 20.000₫ một ngón, charm và đính đá từ 5.000₫. Một bộ móng hoàn chỉnh thường từ 220.000₫ tuỳ độ cầu kỳ. Giá được báo rõ trước khi làm, không phát sinh giữa chừng." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Tại The Nail, sơn gel 70.000₫, sơn thạch 90.000₫, sơn nhũ 110.000₫, sơn BIAB 130.000₫, sơn mắt mèo và chrome 150.000₫, úp móng gel 120.000₫, nối móng đắp gel từ 250.000₫, đắp gel móng thật 200.000₫, vẽ design từ 20.000₫ một ngón, charm và đính đá từ 5.000₫. Một bộ móng hoàn chỉnh thường từ 220.000₫ tuỳ độ cầu kỳ. Giá được báo rõ trước khi làm, không phát sinh giữa chừng." }
       },
       {
         "@type": "Question",
@@ -623,50 +626,139 @@
       .about-grid { grid-template-columns: 1fr; }
     }
 
-    /* ===== MENU / BẢNG GIÁ ===== */
+    /* ===== MENU / TẤM POSTER THỰC ĐƠN ===== */
+    #menu .container {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      display: flex;
+      flex: 1 1 auto;
+    }
+    .menu-poster {
+      width: 100%;
+      min-height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .menu-poster__mast {
+      min-height: 124px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: clamp(20px, 4vw, 54px);
+      padding: 26px clamp(24px, 5vw, 64px) 30px;
+      border-top: 5px solid #C05A33;
+      color: #C9A24B;
+    }
+    .menu-poster__logo { display: flex; align-items: center; }
+    .menu-poster__logo img {
+      display: block;
+      width: 96px;
+      height: auto;
+      filter: brightness(0) saturate(100%) invert(73%) sepia(28%) saturate(747%) hue-rotate(2deg) brightness(90%) contrast(88%);
+    }
+    .menu-poster__title {
+      color: #C9A24B;
+      font-size: clamp(14px, 2.3vw, 24px);
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+    .menu-poster__paper {
+      width: min(1120px, calc(100% - 2 * clamp(10px, 2.5vw, 26px)));
+      flex: 1 1 auto;
+      margin: 0 auto;
+      padding: clamp(32px, 5vw, 64px) clamp(22px, 5vw, 64px) 30px;
+      background: url('/images/menu/paper-cream.webp') center/cover;
+      border: 1px solid rgba(46, 74, 60, 0.12);
+      border-radius: 6px;
+      box-shadow: inset 0 0 0 1px rgba(46, 74, 60, 0.12);
+    }
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px 52px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: clamp(32px, 6vw, 76px);
       max-width: 940px;
       margin: 0 auto;
     }
-    .menu-cat {
-      padding: 26px 28px 28px;
-      background: rgba(158, 68, 38, 0.035);
-      border: 1px solid rgba(158, 68, 38, 0.16);
-      border-radius: 4px;
-      transition: border-color 0.3s, background 0.3s, transform 0.3s;
-    }
-    .menu-cat:hover {
-      border-color: rgba(192, 90, 51, 0.45);
-      background: rgba(158, 68, 38, 0.07);
-      transform: translateY(-3px);
-    }
-    .menu-cat-feature { background: rgba(158, 68, 38, 0.065); border-color: rgba(158, 68, 38, 0.3); }
+    .menu-cat { min-width: 0; }
     .mc-title {
-      font-size: clamp(24px, 2.6vw, 30px);
-      color: #9E4426;
+      display: inline-block;
+      margin: 0 0 20px;
+      padding-bottom: 9px;
+      color: #2E4A3C;
+      font-size: clamp(28px, 3.2vw, 38px);
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      line-height: 1;
+      text-transform: uppercase;
+      border-bottom: 2px solid #C9A24B;
+    }
+    .menu-cat--design .mc-title { border-color: #C05A33; }
+    .menu-rows { display: flex; flex-direction: column; gap: 12px; }
+    .menu-row { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
+    .mi-name {
+      min-width: 0;
+      color: #2E4A3C;
+      font-size: clamp(12px, 1.45vw, 15px);
+      font-weight: 600;
+      letter-spacing: 0.055em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    .mi-dots {
+      flex: 1 1 auto;
+      min-width: 12px;
+      align-self: flex-end;
+      border-bottom: 1px dotted rgba(46, 74, 60, 0.58);
+      transform: translateY(-4px);
+    }
+    .mi-price {
+      color: #C05A33;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(19px, 2.2vw, 24px);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .menu-note {
+      max-width: 780px;
+      margin: clamp(28px, 4vw, 44px) auto 0;
+      color: #486054;
+      font-size: 13px;
       font-style: italic;
-      letter-spacing: 0.02em;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(158, 68, 38, 0.18);
+      line-height: 1.55;
+      text-align: center;
     }
-    .menu-rows { display: flex; flex-direction: column; gap: 11px; }
-    .menu-row { display: flex; align-items: baseline; gap: 8px; }
-    .mi-name { color: #3C4A40; font-size: 14.5px; line-height: 1.4; }
-    .mi-dots { flex: 1 1 auto; min-width: 16px; align-self: flex-end; border-bottom: 1px dotted rgba(74, 90, 80, 0.42); transform: translateY(-4px); }
-    .mi-price { color: #9E4426; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 19px; letter-spacing: 0.01em; white-space: nowrap; }
     .menu-foot {
-      display: flex; align-items: center; justify-content: center;
-      gap: 28px; flex-wrap: wrap; text-align: center;
-      margin-top: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px 30px;
+      padding: 28px 24px 30px;
+      color: #C9A24B;
+      font-size: clamp(11px, 1.5vw, 14px);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      line-height: 1.55;
+      text-align: center;
+      text-transform: uppercase;
     }
-    .menu-note { color: #6A7468; font-size: 13px; font-style: italic; letter-spacing: 0.02em; }
+    .menu-foot__sep { width: 1px; height: 20px; background: rgba(201, 162, 75, 0.58); }
     @media (max-width: 700px) {
-      .menu-grid { grid-template-columns: 1fr; gap: 14px; }
-      .menu-foot { gap: 18px; margin-top: 30px; }
+      .menu-poster__mast { grid-template-columns: 1fr; gap: 14px; padding: 22px 24px 25px; }
+      .menu-poster__logo img { width: 74px; }
+      .menu-poster__title { font-size: 14px; letter-spacing: 0.13em; }
+      .menu-poster__paper { width: calc(100% - 18px); margin: 0 auto; padding: 34px 20px 26px; }
+      .menu-grid { grid-template-columns: 1fr; gap: 34px; }
+      .menu-rows { gap: 11px; }
+      .mi-name { font-size: 12px; }
+      .menu-foot { flex-direction: column; gap: 8px; padding: 24px 20px 26px; font-size: 10px; letter-spacing: 0.1em; }
+      .menu-foot__sep { width: 48px; height: 1px; }
     }
 
     /* ===== TABS / FILTER ===== */
@@ -761,8 +853,6 @@
     .nail-card img { position: relative; z-index: 1; }
     .nail-card .overlay { display: none; }
     .nail-card .price-tag { display: none; }
-    .lightbox-content h3,
-    .lightbox-content .price { display: none; }
 
     /* ===== CONTACT ===== */
     .contact {
@@ -900,42 +990,64 @@
 
     /* ===== LIGHTBOX ===== */
     .lightbox {
-      display: none;
       position: fixed; inset: 0;
       background: rgba(0, 0, 0, 0.95);
       z-index: 1000;
       align-items: center; justify-content: center;
       padding: 24px;
+      display: flex;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      transition: opacity 0.28s ease, visibility 0s linear 0.28s;
     }
-    .lightbox.active { display: flex; }
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
     .lightbox-content {
       max-width: 90vw; max-height: 90vh;
       text-align: center;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(.16, 1, .3, 1);
     }
+    .lightbox.active .lightbox-content { opacity: 1; transform: scale(1); }
     .lightbox-content .ph {
-      width: min(700px, 85vw);
-      max-height: 75vh;
-      aspect-ratio: 1;
-      background: linear-gradient(135deg, #E3DAC5, #F4F0E6);
-      border: 1px solid rgba(158, 68, 38, 0.4);
+      width: auto;
+      max-width: min(92vw, 760px);
+      max-height: 82vh;
       margin: 0 auto;
       overflow: hidden;
       position: relative;
+      display: inline-block;
+      border-radius: 14px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
     }
     .lightbox-content .ph img {
-      width: 100%; height: 100%;
+      max-width: 100%; max-height: 82vh;
+      width: auto; height: auto;
       object-fit: contain;
-      background: #F4F0E6;
+      display: block;
+      border-radius: 14px;
+      transition: opacity 0.2s ease;
     }
     .lightbox-content h3 {
-      font-size: 32px;
-      color: #9E4426;
-      margin-top: 24px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3vw, 28px);
+      color: #F4F0E6;
+      margin: 18px 0 0;
+      line-height: 1.1;
     }
     .lightbox-content .price {
-      color: #2E4A3C;
-      letter-spacing: 0.2em;
-      margin-top: 8px;
+      color: #E2A98C;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      margin-top: 6px;
     }
     .lightbox-close {
       position: absolute; top: 24px; right: 24px;
@@ -1001,10 +1113,10 @@
 
     /* Photo counter (1 / 12) */
     .lb-counter {
-      margin-top: 12px;
+      margin-top: 8px;
       font-size: 12px;
-      letter-spacing: 0.3em;
-      color: rgba(46, 74, 60, 0.5);
+      letter-spacing: 0.16em;
+      color: #6B7E72;
       font-variant-numeric: tabular-nums;
     }
 
@@ -2333,52 +2445,57 @@
   </div>
 
 
-  <!-- ===== MENU =====
-       GIÁ THẬT từ "PRICE list" của tiệm (Drive, 2026-06-24). Đơn vị = nghìn đồng (k).
-       Mỗi dòng: <span class="mi-name" data-en="EN">Tên VI</span> ... <span class="mi-price">GIÁ</span> -->
+  <!-- ===== MENU / POSTER THỰC ĐƠN ===== -->
   <section id="menu">
     <div class="container">
-      <div class="section-head">
-        <div class="label" data-en="— Menu —">— Thực đơn —</div>
-        <h2><em data-en="Service Menu">Menu dịch vụ</em></h2>
-        <div class="divider"></div>
-        <p data-en="Per-service prices (in thousand VND). Final cost may vary by design, length and difficulty — message us on Zalo for an exact quote.">Giá theo từng dịch vụ (đơn vị nghìn đồng). Mức cuối tuỳ mẫu, độ dài &amp; độ khó — nhắn Zalo để được báo giá chính xác.</p>
-      </div>
-
-      <div class="menu-grid">
-        <article class="menu-cat">
-          <h3 class="serif mc-title" data-en="Nail Care">Nail Care</h3>
-          <div class="menu-rows">
-            <div class="menu-row"><span class="mi-name" data-en="Cuticle clean">Sạch da</span><span class="mi-dots"></span><span class="mi-price">30k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Gel removal">Phá gel</span><span class="mi-dots"></span><span class="mi-price">30k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Remove tips / acrylic">Phá móng úp/đắp</span><span class="mi-dots"></span><span class="mi-price">50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Strengthen · build apex">Cứng móng tạo cầu</span><span class="mi-dots"></span><span class="mi-price">40–60k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Gel tips">Úp móng gel</span><span class="mi-dots"></span><span class="mi-price">100k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Refill (tips)">Refill móng úp</span><span class="mi-dots"></span><span class="mi-price">70k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Gel extension">Nối móng đắp gel</span><span class="mi-dots"></span><span class="mi-price">200k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Refill (gel)">Refill móng gel</span><span class="mi-dots"></span><span class="mi-price">140k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Gel overlay (natural nail)">Đắp gel móng thật</span><span class="mi-dots"></span><span class="mi-price">150k</span></div>
+      <div class="menu-poster">
+        <header class="menu-poster__mast">
+          <a class="menu-poster__logo" href="#hero" aria-label="The Nail — về đầu trang"><img src="/images/the-nail-logo-no-card.svg" alt="The Nail" width="96" height="57"></a>
+          <p class="menu-poster__title" data-en="The Nail · Service Menu">The Nail · Service Menu</p>
+        </header>
+        <div class="menu-poster__paper">
+          <div class="menu-grid">
+            <article class="menu-cat">
+              <h3 class="mc-title" data-en="Nail Care">Nail Care</h3>
+              <div class="menu-rows">
+                <div class="menu-row"><span class="mi-name" data-en="Cuticle clean">Sạch da</span><span class="mi-dots"></span><span class="mi-price">30</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Gel removal">Phá gel</span><span class="mi-dots"></span><span class="mi-price">30</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Remove tips / gel overlay">Phá móng úp/đắp</span><span class="mi-dots"></span><span class="mi-price">50</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Strengthen · build apex">Cứng móng tạo cầu</span><span class="mi-dots"></span><span class="mi-price">40–60</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Gel tips">Úp móng gel</span><span class="mi-dots"></span><span class="mi-price">120</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Refill (tips)">Refill móng úp</span><span class="mi-dots"></span><span class="mi-price">70</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Gel extension">Nối móng đắp gel</span><span class="mi-dots"></span><span class="mi-price">250–300</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Refill (gel)">Refill móng gel</span><span class="mi-dots"></span><span class="mi-price">140</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Gel overlay (natural nail)">Đắp gel móng thật</span><span class="mi-dots"></span><span class="mi-price">200</span></div>
+              </div>
+            </article>
+            <article class="menu-cat menu-cat--design">
+              <h3 class="mc-title" data-en="Design">Design</h3>
+              <div class="menu-rows">
+                <div class="menu-row"><span class="mi-name" data-en="Gel polish">Sơn gel</span><span class="mi-dots"></span><span class="mi-price">70</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Jelly polish">Sơn thạch</span><span class="mi-dots"></span><span class="mi-price">90</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Shimmer polish">Sơn nhũ</span><span class="mi-dots"></span><span class="mi-price">110</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="BIAB gel">Sơn BIAB</span><span class="mi-dots"></span><span class="mi-price">130</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Cat-eye / chrome">Sơn mắt mèo/chrome</span><span class="mi-dots"></span><span class="mi-price">150</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="French / ombré">French/ombre</span><span class="mi-dots"></span><span class="mi-price">10–20</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Marble art">Vẽ loang/vân đá</span><span class="mi-dots"></span><span class="mi-price">10–30</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Clear gel art">Vẽ gel trong suốt</span><span class="mi-dots"></span><span class="mi-price">10–30</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Mirror gel art">Vẽ gel tráng gương</span><span class="mi-dots"></span><span class="mi-price">20–50</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Freehand design">Vẽ design</span><span class="mi-dots"></span><span class="mi-price">20–50</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Charms">Charm</span><span class="mi-dots"></span><span class="mi-price">5–50</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Rhinestones">Đính đá</span><span class="mi-dots"></span><span class="mi-price">5–50</span></div>
+                <div class="menu-row"><span class="mi-name" data-en="Stickers">Dán sticker</span><span class="mi-dots"></span><span class="mi-price">5–20</span></div>
+              </div>
+            </article>
           </div>
-        </article>
-
-        <article class="menu-cat">
-          <h3 class="serif mc-title" data-en="Design">Design</h3>
-          <div class="menu-rows">
-            <div class="menu-row"><span class="mi-name" data-en="Gel polish">Sơn gel</span><span class="mi-dots"></span><span class="mi-price">70k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Jelly · shimmer polish">Sơn thạch/nhũ</span><span class="mi-dots"></span><span class="mi-price">90k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Cat-eye / chrome">Sơn mắt mèo/chrome</span><span class="mi-dots"></span><span class="mi-price">150k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="French / ombré">French/ombre</span><span class="mi-dots"></span><span class="mi-price">10–20k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Marble art">Vẽ loang/vân đá</span><span class="mi-dots"></span><span class="mi-price">10–30k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Clear gel art">Vẽ gel trong suốt</span><span class="mi-dots"></span><span class="mi-price">10–30k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Mirror gel art">Vẽ gel tráng gương</span><span class="mi-dots"></span><span class="mi-price">20–50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Freehand design">Vẽ design</span><span class="mi-dots"></span><span class="mi-price">20–50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Charms">Charm</span><span class="mi-dots"></span><span class="mi-price">5–50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Rhinestones">Đính đá</span><span class="mi-dots"></span><span class="mi-price">5–50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Stickers">Dán sticker</span><span class="mi-dots"></span><span class="mi-price">5–20k</span></div>
-          </div>
-        </article>
+          <p class="menu-note" data-en="Prices are in thousand VND. The final cost varies by design, length and difficulty — message us on Zalo for an exact quote.">Giá đơn vị nghìn đồng. Mức cuối tuỳ mẫu, độ dài &amp; độ khó — nhắn Zalo để được báo giá chính xác.</p>
+        </div>
+        <footer class="menu-foot">
+          <span data-en="517/15 Nguyen Tri Phuong, Dien Hong Ward, HCMC">517/15 Nguyễn Tri Phương, P.Diên Hồng, TP HCM</span>
+          <span class="menu-foot__sep" aria-hidden="true"></span>
+          <a href="tel:0931415099" data-en="093 14 15 099">093 14 15 099</a>
+        </footer>
       </div>
-
     </div>
   </section>
 
@@ -2521,7 +2638,7 @@
   <section class="faq">
     <div class="container">
       <h2>Câu hỏi thường gặp</h2>
-      <details><summary>Làm nail ở Quận 10 giá bao nhiêu tiền?</summary><p>Tại The Nail, sơn gel từ 70.000₫, sơn thạch và sơn nhũ 90.000₫, sơn mắt mèo và chrome 150.000₫, úp móng gel 100.000₫, refill 140.000₫, nối móng đắp gel 200.000₫, vẽ design từ 20.000₫ một ngón, charm và đính đá từ 5.000₫. Một bộ móng hoàn chỉnh thường từ 220.000₫ tuỳ độ cầu kỳ. Giá được báo rõ trước khi làm, không phát sinh giữa chừng.</p></details>
+      <details><summary>Làm nail ở Quận 10 giá bao nhiêu tiền?</summary><p>Tại The Nail, sơn gel 70.000₫, sơn thạch 90.000₫, sơn nhũ 110.000₫, sơn BIAB 130.000₫, sơn mắt mèo và chrome 150.000₫, úp móng gel 120.000₫, nối móng đắp gel từ 250.000₫, đắp gel móng thật 200.000₫, vẽ design từ 20.000₫ một ngón, charm và đính đá từ 5.000₫. Một bộ móng hoàn chỉnh thường từ 220.000₫ tuỳ độ cầu kỳ. Giá được báo rõ trước khi làm, không phát sinh giữa chừng.</p></details>
       <details><summary>Có cần đặt lịch trước khi đến làm nail không?</summary><p>Nên đặt trước qua Zalo 0931 415 099, nhất là cuối tuần và buổi tối, vì tiệm làm kỹ từng bộ nên số khách mỗi ngày có hạn. Tiệm vẫn nhận khách vãng lai nếu còn chỗ trống.</p></details>
       <details><summary>Tiệm nail The Nail ở Quận 10 nằm chỗ nào, có dễ tìm không?</summary><p>The Nail ở 517/15 Nguyễn Tri Phương, phường Diên Hồng, Quận 10, TP.HCM. Tiệm nằm trong hẻm 517 Nguyễn Tri Phương, gần khu ngã sáu Nguyễn Tri Phương. Khách đi xe máy vào tận cửa tiệm được. Nếu chưa quen đường, nhắn Zalo 0931 415 099 để tiệm chỉ đường.</p></details>
       <details><summary>Tiệm nail mở cửa mấy giờ?</summary><p>The Nail mở cửa tất cả các ngày trong tuần, từ thứ Hai đến Chủ nhật, 9:00 sáng đến 22:00 tối.</p></details>
@@ -3232,14 +3349,16 @@
     border-radius: 30px 30px 0 0;
     box-shadow: 0 -28px 64px rgba(28,38,30,0.24);
   }
-  /* Menu: GHIM (sticky) như Booking/Liên hệ → section sau (Đặt lịch) trượt đè lên → có hiệu ứng parallax stack. overflow:visible + height auto/min 100vh để không cắt nội dung */
+  /* Menu = một panel xanh full-bleed; mast, tờ giấy kem và footer cùng nằm trong một mép trượt. */
   section#menu {
-    background: #EAE3D2; z-index: 4;
+    background: #2E4A3C url('/images/menu/paper-cream.webp') center/cover;
+    background-blend-mode: multiply;
+    z-index: 4;
     position: sticky !important; top: 0 !important;
     height: auto !important; min-height: 100vh !important;
     overflow: visible !important;
-    display: flex !important; flex-direction: column; justify-content: center;
-    padding: 88px 0 64px !important;
+    display: flex !important; flex-direction: column;
+    padding: 0 !important;
     border-radius: 30px 30px 0 0;
     box-shadow: 0 -28px 64px rgba(28,38,30,0.24);
   }
@@ -3298,7 +3417,7 @@
   .lang-toggle span[data-l].on { color: #9E4426; font-weight: 700; }
   .lang-toggle .lt-sep { color: rgba(46,74,60,0.3); }
 
-  /* ===== MOBILE (≤820px): THAY hiệu ứng stack desktop bằng card-stack tĩnh + reveal + chip lọc dính (không bỏ, chỉ đổi cho hợp mobile) ===== */
+  /* ===== MOBILE (≤820px): THAY hiệu ứng stack desktop bằng card-stack tĩnh + reveal ===== */
   @media (max-width: 820px) {
     /* bỏ GHIM (sticky) để khỏi che/giật, NHƯNG giữ dáng thẻ chồng */
     section.hero, section#hero,
@@ -3316,8 +3435,13 @@
     }
     section.about { z-index: 1; } section#gallery { z-index: 2; }
     section#menu { z-index: 3; } section#booking { z-index: 4; } section.contact { z-index: 5; } footer { z-index: 6; }
-    section#menu { padding: 40px 0 56px !important; }
-
+    section#menu {
+      min-height: 100vh !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column;
+      padding: 0 !important;
+    }
     /* THANH LỌC = chip dính + VUỐT NGANG (mobile-native) */
     section#gallery .tabs-wrap {
       position: sticky !important; top: 50px !important; z-index: 20 !important;
@@ -3913,7 +4037,7 @@
     var has = function () { for (var i = 0; i < arguments.length; i++) if (t.indexOf(arguments[i]) > -1) return true; return false; };
     if (has('giá', 'bảng giá', 'bao nhiêu', 'price', 'cost'))
       return en
-        ? 'Some popular prices (in thousand VND): Gel polish 70, Cat-eye/chrome 150, Gel tips 100, Gel extension 200. Full menu is in the “Menu” section above. Final price depends on the design.'
+        ? 'Some popular prices (in thousand VND): Gel polish 70, Jelly 90, Shimmer 110, BIAB 130, Cat-eye/chrome 150, Gel tips 120, Gel extension 250. Full menu is in the “Menu” section above. Final price depends on the design.'
         : 'Vài giá phổ biến (nghìn đồng): Sơn gel 70, Mắt mèo/chrome 150, Úp móng gel 100, Nối móng đắp gel 200. Bảng đầy đủ ở mục “Menu” phía trên nhé. Giá cuối tuỳ mẫu.';
     if (has('địa chỉ', 'ở đâu', 'chỗ nào', 'address', 'where'))
       return en ? 'We’re at 517/15 Nguyen Tri Phuong, Dien Hong Ward, District 10, HCMC. Open 9:00–22:00 daily.'
