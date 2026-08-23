@@ -956,6 +956,11 @@
       gap: 12px;
     }
     .map-actions a {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
       padding: 10px 20px;
       font-family: 'Inter', sans-serif;
       font-size: 11px;
@@ -3416,6 +3421,26 @@
   .lang-toggle span[data-l].on { color: #9E4426; font-weight: 700; }
   .lang-toggle .lt-sep { color: rgba(46,74,60,0.3); }
 
+  /* ===== MOBILE POLISH — vùng chạm & neo section ===== */
+  .nav-info .phone a,
+  .lang-toggle,
+  .menu-foot a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .nav-info .phone a,
+  .lang-toggle { margin-block: -13px; }
+  .menu-foot a { min-height: 46px; margin-block: -13px; }
+  #hero, .intro, .about, #gallery, #menu, #booking, .contact, .faq {
+    scroll-margin-top: 120px;
+  }
+  @media (max-width: 820px) {
+    #hero, .intro, .about, #gallery, #menu, #booking, .contact, .faq {
+      scroll-margin-top: 112px;
+    }
+  }
+
   /* ===== MOBILE (≤820px): THAY hiệu ứng stack desktop bằng card-stack tĩnh + reveal ===== */
   @media (max-width: 820px) {
     /* bỏ GHIM (sticky) để khỏi che/giật, NHƯNG giữ dáng thẻ chồng */
@@ -3705,353 +3730,5 @@
   })();
 </script>
 
-<!-- ============================================================
-     TRỢ LÝ AI — chat đặt lịch (Claude qua Cloudflare Worker)
-     Cấu hình: đặt URL Worker vào AI_CFG.endpoint. Trống = chế độ DEMO.
-     Backend: bot/thenail-bot-worker.js · Hướng dẫn: bot/README-chatbot.md
-     ============================================================ -->
-<style>
-  .ai-fab {
-    position: fixed; left: 22px; bottom: 24px; z-index: 9990;
-    display: inline-flex; align-items: center; gap: 9px;
-    padding: 11px 17px 11px 13px; border: none; border-radius: 40px;
-    background: #2E4A3C; color: #F4F0E6; cursor: pointer;
-    font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: .01em;
-    box-shadow: 0 12px 30px rgba(28,38,30,0.30);
-    opacity: 0; transform: translateY(8px);
-    animation: ai-fab-in .5s cubic-bezier(.16,1,.3,1) 2.6s forwards;
-    transition: background .25s, transform .2s, box-shadow .25s;
-  }
-  .ai-fab:hover { background: #233a2f; transform: translateY(-2px); box-shadow: 0 16px 38px rgba(28,38,30,0.38); }
-  .ai-fab .ai-fab-ic { width: 22px; height: 22px; flex: 0 0 auto; }
-  .ai-fab .ai-dot { position:absolute; top:9px; right:14px; width:8px; height:8px; border-radius:50%; background:#C05A33; box-shadow:0 0 0 3px #2E4A3C; }
-  @keyframes ai-fab-in { to { opacity: 1; transform: none; } }
-  .ai-fab.hide { display: none; }
-
-  .ai-panel {
-    position: fixed; left: 22px; bottom: 24px; z-index: 9995;
-    width: min(376px, calc(100vw - 32px)); height: min(560px, calc(100vh - 48px));
-    background: #FBF7EF; border: 1px solid rgba(46,74,60,.14); border-radius: 22px;
-    box-shadow: 0 30px 80px rgba(28,38,30,.32); overflow: hidden;
-    display: none; flex-direction: column;
-    transform-origin: left bottom;
-  }
-  .ai-panel.open { display: flex; animation: ai-panel-in .32s cubic-bezier(.16,1,.3,1); }
-  @keyframes ai-panel-in { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
-
-  .ai-head { display: flex; align-items: center; gap: 11px; padding: 14px 16px;
-    background: #2E4A3C; color: #F4F0E6; }
-  .ai-head .ai-ava { width: 38px; height: 38px; border-radius: 50%; background: #F4F0E6; color: #2E4A3C;
-    display: grid; place-items: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; flex: 0 0 auto; }
-  .ai-head .ai-tt { font-family: 'Cormorant Garamond', serif; font-size: 19px; line-height: 1.05; }
-  .ai-head .ai-st { font-size: 11px; opacity: .8; display: flex; align-items: center; gap: 5px; margin-top: 1px; }
-  .ai-head .ai-st::before { content:''; width:7px; height:7px; border-radius:50%; background:#6ee7a8; display:inline-block; }
-  .ai-head .ai-x { margin-left: auto; background: none; border: none; color: #F4F0E6; opacity: .8; cursor: pointer; font-size: 22px; line-height: 1; padding: 4px; }
-  .ai-head .ai-x:hover { opacity: 1; }
-
-  .ai-body { flex: 1; min-height: 0; overflow-y: auto; padding: 16px 14px 6px; display: flex; flex-direction: column; gap: 10px; background:
-    radial-gradient(120% 60% at 50% 0, rgba(158,68,38,.05), transparent 60%); }
-  .ai-body > * { flex-shrink: 0; }   /* FIX: bong bóng chat không bị co/cắt chữ khi nội dung dài (lỗi "chỉ hiện 1 dòng tới khi bấm gửi") */
-  .ai-msg { max-width: 84%; padding: 9px 13px; border-radius: 15px; font-size: 14px; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word; }
-  .ai-msg img.ai-photo { display: block; max-width: 200px; width: 100%; border-radius: 10px; margin-bottom: 6px; }
-  .ai-msg.bot { align-self: flex-start; background: #EFE8D8; color: #34402F; border-bottom-left-radius: 5px; }
-  .ai-msg.me { align-self: flex-end; background: #9E4426; color: #F7EFE6; border-bottom-right-radius: 5px; }
-  .ai-typing { align-self: flex-start; background: #EFE8D8; border-radius: 15px; border-bottom-left-radius: 5px; padding: 11px 14px; display: inline-flex; gap: 4px; }
-  .ai-typing span { width: 6px; height: 6px; border-radius: 50%; background: #9E4426; opacity: .5; animation: ai-blink 1s infinite; }
-  .ai-typing span:nth-child(2){ animation-delay:.2s } .ai-typing span:nth-child(3){ animation-delay:.4s }
-  @keyframes ai-blink { 0%,100%{ opacity:.3; transform: translateY(0) } 50%{ opacity:1; transform: translateY(-3px) } }
-
-  .ai-chips { display: flex; flex-wrap: wrap; gap: 7px; padding: 2px 2px 10px; }
-  .ai-chip { font: inherit; font-size: 12.5px; padding: 6px 12px; border-radius: 16px; cursor: pointer;
-    background: #fff; border: 1px solid rgba(158,68,38,.28); color: #9E4426; transition: background .2s; }
-  .ai-chip:hover { background: rgba(158,68,38,.08); }
-
-  .ai-book { align-self: stretch; background: #fff; border: 1px solid rgba(158,68,38,.3); border-radius: 14px; padding: 12px 14px; }
-  .ai-book b { display:block; font-family:'Cormorant Garamond',serif; font-size:17px; color:#9E4426; margin-bottom:4px; }
-  .ai-book .ai-book-row { font-size: 13px; color:#4A5A50; }
-  .ai-book button { margin-top: 10px; width: 100%; padding: 11px; border: none; border-radius: 10px; background: #9E4426; color:#F7EFE6;
-    font: inherit; font-weight: 600; letter-spacing: .04em; cursor: pointer; }
-  .ai-book button:hover { background: #8a3a20; }
-
-  .ai-foot { display: flex; gap: 8px; padding: 10px 12px 12px; border-top: 1px solid rgba(46,74,60,.10); background:#FBF7EF; }
-  .ai-foot input { flex: 1 1 auto; min-width: 0; border: 1px solid rgba(46,74,60,.2); border-radius: 22px; padding: 10px 15px; font: inherit; font-size: 16px; outline: none; background:#fff; color:#2f352c; }   /* 16px: chặn iOS auto-zoom khi focus; min-width:0: nút gửi không bị đẩy tràn */
-  .ai-foot input:focus { border-color: #9E4426; }
-  .ai-foot button { flex: 0 0 auto; width: 42px; height: 42px; border: none; border-radius: 50%; background: #9E4426; color: #F4F0E6; cursor: pointer; display: grid; place-items: center; }
-  .ai-foot button:hover { background: #8a3a20; }
-  .ai-foot button:disabled { opacity: .5; cursor: default; }
-  .ai-attach { flex: 0 0 auto; width: 42px; height: 42px; border: 1px solid rgba(46,74,60,.2); border-radius: 50%; background:#fff; color:#2E4A3C; cursor: pointer; display: grid; place-items: center; }
-  .ai-attach:hover { background: rgba(46,74,60,.06); border-color:#2E4A3C; }
-  .ai-pending { display:flex; align-items:center; gap:10px; padding:8px 12px; border-top:1px solid rgba(46,74,60,.10); background:#FBF7EF; }
-  .ai-pending img { width:42px; height:42px; object-fit:cover; border-radius:8px; flex:0 0 auto; }
-  .ai-pending .ai-pending-tx { font-size:12.5px; color:#4A5A50; }
-  .ai-pending .ai-pending-x { margin-left:auto; background:none; border:none; color:#9E4426; cursor:pointer; font-size:20px; line-height:1; padding:2px 4px; }
-
-  @media (max-width: 820px) {   /* khop breakpoint thanh .mbar */
-    .ai-fab { left: 14px; bottom: 86px; padding: 10px 15px 10px 11px; font-size: 12.5px; }   /* tránh thanh dưới (.mbar) */
-    .ai-panel { left: 8px; right: 8px; width: auto; bottom: 8px; height: min(76vh, 560px); }
-  }
-</style>
-
-<button class="ai-fab" id="ai-fab" aria-label="Trợ lý AI The Nail">
-  <svg class="ai-fab-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.6 8.6 0 0 1-3.9-.9L3 21l1.9-5.6A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/></svg>
-  <span class="ai-fab-tx" data-en="Ask AI">Trợ lý AI</span>
-  <span class="ai-dot" aria-hidden="true"></span>
-</button>
-
-<div class="ai-panel" id="ai-panel" role="dialog" aria-label="Trợ lý đặt lịch The Nail">
-  <header class="ai-head">
-    <div class="ai-ava">N</div>
-    <div>
-      <div class="ai-tt">The Nail</div>
-      <div class="ai-st" data-en="Booking assistant">Trợ lý đặt lịch</div>
-    </div>
-    <button class="ai-x" id="ai-x" aria-label="Đóng">×</button>
-  </header>
-  <div class="ai-body" id="ai-body"></div>
-  <div class="ai-pending" id="ai-pending" hidden></div>
-  <form class="ai-foot" id="ai-form">
-    <input id="ai-file" type="file" accept="image/*" hidden>
-    <button type="button" class="ai-attach" id="ai-attach" aria-label="Gửi ảnh mẫu nail" title="Gửi ảnh mẫu để hỏi giá">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-    </button>
-    <input id="ai-input" type="text" autocomplete="off" placeholder="Nhập tin nhắn…" data-en-ph="Type a message…" aria-label="Nhập tin nhắn">
-    <button type="submit" id="ai-send" aria-label="Gửi">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    </button>
-  </form>
-</div>
-
-<script>
-(function () {
-  // ===== CẤU HÌNH =====
-  var AI_CFG = {
-    endpoint: 'https://thenail-bot.psnhaotur1.workers.dev',   // Cloudflare Worker (deploy 2026-06-24). Trống = DEMO.
-    zalo: 'https://zalo.me/0931415099'
-  };
-
-  var fab = document.getElementById('ai-fab');
-  var panel = document.getElementById('ai-panel');
-  var body = document.getElementById('ai-body');
-  var form = document.getElementById('ai-form');
-  var input = document.getElementById('ai-input');
-  var sendBtn = document.getElementById('ai-send');
-  var fileInput = document.getElementById('ai-file');
-  var attachBtn = document.getElementById('ai-attach');
-  var pendingEl = document.getElementById('ai-pending');
-  if (!fab || !panel) return;
-
-  var isEN = function () { return document.documentElement.getAttribute('data-lang') === 'en'; };
-  var history = [];          // [{role, content}] — chỉ lưu chữ cho nhẹ
-  var started = false;
-  var pendingImage = null;   // {dataUrl, b64, mediaType} — ảnh đang chờ gửi
-
-  // ===== Ảnh: nén về tối đa 1024px + JPEG q0.82 để payload nhỏ (ảnh điện thoại 4MB → ~150KB) =====
-  var MAX_DIM = 1024;
-  function handleFile(file) {
-    if (!file || file.type.indexOf('image/') !== 0) return;
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      var img = new Image();
-      img.onload = function () {
-        var w = img.width, h = img.height;
-        var scale = Math.min(1, MAX_DIM / Math.max(w, h));
-        var cw = Math.round(w * scale), ch = Math.round(h * scale);
-        var cv = document.createElement('canvas'); cv.width = cw; cv.height = ch;
-        cv.getContext('2d').drawImage(img, 0, 0, cw, ch);
-        var dataUrl = cv.toDataURL('image/jpeg', 0.82);
-        pendingImage = { dataUrl: dataUrl, b64: dataUrl.split(',')[1], mediaType: 'image/jpeg' };
-        renderPending();
-      };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-  function renderPending() {
-    if (!pendingImage) { pendingEl.hidden = true; pendingEl.innerHTML = ''; return; }
-    pendingEl.hidden = false;
-    pendingEl.innerHTML = '';
-    var im = document.createElement('img'); im.src = pendingImage.dataUrl; im.alt = '';
-    var tx = document.createElement('span'); tx.className = 'ai-pending-tx';
-    tx.textContent = isEN() ? 'Photo attached — add a note or just send' : 'Đã đính ảnh — thêm ghi chú hoặc bấm gửi';
-    var x = document.createElement('button'); x.type = 'button'; x.className = 'ai-pending-x'; x.textContent = '×';
-    x.setAttribute('aria-label', isEN() ? 'Remove photo' : 'Bỏ ảnh');
-    x.addEventListener('click', function () { pendingImage = null; fileInput.value = ''; renderPending(); });
-    pendingEl.appendChild(im); pendingEl.appendChild(tx); pendingEl.appendChild(x);
-  }
-  attachBtn.addEventListener('click', function () { fileInput.click(); });
-  fileInput.addEventListener('change', function () { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
-
-  function scrollDown() { body.scrollTop = body.scrollHeight; }
-
-  function addMsg(text, who) {
-    var el = document.createElement('div');
-    el.className = 'ai-msg ' + who;
-    el.textContent = text;
-    body.appendChild(el);
-    scrollDown();
-    return el;
-  }
-
-  function addTyping() {
-    var t = document.createElement('div');
-    t.className = 'ai-typing';
-    t.innerHTML = '<span></span><span></span><span></span>';
-    body.appendChild(t); scrollDown();
-    return t;
-  }
-
-  function addChips(items) {
-    var wrap = document.createElement('div');
-    wrap.className = 'ai-chips';
-    items.forEach(function (q) {
-      var b = document.createElement('button');
-      b.className = 'ai-chip'; b.type = 'button'; b.textContent = q;
-      b.addEventListener('click', function () { wrap.remove(); handleSend(q); });
-      wrap.appendChild(b);
-    });
-    body.appendChild(wrap); scrollDown();
-  }
-
-  function bookingCard(b) {
-    var card = document.createElement('div');
-    card.className = 'ai-book';
-    var en = isEN();
-    card.innerHTML =
-      '<b>' + (en ? 'Booking summary' : 'Thông tin đặt lịch') + '</b>' +
-      '<div class="ai-book-row">' + (en ? 'Name' : 'Tên') + ': ' + (b.name || '—') + '</div>' +
-      '<div class="ai-book-row">' + (en ? 'Phone' : 'SĐT') + ': ' + (b.phone || '—') + '</div>' +
-      '<div class="ai-book-row">' + (en ? 'Date' : 'Ngày') + ': ' + (b.date || '—') + ' · ' + (b.time || '—') + '</div>' +
-      '<div class="ai-book-row">' + (en ? 'Service' : 'Dịch vụ') + ': ' + (b.service || '—') + '</div>';
-    var btn = document.createElement('button');
-    btn.textContent = en ? 'Send via Zalo →' : 'Gửi qua Zalo →';
-    btn.addEventListener('click', function () {
-      var msg = (en ? 'The Nail booking:' : 'Đặt lịch The Nail:') +
-        '\n- ' + (en ? 'Name' : 'Tên') + ': ' + (b.name || '') +
-        '\n- ' + (en ? 'Phone' : 'SĐT') + ': ' + (b.phone || '') +
-        '\n- ' + (en ? 'Date' : 'Ngày') + ': ' + (b.date || '') +
-        '\n- ' + (en ? 'Time' : 'Giờ') + ': ' + (b.time || '') +
-        '\n- ' + (en ? 'Service' : 'Dịch vụ') + ': ' + (b.service || '');
-      if (navigator.clipboard) { navigator.clipboard.writeText(msg).catch(function () {}); }
-      window.open(AI_CFG.zalo, '_blank');
-    });
-    card.appendChild(btn);
-    body.appendChild(card); scrollDown();
-  }
-
-  // Tách dòng máy đọc [[BOOKING]]{...} ra khỏi nội dung hiển thị
-  function extractBooking(text) {
-    var m = text.match(/\[\[BOOKING\]\]\s*(\{[\s\S]*\})/);
-    var booking = null;
-    if (m) {
-      try { booking = JSON.parse(m[1]); } catch (e) {}
-      text = text.replace(m[0], '').trim();
-    }
-    return { text: text, booking: booking };
-  }
-
-  function greeting() {
-    return isEN()
-      ? "Hi 👋 I'm The Nail's assistant. Ask me about services, prices, or book an appointment — anytime."
-      : "Chào bạn 👋 Mình là trợ lý của The Nail. Bạn cần hỏi dịch vụ, bảng giá hay đặt lịch đều được nhé.";
-  }
-  function starterChips() {
-    return isEN()
-      ? ['Price list', 'Book an appointment', 'Address & hours']
-      : ['Xem bảng giá', 'Đặt lịch hẹn', 'Địa chỉ & giờ mở cửa'];
-  }
-
-  function openPanel() {
-    panel.classList.add('open');
-    fab.classList.add('hide');
-    if (!started) {
-      started = true;
-      addMsg(greeting(), 'bot');
-      addChips(starterChips());
-    }
-    setTimeout(function () { input.focus(); }, 50);
-  }
-  function closePanel() { panel.classList.remove('open'); fab.classList.remove('hide'); }
-
-  fab.addEventListener('click', openPanel);
-  document.getElementById('ai-x').addEventListener('click', closePanel);
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var v = input.value.trim();
-    if (v) handleSend(v);
-  });
-
-  function handleSend(text) {
-    text = (text || '').trim();
-    var img = pendingImage;
-    if (!text && !img) return;
-    input.value = '';
-    pendingImage = null; fileInput.value = ''; renderPending();
-
-    // Bong bóng của khách — kèm ảnh nếu có
-    var me = document.createElement('div'); me.className = 'ai-msg me';
-    if (img) { var ph = document.createElement('img'); ph.className = 'ai-photo'; ph.src = img.dataUrl; ph.alt = ''; me.appendChild(ph); }
-    if (text) { me.appendChild(document.createTextNode(text)); }
-    body.appendChild(me); scrollDown();
-
-    history.push({ role: 'user', content: text || (isEN() ? '[customer sent a nail photo]' : '[khách gửi 1 ảnh mẫu nail]') });
-    sendBtn.disabled = true;
-    var typing = addTyping();
-
-    respond(text, img).then(function (raw) {
-      typing.remove(); sendBtn.disabled = false;
-      var parsed = extractBooking(raw || '');
-      if (parsed.text) { addMsg(parsed.text, 'bot'); history.push({ role: 'assistant', content: raw }); }
-      if (parsed.booking) bookingCard(parsed.booking);
-    }).catch(function () {
-      typing.remove(); sendBtn.disabled = false;
-      addMsg(isEN() ? 'Sorry, something went wrong. Please message Zalo 0931 415 099.'
-                    : 'Xin lỗi, có trục trặc nhỏ. Bạn nhắn Zalo 0931 415 099 giúp mình nhé.', 'bot');
-    });
-  }
-
-  // Gọi AI thật (Worker) hoặc DEMO nếu chưa cấu hình endpoint
-  function respond(text, img) {
-    if (AI_CFG.endpoint) {
-      // Gửi lịch sử dạng chữ; nếu có ảnh thì gắn vào tin nhắn cuối (multimodal) — chỉ gửi 1 lần
-      var out = history.map(function (m) { return { role: m.role, content: m.content }; });
-      if (img && out.length) {
-        out[out.length - 1].content = [
-          { type: 'image', source: { type: 'base64', media_type: img.mediaType, data: img.b64 } },
-          { type: 'text', text: text || (isEN() ? 'Please look at this nail design and give a price estimate.' : 'Bạn xem mẫu nail này giúp mình và báo giá ước lượng nhé.') }
-        ];
-      }
-      return fetch(AI_CFG.endpoint, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: out })
-      }).then(function (r) { return r.json(); })
-        .then(function (d) { if (d && d.reply) return d.reply; throw new Error('no reply'); });
-    }
-    return new Promise(function (resolve) { setTimeout(function () { resolve(demoReply(text)); }, 650); });
-  }
-
-  // ===== DEMO: trả lời theo từ khoá (khi chưa gắn API key) =====
-  function demoReply(text) {
-    var t = text.toLowerCase();
-    var en = isEN();
-    var has = function () { for (var i = 0; i < arguments.length; i++) if (t.indexOf(arguments[i]) > -1) return true; return false; };
-    if (has('giá', 'bảng giá', 'bao nhiêu', 'price', 'cost'))
-      return en
-        ? 'Some popular prices (in thousand VND): Gel polish 70, Jelly 90, Shimmer 110, BIAB 130, Cat-eye/chrome 150, Gel tips 120, Gel extension 250. Full menu is in the “Menu” section above. Final price depends on the design.'
-        : 'Vài giá phổ biến (nghìn đồng): Sơn gel 70, Mắt mèo/chrome 150, Úp móng gel 100, Nối móng đắp gel 200. Bảng đầy đủ ở mục “Menu” phía trên nhé. Giá cuối tuỳ mẫu.';
-    if (has('địa chỉ', 'ở đâu', 'chỗ nào', 'address', 'where'))
-      return en ? 'We’re at 517/15 Nguyen Tri Phuong, Dien Hong Ward, District 10, HCMC. Open 9:00–22:00 daily.'
-                : 'Tiệm ở 517/15 Nguyễn Tri Phương, P. Diên Hồng, Q.10, TP.HCM. Mở cửa 9:00–22:00 mỗi ngày nhé.';
-    if (has('giờ', 'mấy giờ', 'mở cửa', 'hour', 'open'))
-      return en ? 'We’re open every day from 9:00 to 22:00.' : 'Tiệm mở cửa tất cả các ngày, 9:00–22:00 bạn nhé.';
-    if (has('đặt', 'book', 'lịch', 'hẹn', 'appointment'))
-      return en ? 'Lovely! Could you share your name and phone number to start? (This is a preview — once AI is connected I’ll handle the whole booking.)'
-                : 'Tuyệt vời! Bạn cho mình xin tên và số điện thoại để bắt đầu nhé. (Đây là bản xem trước — khi gắn AI mình sẽ chốt lịch trọn vẹn.)';
-    return en
-      ? 'This is a preview assistant. Once the AI key is connected I’ll answer everything. Meanwhile, message Zalo 0931 415 099 🌿'
-      : 'Đây là bản xem trước của trợ lý. Khi gắn API key mình sẽ trả lời thông minh hơn nhiều. Trong lúc đó bạn nhắn Zalo 0931 415 099 nhé 🌿';
-  }
-})();
-</script>
 </body>
 </html>
