@@ -642,9 +642,9 @@
       flex-direction: column;
     }
     .menu-poster__mast {
-      min-height: 124px;
+      min-height: 96px;
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: 1fr;
       align-items: center;
       gap: clamp(20px, 4vw, 54px);
       padding: 26px clamp(24px, 5vw, 64px) 30px;
@@ -2450,7 +2450,6 @@
     <div class="container">
       <div class="menu-poster">
         <header class="menu-poster__mast">
-          <a class="menu-poster__logo" href="#hero" aria-label="The Nail — về đầu trang"><img src="/images/the-nail-logo-no-card.svg" alt="The Nail" width="96" height="57"></a>
           <p class="menu-poster__title" data-en="The Nail · Service Menu">The Nail · Service Menu</p>
         </header>
         <div class="menu-poster__paper">
@@ -3359,7 +3358,7 @@
     overflow: visible !important;
     display: flex !important; flex-direction: column;
     padding: 0 !important;
-    border-radius: 30px 30px 0 0;
+    border-radius: 0;
     box-shadow: 0 -28px 64px rgba(28,38,30,0.24);
   }
   /* Booking: GHIM lại (có hiệu ứng trượt đè) nhưng overflow:visible (không cắt) + cả Booking & Contact đều ghim nên không lòi nút ra footer */
@@ -3441,6 +3440,7 @@
       display: flex !important;
       flex-direction: column;
       padding: 0 !important;
+      border-radius: 0 !important;
     }
     /* THANH LỌC = chip dính + VUỐT NGANG (mobile-native) */
     section#gallery .tabs-wrap {
