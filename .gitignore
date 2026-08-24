@@ -3,6 +3,8 @@
 .idea/
 *.log
 node_modules/
+playwright-report/
+test-results/
 
 # Tệp tạm / local (không deploy)
 .wrangler/
@@ -25,6 +27,8 @@ thenail-online-*.html
 *.bak-*
 *.zip
 # Tai lieu noi bo — khong de public tren thenail.vn
+bot/
+docs/
 SESSION-HANDOFF*.md
 THENAIL-MASTER.md
 CLAUDE.md

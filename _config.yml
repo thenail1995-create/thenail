@@ -1,0 +1,25 @@
+# Cấu hình GitHub Pages cho thenail.vn
+#
+# MỤC ĐÍCH DUY NHẤT: chặn không cho xuất bản file NỘI BỘ lên tên miền công khai.
+# GitHub Pages mặc định phục vụ MỌI file có trong repo — kể cả ghi chú nội bộ,
+# mã nguồn bot, và tài liệu dự án. Danh sách "exclude" dưới đây giữ chúng lại.
+#
+# ⚠️ Repo này là PUBLIC trên GitHub, nên exclude chỉ chặn ở thenail.vn.
+# File nào thực sự nhạy cảm thì phải gỡ khỏi repo, không chỉ exclude ở đây.
+
+exclude:
+  # --- nội bộ, không phải nội dung web ---
+  - bot                    # mã nguồn chatbot + cấu hình Cloudflare (lộ account id)
+  - docs                   # tài liệu dự án, ghi chú nội bộ
+  - README.md
+  - _config.yml
+
+  # --- bộ kiểm tra tự động (không liên quan người xem web) ---
+  - tests
+  - playwright.config.js
+  - package.json
+  - package-lock.json
+  - playwright-report
+  - test-results
+  - node_modules
+  - .github

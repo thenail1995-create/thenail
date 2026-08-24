@@ -1,0 +1,13 @@
+{
+  "name": "thenail-web",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "test": "playwright test",
+    "test:local": "cross-env BASE_URL=http://127.0.0.1:8899 playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "cross-env": "^7.0.3"
+  }
+}
