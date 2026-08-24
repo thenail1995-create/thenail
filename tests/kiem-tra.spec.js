@@ -59,8 +59,17 @@ test.describe('A. Sống & tài nguyên', () => {
     '/README.md',
   ];
 
+  // Chỉ có ý nghĩa khi kiểm tên miền thật: việc chặn do GitHub Pages (Jekyll `exclude`
+  // trong _config.yml) thực hiện. Server tĩnh chạy trên máy thì vẫn phục vụ mọi file
+  // đang nằm trên đĩa, nên chạy các kiểm tra này ở local sẽ báo động giả.
+  const dangKiemTrenTenMienThat = /thenail\.vn/.test(process.env.BASE_URL || 'https://thenail.vn');
+
   for (const duongDan of urlPhaiKhongTruyCapDuoc) {
     test(`File nội bộ "${duongDan}" KHÔNG được truy cập công khai`, async ({ request }) => {
+      test.skip(
+        !dangKiemTrenTenMienThat,
+        'Chỉ kiểm trên thenail.vn — server tĩnh ở máy không có cơ chế chặn của GitHub Pages'
+      );
       const res = await request.get(duongDan);
       expect(
         res.status(),

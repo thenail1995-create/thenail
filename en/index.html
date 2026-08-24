@@ -32,19 +32,19 @@
     "@context": "https://schema.org",
     "@type": "NailSalon",
     "name": "The Nail",
-    "description": "Tiệm nail thủ công ở Nguyễn Tri Phương, Quận 10, TP.HCM — vẽ móng nghệ thuật, sơn gel, nối móng, đắp gel theo từng tầm giá.",
-    "areaServed": ["Quận 10", "Quận 11", "Quận 5", "TP. Hồ Chí Minh"],
-    "knowsAbout": ["vẽ móng nghệ thuật", "sơn gel", "nối móng", "đắp gel", "nail box", "mắt mèo", "ombre"],
-    "keywords": "tiệm nail quận 10, nail đẹp nguyễn tri phương, vẽ móng nghệ thuật sài gòn, làm nail giá rẻ quận 10, sơn gel quận 10, nối móng quận 10",
+    "description": "Handcrafted nail salon on Nguyễn Tri Phương Street, District 10, Ho Chi Minh City — nail art, gel polish, nail extensions and gel overlays for every budget.",
+    "areaServed": ["District 10", "District 11", "District 5", "Ho Chi Minh City"],
+    "knowsAbout": ["nail art", "gel nails", "nail extensions", "gel overlays", "press-on nails", "cat-eye nails", "ombre nails"],
+    "keywords": "nail salon District 10 Saigon, nail art Ho Chi Minh City, gel nails District 10, nail extensions Saigon, Nguyễn Tri Phương nail salon",
     "image": "https://thenail.vn/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp",
-    "url": "https://thenail.vn/",
+    "url": "https://thenail.vn/en/",
     "telephone": "+84931415099",
     "priceRange": "200.000₫–1.500.000₫",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "517/15 Nguyễn Tri Phương, Phường Diên Hồng",
-      "addressLocality": "Quận 10",
-      "addressRegion": "TP. Hồ Chí Minh",
+      "addressLocality": "District 10",
+      "addressRegion": "Ho Chi Minh City",
       "addressCountry": "VN"
     },
     "openingHoursSpecification": {
@@ -71,6 +71,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/en/styles.css">
+  <style>
+    @media (max-width: 820px) { html, body { overflow-x: hidden !important; } }
+  </style>
 
   <!-- Preload splash curtain images (desktop: 2 large for 8-strip curtain) -->
   <link rel="preload" as="image" media="(min-width: 769px)" href="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp" fetchpriority="high" />
@@ -91,7 +94,7 @@
   </script>
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
 
   <!-- ===== LOADING SPLASH — NAIL-PHOTO CURTAIN ===== -->
   <div class="loading-splash" id="splash">
@@ -101,6 +104,9 @@
       </div>
       <div class="splash-line"></div>
       <div class="splash-tagline">your concept, my creation</div>
+      <!-- Nửa tiếng Việt của cặp khẩu hiệu song ngữ (dòng trên là bản tiếng Anh).
+           CỐ Ý giữ tiếng Việt ở cả trang /en/ — giống hệt bản VI. Dịch dòng này
+           sẽ làm khẩu hiệu hiện 2 lần y hệt nhau. -->
       <div class="splash-tagline-vi">Ý tưởng bạn trao — Nghệ thuật tôi tạo</div>
     </div>
     <div class="curtain-strips" aria-hidden="true"
@@ -117,10 +123,10 @@
     </div>
     <div class="splash-mosaic" aria-hidden="true">
       <div class="mosaic-half left">
-        <img class="mosaic-photo" src="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w600.webp" alt="Gel trắng-nude với vệt xanh gradient tinh tế, dáng móng almond tại The Nail, Quận 10" />
+        <img class="mosaic-photo" src="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w600.webp" alt="White-nude gel with subtle gradient blue streaks, almond-shaped nails at The Nail, District 10" />
       </div>
       <div class="mosaic-half right">
-        <img class="mosaic-photo" src="/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w600.webp" alt="Mẫu gel nude tôn với vệt chrome xanh dương gradient sâu, dáng móng almond tại The Nail, Quận 10" />
+        <img class="mosaic-photo" src="/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w600.webp" alt="Nude gel with deep gradient blue chrome streaks, almond nails at The Nail, District 10" />
       </div>
     </div>
   </div>
@@ -132,23 +138,23 @@
   <nav>
     <div class="nav-info">
       <div class="container">
-        <span class="ni addr">📍 Quận 10, TP.HCM</span>
+        <span class="ni addr" data-en="📍 District 10, Ho Chi Minh City" data-vi="📍 Quận 10, TP.HCM">📍 District 10, Ho Chi Minh City</span>
         <span class="ni phone">📞 <a href="tel:0931415099">0931 415 099</a></span>
         <span class="ni hours">🕘 9:00 — 22:00</span>
-        <button class="ni lang-toggle" type="button" aria-label="Đổi ngôn ngữ / Switch language">
+        <button class="ni lang-toggle" type="button" aria-label="Switch language">
           <span data-l="vi">VI</span><span class="lt-sep">/</span><span data-l="en">EN</span>
         </button>
       </div>
     </div>
     <div class="nav-bar">
       <div class="container">
-        <a href="#hero" class="logo" aria-label="The Nail — về đầu trang"><img src="/images/the-nail-logo-no-card.svg" alt="The Nail" width="91" height="54" /></a>
+        <a href="#hero" class="logo" aria-label="The Nail — back to top"><img src="/images/the-nail-logo-no-card.svg" alt="The Nail" width="91" height="54" /></a>
         <div class="links" id="nav-links">
-          <a href="#about">Giới thiệu</a>
-          <a href="#menu" data-en="Menu">Menu</a>
-          <a href="#contact">Liên hệ</a>
-          <a href="#gallery" class="nav-btn">Mẫu nail</a>
-          <a href="#booking" class="nav-btn solid">Đặt lịch</a>
+          <a href="#about" data-en="About" data-vi="Giới thiệu">About</a>
+          <a href="#menu" data-en="Menu" data-vi="Menu">Menu</a>
+          <a href="#contact" data-en="Contact" data-vi="Liên hệ">Contact</a>
+          <a href="#gallery" class="nav-btn" data-en="Nail Gallery" data-vi="Mẫu nail">Nail Gallery</a>
+          <a href="#booking" class="nav-btn solid" data-en="Book an Appointment" data-vi="Đặt lịch">Book an Appointment</a>
         </div>
         <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
           <span></span><span></span><span></span>
@@ -164,19 +170,20 @@
     <div class="hero-spotlight" id="hero-spotlight"></div>
     <div class="hero-3d-scene" id="hero-scene">
       <div class="hero-tag">— Nail Studio by Trần Ngọc —</div>
-      <h1 class="hero-logo"><img src="/images/the-nail-logo-no-card.svg" alt="The Nail — Nail Studio Quận 10, Sài Gòn" /></h1>
+      <h1 class="hero-logo"><img src="/images/the-nail-logo-no-card.svg" alt="The Nail — Nail Studio in District 10, Saigon" /></h1>
       <p class="slogan-en"><span class="sg">— your concept,</span> <span class="sg">my creation —</span></p>
+      <!-- Nửa tiếng Việt của cặp khẩu hiệu hero — CỐ Ý giữ tiếng Việt (xem ghi chú ở splash). -->
       <p class="slogan-vi"><span class="sg">Ý tưởng bạn trao —</span> <span class="sg">Nghệ thuật tôi tạo</span></p>
     </div>
     <div class="hero-scatter" aria-hidden="true">
-      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb_w600.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1.5tr</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz_w600.webp" alt="Ảnh portrait phụ nữ thể hiện mẫu gel nâu-vàng tại The Nail, Quận 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1tr</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N_w600.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">850k</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm_w600.webp" alt="Mẫu gel nude-hồng in họa tiết hoa-sọc đỏ-vàng-cam, dáng móng almond tại The Nail, Quận 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">700k</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn_w600.webp" alt="Gel trắng-nude với họa tiết lá bạc 3D nổi bậc, dáng móng stiletto tại The Nail, Quận 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">650k</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8_w600.webp" alt="Ảnh portrait 2 phụ nữ tại không gian của The Nail, Quận 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1.2tr</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW_w600.webp" alt="Ảnh portrait phụ nữ thể hiện vẻ đẹp sang trọng tại The Nail, Quận 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">900k</span></div></figure>
-      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb_w600.webp" alt="Mẫu gel đỏ-đen với họa tiết lá bạc cá tính, dáng móng stiletto tại The Nail, Quận 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">600k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb_w600.webp" alt="Portrait of a woman at The Nail's space in District 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1.5tr</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz_w600.webp" alt="Portrait of a woman showing a brown-gold gel design at The Nail, District 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1tr</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N_w600.webp" alt="Portrait of a woman at The Nail's space in District 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">850k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm_w600.webp" alt="Nude-pink gel with red, yellow and orange floral stripes, almond-shaped nails at The Nail, District 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">700k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn_w600.webp" alt="White-nude gel with 3D silver leaf pattern, stiletto nails at The Nail, District 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">650k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8_w600.webp" alt="Portrait of two women at The Nail's space in District 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">1.2tr</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW_w600.webp" alt="Portrait of a woman with an elegant look at The Nail, District 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">900k</span></div></figure>
+      <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb_w600.webp" alt="Red-black gel with silver leaf pattern, stiletto nails at The Nail, District 10" referrerpolicy="no-referrer" fetchpriority="high"><span class="tag">600k</span></div></figure>
     </div>
   </section>
 
@@ -184,26 +191,26 @@
   <section class="about" id="about">
     <div class="container">
       <div class="section-head">
-        <div class="label">— Giá trị của chúng tôi —</div>
-        <h2>Mỗi đôi tay — Một tác phẩm</h2>
+        <div class="label" data-en="— What We Value —" data-vi="— Giá trị của chúng tôi —">— What We Value —</div>
+        <h2 data-en="Every Set of Hands — A Work of Art" data-vi="Mỗi đôi tay — Một tác phẩm">Every Set of Hands — A Work of Art</h2>
         <div class="divider"></div>
-        <p>Tại The Nail — tiệm nail trên đường Nguyễn Tri Phương, Quận 10 — chúng tôi tin rằng mỗi bộ móng là sự kết hợp giữa ý tưởng của bạn và tay nghề của chúng tôi.</p>
+        <p data-en="At The Nail on Nguyen Tri Phuong Street, District 10, we believe every manicure is a meeting of your idea and our craft." data-vi="Tại The Nail — tiệm nail trên đường Nguyễn Tri Phương, Quận 10 — chúng tôi tin rằng mỗi bộ móng là sự kết hợp giữa ý tưởng của bạn và tay nghề của chúng tôi.">At The Nail on Nguyen Tri Phuong Street, District 10, we believe every manicure is a meeting of your idea and our craft.</p>
       </div>
       <div class="about-grid">
         <div class="about-item">
           <div class="icon">✦</div>
-          <h3 class="glitter">Cá nhân hoá</h3>
-          <p>Mỗi khách hàng là duy nhất. Mỗi bộ móng được điều chỉnh riêng theo gu, dáng tay và phong cách của bạn.</p>
+          <h3 class="glitter" data-en="Personalised" data-vi="Cá nhân hoá">Personalised</h3>
+          <p data-en="Every guest is unique. Each set is tailored to your taste, hand shape and personal style." data-vi="Mỗi khách hàng là duy nhất. Mỗi bộ móng được điều chỉnh riêng theo gu, dáng tay và phong cách của bạn.">Every guest is unique. Each set is tailored to your taste, hand shape and personal style.</p>
         </div>
         <div class="about-item">
           <div class="icon">✦</div>
-          <h3 class="glitter">Sáng tạo</h3>
-          <p>Không chỉ làm theo mẫu — chúng tôi cùng bạn kiến tạo nên thiết kế độc bản, mang dấu ấn của riêng bạn.</p>
+          <h3 class="glitter" data-en="Creative" data-vi="Sáng tạo">Creative</h3>
+          <p data-en="Beyond recreating references, we create one-of-a-kind designs with you — made to feel unmistakably yours." data-vi="Không chỉ làm theo mẫu — chúng tôi cùng bạn kiến tạo nên thiết kế độc bản, mang dấu ấn của riêng bạn.">Beyond recreating references, we create one-of-a-kind designs with you — made to feel unmistakably yours.</p>
         </div>
         <div class="about-item">
           <div class="icon">✦</div>
-          <h3 class="glitter">Tỉ mỉ</h3>
-          <p>Từng đường nét được trau chuốt. Một bộ móng đẹp bắt nguồn từ sự kiên nhẫn — không vội, không qua loa.</p>
+          <h3 class="glitter" data-en="Meticulous" data-vi="Tỉ mỉ">Meticulous</h3>
+          <p data-en="Every detail is considered. Beautiful nails begin with patience — never rushed, never careless." data-vi="Từng đường nét được trau chuốt. Một bộ móng đẹp bắt nguồn từ sự kiên nhẫn — không vội, không qua loa.">Every detail is considered. Beautiful nails begin with patience — never rushed, never careless.</p>
         </div>
       </div>
     </div>
@@ -214,13 +221,13 @@
     <div class="container">
       <div class="section-head">
         <div class="label">— Atelier —</div>
-        <h2><em>Bộ sưu tập</em></h2>
+        <h2><em data-en="The Collection" data-vi="Bộ sưu tập">The Collection</em></h2>
         <div class="divider"></div>
-        <p>Từ vẽ móng nghệ thuật, sơn gel đến nối móng — mỗi đôi tay một dấu ấn riêng. Tìm cảm hứng cho phong cách của bạn theo từng tầm giá.</p>
+        <p data-en="From nail art and gel polish to extensions, every set carries its own signature. Find inspiration for your style at every price point." data-vi="Từ vẽ móng nghệ thuật, sơn gel đến nối móng — mỗi đôi tay một dấu ấn riêng. Tìm cảm hứng cho phong cách của bạn theo từng tầm giá.">From nail art and gel polish to extensions, every set carries its own signature. Find inspiration for your style at every price point.</p>
       </div>
 
       <div class="tabs-wrap">
-        <button class="tab active" data-filter="all">Tất cả</button>
+        <button class="tab active" data-filter="all" data-en="All" data-vi="Tất cả">All</button>
         <button class="tab" data-filter="200-300">200 — 300k</button>
         <button class="tab" data-filter="300-400">300 — 400k</button>
         <button class="tab" data-filter="400-500">400 — 500k</button>
@@ -230,295 +237,295 @@
 
       <div class="gallery" id="gallery-grid">
         <!-- 200 — 300k -->
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w400.webp" alt="Gel trắng-nude với vệt xanh gradient tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="220k">
+          <img src="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w400.webp" alt="White-nude gel with subtle gradient blue streaks, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="/images/gallery/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP_w400.webp" alt="Gel hồng-trắng với họa tiết tim 3D nổi bậc rực rỡ, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="240k">
+          <img src="/images/gallery/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP_w400.webp" alt="Pink-white gel with brilliant 3D heart pattern, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="/images/gallery/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe_w400.webp" alt="Gel nude-hồng nhạt in họa tiết chấm đa sắc tinh tế, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="250k">
+          <img src="/images/gallery/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe_w400.webp" alt="Nude-pink gel printed with delicate polychromatic dots, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="/images/gallery/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq_w400.webp" alt="Gel nâu sâu đỏ châu Âu với viền vàng thanh lịch, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="260k">
+          <img src="/images/gallery/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq_w400.webp" alt="Deep European red-brown gel with an elegant gold edge, oval-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="/images/gallery/15R-57T9UAgJU366mo1ehBbCdL__g_e0n_w400.webp" alt="Sơn gel nâu đỏ hẹp viền vàng đồng, dáng móng tròn vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="270k">
+          <img src="/images/gallery/15R-57T9UAgJU366mo1ehBbCdL__g_e0n_w400.webp" alt="Reddish-brown gel polish with a slim antique-gold edge, squoval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="/images/gallery/1DB1ZURgeazTF8TExqop-9iaykK76pUZq_w400.webp" alt="Mẫu gel trắng-nude in họa tiết mà cà rô đỏ tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="280k">
+          <img src="/images/gallery/1DB1ZURgeazTF8TExqop-9iaykK76pUZq_w400.webp" alt="White-nude gel with a refined red checkerboard detail, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
-          <img src="/images/gallery/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq_w400.webp" alt="Gel nude-hồng với gradient xanh-hồng-vàng mềm mại, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="290k">
+          <img src="/images/gallery/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq_w400.webp" alt="Nude-pink gel with soft blue-red-gold gradient, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="/images/gallery/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2_w400.webp" alt="Gel nude-hồng tôn điểm với viền vàng đỏ thanh lịch, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="220k">
+          <img src="/images/gallery/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2_w400.webp" alt="Nude-red gel with elegant red gold trim, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w400.webp" alt="Mẫu gel nude tôn với vệt chrome xanh dương gradient sâu, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="240k">
+          <img src="/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w400.webp" alt="Nude gel with deep gradient blue chrome streaks, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="/images/gallery/15_TA0WlU7HnrBVB1redzSknjkFmxsfQM_w400.webp" alt="Mẫu gel nude-hồng tổng hợp họa tiết dợi đỏ-xanh nhạt linh hoạt, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="250k">
+          <img src="/images/gallery/15_TA0WlU7HnrBVB1redzSknjkFmxsfQM_w400.webp" alt="Nude-pink gel with playful red and pale-blue line art, square-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="/images/gallery/135oqrLfl6La-8UoyLQ-G-mijommxvH97_w400.webp" alt="Gel sơn bóng màu hồng nhạt phủ vệt trắng rực rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="260k">
+          <img src="/images/gallery/135oqrLfl6La-8UoyLQ-G-mijommxvH97_w400.webp" alt="Light pink polish gel covered with brilliant white streaks, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="/images/gallery/1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB_w400.webp" alt="Gel đen bóng tôn với chấm trắng ngọc trai tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="270k">
+          <img src="/images/gallery/1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB_w400.webp" alt="Glossy black gel with delicate pearl white dots, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="/images/gallery/163NFAIVlRBJJyhFou7r1JMdWb2aVXJQr_w400.webp" alt="Gel trắng lạnh kết hợp glitter bạc và xanh dương sáng, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="280k">
+          <img src="/images/gallery/163NFAIVlRBJJyhFou7r1JMdWb2aVXJQr_w400.webp" alt="Cold white gel with silver and bright blue glitter, square nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
-          <img src="/images/gallery/16Vlv2ZbLHddXJtDHf_JuxDvfH8rrZsiw_w400.webp" alt="Mẫu gel hồng nhạt tôn điểm với vệt glitter bạc-xanh sáng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="290k">
+          <img src="/images/gallery/16Vlv2ZbLHddXJtDHf_JuxDvfH8rrZsiw_w400.webp" alt="Light pink gel with silver-green glitter streak, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="/images/gallery/1R6n4ci2qceGAEuCP06slXVWV9M7pu9dc_w400.webp" alt="Mẫu gel nude-hồng nhạt với vầng trắng gradient dịu dàng, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="220k">
+          <img src="/images/gallery/1R6n4ci2qceGAEuCP06slXVWV9M7pu9dc_w400.webp" alt="Light nude-pink gel with gentle gradient white, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="/images/gallery/1EO8myodG3wgILbanuwVz6NymkBvYWqnk_w400.webp" alt="Gel nude-hồng phủ glitter bạc-hồng lấp lánh, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="240k">
+          <img src="/images/gallery/1EO8myodG3wgILbanuwVz6NymkBvYWqnk_w400.webp" alt="Nude-pink gel finished with sparkling silver-pink glitter, stiletto-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="/images/gallery/1iUE7UlCv1PsP0qGnBKAoH8Gc15CGd8Sp_w400.webp" alt="Gel nude-trắng in họa tiết hoa trắng tinh tế, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="250k">
+          <img src="/images/gallery/1iUE7UlCv1PsP0qGnBKAoH8Gc15CGd8Sp_w400.webp" alt="Nude-white gel printed with delicate white flowers, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="/images/gallery/1chRGSaJQBt1jY-HnmQelfQXsKD69qho3_w400.webp" alt="Gel nude-hồng tôn điểm với chấm hoa đỏ nổi bật, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="260k">
+          <img src="/images/gallery/1chRGSaJQBt1jY-HnmQelfQXsKD69qho3_w400.webp" alt="Nude-red gel with prominent red flower dots, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="/images/gallery/1GCPuUII3SsN5qZ22A6gMyRZkgYYFhJP9_w400.webp" alt="Mẫu gel nude-hồng nhạt với vầng trắng mờ dịu dàng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="270k">
+          <img src="/images/gallery/1GCPuUII3SsN5qZ22A6gMyRZkgYYFhJP9_w400.webp" alt="Light nude-pink gel with soft white glow, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="/images/gallery/1scxmt4oSMJXKIQ8qnaNrV8r6YTyLkz3U_w400.webp" alt="Mẫu gel hồng-nude in họa tiết hoa trắng rải rác, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="200-300" data-name="Design 200 — 300k" data-vi-name="Mẫu 200 — 300k" data-range="280k">
+          <img src="/images/gallery/1scxmt4oSMJXKIQ8qnaNrV8r6YTyLkz3U_w400.webp" alt="Pink-nude gel pattern with scattered white flowers, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 300 — 400k -->
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="/images/gallery/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ_w400.webp" alt="Gel trắng lạnh in họa tiết hoa xanh-hồng tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="320k">
+          <img src="/images/gallery/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ_w400.webp" alt="Cool white gel with delicate blue-pink flower pattern, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="/images/gallery/1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX__w400.webp" alt="Mẫu gel nude-hồng nhạt in họa tiết hoa đa sắc, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="340k">
+          <img src="/images/gallery/1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX__w400.webp" alt="Nude-pink gel with colorful floral motifs, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="/images/gallery/1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV_w400.webp" alt="Mẫu gel trắng-nude in họa tiết hoa xanh-vàng tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="350k">
+          <img src="/images/gallery/1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV_w400.webp" alt="White-nude gel with delicate blue-gold flower pattern, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="/images/gallery/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR__w400.webp" alt="Gel nude-hồng tôn điểm với vệt trắng sáng outline, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="360k">
+          <img src="/images/gallery/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR__w400.webp" alt="Nude-red gel with bright white outline, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="/images/gallery/1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p_w400.webp" alt="Mẫu gel hồng nhạt tôn điểm với vệt đen cherry nổi bật, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="380k">
+          <img src="/images/gallery/1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p_w400.webp" alt="Light pink gel with striking cherry black streaks, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="/images/gallery/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ_w400.webp" alt="Mẫu gel ấm tone với hiệu ứng chrome xanh-nâu lấp lánh, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="390k">
+          <img src="/images/gallery/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ_w400.webp" alt="Warm tone gel with sparkling blue-brown chrome effect, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="/images/gallery/1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee_w400.webp" alt="Mẫu gel nude-hồng in họa tiết chấm xanh tím tinh tế, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="320k">
+          <img src="/images/gallery/1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee_w400.webp" alt="Nude-pink gel with subtle blue-purple dot pattern, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="/images/gallery/16xoZP9KI8THym4ev3Ayetk1p8h6Me27w_w400.webp" alt="Mẫu gel nude-hồng với họa tiết hoạt hình đa dạng tinh tế, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="340k">
+          <img src="/images/gallery/16xoZP9KI8THym4ev3Ayetk1p8h6Me27w_w400.webp" alt="Nude-pink gel with exquisite diverse cartoon motifs, square nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="/images/gallery/1krPewtbBudfV3IkWi16qHwGssLqZgyYt_w400.webp" alt="Mẫu gel nude-hồng tôn với vệt lá vàng-cam thanh lịch, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="350k">
+          <img src="/images/gallery/1krPewtbBudfV3IkWi16qHwGssLqZgyYt_w400.webp" alt="Nude-pink gel accented with elegant golden-orange leaf strokes, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="/images/gallery/1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo_w400.webp" alt="Mẫu gel nude-hồng tôn với vệt trắng-xanh sáng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="360k">
+          <img src="/images/gallery/1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo_w400.webp" alt="Nude-pink gel accented with bright white and blue strokes, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="/images/gallery/1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y_w400.webp" alt="Mẫu gel nude-hồng với vệt gradient xanh tím sâu, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="380k">
+          <img src="/images/gallery/1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y_w400.webp" alt="Nude-pink gel with a deep blue-violet gradient sweep, oval-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="/images/gallery/1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC_w400.webp" alt="Gel hồng-nude với họa tiết xoắn bạc-xanh tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="390k">
+          <img src="/images/gallery/1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC_w400.webp" alt="Pink-nude gel with refined silver-blue swirls, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="/images/gallery/1QI2URULkrcTMpTwj2mTCs28aMYw0yxc5_w400.webp" alt="Mẫu gel nâu-cam với hiệu ứng foil vàng sọc nổi bật, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="320k">
+          <img src="/images/gallery/1QI2URULkrcTMpTwj2mTCs28aMYw0yxc5_w400.webp" alt="Brown-orange gel with striking yellow striped foil effect, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="/images/gallery/1i6kGM6s0UHvAb5LOWEJQVPxxCDT_EDE8_w400.webp" alt="Gel trắng-nude in họa tiết đa sắc rục rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="340k">
+          <img src="/images/gallery/1i6kGM6s0UHvAb5LOWEJQVPxxCDT_EDE8_w400.webp" alt="White-nude gel with vibrant multicoloured details, oval-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="/images/gallery/18t_7xqAaz8lpPJNR5EoCsUTAoTxkHCMl_w400.webp" alt="Gel nude-hồng tổng hợp glitter đa sắc rực rỡ, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="350k">
+          <img src="/images/gallery/18t_7xqAaz8lpPJNR5EoCsUTAoTxkHCMl_w400.webp" alt="Nude-pink gel with vibrant multicoloured glitter, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="/images/gallery/15nZvalPybqrct7B7g6ey2E_gRDg0tg6I_w400.webp" alt="Gel nude-hồng phủ glitter xanh-hồng lấp lánh, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="360k">
+          <img src="/images/gallery/15nZvalPybqrct7B7g6ey2E_gRDg0tg6I_w400.webp" alt="Nude-pink gel finished with sparkling blue-pink glitter, square-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="/images/gallery/1aQpks3LTztk9VBxNa40porIXuvIYkoei_w400.webp" alt="Mẫu gel nude-hồng nhạt với vầng trắng mờ dịu, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="380k">
+          <img src="/images/gallery/1aQpks3LTztk9VBxNa40porIXuvIYkoei_w400.webp" alt="Light nude-pink gel with a soft white glow, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="/images/gallery/1bKPtMEVii01P9HWmjnEzEDEWNn-Yho60_w400.webp" alt="Mẫu gel nude-hồng nhạt phủ glitter bạc-hồng tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="390k">
+          <img src="/images/gallery/1bKPtMEVii01P9HWmjnEzEDEWNn-Yho60_w400.webp" alt="Delicate silver-pink glitter-coated nude-pink gel, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="/images/gallery/1S5fnvazifUYhdmcXGr7YHn83DRnSsQ1f_w400.webp" alt="Mẫu gel đỏ sâu với họa tiết đường bạc cá tính, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="320k">
+          <img src="/images/gallery/1S5fnvazifUYhdmcXGr7YHn83DRnSsQ1f_w400.webp" alt="Deep red gel with silver line personality, stiletto-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="/images/gallery/1fOX2JLKhBQlx4BGVye5jOFNUSc-TkGKB_w400.webp" alt="Mẫu gel nude-hồng với hiệu ứng hologra aurora đa sắc, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="340k">
+          <img src="/images/gallery/1fOX2JLKhBQlx4BGVye5jOFNUSc-TkGKB_w400.webp" alt="Nude-pink gel with a multicoloured holographic aurora effect, oval-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1oDP3RQ9w0jnSnhROJgvffAqL-4GcsSy9_w400.webp" alt="Mẫu gel đa sắc với họa tiết mặt cười vui nhộn, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1oDP3RQ9w0jnSnhROJgvffAqL-4GcsSy9_w400.webp" alt="Colorful gel with funny smiley texture, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1ZH3AfUs1cKY2whH29H1k0b_mf0SKaZWl_w400.webp" alt="Gel nude-hồng nhạt in họa tiết chấm trắng vàng tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1ZH3AfUs1cKY2whH29H1k0b_mf0SKaZWl_w400.webp" alt="Nude-pink gel printed with delicate white-yellow dots, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/15Sdm2mTdVKFwiA9BBUtAWDmGqvTAmE_D_w400.webp" alt="Gel trắng kem in họa tiết hoa tím nhạt tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/15Sdm2mTdVKFwiA9BBUtAWDmGqvTAmE_D_w400.webp" alt="Creamy white gel printed with delicate purple flowers, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1YxoPgPC0V0zmg2E__jbake0b2xtQ294J_w400.webp" alt="Mẫu gel nude-hồng in họa tiết hoa đa sắc rực rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1YxoPgPC0V0zmg2E__jbake0b2xtQ294J_w400.webp" alt="Nude-pink gel with colorful floral motifs, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/13Oq-qgQtE-HOcLk2shUvN4Ld-bfQLBxo_w400.webp" alt="Mẫu gel trắng kem kết hợp vệt đen vàng, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/13Oq-qgQtE-HOcLk2shUvN4Ld-bfQLBxo_w400.webp" alt="Creamy white gel with black and yellow streaks, square nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1E8Glkh8JcCRWoxysV5N5Ml6DWzn3n815_w400.webp" alt="Mẫu gel nude-trắng kết hợp vệt đen xanh dương cổ điển, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1E8Glkh8JcCRWoxysV5N5Ml6DWzn3n815_w400.webp" alt="Classic nude-white gel with blue-black streaks, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1BZ0ywzAJRMeKMBJlngWgv3wwwpqI9qb1_w400.webp" alt="Mẫu gel trắng trong phủ glitter đa sắc hồng tím xanh, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1BZ0ywzAJRMeKMBJlngWgv3wwwpqI9qb1_w400.webp" alt="White gel in pink purple blue multicolored glitter, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1i3-fxKYzR1RTGnycD_MI5fztD2GhcOnz_w400.webp" alt="Mẫu gel đỏ-cam gradient với họa tiết hoa trắng tinh tế, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1i3-fxKYzR1RTGnycD_MI5fztD2GhcOnz_w400.webp" alt="Red-cam gradient gel with delicate white flower pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1lA3rgvEgneNPIEpo06zCaFsScBuJGpqV_w400.webp" alt="Gel nude-hồng in họa tiết hoa đa sắc rực rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1lA3rgvEgneNPIEpo06zCaFsScBuJGpqV_w400.webp" alt="Nude-hong gel printed with colorful floral motifs, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1kHExmNOQN7arVqJLYQ7FR8-cnmBCAJ1m_w400.webp" alt="Gel đỏ-nâu tôn với vệt hoa đỏ-trắng cá tính, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1kHExmNOQN7arVqJLYQ7FR8-cnmBCAJ1m_w400.webp" alt="Red-brown gel with red-white flower streaks, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1NMlvk3Xqe92Pd5cW9pVrTsF3Jr8-vWHE_w400.webp" alt="Gel nâu đỏ sẫm với vệt họa tiết thanh lịch, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1NMlvk3Xqe92Pd5cW9pVrTsF3Jr8-vWHE_w400.webp" alt="Dark brown gel with elegant texture streaks, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1qJqnt84BtdPSj0chvBtN2YSAmEQ41dO3_w400.webp" alt="Mẫu gel đỏ-nâu sẫm bóng, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1qJqnt84BtdPSj0chvBtN2YSAmEQ41dO3_w400.webp" alt="Dark red-brown gel design, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1PPR-FO6DjpTEv3462bTnMFpDoULaXCS6_w400.webp" alt="Gel nude-hồng nhạt tôn với vầng trắng và họa tiết hoa-chấm tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="300-400" data-name="Design 300 — 400k" data-vi-name="Mẫu 300 — 400k" data-range="300 — 400k">
+          <img src="/images/gallery/1PPR-FO6DjpTEv3462bTnMFpDoULaXCS6_w400.webp" alt="Nude-red gel with white glow and delicate floral-dot pattern, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 400 — 500k -->
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="/images/gallery/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF_w400.webp" alt="Gel trắng-nude in họa tiết lá đen-xanh tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="420k">
+          <img src="/images/gallery/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF_w400.webp" alt="White-nude gel with delicate black-green leaf pattern, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="/images/gallery/1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8_w400.webp" alt="Mẫu gel nude-hồng với vệt glitter xanh-tím-hồng lấp lánh, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="440k">
+          <img src="/images/gallery/1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8_w400.webp" alt="Nude-pink gel with sparkling blue-violet-pink glitter, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="/images/gallery/1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa_w400.webp" alt="Gel nude-hồng phủ glitter bạc-hồng dày đặc lấp lánh, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="450k">
+          <img src="/images/gallery/1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa_w400.webp" alt="Nude gel-coated glitter dense silver-red glitter glitter, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
-          <img src="/images/gallery/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv_w400.webp" alt="Mẫu gel bạc-chrome 3D nổi bậc lấp lánh, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="460k">
+          <img src="/images/gallery/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv_w400.webp" alt="Sparkling silver-chrome 3D gel, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
-          <img src="/images/gallery/1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx_w400.webp" alt="Mẫu gel nude-hồng in họa tiết đa sắc rục rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="480k">
+          <img src="/images/gallery/1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx_w400.webp" alt="Nude-pink gel with colorful patterns, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
-          <img src="/images/gallery/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D_w400.webp" alt="Mẫu gel ombre hồng nude với chi tiết đính đá và sọc vàng trên nền nude, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="490k">
+          <img src="/images/gallery/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D_w400.webp" alt="Pink-nude ombre gel with rhinestone details and gold stripes on a nude base, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="/images/gallery/17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1_w400.webp" alt="Gel nâu-nude phủ glitter hồng xanh sáng bóng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="420k">
+          <img src="/images/gallery/17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1_w400.webp" alt="Brown-nude gel coated with shiny pink-green glitter, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="/images/gallery/1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4_w400.webp" alt="Gel trắng-nude in họa tiết hoa đa sắc tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="440k">
+          <img src="/images/gallery/1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4_w400.webp" alt="White-nude gel printed with delicate multi-colored floral motifs, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="/images/gallery/1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K_w400.webp" alt="Mẫu gel nude-hồng với vệt chrome đa sắc bạc-hồng-xanh, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="450k">
+          <img src="/images/gallery/1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K_w400.webp" alt="Nude-red gel with silver-red-green multicolored chrome streaks, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
-          <img src="/images/gallery/1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL_w400.webp" alt="Mẫu gel đen-nude với vệt foil bạc từng mảnh cá tính, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="460k">
+          <img src="/images/gallery/1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL_w400.webp" alt="Black-nude gel with silver foil streaks, personality pieces, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
-          <img src="/images/gallery/1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka_w400.webp" alt="Gel trắng-nude với họa tiết phức tạp xanh-tím-trắng, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="480k">
+          <img src="/images/gallery/1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka_w400.webp" alt="White-nude gel with blue-violet-white intricate pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
-          <img src="/images/gallery/1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ_w400.webp" alt="Gel nude-hồng nhạt phủ glitter hồng-tím-xanh tinh tế, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="490k">
+          <img src="/images/gallery/1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ_w400.webp" alt="Nude-pink gel covered with delicate pink-violet-green glitter, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="/images/gallery/1K0rZkCiM2hyEZCZQkJACvtkyBuqNHhUn_w400.webp" alt="Mẫu gel hồng-nude tôn với vệt đỏ đen họa tiết thanh nhã, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="420k">
+          <img src="/images/gallery/1K0rZkCiM2hyEZCZQkJACvtkyBuqNHhUn_w400.webp" alt="Pink-nude gel with elegant red and black streaks, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="/images/gallery/1QXDbRylzT3WAUWVc-yWkzaRbFAfRv3Z4_w400.webp" alt="Gel nâu-cam in họa tiết hoa đỏ rực rỡ trên nền ấm, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="440k">
+          <img src="/images/gallery/1QXDbRylzT3WAUWVc-yWkzaRbFAfRv3Z4_w400.webp" alt="Brown-orange gel with vibrant red florals on a warm base, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="/images/gallery/1ROJpCAmJfjhtYadj686sDEplLbtKvs5t_w400.webp" alt="Mẫu nail vẽ hoa tay tông xanh dương và tím pastel kèm ngón nhũ lấp lánh, dáng móng ngắn tròn, làm tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="400-500" data-name="Design 400 — 500k" data-vi-name="Mẫu 400 — 500k" data-range="450k">
+          <img src="/images/gallery/1ROJpCAmJfjhtYadj686sDEplLbtKvs5t_w400.webp" alt="Hand-painted pastel blue and purple florals with sparkling accent nails, short rounded nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 500 — 700k -->
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="/images/gallery/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k_w400.webp" alt="Gel hồng-tím nhạt phủ glitter bạc-hồng lấp lánh, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="550k">
+          <img src="/images/gallery/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k_w400.webp" alt="Light pink-purple gel coated with sparkling silver-pink glitter, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="/images/gallery/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb_w400.webp" alt="Mẫu gel đỏ-đen với họa tiết lá bạc cá tính, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="600k">
+          <img src="/images/gallery/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb_w400.webp" alt="Red-black gel with silver leaf pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="/images/gallery/1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av_w400.webp" alt="Gel nude-hồng in họa tiết báo hồng đen, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="620k">
+          <img src="/images/gallery/1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av_w400.webp" alt="Nude-pink gel with black pink leopard print, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="/images/gallery/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn_w400.webp" alt="Gel trắng-nude với họa tiết lá bạc 3D nổi bậc, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="650k">
+          <img src="/images/gallery/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn_w400.webp" alt="White-nude gel with 3D silver leaf pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="/images/gallery/1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF_w400.webp" alt="Gel nude tuyến trong với vệt đen cong cá tính kết hợp đính đá lấp lánh, dáng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="680k">
+          <img src="/images/gallery/1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF_w400.webp" alt="Sheer nude gel with bold curved black strokes and sparkling rhinestones, stiletto-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
-          <img src="/images/gallery/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm_w400.webp" alt="Mẫu gel nude-hồng in họa tiết hoa-sọc đỏ-vàng-cam, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="700k">
+          <img src="/images/gallery/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm_w400.webp" alt="Nude-pink gel with red, yellow and orange floral stripes, almond-shaped nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="/images/gallery/1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR_w400.webp" alt="Mẫu gel trắng-nude in họa tiết lá đen tinh xảo, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="550k">
+          <img src="/images/gallery/1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR_w400.webp" alt="White-nude gel with sophisticated black leaf pattern, oval nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="/images/gallery/1rIhThOBF47i43kiJrhslelS54OgYytIp_w400.webp" alt="Gel nude-hồng với vầng trắng và glitter bạc tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="600k">
+          <img src="/images/gallery/1rIhThOBF47i43kiJrhslelS54OgYytIp_w400.webp" alt="Nude-pink gel with white glitter and delicate silver glitter, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="/images/gallery/1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW_w400.webp" alt="Gel nude trong in họa tiết lá bạc và đỏ tinh xảo, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="620k">
+          <img src="/images/gallery/1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW_w400.webp" alt="Nude gel in sophisticated silver and red leaf prints, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="/images/gallery/1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D_w400.webp" alt="Mẫu gel trắng-nude in họa tiết lá bạc-xanh, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="650k">
+          <img src="/images/gallery/1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D_w400.webp" alt="White-nude gel with silver-blue leaf pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="/images/gallery/1bKBL_79FRCql-utY01i8AKVgTGdFAaRf_w400.webp" alt="Gel nude-hồng với vầng gradient trắng-xanh sáng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="680k">
+          <img src="/images/gallery/1bKBL_79FRCql-utY01i8AKVgTGdFAaRf_w400.webp" alt="Nude-pink gel with bright white-green gradient layer, almond nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
-          <img src="/images/gallery/1lY3pzege3isnu005Uq7WtKd7HXgTWibo_w400.webp" alt="Mẫu gel đen-chrome với họa tiết lá bạc 3D nổi bậc, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="700k">
+          <img src="/images/gallery/1lY3pzege3isnu005Uq7WtKd7HXgTWibo_w400.webp" alt="Black-chrome gel with 3D silver leaf pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="/images/gallery/1juCmUppBVNxI3_AnhWk1brwMTz08K2V0_w400.webp" alt="Mẫu gel nude-cam với họa tiết lá bạc 3D nổi bậc, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="550k">
+          <img src="/images/gallery/1juCmUppBVNxI3_AnhWk1brwMTz08K2V0_w400.webp" alt="Nude-cam gel with 3D silver leaf pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="/images/gallery/1DNheloiqsUAp-DODjkM0u-tVjdTP04q4_w400.webp" alt="Gel nude-cam với họa tiết hoa hồng 3D nổi bậc, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="600k">
+          <img src="/images/gallery/1DNheloiqsUAp-DODjkM0u-tVjdTP04q4_w400.webp" alt="Nude-cam gel with 3D rose pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="/images/gallery/185MiBYHWJD_pn1-WpWhA2xwbC7oGqIAW_w400.webp" alt="Mẫu gel đen bóng kết hợp glitter bạc nổi bật, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="620k">
+          <img src="/images/gallery/185MiBYHWJD_pn1-WpWhA2xwbC7oGqIAW_w400.webp" alt="Glossy black gel with silver glitter, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="/images/gallery/1XKmqO64qLuCp9feqwyyIp-_vEcfj5Yw0_w400.webp" alt="Gel đỏ-đen in họa tiết lá bạc cá tính, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="650k">
+          <img src="/images/gallery/1XKmqO64qLuCp9feqwyyIp-_vEcfj5Yw0_w400.webp" alt="Red-black gel with silver leaf pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="/images/gallery/1tTYrEusS1g-Uo1OiglePhiFJgZBZX91D_w400.webp" alt="Mẫu gel trắng-nude với họa tiết lá-vân bạc-vàng, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="500-700" data-name="Design 500 — 700k" data-vi-name="Mẫu 500 — 700k" data-range="680k">
+          <img src="/images/gallery/1tTYrEusS1g-Uo1OiglePhiFJgZBZX91D_w400.webp" alt="White-nude gel with silver-gold leaf pattern, stiletto nails at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
 
         <!-- 800k+ -->
-        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
-          <img src="/images/gallery/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N_w400.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="800-plus" data-name="Design 800k+" data-vi-name="Mẫu 800k+" data-range="850k">
+          <img src="/images/gallery/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N_w400.webp" alt="Portrait of a woman at The Nail's space in District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
-          <img src="/images/gallery/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW_w400.webp" alt="Ảnh portrait phụ nữ thể hiện vẻ đẹp sang trọng tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="800-plus" data-name="Design 800k+" data-vi-name="Mẫu 800k+" data-range="900k">
+          <img src="/images/gallery/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW_w400.webp" alt="Portrait of a woman with an elegant look at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
-          <img src="/images/gallery/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz_w400.webp" alt="Ảnh portrait phụ nữ thể hiện mẫu gel nâu-vàng tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="800-plus" data-name="Design 800k+" data-vi-name="Mẫu 800k+" data-range="1000k">
+          <img src="/images/gallery/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz_w400.webp" alt="Portrait of a woman showing a brown-gold gel design at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
-          <img src="/images/gallery/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8_w400.webp" alt="Ảnh portrait 2 phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="800-plus" data-name="Design 800k+" data-vi-name="Mẫu 800k+" data-range="1200k">
+          <img src="/images/gallery/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8_w400.webp" alt="Portrait of two women at The Nail's space in District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1500k">
-          <img src="/images/gallery/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb_w400.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="800-plus" data-name="Design 800k+" data-vi-name="Mẫu 800k+" data-range="1500k">
+          <img src="/images/gallery/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb_w400.webp" alt="Portrait of a woman at The Nail's space in District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
-          <img src="/images/gallery/1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7_w400.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="800-plus" data-name="Design 800k+" data-vi-name="Mẫu 800k+" data-range="850k">
+          <img src="/images/gallery/1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7_w400.webp" alt="Portrait of a woman at The Nail's space in District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
-          <img src="/images/gallery/1x1smBa58U7JikT1R-c82bwe92SwqT1V__w400.webp" alt="Ảnh portrait phụ nữ với sơn gel hồng glitter tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="800-plus" data-name="Design 800k+" data-vi-name="Mẫu 800k+" data-range="900k">
+          <img src="/images/gallery/1x1smBa58U7JikT1R-c82bwe92SwqT1V__w400.webp" alt="Portrait of a woman with pink gel glitter paint at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
-          <img src="/images/gallery/1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm_w400.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="800-plus" data-name="Design 800k+" data-vi-name="Mẫu 800k+" data-range="1000k">
+          <img src="/images/gallery/1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm_w400.webp" alt="Portrait of a woman at The Nail's space in District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
-        <div class="nail-card" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
-          <img src="/images/gallery/1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds_w400.webp" alt="Ảnh portrait phụ nữ thể hiện vẻ đẹp tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+        <div class="nail-card" data-price="800-plus" data-name="Design 800k+" data-vi-name="Mẫu 800k+" data-range="1200k">
+          <img src="/images/gallery/1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds_w400.webp" alt="Portrait of a woman showing off her beauty at The Nail, District 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
         </div>
       </div>
     </div>
@@ -527,25 +534,25 @@
   <!-- ===== MARQUEE BAND ===== -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>MÙA CƯỚI 2026 — LỊCH NAIL CÔ DÂU CÒN TRỐNG THÁNG 6</span>
+      <span data-en="WEDDING SEASON 2026 — BRIDAL NAIL APPOINTMENTS AVAILABLE IN JUNE" data-vi="MÙA CƯỚI 2026 — LỊCH NAIL CÔ DÂU CÒN TRỐNG THÁNG 6">WEDDING SEASON 2026 — BRIDAL NAIL APPOINTMENTS AVAILABLE IN JUNE</span>
       <span class="sep">✦</span>
-      <span>ƯU ĐÃI HÈ — GIẢM 10% MẪU MARBLE & 3D</span>
+      <span data-en="SUMMER OFFER — 10% OFF MARBLE &amp; 3D DESIGNS" data-vi="ƯU ĐÃI HÈ — GIẢM 10% MẪU MARBLE &amp; 3D">SUMMER OFFER — 10% OFF MARBLE & 3D DESIGNS</span>
       <span class="sep">✦</span>
-      <span>ĐẶT TRƯỚC 7 NGÀY ĐỂ CHỌN GIỜ ĐẸP</span>
+      <span data-en="BOOK 7 DAYS AHEAD FOR YOUR PREFERRED TIME" data-vi="ĐẶT TRƯỚC 7 NGÀY ĐỂ CHỌN GIỜ ĐẸP">BOOK 7 DAYS AHEAD FOR YOUR PREFERRED TIME</span>
       <span class="sep">✦</span>
-      <span>KHÁCH MỚI — TƯ VẤN MẪU MIỄN PHÍ QUA ZALO</span>
+      <span data-en="NEW GUESTS — COMPLIMENTARY DESIGN CONSULTATION VIA ZALO" data-vi="KHÁCH MỚI — TƯ VẤN MẪU MIỄN PHÍ QUA ZALO">NEW GUESTS — COMPLIMENTARY DESIGN CONSULTATION VIA ZALO</span>
       <span class="sep">✦</span>
-      <span>NHẮN 0931 415 099 — PHẢN HỒI TRONG 15 PHÚT</span>
+      <span data-en="MESSAGE 0931 415 099 — REPLY WITHIN 15 MINUTES" data-vi="NHẮN 0931 415 099 — PHẢN HỒI TRONG 15 PHÚT">MESSAGE 0931 415 099 — REPLY WITHIN 15 MINUTES</span>
       <span class="sep">✦</span>
-      <span>MÙA CƯỚI 2026 — LỊCH NAIL CÔ DÂU CÒN TRỐNG THÁNG 6</span>
+      <span data-en="WEDDING SEASON 2026 — BRIDAL NAIL APPOINTMENTS AVAILABLE IN JUNE" data-vi="MÙA CƯỚI 2026 — LỊCH NAIL CÔ DÂU CÒN TRỐNG THÁNG 6">WEDDING SEASON 2026 — BRIDAL NAIL APPOINTMENTS AVAILABLE IN JUNE</span>
       <span class="sep">✦</span>
-      <span>ƯU ĐÃI HÈ — GIẢM 10% MẪU MARBLE & 3D</span>
+      <span data-en="SUMMER OFFER — 10% OFF MARBLE &amp; 3D DESIGNS" data-vi="ƯU ĐÃI HÈ — GIẢM 10% MẪU MARBLE &amp; 3D">SUMMER OFFER — 10% OFF MARBLE & 3D DESIGNS</span>
       <span class="sep">✦</span>
-      <span>ĐẶT TRƯỚC 7 NGÀY ĐỂ CHỌN GIỜ ĐẸP</span>
+      <span data-en="BOOK 7 DAYS AHEAD FOR YOUR PREFERRED TIME" data-vi="ĐẶT TRƯỚC 7 NGÀY ĐỂ CHỌN GIỜ ĐẸP">BOOK 7 DAYS AHEAD FOR YOUR PREFERRED TIME</span>
       <span class="sep">✦</span>
-      <span>KHÁCH MỚI — TƯ VẤN MẪU MIỄN PHÍ QUA ZALO</span>
+      <span data-en="NEW GUESTS — COMPLIMENTARY DESIGN CONSULTATION VIA ZALO" data-vi="KHÁCH MỚI — TƯ VẤN MẪU MIỄN PHÍ QUA ZALO">NEW GUESTS — COMPLIMENTARY DESIGN CONSULTATION VIA ZALO</span>
       <span class="sep">✦</span>
-      <span>NHẮN 0931 415 099 — PHẢN HỒI TRONG 15 PHÚT</span>
+      <span data-en="MESSAGE 0931 415 099 — REPLY WITHIN 15 MINUTES" data-vi="NHẮN 0931 415 099 — PHẢN HỒI TRONG 15 PHÚT">MESSAGE 0931 415 099 — REPLY WITHIN 15 MINUTES</span>
       <span class="sep">✦</span>
     </div>
   </div>
@@ -553,48 +560,48 @@
 
   <!-- ===== MENU =====
        GIÁ THẬT từ "PRICE list" của tiệm (Drive, 2026-06-24). Đơn vị = nghìn đồng (k).
-       Mỗi dòng: <span class="mi-name" data-en="EN">Tên VI</span> ... <span class="mi-price">GIÁ</span> -->
+       Mỗi dòng: <span class="mi-name" data-en="EN" data-vi="Tên VI">EN</span> ... <span class="mi-price">GIÁ</span> -->
   <section id="menu">
     <div class="container">
       <div class="section-head">
-        <div class="label" data-en="— Menu —">— Thực đơn —</div>
-        <h2><em data-en="Service Menu">Menu dịch vụ</em></h2>
+        <div class="label" data-en="— Menu —" data-vi="— Thực đơn —">— Menu —</div>
+        <h2><em data-en="Service Menu" data-vi="Menu dịch vụ">Service Menu</em></h2>
         <div class="divider"></div>
-        <p data-en="Per-service prices (in thousand VND). Final cost may vary by design, length and difficulty — message us on Zalo for an exact quote.">Giá theo từng dịch vụ (đơn vị nghìn đồng). Mức cuối tuỳ mẫu, độ dài &amp; độ khó — nhắn Zalo để được báo giá chính xác.</p>
+        <p data-en="Per-service prices (in thousand VND). Final cost may vary by design, length and difficulty — message us on Zalo for an exact quote." data-vi="Giá theo từng dịch vụ (đơn vị nghìn đồng). Mức cuối tuỳ mẫu, độ dài &amp;amp; độ khó — nhắn Zalo để được báo giá chính xác.">Per-service prices (in thousand VND). Final cost may vary by design, length and difficulty — message us on Zalo for an exact quote.</p>
       </div>
 
       <div class="menu-grid">
         <article class="menu-cat">
-          <h3 class="serif mc-title" data-en="Nail Care">Nail Care</h3>
+          <h3 class="serif mc-title" data-en="Nail Care" data-vi="Nail Care">Nail Care</h3>
           <div class="menu-rows">
-            <div class="menu-row"><span class="mi-name" data-en="Cuticle clean">Sạch da</span><span class="mi-dots"></span><span class="mi-price">30k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Gel removal">Phá gel</span><span class="mi-dots"></span><span class="mi-price">30k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Remove tips / acrylic">Phá móng úp/đắp</span><span class="mi-dots"></span><span class="mi-price">50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Strengthen · build apex">Cứng móng tạo cầu</span><span class="mi-dots"></span><span class="mi-price">40–60k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Gel tips">Úp móng gel</span><span class="mi-dots"></span><span class="mi-price">120k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Refill (tips)">Refill móng úp</span><span class="mi-dots"></span><span class="mi-price">70k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Gel extension">Nối móng đắp gel</span><span class="mi-dots"></span><span class="mi-price">250–300k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Refill (gel)">Refill móng gel</span><span class="mi-dots"></span><span class="mi-price">140k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Gel overlay (natural nail)">Đắp gel móng thật</span><span class="mi-dots"></span><span class="mi-price">200k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Cuticle clean" data-vi="Sạch da">Cuticle clean</span><span class="mi-dots"></span><span class="mi-price">30k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Gel removal" data-vi="Phá gel">Gel removal</span><span class="mi-dots"></span><span class="mi-price">30k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Remove tips / acrylic" data-vi="Phá móng úp/đắp">Remove tips / acrylic</span><span class="mi-dots"></span><span class="mi-price">50k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Strengthen · build apex" data-vi="Cứng móng tạo cầu">Strengthen · build apex</span><span class="mi-dots"></span><span class="mi-price">40–60k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Gel tips" data-vi="Úp móng gel">Gel tips</span><span class="mi-dots"></span><span class="mi-price">120k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Refill (tips)" data-vi="Refill móng úp">Refill (tips)</span><span class="mi-dots"></span><span class="mi-price">70k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Gel extension" data-vi="Nối móng đắp gel">Gel extension</span><span class="mi-dots"></span><span class="mi-price">250–300k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Refill (gel)" data-vi="Refill móng gel">Refill (gel)</span><span class="mi-dots"></span><span class="mi-price">140k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Gel overlay (natural nail)" data-vi="Đắp gel móng thật">Gel overlay (natural nail)</span><span class="mi-dots"></span><span class="mi-price">200k</span></div>
           </div>
         </article>
 
         <article class="menu-cat">
-          <h3 class="serif mc-title" data-en="Design">Design</h3>
+          <h3 class="serif mc-title" data-en="Design" data-vi="Design">Design</h3>
           <div class="menu-rows">
-            <div class="menu-row"><span class="mi-name" data-en="Gel polish">Sơn gel</span><span class="mi-dots"></span><span class="mi-price">70k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Jelly polish">Sơn thạch</span><span class="mi-dots"></span><span class="mi-price">90k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Shimmer polish">Sơn nhũ</span><span class="mi-dots"></span><span class="mi-price">110k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="BIAB gel">Sơn BIAB</span><span class="mi-dots"></span><span class="mi-price">130k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Cat-eye / chrome">Sơn mắt mèo/chrome</span><span class="mi-dots"></span><span class="mi-price">150k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="French / ombré">French/ombre</span><span class="mi-dots"></span><span class="mi-price">10–20k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Marble art">Vẽ loang/vân đá</span><span class="mi-dots"></span><span class="mi-price">10–30k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Clear gel art">Vẽ gel trong suốt</span><span class="mi-dots"></span><span class="mi-price">10–30k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Mirror gel art">Vẽ gel tráng gương</span><span class="mi-dots"></span><span class="mi-price">20–50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Freehand design">Vẽ design</span><span class="mi-dots"></span><span class="mi-price">20–50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Charms">Charm</span><span class="mi-dots"></span><span class="mi-price">5–50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Rhinestones">Đính đá</span><span class="mi-dots"></span><span class="mi-price">5–50k</span></div>
-            <div class="menu-row"><span class="mi-name" data-en="Stickers">Dán sticker</span><span class="mi-dots"></span><span class="mi-price">5–20k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Gel polish" data-vi="Sơn gel">Gel polish</span><span class="mi-dots"></span><span class="mi-price">70k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Jelly polish" data-vi="Sơn thạch">Jelly polish</span><span class="mi-dots"></span><span class="mi-price">90k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Shimmer polish" data-vi="Sơn nhũ">Shimmer polish</span><span class="mi-dots"></span><span class="mi-price">110k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="BIAB gel" data-vi="Sơn BIAB">BIAB gel</span><span class="mi-dots"></span><span class="mi-price">130k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Cat-eye / chrome" data-vi="Sơn mắt mèo/chrome">Cat-eye / chrome</span><span class="mi-dots"></span><span class="mi-price">150k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="French / ombre" data-vi="French/ombre">French / ombre</span><span class="mi-dots"></span><span class="mi-price">10–20k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Marble art" data-vi="Vẽ loang/vân đá">Marble art</span><span class="mi-dots"></span><span class="mi-price">10–30k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Clear gel art" data-vi="Vẽ gel trong suốt">Clear gel art</span><span class="mi-dots"></span><span class="mi-price">10–30k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Mirror gel art" data-vi="Vẽ gel tráng gương">Mirror gel art</span><span class="mi-dots"></span><span class="mi-price">20–50k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Freehand design" data-vi="Vẽ design">Freehand design</span><span class="mi-dots"></span><span class="mi-price">20–50k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Charms" data-vi="Charm">Charms</span><span class="mi-dots"></span><span class="mi-price">5–50k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Rhinestones" data-vi="Đính đá">Rhinestones</span><span class="mi-dots"></span><span class="mi-price">5–50k</span></div>
+            <div class="menu-row"><span class="mi-name" data-en="Stickers" data-vi="Dán sticker">Stickers</span><span class="mi-dots"></span><span class="mi-price">5–20k</span></div>
           </div>
         </article>
       </div>
@@ -606,29 +613,29 @@
   <section id="booking">
     <div class="container">
       <div class="section-head">
-        <div class="label">— Đặt lịch —</div>
-        <h2>Đặt lịch hẹn của bạn</h2>
+        <div class="label" data-en="— Appointments —" data-vi="— Đặt lịch —">— Appointments —</div>
+        <h2 data-en="Book Your Appointment" data-vi="Đặt lịch hẹn của bạn">Book Your Appointment</h2>
         <div class="divider"></div>
-        <p>Điền thông tin để chúng tôi giữ chỗ cho bạn. Gửi đi sẽ tự động mở Zalo với tin nhắn đã chuẩn bị sẵn.</p>
+        <p data-en="Share your details and we will reserve your time. Submitting opens Zalo with a ready-to-send message." data-vi="Điền thông tin để chúng tôi giữ chỗ cho bạn. Gửi đi sẽ tự động mở Zalo với tin nhắn đã chuẩn bị sẵn.">Share your details and we will reserve your time. Submitting opens Zalo with a ready-to-send message.</p>
       </div>
 
       <form class="booking-form" id="booking-form">
         <div class="form-group">
-          <label for="b-name">Họ tên</label>
-          <input type="text" id="b-name" required placeholder="Nguyễn Thị A" data-en-ph="Your full name">
+          <label for="b-name" data-en="Full name" data-vi="Họ tên">Full name</label>
+          <input type="text" id="b-name" required placeholder="Your full name" data-vi-ph="Nguyễn Thị A" data-en-ph="Your full name">
         </div>
         <div class="form-group">
-          <label for="b-phone">Số điện thoại</label>
+          <label for="b-phone" data-en="Phone number" data-vi="Số điện thoại">Phone number</label>
           <input type="tel" id="b-phone" required placeholder="09xx xxx xxx">
         </div>
         <div class="form-group">
-          <label for="b-date">Ngày hẹn</label>
+          <label for="b-date" data-en="Appointment date" data-vi="Ngày hẹn">Appointment date</label>
           <input type="date" id="b-date" required>
         </div>
         <div class="form-group">
-          <label for="b-time">Giờ hẹn</label>
+          <label for="b-time" data-en="Appointment time" data-vi="Giờ hẹn">Appointment time</label>
           <select id="b-time" required>
-            <option value="" data-en="— Select time —">— Chọn giờ —</option>
+            <option value="" data-en="— Select time —" data-vi="— Chọn giờ —">— Select time —</option>
             <option>9:00</option>
             <option>10:00</option>
             <option>11:00</option>
@@ -645,20 +652,20 @@
           </select>
         </div>
         <div class="form-group full">
-          <label for="b-service">Dịch vụ mong muốn</label>
+          <label for="b-service" data-en="Preferred service" data-vi="Dịch vụ mong muốn">Preferred service</label>
           <select id="b-service" required>
-            <option value="" data-en="— Select service —">— Chọn dịch vụ —</option>
-            <option data-en="Nail Care (care &amp; nails)">Nail Care (chăm sóc &amp; móng)</option>
-            <option data-en="Design (polish &amp; art)">Design (sơn &amp; vẽ)</option>
-            <option data-en="Need advice">Cần tư vấn</option>
+            <option value="" data-en="— Select service —" data-vi="— Chọn dịch vụ —">— Select service —</option>
+            <option data-en="Nail Care (care &amp; nails)" data-vi="Nail Care (chăm sóc &amp;amp; móng)">Nail Care (care &amp; nails)</option>
+            <option data-en="Design (polish &amp; art)" data-vi="Design (sơn &amp;amp; vẽ)">Design (polish &amp; art)</option>
+            <option data-en="Need advice" data-vi="Cần tư vấn">Need advice</option>
           </select>
         </div>
         <div class="form-group full">
-          <label for="b-note">Ghi chú thêm (tuỳ chọn)</label>
-          <textarea id="b-note" placeholder="VD: Mẫu nail bạn thích, yêu cầu đặc biệt, đi cùng bạn..." data-en-ph="E.g. a design you like, special requests, coming with a friend..."></textarea>
+          <label for="b-note" data-en="Additional notes (optional)" data-vi="Ghi chú thêm (tuỳ chọn)">Additional notes (optional)</label>
+          <textarea id="b-note" placeholder="E.g. a design you like, special requests, coming with a friend..." data-vi-ph="VD: Mẫu nail bạn thích, yêu cầu đặc biệt, đi cùng bạn..." data-en-ph="E.g. a design you like, special requests, coming with a friend..."></textarea>
         </div>
         <div class="booking-submit">
-          <button type="submit" class="btn solid">Gửi qua Zalo →</button>
+          <button type="submit" class="btn solid" data-en="Send via Zalo →" data-vi="Gửi qua Zalo →">Send via Zalo →</button>
         </div>
       </form>
     </div>
@@ -668,28 +675,28 @@
   <section class="contact" id="contact">
     <div class="container">
       <div class="section-head">
-        <div class="label">— Liên hệ —</div>
-        <h2>Ghé thăm The Nail</h2>
+        <div class="label" data-en="— Contact —" data-vi="— Liên hệ —">— Contact —</div>
+        <h2 data-en="Visit The Nail" data-vi="Ghé thăm The Nail">Visit The Nail</h2>
         <div class="divider"></div>
-        <p>Đang tìm tiệm nail đẹp ở Quận 10? Ghé The Nail tại Nguyễn Tri Phương. Đặt lịch trước qua Zalo / Instagram để được ưu tiên giờ làm và tư vấn mẫu phù hợp.</p>
+        <p data-en="Looking for beautiful nails in District 10? Visit The Nail on Nguyen Tri Phuong Street. Book ahead via Zalo or Instagram for your preferred time and personalised design advice." data-vi="Đang tìm tiệm nail đẹp ở Quận 10? Ghé The Nail tại Nguyễn Tri Phương. Đặt lịch trước qua Zalo / Instagram để được ưu tiên giờ làm và tư vấn mẫu phù hợp.">Looking for beautiful nails in District 10? Visit The Nail on Nguyen Tri Phuong Street. Book ahead via Zalo or Instagram for your preferred time and personalised design advice.</p>
       </div>
 
       <div class="contact-grid">
         <div class="contact-info">
-          <h3 class="serif">Thông tin liên hệ</h3>
+          <h3 class="serif" data-en="Contact Details" data-vi="Thông tin liên hệ">Contact Details</h3>
 
           <div class="info-row">
             <div class="icon">📍</div>
             <div class="text">
-              <div class="label">Địa chỉ</div>
-              <div class="value">517/15 Nguyễn Tri Phương, P. Diên Hồng, Q.10, TP.HCM</div>
+              <div class="label" data-en="Address" data-vi="Địa chỉ">Address</div>
+              <div class="value" data-en="517/15 Nguyễn Tri Phương, Dien Hong Ward, District 10, Ho Chi Minh City" data-vi="517/15 Nguyễn Tri Phương, P. Diên Hồng, Q.10, TP.HCM">517/15 Nguyễn Tri Phương, Dien Hong Ward, District 10, Ho Chi Minh City</div>
             </div>
           </div>
 
           <div class="info-row">
             <div class="icon">📞</div>
             <div class="text">
-              <div class="label">Điện thoại / Zalo</div>
+              <div class="label" data-en="Phone / Zalo" data-vi="Điện thoại / Zalo">Phone / Zalo</div>
               <div class="value">0931 415 099</div>
             </div>
           </div>
@@ -697,8 +704,8 @@
           <div class="info-row">
             <div class="icon">🕘</div>
             <div class="text">
-              <div class="label">Giờ mở cửa</div>
-              <div class="value">Thứ 2 — Chủ nhật · 9:00 — 22:00</div>
+              <div class="label" data-en="Opening hours" data-vi="Giờ mở cửa">Opening hours</div>
+              <div class="value" data-en="Monday — Sunday · 9:00 — 22:00" data-vi="Thứ 2 — Chủ nhật · 9:00 — 22:00">Monday — Sunday · 9:00 — 22:00</div>
             </div>
           </div>
 
@@ -727,11 +734,11 @@
               src="https://maps.google.com/maps?q=517+Nguy%E1%BB%85n+Tri+Ph%C6%B0%C6%A1ng,+Qu%E1%BA%ADn+10,+TP.HCM&z=16&hl=vi&output=embed"
               style="position:absolute; inset:0; width:100%; height:100%; border:0; filter:saturate(0.96);"
               loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              title="Bản đồ The Nail — 517/15 Nguyễn Tri Phương, P. Diên Hồng, Q.10, TP.HCM"></iframe>
+              title="Map of The Nail — 517/15 Nguyễn Tri Phương, Diên Hồng Ward, District 10, Ho Chi Minh City"></iframe>
           </div>
           <div class="map-actions">
-            <a href="https://www.google.com/maps/search/?api=1&query=The+Nail+517%2F15+Nguy%E1%BB%85n+Tri+Ph%C6%B0%C6%A1ng+P.+Di%C3%AAn+H%E1%BB%93ng+Qu%E1%BA%ADn+10+TP.HCM" target="_blank">Chỉ đường →</a>
-            <a href="https://zalo.me/0931415099" target="_blank">Hỏi qua Zalo</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Nail+517%2F15+Nguy%E1%BB%85n+Tri+Ph%C6%B0%C6%A1ng+P.+Di%C3%AAn+H%E1%BB%93ng+Qu%E1%BA%ADn+10+TP.HCM" target="_blank" data-en="Get directions →" data-vi="Chỉ đường →">Get directions →</a>
+            <a href="https://zalo.me/0931415099" target="_blank" data-en="Ask on Zalo" data-vi="Hỏi qua Zalo">Ask on Zalo</a>
           </div>
         </div>
       </div>
@@ -741,18 +748,18 @@
   <!-- ===== FOOTER ===== -->
   <footer>
     <div class="brand glitter">THE NAIL</div>
-    <div>© 2026 thenail.vn · Quận 10, Sài Gòn · Tất cả quyền được bảo lưu</div>
+    <div data-en="© 2026 thenail.vn · District 10, Saigon · All rights reserved" data-vi="© 2026 thenail.vn · Quận 10, Sài Gòn · Tất cả quyền được bảo lưu">© 2026 thenail.vn · District 10, Saigon · All rights reserved</div>
   </footer>
 
   <!-- ===== BOOKING MODAL ===== -->
   <div class="modal" id="booking-modal">
     <div class="modal-content">
-      <h3 data-en="Ready to send via Zalo">Sẵn sàng gửi qua Zalo</h3>
-      <p data-en="Your message is ready. Tap &quot;Copy &amp; Open Zalo&quot; — it will be copied, just paste it into the Zalo chat.">Tin nhắn dưới đây đã được chuẩn bị. Bấm "Copy & Mở Zalo" — tin nhắn sẽ được copy, bạn chỉ cần dán vào chat Zalo.</p>
+      <h3 data-en="Ready to send via Zalo" data-vi="Sẵn sàng gửi qua Zalo">Ready to send via Zalo</h3>
+      <p data-en="Your message is ready. Tap &quot;Copy &amp; Open Zalo&quot; — it will be copied, just paste it into the Zalo chat." data-vi="Tin nhắn dưới đây đã được chuẩn bị. Bấm &quot;Copy &amp; Mở Zalo&quot; — tin nhắn sẽ được copy, bạn chỉ cần dán vào chat Zalo.">Your message is ready. Tap &quot;Copy &amp; Open Zalo&quot; — it will be copied, just paste it into the Zalo chat.</p>
       <div class="preview" id="message-preview"></div>
       <div class="modal-buttons">
-        <button class="btn" onclick="closeBookingModal()" data-en="Close">Đóng</button>
-        <button class="btn solid" onclick="sendToZalo()" data-en="Copy &amp; Open Zalo">Copy &amp; Mở Zalo</button>
+        <button class="btn" onclick="closeBookingModal()" data-en="Close" data-vi="Đóng">Close</button>
+        <button class="btn solid" onclick="sendToZalo()" data-en="Copy &amp; Open Zalo" data-vi="Copy &amp;amp; Mở Zalo">Copy &amp; Open Zalo</button>
       </div>
     </div>
   </div>
@@ -778,24 +785,24 @@
   </div>
 
   <!-- ===== FLOATING ZALO ===== -->
-  <a href="https://zalo.me/0931415099" target="_blank" class="zalo-float" aria-label="Chat Zalo với The Nail">
-    <span class="tooltip">Chat với The Nail</span>
+  <a href="https://zalo.me/0931415099" target="_blank" class="zalo-float" aria-label="Chat with The Nail on Zalo">
+    <span class="tooltip" data-en="Chat with The Nail" data-vi="Chat với The Nail">Chat with The Nail</span>
     <span class="zalo-text">Zalo</span>
   </a>
 
   <!-- ===== MOBILE BOTTOM ACTION BAR ===== -->
-  <div class="mbar" role="navigation" aria-label="Điều hướng nhanh">
+  <div class="mbar" role="navigation" aria-label="Quick navigation">
     <a href="#menu" class="mbar-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
       <span>Menu</span>
     </a>
     <a href="#gallery" class="mbar-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg>
-      <span>Mẫu</span>
+      <span data-en="Gallery" data-vi="Mẫu">Gallery</span>
     </a>
     <a href="#contact" class="mbar-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span>Liên hệ</span>
+      <span data-en="Contact" data-vi="Liên hệ">Contact</span>
     </a>
   </div>
 
@@ -807,16 +814,16 @@
 
   <!-- ===== LIGHTBOX ===== -->
   <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Đóng">×</button>
-    <button class="lightbox-nav prev" id="lb-prev" aria-label="Ảnh trước">‹</button>
-    <button class="lightbox-nav next" id="lb-next" aria-label="Ảnh kế">›</button>
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button>
+    <button class="lightbox-nav prev" id="lb-prev" aria-label="Previous image">‹</button>
+    <button class="lightbox-nav next" id="lb-next" aria-label="Next image">›</button>
     <div class="lightbox-content">
       <div class="ph">
         <img id="lb-img" src="" alt="" referrerpolicy="no-referrer">
         <div class="lb-spinner" id="lb-spinner"></div>
       </div>
-      <h3 id="lb-name">Tên mẫu</h3>
-      <div class="price" id="lb-price">000.000đ</div>
+      <h3 id="lb-name" data-en="Design name" data-vi="Tên mẫu">Design name</h3>
+      <div class="price" id="lb-price">000,000 VND</div>
       <div class="lb-counter"><span id="lb-current">1</span> / <span id="lb-total">1</span></div>
     </div>
   </div>
