@@ -1028,9 +1028,25 @@
 
   <!-- ===== FOOTER ===== -->
   <footer>
+    <!-- Đường dẫn tới các trang dịch vụ. Không chỉ để khách bấm: trang nào không
+         có ai trỏ tới thì Google coi là kém quan trọng và lập chỉ mục chậm hơn. -->
+    <nav class="foot-links" aria-label="Dịch vụ">
+      <a href="/bang-gia/">Bảng giá</a>
+      <a href="/son-thach/">Sơn thạch</a>
+      <a href="/son-mat-meo-chrome/">Sơn mắt mèo &amp; chrome</a>
+      <a href="/ve-mong-nghe-thuat/">Vẽ móng nghệ thuật</a>
+      <a href="/up-mong-gel/">Úp móng gel</a>
+      <a href="/nail-nguyen-tri-phuong/">Nail Nguyễn Tri Phương</a>
+    </nav>
     <div class="brand glitter">THE NAIL</div>
     <div>© 2026 thenail.vn · Quận 10, Sài Gòn · Tất cả quyền được bảo lưu</div>
   </footer>
+  <style>
+    .foot-links { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: center;
+                  margin: 0 auto 26px; max-width: 760px; padding: 0 20px; font-size: 14px; }
+    .foot-links a { opacity: .75; }
+    .foot-links a:hover { opacity: 1; }
+  </style>
 
   <!-- ===== BOOKING MODAL ===== -->
   <div class="modal" id="booking-modal" role="dialog" aria-modal="true" aria-label="Đặt lịch">
