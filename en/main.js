@@ -451,56 +451,9 @@
     const today = new Date().toISOString().split('T')[0];
     const dateInput = document.getElementById('b-date');
     if (dateInput) dateInput.min = today;
-    let bookingTrigger = null;
-
-    const bookingAnalyticsEvents = new Set([
-      'booking_request_prepared',
-      'booking_copy_success',
-      'booking_copy_failure',
-      'contact_click'
-    ]);
-
-    function trackBookingEvent(name, parameters) {
-      if (!bookingAnalyticsEvents.has(name)) return;
-      const safeParameters = name === 'contact_click'
-        ? {
-            channel: parameters && parameters.channel,
-            placement: parameters && parameters.placement,
-            language: parameters && parameters.language
-          }
-        : undefined;
-      try {
-        if (safeParameters) window.gtag('event', name, safeParameters);
-        else window.gtag('event', name);
-      } catch (err) {}
-    }
-
-    function bookingLanguage() {
-      return document.documentElement.getAttribute('data-lang') === 'vi' ? 'vi' : 'en';
-    }
-
-    function setCopyStatus(state) {
-      const status = document.getElementById('booking-copy-status');
-      if (!status) return;
-      const lang = bookingLanguage();
-      const messages = {
-        vi: {
-          ready: 'Tin nhắn đang sẵn sàng để bạn copy.',
-          success: 'Đã copy tin nhắn. Mở Zalo, dán rồi gửi; lịch chỉ được xác nhận khi tiệm trả lời.',
-          failure: 'Không thể tự copy. Bạn vẫn có thể bôi đen tin nhắn bên trên để tự copy, rồi mở Zalo và gửi.'
-        },
-        en: {
-          ready: 'Your message is ready to copy.',
-          success: 'Message copied. Open Zalo, paste and send it; your appointment is confirmed only when the salon replies.',
-          failure: 'We could not copy it automatically. Select the message above to copy it yourself, then open Zalo and send it.'
-        }
-      };
-      status.textContent = messages[lang][state];
-    }
 
     document.getElementById('booking-form').addEventListener('submit', (e) => {
       e.preventDefault();
-      bookingTrigger = e.submitter || document.activeElement;
       const name = document.getElementById('b-name').value.trim();
       const phone = document.getElementById('b-phone').value.trim();
       const date = document.getElementById('b-date').value;
@@ -508,78 +461,35 @@
       const service = document.getElementById('b-service').value;
       const note = document.getElementById('b-note').value.trim();
 
-      const lang = bookingLanguage();
-      const dateFormatted = date;
-      const message = lang === 'en'
-        ? `Hello The Nail! I would like to request an appointment:\n• Name: ${name}\n• Phone: ${phone}\n• Date: ${dateFormatted}\n• Time: ${time}\n• Service: ${service}${note ? '\n• Note: ' + note : ''}\n`
-        : `Chào The Nail! Em muốn yêu cầu đặt lịch:\n• Tên: ${name}\n• SĐT: ${phone}\n• Ngày: ${dateFormatted}\n• Giờ: ${time}\n• Dịch vụ: ${service}${note ? '\n• Ghi chú: ' + note : ''}\n`;
+      const dateFormatted = date ? date.split('-').reverse().join('/') : '';
+      const message = `Chào The Nail! Em muốn đặt lịch:
+• Tên: ${name}
+• SĐT: ${phone}
+• Ngày: ${dateFormatted}
+• Giờ: ${time}
+• Dịch vụ: ${service}${note ? '\n• Ghi chú: ' + note : ''}
+`;
 
-      const preview = document.getElementById('message-preview');
-      preview.value = message;
+      document.getElementById('message-preview').textContent = message;
       window._pendingMessage = message;
       document.getElementById('booking-modal').classList.add('active');
-      preview.focus();
-      preview.select();
-      setCopyStatus('ready');
-      trackBookingEvent('booking_request_prepared');
     });
 
     function closeBookingModal() {
       document.getElementById('booking-modal').classList.remove('active');
-      if (bookingTrigger && document.contains(bookingTrigger)) bookingTrigger.focus();
     }
 
-    async function sendToZalo() {
+    function sendToZalo() {
       const msg = window._pendingMessage || '';
-      const preview = document.getElementById('message-preview');
-      try {
-        if (!msg || !navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard unavailable');
-        await navigator.clipboard.writeText(msg);
-        setCopyStatus('success');
-        trackBookingEvent('booking_copy_success');
-      } catch (err) {
-        if (preview) {
-          preview.focus();
-          preview.select();
-        }
-        setCopyStatus('failure');
-        trackBookingEvent('booking_copy_failure');
+      if (msg && navigator.clipboard) {
+        navigator.clipboard.writeText(msg).catch(() => {});
       }
+      window.open('https://zalo.me/0931415099', '_blank');
+      closeBookingModal();
     }
 
     document.getElementById('booking-modal').addEventListener('click', (e) => {
       if (e.target.id === 'booking-modal') closeBookingModal();
-    });
-
-    document.getElementById('booking-modal').addEventListener('keydown', (e) => {
-      const modal = e.currentTarget;
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        closeBookingModal();
-        return;
-      }
-      if (e.key !== 'Tab') return;
-      const focusable = [].slice.call(modal.querySelectorAll('textarea, button:not([disabled]), a[href]'));
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (!first || !last) return;
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    });
-
-    document.addEventListener('click', (e) => {
-      const link = e.target.closest('a[data-contact-channel]');
-      if (!link) return;
-      trackBookingEvent('contact_click', {
-        channel: link.dataset.contactChannel,
-        placement: link.dataset.contactPlacement,
-        language: bookingLanguage()
-      });
     });
 
     // ===== PARALLAX nền màu: ĐÃ GỠ (đốm màu nhìn như vết loang). Sẽ làm lại bản đúng theo reference của user. =====
@@ -742,14 +652,14 @@
       ['.tabs-wrap .tab[data-filter="all"]', 'All'],
       ['section#booking .section-head .label', '— Booking —'],
       ['section#booking .section-head h2', 'Book your appointment'],
-      ['section#booking .section-head p', 'Share your details, then copy and send the prepared request in Zalo. Your appointment is confirmed only when the salon replies.'],
+      ['section#booking .section-head p', 'Leave your details so we can hold your slot. Submitting opens Zalo with a ready message.'],
       ['label[for="b-name"]', 'Full name'],
       ['label[for="b-phone"]', 'Phone number'],
       ['label[for="b-date"]', 'Date'],
       ['label[for="b-time"]', 'Time'],
       ['label[for="b-service"]', 'Service'],
       ['label[for="b-note"]', 'Note (optional)'],
-      ['.booking-form button[type="submit"]', 'Prepare Zalo request →'],
+      ['.booking-form button[type="submit"]', 'Send via Zalo →'],
       ['section.contact .section-head .label', '— Contact —'],
       ['section.contact .section-head h2', 'Visit The Nail'],
       ['section.contact .section-head p', 'Book ahead via Zalo / Instagram for priority hours and design advice.'],
@@ -763,7 +673,6 @@
       ['footer .brand + div', '© 2026 thenail.vn · District 10, Saigon · All rights reserved'],
       ['.mbar-item:nth-of-type(2) span', 'Designs'],
       ['.mbar-item:nth-of-type(3) span', 'Contact'],
-      ['.mbar-cta span', 'Message Zalo'],
       ['.hero-scroll-cue span', 'Scroll']
     ];
     DICT.forEach(function (e) {
