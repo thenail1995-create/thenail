@@ -11,6 +11,7 @@ exclude:
   # --- nội bộ, không phải nội dung web ---
   - bot                    # mã nguồn chatbot + cấu hình Cloudflare (lộ account id)
   - docs                   # tài liệu dự án, ghi chú nội bộ
+  - tools                  # công cụ nội bộ (nhung-css.py)
   - README.md
   - _config.yml
 

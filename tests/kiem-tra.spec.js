@@ -133,7 +133,7 @@ test.describe('B. Cấu trúc HTML đúng chỗ', () => {
       await kiemTraNamTrongHead('meta[property="og:image"]');
       await kiemTraNamTrongHead('meta[property="og:title"]');
       await kiemTraNamTrongHead('link[rel="canonical"]');
-      await kiemTraNamTrongHead('link[rel="stylesheet"]');
+      await kiemTraNamTrongHead('link[rel="stylesheet"], style#css-chinh');
       await kiemTraNamTrongHead('script[type="application/ld+json"]');
     });
 
@@ -169,6 +169,17 @@ test.describe('B. Cấu trúc HTML đúng chỗ', () => {
       }
     });
   }
+
+  test('CSS nhúng trang chủ khớp /styles.css', async ({ request }) => {
+    const html = await (await request.get('/')).text();
+    const css = await (await request.get('/styles.css')).text();
+    const m = html.match(/<style id="css-chinh">([\s\S]*?)<\/style>/);
+    expect(m, 'Trang chủ phải có <style id="css-chinh"> (giữa mốc CSS-CHINH)').not.toBeNull();
+    expect(
+      m[1].trim() === css.trim(),
+      'CSS nhúng trong index.html lệch /styles.css — chạy: python3 tools/nhung-css.py rồi commit lại'
+    ).toBe(true);
+  });
 });
 
 test.describe('C. Dữ liệu nhất quán', () => {

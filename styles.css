@@ -27,7 +27,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Inter Fallback', 'Inter Fallback Android', sans-serif;
       font-weight: 500;
       background: var(--kem);
       color: var(--reu);
@@ -39,8 +39,8 @@
     button { font-family: inherit; cursor: pointer; }
 
     /* ===== TYPOGRAPHY ===== */
-    .serif { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: 0.02em; }
-    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+    .serif { font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif; font-weight: 600; letter-spacing: 0.02em; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif; font-weight: 600; }
 
     /* ===== LAYOUT ===== */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
@@ -358,7 +358,7 @@
     }
     /* Slogans: same size, different effect (gentle pulse) */
     .hero .slogan-en, .hero .slogan-vi {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: clamp(26px, 4vw, 40px);
       font-style: italic;
       font-weight: 600;
@@ -427,7 +427,7 @@
       margin-bottom: 16px;
     }
     .section-head h2 em {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-style: italic;
       font-weight: 500;
       letter-spacing: 0.02em;
@@ -561,7 +561,7 @@
     }
     .mi-price {
       color: var(--cam);
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: clamp(19px, 2.2vw, 24px);
       font-weight: 700;
       letter-spacing: 0.03em;
@@ -665,7 +665,7 @@
       letter-spacing: 0.1em;
     }
     .nail-card .placeholder .num {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: 32px;
       color: rgba(192, 90, 51, 0.5);
       margin-bottom: 8px;
@@ -765,12 +765,12 @@
     /* Hand-drawn map elements */
     .hm-street { fill: none; stroke: rgba(107, 126, 114, 0.3); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0; }
     .hm-street-main { stroke: rgba(107, 126, 114, 0.5); stroke-width: 4; }
-    .hm-street-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 11px; fill: var(--reu-xam-2); letter-spacing: 0.1em; }
+    .hm-street-label { font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif; font-style: italic; font-size: 11px; fill: var(--reu-xam-2); letter-spacing: 0.1em; }
     .hm-landmark { fill: rgba(158, 68, 38, 0.15); stroke: rgba(192, 90, 51, 0.4); stroke-width: 1; }
-    .hm-landmark-label { font-family: 'Inter', sans-serif; font-size: 9px; fill: var(--reu-xam); letter-spacing: 0.15em; text-transform: uppercase; }
+    .hm-landmark-label { font-family: 'Inter', 'Inter Fallback', 'Inter Fallback Android', sans-serif; font-size: 9px; fill: var(--reu-xam); letter-spacing: 0.15em; text-transform: uppercase; }
     .hm-shop-pin { fill: var(--cam); filter: drop-shadow(0 0 8px var(--cam)); }
-    .hm-shop-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; fill: var(--cam); letter-spacing: 0.05em; }
-    .hm-shop-sub { font-family: 'Inter', sans-serif; font-size: 10px; fill: var(--reu); letter-spacing: 0.25em; text-transform: uppercase; }
+    .hm-shop-label { font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif; font-style: italic; font-size: 22px; fill: var(--cam); letter-spacing: 0.05em; }
+    .hm-shop-sub { font-family: 'Inter', 'Inter Fallback', 'Inter Fallback Android', sans-serif; font-size: 10px; fill: var(--reu); letter-spacing: 0.25em; text-transform: uppercase; }
     .hm-decor { fill: rgba(192, 90, 51, 0.3); }
     .hm-shop-pin {
       transform-origin: 360px 240px;
@@ -804,7 +804,7 @@
       justify-content: center;
       box-sizing: border-box;
       padding: 10px 20px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Inter Fallback', 'Inter Fallback Android', sans-serif;
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -828,7 +828,7 @@
       letter-spacing: 0.15em;
     }
     footer .brand {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       letter-spacing: 0.3em;
       color: var(--cam-dam);
       margin-bottom: 8px;
@@ -884,7 +884,7 @@
       transition: opacity 0.2s ease;
     }
     .lightbox-content h3 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: clamp(24px, 3vw, 28px);
       color: var(--kem);
       margin: 18px 0 0;
@@ -917,7 +917,7 @@
       border: 1px solid rgba(192, 90, 51, 0.4);
       color: var(--cam-dam);
       width: 52px; height: 52px;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: 36px;
       line-height: 1;
       cursor: pointer;
@@ -992,7 +992,7 @@
       min-width: min(560px, 92vw);
     }
     .splash-h1 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: clamp(40px, 7vw, 88px);
       letter-spacing: 0.15em;
       margin: 0;
@@ -1032,7 +1032,7 @@
     @keyframes splash-line { to { width: 180px; } }
     @keyframes splash-line-out { to { opacity: 0; width: 0; } }
     .splash-tagline {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-style: italic;
       color: var(--cam-dam);
       font-size: clamp(22px, 3.5vw, 32px);
@@ -1044,7 +1044,7 @@
       margin-bottom: 12px;
     }
     .splash-tagline-vi {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-style: italic;
       color: var(--reu);
       font-size: clamp(22px, 3.5vw, 32px);
@@ -1396,7 +1396,7 @@
       animation: marquee-scroll 40s linear infinite;
     }
     .marquee-track span {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: clamp(18px, 2.5vw, 24px);
       font-style: italic;
       color: var(--cam-dam);
@@ -1476,7 +1476,7 @@
       text-align: center;
     }
     .stat-item .num {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: clamp(40px, 6vw, 64px);
       font-weight: 600;
       line-height: 1;
@@ -1532,7 +1532,7 @@
       font-size: 14px;
     }
     .review-text {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: 17px;
       font-style: italic;
       color: var(--reu-dam);
@@ -1548,7 +1548,7 @@
       border-radius: 50%;
       background: linear-gradient(135deg, var(--cam-dam), var(--cam));
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
       font-size: 20px;
       color: var(--kem);
       flex-shrink: 0;
@@ -1665,7 +1665,7 @@
       line-height: 1.7;
       color: var(--reu-dam);
       white-space: pre-line;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Inter Fallback', 'Inter Fallback Android', sans-serif;
     }
     .modal-buttons {
       display: flex; gap: 12px; justify-content: center;
@@ -1754,7 +1754,7 @@
     }
     .zalo-float svg { width: 30px; height: 30px; }
     .zalo-float .zalo-text {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', 'Inter Fallback', 'Inter Fallback Android', sans-serif;
       font-weight: 900;
       font-size: 18px;
       color: var(--kem);
