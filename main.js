@@ -594,36 +594,6 @@
     tw.insertBefore(t, tw.firstChild);
   })();
 
-  // ===== MOBILE: dải ảnh nail 2 HÀNG chạy ngược chiều (thay thẻ rải hero) + gợi ý cuộn xuống =====
-  (function () {
-    var hero = document.getElementById('hero'); if (!hero) return;
-    var cards = [].slice.call(hero.querySelectorAll('.scatter-card'));
-    if (!cards.length || hero.querySelector('.hero-strip-m')) return;
-    function makeFig(c) {
-      var img = c.querySelector('img'); if (!img) return null;
-      var fig = document.createElement('figure');
-      var im = document.createElement('img');
-      im.src = img.src.replace('=w600', '=w400'); im.alt = ''; im.loading = 'lazy'; im.setAttribute('referrerpolicy', 'no-referrer');
-      fig.appendChild(im);
-      var tag = c.querySelector('.tag');
-      if (tag) { var s = document.createElement('span'); s.textContent = tag.textContent; fig.appendChild(s); }
-      return fig;
-    }
-    function makeTrack(list, cls) {
-      var t = document.createElement('div'); t.className = 'hero-strip-track' + (cls ? ' ' + cls : '');
-      [list, list].forEach(function (set) { set.forEach(function (c) { var f = makeFig(c); if (f) t.appendChild(f); }); });  // x2 loop liền mạch
-      return t;
-    }
-    var strip = document.createElement('div'); strip.className = 'hero-strip-m'; strip.setAttribute('aria-hidden', 'true');
-    strip.appendChild(makeTrack(cards, ''));                 // hàng 1
-    strip.appendChild(makeTrack(cards.slice().reverse(), 'r2'));  // hàng 2 (ngược chiều + đảo thứ tự)
-    hero.appendChild(strip);
-
-    var cue = document.createElement('div'); cue.className = 'hero-scroll-cue'; cue.setAttribute('aria-hidden', 'true');
-    cue.innerHTML = '<span>Cuộn xuống</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
-    hero.appendChild(cue);
-  })();
-
   // ===== MOBILE: reveal khi cuộn tới (fade-up + phóng nhẹ + stagger) — thay chuyển động stack =====
   (function () {
     if (window.innerWidth > 820 || !('IntersectionObserver' in window)) return;
