@@ -41,7 +41,7 @@
     "image": "https://thenail.vn/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w1200.webp",
     "url": "https://thenail.vn/",
     "telephone": "+84931415099",
-    "priceRange": "200.000₫–1.500.000₫",
+    "priceRange": "30.000₫ – 1.500.000₫",
     "currenciesAccepted": "VND",
     "paymentAccepted": "Tiền mặt, Chuyển khoản",
     "knowsLanguage": ["vi", "en"],
@@ -1098,30 +1098,6 @@
       .menu-foot__sep { width: 48px; height: 1px; }
     }
 
-    /* ===== TABS / FILTER ===== */
-    .tabs-wrap {
-      display: flex; justify-content: center;
-      gap: 12px;
-      margin-bottom: 48px;
-      flex-wrap: wrap;
-    }
-    .tab {
-      padding: 12px 24px;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      background: transparent;
-      border: 1px solid rgba(46, 74, 60, 0.15);
-      color: var(--reu-xam);
-      transition: all 0.3s;
-    }
-    .tab:hover { border-color: var(--cam-dam); color: var(--cam-dam); }
-    .tab.active {
-      background: var(--cam-dam);
-      color: var(--kem);
-      border-color: var(--cam-dam);
-    }
-
     /* ===== GALLERY ===== */
     .gallery {
       display: grid;
@@ -1135,6 +1111,7 @@
       .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     }
     .nail-card {
+      display: block; color: inherit; text-decoration: none;   /* thẻ là <a> */
       position: relative;
       aspect-ratio: 1 / 1;
       overflow: hidden;
@@ -1328,138 +1305,6 @@
       color: var(--cam-dam);
       margin-bottom: 8px;
       font-size: 14px;
-    }
-
-    /* ===== LIGHTBOX ===== */
-    .lightbox {
-      position: fixed; inset: 0;
-      background: rgba(0, 0, 0, 0.95);
-      z-index: 1000;
-      align-items: center; justify-content: center;
-      padding: 24px;
-      display: flex;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      -webkit-backdrop-filter: blur(4px);
-      backdrop-filter: blur(4px);
-      transition: opacity 0.28s ease, visibility 0s linear 0.28s;
-    }
-    .lightbox.active {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transition-delay: 0s;
-    }
-    .lightbox-content {
-      max-width: 90vw; max-height: 90vh;
-      text-align: center;
-      opacity: 0;
-      transform: scale(0.96);
-      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(.16, 1, .3, 1);
-    }
-    .lightbox.active .lightbox-content { opacity: 1; transform: scale(1); }
-    .lightbox-content .ph {
-      width: auto;
-      max-width: min(92vw, 760px);
-      max-height: 82vh;
-      margin: 0 auto;
-      overflow: hidden;
-      position: relative;
-      display: inline-block;
-      border-radius: 14px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
-    }
-    .lightbox-content .ph img {
-      max-width: 100%; max-height: 82vh;
-      width: auto; height: auto;
-      object-fit: contain;
-      display: block;
-      border-radius: 14px;
-      transition: opacity 0.2s ease;
-    }
-    .lightbox-content h3 {
-      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
-      font-size: clamp(24px, 3vw, 28px);
-      color: var(--kem);
-      margin: 18px 0 0;
-      line-height: 1.1;
-    }
-    .lightbox-content .price {
-      color: var(--hong-dat);
-      font-size: 15px;
-      letter-spacing: 0.12em;
-      margin-top: 6px;
-    }
-    .lightbox-close {
-      position: absolute; top: 24px; right: 24px;
-      background: transparent;
-      border: 1px solid rgba(192, 90, 51, 0.5);
-      color: var(--cam-dam);
-      width: 44px; height: 44px;
-      font-size: 20px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .lightbox-close:hover { background: rgba(192, 90, 51, 0.15); }
-
-    /* Prev / next navigation */
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(244, 240, 230, 0.6);
-      border: 1px solid rgba(192, 90, 51, 0.4);
-      color: var(--cam-dam);
-      width: 52px; height: 52px;
-      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
-      font-size: 36px;
-      line-height: 1;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
-      z-index: 1001;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .lightbox-nav.prev { left: 24px; }
-    .lightbox-nav.next { right: 24px; }
-    .lightbox-nav:hover {
-      background: rgba(192, 90, 51, 0.2);
-      border-color: rgba(192, 90, 51, 0.7);
-    }
-    .lightbox-nav:active { transform: translateY(-50%) scale(0.94); }
-    @media (max-width: 600px) {
-      .lightbox-nav {
-        width: 44px; height: 44px;
-        font-size: 28px;
-      }
-      .lightbox-nav.prev { left: 8px; }
-      .lightbox-nav.next { right: 8px; }
-    }
-
-    /* Loading spinner while large lightbox image fetches */
-    .lb-spinner {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px; height: 40px;
-      border: 2px solid rgba(192, 90, 51, 0.2);
-      border-top-color: var(--cam-dam);
-      border-radius: 50%;
-      animation: lb-spin 0.8s linear infinite;
-      opacity: 0;
-      transition: opacity 0.2s;
-      pointer-events: none;
-    }
-    .lb-spinner.show { opacity: 1; }
-    @keyframes lb-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
-
-    /* Photo counter (1 / 12) */
-    .lb-counter {
-      margin-top: 8px;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      color: var(--reu-nhat);
-      font-variant-numeric: tabular-nums;
     }
 
     /* ===== LOADING SPLASH — NAIL-PHOTO CURTAIN ===== */
@@ -1859,54 +1704,6 @@
        Was overriding position:absolute on .hero-sparkles and .hero-spotlight
        (specificity 0,1,1 vs 0,1,0), pushing 640px spotlight into normal flow
        and breaking center alignment. Scene already has position:relative + z-index:2. */
-
-    /* ===== MARQUEE BAND ===== */
-    .marquee {
-      background: rgba(158, 68, 38, 0.04);
-      border-top: 1px solid rgba(158, 68, 38, 0.15);
-      border-bottom: 1px solid rgba(158, 68, 38, 0.15);
-      padding: 28px 0;
-      overflow: hidden;
-      white-space: nowrap;
-      position: relative;
-    }
-    .marquee::before, .marquee::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 120px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .marquee::before {
-      left: 0;
-      background: linear-gradient(90deg, var(--kem), transparent);
-    }
-    .marquee::after {
-      right: 0;
-      background: linear-gradient(-90deg, var(--kem), transparent);
-    }
-    .marquee-track {
-      display: inline-flex;
-      animation: marquee-scroll 40s linear infinite;
-    }
-    .marquee-track span {
-      font-family: 'Cormorant Garamond', 'Cormorant Fallback', 'Cormorant Fallback Android', serif;
-      font-size: clamp(18px, 2.5vw, 24px);
-      font-style: italic;
-      color: var(--cam-dam);
-      padding-right: 56px;
-      letter-spacing: 0.08em;
-      white-space: nowrap;
-    }
-    .marquee-track .sep {
-      color: rgba(192, 90, 51, 0.4);
-      padding-right: 56px;
-    }
-    @keyframes marquee-scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
 
     /* ===== 3D TILT ===== */
     .nail-card {
@@ -2310,7 +2107,7 @@
   html, body { overflow-x: visible !important; }   /* KHÔNG hidden/clip: cả hai đều phá sticky LỒNG NHAU (thanh lọc gallery). Section tự overflow:hidden nên không tràn ngang. */
 
   /* 4 section nội dung = thẻ cao đúng 100vh, đều sticky, nền ĐẶC, bo góc + đổ bóng mép trên */
-  section.about, section#gallery, section#booking, section.contact {
+  section.about, section#gallery, section#booking, section.contact, section#danh-gia {
     position: sticky !important; top: 0 !important;
     height: 100vh !important; min-height: 100vh !important;
     overflow: hidden !important;
@@ -2332,12 +2129,12 @@
     padding: 96px 0 56px !important;
     border-radius: 30px 30px 0 0;
     box-shadow: 0 -28px 64px rgba(28,38,30,0.24);
-    background: var(--kem); z-index: 1;
+    background: var(--kem); z-index: 6;
   }
-  section.about   { background: var(--kem-dam); z-index: 2; }
+  section.about   { background: var(--kem-dam); z-index: 7; }
   /* Gallery hiện ĐẦY ĐỦ ảnh → cuộn bình thường (KHÔNG ghim, KHÔNG ép 100vh) nên không cắt ảnh, không dead-scroll; vẫn trượt đè lên About nhờ nền đặc + z-index */
   section#gallery {
-    background: var(--kem-sang); z-index: 3;
+    background: var(--kem-sang); z-index: 1;
     position: relative !important; top: auto !important;
     height: auto !important; min-height: 100vh !important;
     overflow: visible !important;
@@ -2350,7 +2147,7 @@
   section#menu {
     background: var(--reu) url('/images/menu/paper-cream.webp') center/cover;
     background-blend-mode: multiply;
-    z-index: 4;
+    z-index: 2;
     position: sticky !important; top: 0 !important;
     height: auto !important; min-height: 100vh !important;
     overflow: visible !important;
@@ -2359,9 +2156,17 @@
     border-radius: 0;
     box-shadow: 0 -28px 64px rgba(28,38,30,0.24);
   }
+  /* Đánh giá Google: thẻ mới giữa Menu và Booking, cùng kiểu Booking (ghim, trượt đè; cao tự động, tối thiểu 100vh, không cắt) */
+  section#danh-gia {
+    background: var(--kem); z-index: 3;
+    position: sticky !important; top: 0 !important;
+    height: auto !important; min-height: 100vh !important;
+    overflow: visible !important;
+    padding: 72px 0 36px !important;
+  }
   /* Booking: GHIM lại (có hiệu ứng trượt đè) nhưng overflow:visible (không cắt) + cả Booking & Contact đều ghim nên không lòi nút ra footer */
   section#booking {
-    background: var(--xanh-nhe); z-index: 5;
+    background: var(--xanh-nhe); z-index: 4;
     position: sticky !important; top: 0 !important;
     height: auto !important; min-height: 100vh !important;
     overflow: visible !important;
@@ -2369,14 +2174,12 @@
   }
   /* Liên hệ: GHIM lại (trượt đè lên Booking) — overflow:visible nên không cắt icon; padding-bottom rộng để icon cách xa mép footer */
   section.contact {
-    background: var(--kem-xam); z-index: 6;
+    background: var(--kem-xam); z-index: 5;
     position: sticky !important; top: 0 !important;
     height: auto !important; min-height: 100vh !important;
     overflow: visible !important;
     padding-top: 64px !important; padding-bottom: 110px !important;
   }
-  /* Ẩn dải marquee (ticker khuyến mãi) giữa Gallery↔Booking — nó nằm xen giữa nên tạo "khoảng hở" phá hiệu ứng chồng. Bản cuối có thể đặt lại chỗ khác. */
-  .marquee { display: none !important; }
 
   section.faq {
     position: sticky !important; top: 0 !important;
@@ -2386,11 +2189,11 @@
     padding: 96px 0 72px !important;
     border-radius: 30px 30px 0 0;
     box-shadow: 0 -28px 64px rgba(28,38,30,0.24);
-    background: var(--kem-dam); z-index: 7;
+    background: var(--kem-dam); z-index: 8;
   }
 
   /* footer cũng là 1 lớp trượt phủ section Liên hệ ở cuối */
-  footer { position: relative; z-index: 8; border-radius: 30px 30px 0 0; box-shadow: 0 -10px 24px rgba(28,38,30,0.08); }
+  footer { position: relative; z-index: 9; border-radius: 30px 30px 0 0; box-shadow: 0 -10px 24px rgba(28,38,30,0.08); }
 
   /* ===== NAV thu gọn khi cuộn: vẫn GHIM (đã fixed), bỏ tầng thông tin (📍 SĐT 🕘), chỉ còn logo + nút ===== */
   .nav-info { overflow: hidden; max-height: 60px; transition: max-height .35s ease, padding .3s ease, opacity .3s ease, border-color .3s ease; }
@@ -2425,11 +2228,11 @@
   .nav-info .phone a,
   .lang-toggle { margin-block: -13px; }
   .menu-foot a { min-height: 46px; margin-block: -13px; }
-  #hero, .intro, .about, #gallery, #menu, #booking, .contact, .faq {
+  #hero, .intro, .about, #gallery, #menu, #danh-gia, #booking, .contact, .faq {
     scroll-margin-top: 120px;
   }
   @media (max-width: 820px) {
-    #hero, .intro, .about, #gallery, #menu, #booking, .contact, .faq {
+    #hero, .intro, .about, #gallery, #menu, #danh-gia, #booking, .contact, .faq {
       scroll-margin-top: 112px;
     }
   }
@@ -2438,20 +2241,22 @@
   @media (max-width: 820px) {
     /* bỏ GHIM (sticky) để khỏi che/giật, NHƯNG giữ dáng thẻ chồng */
     section.hero, section#hero,
-    section.intro, section.about, section#gallery, section#menu, section#booking, section.contact, section.faq {
+    section.intro, section.about, section#gallery, section#menu, section#danh-gia, section#booking, section.contact, section.faq {
       position: static !important; top: auto !important;
       height: auto !important; min-height: 0 !important;
       overflow: visible !important;
     }
-    /* CARD-STACK TĨNH: bo góc trên + chồng nhẹ lên section trước (giữ "chất" desktop) */
-    section.about, section#gallery, section#menu, section#booking, section.contact, footer {
+    /* CARD-STACK TĨNH: bo góc trên + chồng nhẹ lên section trước (giữ "chất" desktop).
+       position:relative!important để z-index có tác dụng (trước đây bị static!important ở trên thắng). z-index tăng theo thứ tự thẻ. */
+    section.intro, section.about, section#gallery, section#menu, section#danh-gia, section#booking, section.contact, section.faq, footer {
       border-radius: 26px 26px 0 0 !important;
       margin-top: -24px !important;
       box-shadow: 0 -14px 30px rgba(28,38,30,0.10) !important;
-      position: relative;
+      position: relative !important;
     }
-    section.about { z-index: 1; } section#gallery { z-index: 2; }
-    section#menu { z-index: 3; } section#booking { z-index: 4; } section.contact { z-index: 5; } footer { z-index: 6; }
+    section#gallery { z-index: 1; } section#menu { z-index: 2; } section#danh-gia { z-index: 3; }
+    section#booking { z-index: 4; } section.contact { z-index: 5; } section.intro { z-index: 6; }
+    section.about { z-index: 7; } section.faq { z-index: 8; } footer { z-index: 9; }
     section#menu {
       min-height: 100vh !important;
       overflow: hidden !important;
@@ -2460,17 +2265,6 @@
       padding: 0 !important;
       border-radius: 0 !important;
     }
-    /* THANH LỌC = chip dính + VUỐT NGANG (mobile-native) */
-    section#gallery .tabs-wrap {
-      position: sticky !important; top: 50px !important; z-index: 20 !important;
-      background: var(--kem-sang) !important; box-shadow: 0 6px 16px rgba(28,38,30,0.08) !important;
-      border-radius: 0 !important; margin: 0 -24px 10px !important; padding: 11px 24px !important;
-      display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; gap: 8px !important; justify-content: flex-start !important;
-      -webkit-overflow-scrolling: touch;
-    }
-    section#gallery .tabs-wrap::-webkit-scrollbar { display: none; }
-    section#gallery .tabs-wrap .g-title { display: none !important; }   /* tránh trùng tiêu đề */
-    section#gallery .tabs-wrap .tab { flex: 0 0 auto; }
     section#gallery .section-head { margin-bottom: 16px; }
 
     /* layout dọc */
@@ -2481,7 +2275,6 @@
     .hero-strip-m { display: flex !important; }   /* bật dải ảnh nail (2 hàng) — thắng rule .hero-strip-m{display:none} khai báo sau */
   }
   @media (max-width: 600px) {
-    section#gallery .tabs-wrap .tab { padding: 6px 12px; font-size: 11px; }
     .social-float-stack { right: 12px !important; gap: 8px !important; }
     .social-float-btn { width: 40px !important; height: 40px !important; }
     .social-float-btn svg { width: 17px !important; height: 17px !important; }
@@ -2507,7 +2300,7 @@
 
   /* ===== TOUCH: hiệu ứng NHẤN (thay hover trên cảm ứng) ===== */
   @media (hover: none) {
-    .nav-btn:active, .btn:active, .tab:active, .map-actions a:active,
+    .nav-btn:active, .btn:active, .map-actions a:active,
     .social a:active, .social-float-btn:active, .zalo-float:active,
     .nail-card:active, .about-item:active { transform: scale(0.96); opacity: 0.9; transition: transform .12s, opacity .12s; }
   }
@@ -2540,22 +2333,8 @@
   }
   @keyframes cue-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
-  /* ===== GALLERY: tiêu đề lớn cuộn đi, THANH BỘ LỌC thu gọn + GHIM lại, ảnh cuộn bên dưới tới hết ===== */
+  /* ===== GALLERY: ngắn (12 thẻ), cuộn thường ===== */
   section#gallery .section-head { margin-bottom: 30px; }
-  section#gallery .tabs-wrap {
-    position: sticky; top: 54px; z-index: 5;
-    margin: 0; padding: 16px 18px 18px;
-    background: var(--kem-sang);
-    display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px 12px;
-    box-shadow: 0 12px 26px -8px rgba(28,38,30,0.16);
-    border-radius: 0 0 18px 18px;
-  }
-  /* hàng 1: tiêu đề TO chiếm trọn dòng → đẩy nút lọc xuống hàng 2 */
-  section#gallery .tabs-wrap .g-title {
-    flex: 0 0 100%; width: 100%; text-align: center; margin: 0 0 2px;
-    font-family: Georgia, 'Times New Roman', serif; font-style: italic;
-    color: var(--reu); font-size: 1.75rem; line-height: 1.1;
-  }
 
   /* ===== MAP: tương tác được (marker gốc Google), 2 nút sang PHẢI cạnh bản đồ ===== */
   section.contact .contact-grid { grid-template-columns: 0.82fr 1.18fr; }   /* cột map rộng hơn để chứa map to + 2 nút */
@@ -2566,6 +2345,63 @@
     margin: 0; flex: 0 0 auto; flex-direction: column; justify-content: center; gap: 12px;
   }
   section.contact .map-actions a { text-align: center; white-space: nowrap; }
+
+  /* ===== NÂNG CẤP 15/10/2026: CTA hero, gallery gọn, thẻ đánh giá, menu hiện trang ===== */
+  .hero-cta { position: relative; z-index: 2; width: 100%; pointer-events: auto; display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 26px; max-width: 640px; }
+  .hero .hero-sub, .hero .hero-price { margin: 0; opacity: 0; animation: hero-entrance 1.0s 4.1s ease-out forwards; }
+  .hero .hero-sub, .hero .hero-price { text-wrap: balance; }
+  .hero .hero-sub { font-size: 14px; letter-spacing: 0.04em; color: var(--reu-xam); }
+  .hero .hero-price { font-size: 15px; font-weight: 600; color: var(--cam-dam); }
+  .hero .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 12px; opacity: 0; animation: hero-entrance 1.0s 4.2s ease-out forwards; }
+  .hero .hero-btns .btn { pointer-events: auto; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 26px; text-decoration: none; }
+  @media (min-width: 821px) {
+    /* logo thấp hơn theo chiều cao màn hình để nút CTA nằm trong màn hình đầu (1280x720 → 1440x900) */
+    .hero h1.hero-logo img { height: clamp(150px, 28vh, 340px); }
+  }
+  @media (max-width: 820px) {
+    /* Điện thoại: dải ảnh 2 hàng giữ đúng vị trí cũ (ngay dưới slogan); CTA nằm NGAY DƯỚI dải.
+       .hero-cta là anh em của #hero-scene (KHÔNG làm scene mất hộp: JS drift / con quay gán transform lên scene) nên dùng order trong flex của .hero. */
+    .hero .hero-strip-m { order: 1; }
+    .hero .hero-cta { order: 2; }
+    .hero .hero-scroll-cue { order: 3; }
+    .hero-cta { margin-top: 18px; gap: 6px; padding: 0 4px; }
+    .hero .hero-sub { font-size: 13px; }
+    .hero .hero-price { font-size: 14px; }
+    .hero .hero-btns { gap: 10px; margin-top: 10px; }
+    .hero .hero-btns .btn { padding: 12px 18px; font-size: 11px; letter-spacing: 0.12em; }
+  }
+
+  .gallery-more { display: flex; justify-content: center; margin-top: 34px; }
+  .gallery-more .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; text-align: center; }
+
+  section#danh-gia > .container { width: 100%; }   /* section là flex column + .container margin:auto → không có dòng này container co theo nội dung */
+  section#danh-gia .review-grid { min-width: 0; }
+  section#danh-gia .section-head { margin-bottom: 20px; }
+  section#danh-gia .section-head h2 { font-size: clamp(32px, 4.4vw, 44px); margin-bottom: 8px; }
+  section#danh-gia .section-head .divider { margin: 12px auto; }
+  section#danh-gia .review-grid { gap: 14px; }
+  section#danh-gia .review-card { background: rgba(255,255,255,0.5); padding: 18px 20px; }
+  section#danh-gia .review-stars { margin-bottom: 10px; }
+  section#danh-gia .review-text { font-size: 16px; line-height: 1.42; margin-bottom: 14px; }
+  @media (min-width: 821px) and (max-height: 820px) {
+    section#danh-gia { padding-top: 68px !important; padding-bottom: 28px !important; }
+    section#danh-gia .section-head .divider { display: none; }
+    section#danh-gia .review-text { font-size: 14.5px; margin-bottom: 10px; }
+    section#danh-gia .review-card { padding: 14px 18px; }
+  }
+  .review-note { text-align: center; margin: 16px 0 0; font-size: 12px; letter-spacing: 0.08em; color: var(--reu-nhat); }
+  .review-more { display: flex; justify-content: center; margin-top: 10px; }
+  .review-more .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; }
+  @media (max-width: 600px) {
+    section#danh-gia .review-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -24px; padding: 4px 24px 10px; -webkit-overflow-scrolling: touch; }
+    section#danh-gia .review-grid::-webkit-scrollbar { display: none; }
+    section#danh-gia .review-card { flex: 0 0 84%; scroll-snap-align: center; }
+    .review-more .btn { letter-spacing: 0.1em; padding: 12px 16px; font-size: 11px; text-align: center; }
+  }
+  nav .links a[aria-current="page"] { color: var(--cam-dam); }
+
+  /* Footer: <nav class="foot-links"> không được ăn CSS "nav {position:fixed}" của thanh menu chính (bug có sẵn: hiện cố định ở đỉnh điện thoại) */
+  footer nav.foot-links { position: static; top: auto; left: auto; right: auto; z-index: auto; background: none; border-bottom: 0; box-shadow: none; }
 </style>
   <!-- CSS-CHINH:KET-THUC -->
 
@@ -2649,8 +2485,8 @@
         <div class="links" id="nav-links">
           <a href="#about">Giới thiệu</a>
           <a href="/bang-gia/" data-en="Prices">Bảng giá</a>
+          <a href="/mau-mong/">Mẫu nail</a>
           <a href="#contact">Liên hệ</a>
-          <a href="#gallery" class="nav-btn">Mẫu nail</a>
           <a href="#booking" class="nav-btn solid">Đặt lịch</a>
         </div>
         <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
@@ -2667,9 +2503,17 @@
     <div class="hero-spotlight" id="hero-spotlight"></div>
     <div class="hero-3d-scene" id="hero-scene">
       <div class="hero-tag">— Nail Studio by Trần Ngọc —</div>
-      <h1 class="hero-logo"><img src="/images/the-nail-logo-no-card.svg" alt="The Nail — Nail Studio Quận 10, Sài Gòn" fetchpriority="high" /></h1>
+      <h1 class="hero-logo"><img src="/images/the-nail-logo-no-card.svg" alt="The Nail — Nail Studio Quận 10, Sài Gòn — tiệm nail Quận 10, Nguyễn Tri Phương" fetchpriority="high" /></h1>
       <p class="slogan-en"><span class="sg">— your concept,</span> <span class="sg">my creation —</span></p>
       <p class="slogan-vi"><span class="sg">Ý tưởng bạn trao —</span> <span class="sg">Nghệ thuật tôi tạo</span></p>
+    </div>
+    <div class="hero-cta">
+      <p class="hero-sub" data-en="Nail salon in District 10 · 517/15 Nguyen Tri Phuong · Open 9:00–22:00 daily">Tiệm nail Quận 10 · 517/15 Nguyễn Tri Phương · Mở 9:00–22:00 mỗi ngày</p>
+      <p class="hero-price" data-en="Gel polish from 70,000₫ — add-ons are itemised, quoted before we start">Sơn gel từ 70.000₫ — giá cộng dồn, báo trước khi làm</p>
+      <div class="hero-btns">
+        <a class="btn solid" href="https://zalo.me/0931415099" target="_blank" rel="noopener" data-en="Book on Zalo">Nhắn Zalo đặt lịch</a>
+        <a class="btn" href="/mau-mong/" data-en="See nail designs">Xem mẫu nail</a>
+      </div>
     </div>
     <div class="hero-scatter" aria-hidden="true">
       <figure class="scatter-card"><div class="sc-float"><img src="/images/gallery/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb_w600.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" referrerpolicy="no-referrer" loading="lazy"><span class="tag">1.5tr</span></div></figure>
@@ -2725,577 +2569,62 @@
   })();
   </script>
 
-  <section class="intro">
-    <div class="container">
-      <p>The Nail là tiệm nail nằm trong hẻm 517 Nguyễn Tri Phương, phường Diên Hồng, Quận 10, TP.HCM — cách ngã sáu Nguyễn Tri Phương vài phút chạy xe. Tiệm làm theo một cách riêng: không có menu mẫu đóng khung để khách chọn cho nhanh, mà bắt đầu từ ý tưởng của chính khách. Bạn mang tới một tấm ảnh, một màu áo, hay chỉ một cảm giác muốn có — phần còn lại là việc của thợ.</p>
-      <p>Vì làm theo hướng đó nên mỗi bộ móng ở đây mất nhiều thời gian hơn bình thường, và mỗi ngày tiệm chỉ nhận một số khách nhất định. Đổi lại, không có hai bộ móng nào giống nhau rời khỏi tiệm.</p>
-      <p>The Nail nhận sơn gel, sơn thạch, sơn nhũ, sơn mắt mèo, chrome, úp móng gel, refill, nối móng đắp gel, vẽ móng nghệ thuật, charm và đính đá. Sơn gel từ 70.000₫, một bộ hoàn chỉnh từ 220.000₫. Mở cửa cả tuần, 9:00 – 22:00.</p>
-      <p>Tiệm nằm trong hẻm nên hầu hết khách đến vì được giới thiệu hoặc vì tìm thấy một mẫu ưng ý. Nếu bạn ở Quận 10, Quận 5, Quận 11 hay Quận 3 và đang tìm chỗ làm móng chịu ngồi lâu với mình — nhắn Zalo 0931 415 099, gửi mẫu bạn thích, tiệm sẽ báo giá và thời gian trước khi bạn đến.</p>
-    </div>
-  </section>
-
-  <!-- ===== ABOUT ===== -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="section-head">
-        <div class="label">— Giá trị của chúng tôi —</div>
-        <h2>Mỗi đôi tay — Một tác phẩm</h2>
-        <div class="divider"></div>
-        <p>Tại The Nail — tiệm nail trên đường Nguyễn Tri Phương, Quận 10 — chúng tôi tin rằng mỗi bộ móng là sự kết hợp giữa ý tưởng của bạn và tay nghề của chúng tôi.</p>
-      </div>
-      <div class="about-grid">
-        <div class="about-item">
-          <div class="icon">✦</div>
-          <h3 class="glitter">Cá nhân hoá</h3>
-          <p>Mỗi khách hàng là duy nhất. Mỗi bộ móng được điều chỉnh riêng theo gu, dáng tay và phong cách của bạn.</p>
-        </div>
-        <div class="about-item">
-          <div class="icon">✦</div>
-          <h3 class="glitter">Sáng tạo</h3>
-          <p>Không chỉ làm theo mẫu — chúng tôi cùng bạn kiến tạo nên thiết kế độc bản, mang dấu ấn của riêng bạn.</p>
-        </div>
-        <div class="about-item">
-          <div class="icon">✦</div>
-          <h3 class="glitter">Tỉ mỉ</h3>
-          <p>Từng đường nét được trau chuốt. Một bộ móng đẹp bắt nguồn từ sự kiên nhẫn — không vội, không qua loa.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== GALLERY ===== -->
   <section id="gallery">
     <div class="container">
       <div class="section-head">
         <div class="label">— Atelier —</div>
-        <h2><em>Bộ sưu tập</em></h2>
+        <h2><em>Mẫu nail tiệm vừa làm</em></h2>
         <div class="divider"></div>
-        <p><a href="/mau-mong/">Xem toàn bộ mẫu móng thật tiệm vừa làm →</a></p>
-        <p>Từ vẽ móng nghệ thuật, sơn gel đến nối móng — mỗi đôi tay một dấu ấn riêng. Tìm cảm hứng cho phong cách của bạn theo từng tầm giá.</p>
+        <p data-en="12 recent sets. Tap a design to see each part's price and message us on Zalo for exactly that design.">12 bộ móng gần đây. Bấm vào mẫu để xem giá từng phần và nhắn Zalo đặt đúng mẫu.</p>
       </div>
 
-      <div class="tabs-wrap">
-        <button class="tab active" data-filter="all">Tất cả</button>
-        <button class="tab" data-filter="200-300">200 — 300k</button>
-        <button class="tab" data-filter="300-400">300 — 400k</button>
-        <button class="tab" data-filter="400-500">400 — 500k</button>
-        <button class="tab" data-filter="500-700">500 — 700k</button>
-        <button class="tab" data-filter="800-plus">800k+</button>
-      </div>
 
       <div class="gallery" id="gallery-grid">
         <!-- GALLERY-TU-APP:BAT-DAU -->
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
+        <a class="nail-card" href="/mau-mong/anh/f70defbd-95ef-44bf-b841-6b651405f0df/" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
           <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-31-f70defbd_w600.webp" alt="Móng gel xanh lá trong ánh chrome, dáng oval ngắn, chân móng để trong, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="390k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/34e9b989-e03f-43bf-9c89-38eb7a995c44/" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="390k">
           <img src="/images/gallery/nail-son-mat-meo-chrome-dinh-da-2026-08-27-34e9b989_w600.webp" alt="Móng úp gel trắng sữa dáng almond dài, rắc sao và chấm nhiều màu, sơn ánh chrome tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="380k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/3f0ff661-9389-4066-8006-96a7065554ab/" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="380k">
           <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-30-3f0ff661_w600.webp" alt="Móng trắng ngọc trai ánh chrome bóng như gương, dáng almond dài, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="390k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/5afa52c3-291e-450e-bc92-2a3f52aa1ff0/" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="390k">
           <img src="/images/gallery/nail-son-mat-meo-chrome-dinh-da-2026-08-27-5afa52c3_w600.webp" alt="Móng gel trắng kem ánh chrome dáng almond, đính sao nhiều màu và hạt đá nhỏ tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="480k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/84289611-dacc-4ff4-ad71-ad148049f8e1/" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="480k">
           <img src="/images/gallery/nail-son-thach-ve-design-2026-08-30-84289611_w600.webp" alt="Móng xanh mint và trắng nhũ vẽ tay hình thỏ và gấu nhỏ kèm chấm bi nhiều màu, dáng almond dài, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="300k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/2d6b0c50-2693-46b1-bd7f-7f4e476c3837/" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="300k">
           <img src="/images/gallery/nail-son-mat-meo-chrome-ve-loang-van-da-2026-08-27-2d6b0c50_w600.webp" alt="Móng nâu ánh chrome bóng, dáng oval ngắn, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="874">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/0cd38a29-7661-4382-8539-1f4e911a866b/" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
           <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-26-0cd38a29_w600.webp" alt="Móng nâu caramel bóng xen trắng sữa vẽ tay, dáng almond dài, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="445k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/ece1c6ab-c3ef-409a-b795-f211a537b588/" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="445k">
           <img src="/images/gallery/nail-son-thach-ve-design-2026-08-25-ece1c6ab_w600.webp" alt="Móng nâu đô đắp nổi hoa trắng và ngôi sao, đính đá xanh lá, dáng oval, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="320k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/0a951cca-ace2-4159-b882-8ad1f54bd5a0/" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="320k">
           <img src="/images/gallery/nail-son-thach-ve-design-2026-08-25-0a951cca_w600.webp" alt="Móng hồng nude vẽ hoạ tiết xanh lá non, dáng oval dài, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="450">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="735k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/dd918c63-7355-4d5d-9202-3d4955ea7876/" data-price="500+" data-name="Mẫu Trên 500k" data-range="735k">
           <img src="/images/gallery/nail-son-thach-ve-design-2026-08-16-dd918c63_w600.webp" alt="Móng dài vẽ ren và mạng nhện đen trắng, mỗi ngón một hoạ tiết, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="655k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/37845b95-2bd4-4c06-8b6c-834886635fec/" data-price="500+" data-name="Mẫu Trên 500k" data-range="655k">
           <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-02-37845b95_w600.webp" alt="Móng gel vàng bơ dáng oval ngắn, chấm bi đen và hình ngôi sao ở chân móng, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="640k">
+        </a>
+        <a class="nail-card" href="/mau-mong/anh/05fda493-f82a-40e0-b740-c05c8dbc6b45/" data-price="500+" data-name="Mẫu Trên 500k" data-range="640k">
           <img src="/images/gallery/nail-son-thach-ve-design-2026-08-02-05fda493_w600.webp" alt="Móng nude trong dáng vuông dài, đắp nổi hoạ tiết cành lá ánh vàng, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="566k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-15-d5e31f1d_w600.webp" alt="Móng nhọn dài đen trắng nude, mỗi ngón một kiểu vẽ ren và đính đá, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="500k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-son-nhu-2026-08-19-76f1c124_w600.webp" alt="Móng gel ánh chrome tím khói dáng vuông bo ngắn, bóng như gương, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="480k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-06-10281081_w600.webp" alt="Móng nude ánh bạc dáng oval ngắn, vẽ hoa nhỏ xanh đen và đính đá, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="475k">
-          <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-26-7a81ec7b_w600.webp" alt="Móng hồng nude ánh ngọc trai dáng almond, đính đá nhỏ từng ngón, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="470k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-dinh-da-2026-08-09-c2b428e8_w600.webp" alt="Móng nude kem dáng oval dài, rắc sao và chấm nhũ nhiều màu, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="470k">
-          <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-17-34d53597_w600.webp" alt="Móng trắng sữa ánh chrome dáng almond dài, bóng loang tự nhiên, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="450k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-up-mong-gel-2026-08-06-f159f8bd_w600.webp" alt="Móng trắng ánh ngọc trai dáng nhọn dài, bóng như gương, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="735k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-16-29c5426e_w600.webp" alt="Móng gel trắng sữa dáng nhọn dài, vẽ ren mạng nhện đen ánh nhũ bạc, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="655k">
-          <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-02-46b30332_w600.webp" alt="Móng gel vàng bơ dáng oval ngắn, chấm bi đen và đầu móng trong đính sao, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="640k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-02-c8596db2_w600.webp" alt="Móng gel nude hồng be dáng vuông dài, viền ánh kim vàng và đính đá lấp lánh, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="566k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-15-5f9fd6e8_w600.webp" alt="Móng gel mỗi ngón một màu trắng đen xám ánh kim dáng nhọn dài, vẽ ren và đính đá, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500+" data-name="Mẫu Trên 500k" data-range="500k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-son-nhu-2026-08-19-fbf0ed17_w600.webp" alt="Móng gel tím ánh nhũ hiệu ứng mắt mèo dáng oval ngắn, bề mặt bóng gương, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="480k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-06-4ae70c03_w600.webp" alt="Móng gel trắng sữa ánh nhũ dáng oval ngắn, vẽ hoa nhỏ xanh rêu đỏ đô và đính đá, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="475k">
-          <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-26-086993e0_w600.webp" alt="Móng gel trắng sữa trong dáng almond dài, đính đá nhỏ rải rác, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="470k">
-          <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-17-bfd07513_w600.webp" alt="Móng gel nude ombre tự nhiên dáng almond dài, bề mặt bóng mộc, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="450k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-up-mong-gel-2026-08-06-82cc5663_w600.webp" alt="Móng gel ánh kim bạc chrome dáng nhọn dài, ombre nude ở chân móng, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="450k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-23-c29fa76e_w600.webp" alt="Móng gel nude xám dáng vuông bo ngắn, vẽ trăng sao ánh bạc và điểm móng xanh dương ánh kim, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="450k">
-          <img src="/images/gallery/nail-ve-design-son-gel-2026-08-23-6c66aee1_w600.webp" alt="Móng gel đa màu pastel hồng vàng tím dáng almond dài, vẽ caro và xoáy ốc kèm đính đá, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="445k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-25-4fbd6122_w600.webp" alt="Móng gel đỏ đô phối be và hồng dáng oval dài vừa, vẽ hoa trắng và đính đá viền xanh đỏ, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="430k">
-          <img src="/images/gallery/nail-ve-design-son-gel-2026-08-09-c26333cf_w600.webp" alt="Móng gel xanh pastel phối trắng và vàng ánh nhũ dáng vuông bo ngắn, vẽ hoa và đính đá mỗi móng một kiểu, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="425k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-20-874ab5a4_w600.webp" alt="Móng gel đỏ đô dáng oval dài, vẽ mạng nhện trắng và đính hình nhện nổi 3D, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="400k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-14-4ef5c8bb_w600.webp" alt="Móng gel nude French tip trắng sữa dáng almond dài, đính đá lấp lánh viền móng, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="390k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-dinh-da-2026-08-27-d1ea9e77_w600.webp" alt="Móng gel trong suốt dáng nhọn dài, rắc nhũ hình sao nhiều màu, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="380k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-03-70f88c8d_w600.webp" alt="Móng gel ombre ánh bạc dáng nhọn dài, nhũ bạc đầu móng và họa tiết trái tim nhỏ, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="370k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-14-1e5af770_w600.webp" alt="Móng gel ombre pastel trắng vàng xanh dương dáng oval ngắn, điểm chấm sao li ti, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="370k">
-          <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-18-ba1bb7ba_w600.webp" alt="Móng gel nền nude bóng dáng oval ngắn, đốm màu cam nâu kiểu đá hoa cương, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="350k">
-          <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-13-3dd9e2b0_w600.webp" alt="Móng gel trắng bạc ánh mắt mèo dáng oval ngắn vừa, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="350k">
-          <img src="/images/gallery/nail-son-thach-son-mat-meo-chrome-2026-08-13-6d9b4fc4_w600.webp" alt="Móng chân sơn ánh mắt mèo xanh tím than dáng vuông ngắn, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="350k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-20-5a5e3454_w600.webp" alt="Móng chân sơn đỏ mận chín bóng dáng vuông ngắn, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="350k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-20-447b6c98_w600.webp" alt="Móng gel nâu ánh chrome xen kẽ trắng chấm bi đen dáng oval ngắn, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="335k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-02-58de1978_w600.webp" alt="Móng gel nhũ sequin phối xanh lá, vàng, hồng, bạc, xanh ngọc dáng oval ngắn, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="330k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-2026-08-07-a82e9c09_w600.webp" alt="Móng gel tím ánh mắt mèo lấp lánh dáng oval ngắn vừa, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="320k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-french-ombre-2026-08-07-1bbb191e_w600.webp" alt="Móng gel nude trong French tip viền xanh dương nhạt dáng oval ngắn vừa, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="320k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-25-f58563df_w600.webp" alt="Móng gel hồng nude dáng oval ngắn, vẽ lá xanh bạc hà và chấm bi trắng nhỏ, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="450">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="310k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-10-a943f8c7_w600.webp" alt="Móng gel vàng bơ phối trắng vân đá dáng almond dài vừa, điểm hoa đỏ nhỏ, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="310k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-10-13edfce6_w600.webp" alt="Móng vàng bơ dáng oval dài, xen móng trắng loang vân đỏ hồng, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-500" data-name="Mẫu 300 — 500k" data-range="300k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-loang-van-da-2026-08-27-6d3625a2_w600.webp" alt="Móng nude nâu đất dáng oval ngắn, một móng vẽ loang vân đá trắng ánh nhũ, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="1018">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
-          <img src="/images/gallery/nail-son-thach-2026-08-25-625fbce8_w600.webp" alt="Móng hồng nude bóng gương dáng almond dài, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="272k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-23-06bb36e5_w600.webp" alt="Móng ánh chrome bạc xanh ngọc loang dáng almond dài, đính ngôi sao trắng, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-14-311e229b_w600.webp" alt="Móng trắng sữa trong dáng vuông bo ngắn, vẽ chỉ nhũ bạc uốn lượn và chấm nhỏ đỏ cam, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-26-6ab6e91b_w600.webp" alt="Móng nâu cánh gián ánh chrome dáng almond dài, xen móng trắng sữa chấm bi vàng, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="/images/gallery/nail-son-thach-son-nhu-2026-08-09-73fcf6e1_w600.webp" alt="Móng xanh bạc hà dáng oval ngắn, xen móng phủ nhũ bạc lấp lánh, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-15-fc772762_w600.webp" alt="Móng cam đất ánh chrome loang dáng vuông bo ngắn, chấm và vẽ ngôi sao xanh dương nhỏ, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="/images/gallery/nail-son-thach-up-mong-gel-2026-08-16-321f3844_w600.webp" alt="Móng hồng nude bóng gương dáng almond dài, đính đá nhỏ lấp lánh ở gốc móng, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="230k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-2026-08-23-3a7a2474_w600.webp" alt="Móng hồng nude ánh chrome bạc nhẹ dáng oval ngắn, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="200k">
-          <img src="/images/gallery/nail-son-mat-meo-chrome-ve-design-2026-08-02-89da90eb_w600.webp" alt="Móng hồng nude ánh bạc chrome loang vân đá dáng vuông bo ngắn, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="0-200" data-name="Mẫu Dưới 200k" data-range="171k">
-          <img src="/images/gallery/nail-ve-design-son-gel-2026-08-23-419ba055_w600.webp" alt="Móng trắng đen phối màu graphic dáng vuông bo ngắn, vẽ hình mèo và chấm nhũ bạc, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="450">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="0-200" data-name="Mẫu Dưới 200k" data-range="162k">
-          <img src="/images/gallery/nail-son-thach-french-ombre-2026-08-29-9ce5e568_w600.webp" alt="Móng French tip xanh bạc hà dáng vuông dài, nền hồng nhạt trong, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="0-200" data-name="Mẫu Dưới 200k" data-range="150k">
-          <img src="/images/gallery/nail-son-nhu-2026-08-27-6d9923f2_w600.webp" alt="Móng nhũ bạc lấp lánh phủ toàn bộ dáng oval ngắn, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="0-200" data-name="Mẫu Dưới 200k" data-range="120k">
-          <img src="/images/gallery/nail-son-thach-ve-design-2026-08-03-a1a21527_w600.webp" alt="Móng nail art nhiều màu dáng oval ngắn, mỗi móng một kiểu với sao trắng, chấm bi và nét vẽ cam xanh, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="600">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="0-200" data-name="Mẫu Dưới 200k" data-range="70k">
-          <img src="/images/gallery/nail-son-gel-2026-08-04-87c3081c_w600.webp" alt="Móng hồng be nhạt dáng oval dài, vẽ chỉ trắng mảnh và một móng nâu cà phê điểm nhấn, tại The Nail Quận 10" loading="lazy" decoding="async" width="600" height="800">
-        </div>
+        </a>
         <!-- GALLERY-TU-APP:KET-THUC -->
-        <!-- 200 — 300k -->
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="/images/gallery/1lseE--QmyFGUm5clHMp7YFMZESGIlXGY_w400.webp" alt="Gel trắng-nude với vệt xanh gradient tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="/images/gallery/1S4QNzkjA6jfdOEWJK-XhGEdPk32S9JUP_w400.webp" alt="Gel hồng-trắng với họa tiết tim 3D nổi bậc rực rỡ, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="/images/gallery/1j-MiMHT-BF-DUQ6rHUotwXMoz8jQ1pAe_w400.webp" alt="Gel nude-hồng nhạt in họa tiết chấm đa sắc tinh tế, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="/images/gallery/18h6DMoUTIZHNlIa05yeUxwHni3mIneKq_w400.webp" alt="Gel nâu sâu đỏ châu Âu với viền vàng thanh lịch, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="/images/gallery/15R-57T9UAgJU366mo1ehBbCdL__g_e0n_w400.webp" alt="Sơn gel nâu đỏ hẹp viền vàng đồng, dáng móng tròn vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="/images/gallery/1DB1ZURgeazTF8TExqop-9iaykK76pUZq_w400.webp" alt="Mẫu gel trắng-nude in họa tiết mà cà rô đỏ tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
-          <img src="/images/gallery/1aNE1Hp8Fkw6cAr7iXZmjZbxZCf_LkTJq_w400.webp" alt="Gel nude-hồng với gradient xanh-hồng-vàng mềm mại, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="/images/gallery/1CVMao7oIWXajNlGhB5j08md97L3EFJQ2_w400.webp" alt="Gel nude-hồng tôn điểm với viền vàng đỏ thanh lịch, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="/images/gallery/1BX3jqaYy6SPi4SIEw5V9o6ydPVMT1xWr_w400.webp" alt="Mẫu gel nude tôn với vệt chrome xanh dương gradient sâu, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="/images/gallery/15_TA0WlU7HnrBVB1redzSknjkFmxsfQM_w400.webp" alt="Mẫu gel nude-hồng tổng hợp họa tiết dợi đỏ-xanh nhạt linh hoạt, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="/images/gallery/135oqrLfl6La-8UoyLQ-G-mijommxvH97_w400.webp" alt="Gel sơn bóng màu hồng nhạt phủ vệt trắng rực rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="/images/gallery/1R0WtMGoFQtjp01kPe9F7G0266AKPrgFB_w400.webp" alt="Gel đen bóng tôn với chấm trắng ngọc trai tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="/images/gallery/163NFAIVlRBJJyhFou7r1JMdWb2aVXJQr_w400.webp" alt="Gel trắng lạnh kết hợp glitter bạc và xanh dương sáng, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="290k">
-          <img src="/images/gallery/16Vlv2ZbLHddXJtDHf_JuxDvfH8rrZsiw_w400.webp" alt="Mẫu gel hồng nhạt tôn điểm với vệt glitter bạc-xanh sáng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="220k">
-          <img src="/images/gallery/1R6n4ci2qceGAEuCP06slXVWV9M7pu9dc_w400.webp" alt="Mẫu gel nude-hồng nhạt với vầng trắng gradient dịu dàng, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="240k">
-          <img src="/images/gallery/1EO8myodG3wgILbanuwVz6NymkBvYWqnk_w400.webp" alt="Gel nude-hồng phủ glitter bạc-hồng lấp lánh, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="250k">
-          <img src="/images/gallery/1iUE7UlCv1PsP0qGnBKAoH8Gc15CGd8Sp_w400.webp" alt="Gel nude-trắng in họa tiết hoa trắng tinh tế, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="260k">
-          <img src="/images/gallery/1chRGSaJQBt1jY-HnmQelfQXsKD69qho3_w400.webp" alt="Gel nude-hồng tôn điểm với chấm hoa đỏ nổi bật, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="270k">
-          <img src="/images/gallery/1GCPuUII3SsN5qZ22A6gMyRZkgYYFhJP9_w400.webp" alt="Mẫu gel nude-hồng nhạt với vầng trắng mờ dịu dàng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="200-300" data-name="Mẫu 200 — 300k" data-range="280k">
-          <img src="/images/gallery/1scxmt4oSMJXKIQ8qnaNrV8r6YTyLkz3U_w400.webp" alt="Mẫu gel hồng-nude in họa tiết hoa trắng rải rác, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-
-        <!-- 300 — 400k -->
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="/images/gallery/1RGsEjU97bI9bQPXHLnG-MVw4L3gp5bRQ_w400.webp" alt="Gel trắng lạnh in họa tiết hoa xanh-hồng tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="/images/gallery/1x4VLEfZMEqbu8RBjlwn4jowXvc5pUVX__w400.webp" alt="Mẫu gel nude-hồng nhạt in họa tiết hoa đa sắc, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="/images/gallery/1N9gvl1BvZ93_yT0_lmNDQFYXUh3itwVV_w400.webp" alt="Mẫu gel trắng-nude in họa tiết hoa xanh-vàng tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="/images/gallery/1WLoYHaan9wcxxXOMf5zeX5rLoPfTCLR__w400.webp" alt="Gel nude-hồng tôn điểm với vệt trắng sáng outline, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="/images/gallery/1B9_SMD0f0F1uitOOJaPY_pv5tghdJi2p_w400.webp" alt="Mẫu gel hồng nhạt tôn điểm với vệt đen cherry nổi bật, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="/images/gallery/17IdH3UL72melhW6Mceg30GeUlSfXD7SZ_w400.webp" alt="Mẫu gel ấm tone với hiệu ứng chrome xanh-nâu lấp lánh, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="/images/gallery/1HMvXVgD2hJuUwVW5xbIoBHzQ_EMtGCee_w400.webp" alt="Mẫu gel nude-hồng in họa tiết chấm xanh tím tinh tế, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="/images/gallery/16xoZP9KI8THym4ev3Ayetk1p8h6Me27w_w400.webp" alt="Mẫu gel nude-hồng với họa tiết hoạt hình đa dạng tinh tế, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="/images/gallery/1krPewtbBudfV3IkWi16qHwGssLqZgyYt_w400.webp" alt="Mẫu gel nude-hồng tôn với vệt lá vàng-cam thanh lịch, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="/images/gallery/1RWuSIzf-oZt2jcgAUa3EG11TH6SITCTo_w400.webp" alt="Mẫu gel nude-hồng tôn với vệt trắng-xanh sáng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="/images/gallery/1UTwB_imR74xQDaCXJwr-rphxT0MOUI8Y_w400.webp" alt="Mẫu gel nude-hồng với vệt gradient xanh tím sâu, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="/images/gallery/1oSEVQd4v8uEv8AmYxDZXp9i0fwAq9HLC_w400.webp" alt="Gel hồng-nude với họa tiết xoắn bạc-xanh tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="/images/gallery/1QI2URULkrcTMpTwj2mTCs28aMYw0yxc5_w400.webp" alt="Mẫu gel nâu-cam với hiệu ứng foil vàng sọc nổi bật, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="/images/gallery/1i6kGM6s0UHvAb5LOWEJQVPxxCDT_EDE8_w400.webp" alt="Gel trắng-nude in họa tiết đa sắc rục rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="350k">
-          <img src="/images/gallery/18t_7xqAaz8lpPJNR5EoCsUTAoTxkHCMl_w400.webp" alt="Gel nude-hồng tổng hợp glitter đa sắc rực rỡ, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="360k">
-          <img src="/images/gallery/15nZvalPybqrct7B7g6ey2E_gRDg0tg6I_w400.webp" alt="Gel nude-hồng phủ glitter xanh-hồng lấp lánh, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="380k">
-          <img src="/images/gallery/1aQpks3LTztk9VBxNa40porIXuvIYkoei_w400.webp" alt="Mẫu gel nude-hồng nhạt với vầng trắng mờ dịu, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="390k">
-          <img src="/images/gallery/1bKPtMEVii01P9HWmjnEzEDEWNn-Yho60_w400.webp" alt="Mẫu gel nude-hồng nhạt phủ glitter bạc-hồng tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="320k">
-          <img src="/images/gallery/1S5fnvazifUYhdmcXGr7YHn83DRnSsQ1f_w400.webp" alt="Mẫu gel đỏ sâu với họa tiết đường bạc cá tính, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="340k">
-          <img src="/images/gallery/1fOX2JLKhBQlx4BGVye5jOFNUSc-TkGKB_w400.webp" alt="Mẫu gel nude-hồng với hiệu ứng hologra aurora đa sắc, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1oDP3RQ9w0jnSnhROJgvffAqL-4GcsSy9_w400.webp" alt="Mẫu gel đa sắc với họa tiết mặt cười vui nhộn, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1ZH3AfUs1cKY2whH29H1k0b_mf0SKaZWl_w400.webp" alt="Gel nude-hồng nhạt in họa tiết chấm trắng vàng tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/15Sdm2mTdVKFwiA9BBUtAWDmGqvTAmE_D_w400.webp" alt="Gel trắng kem in họa tiết hoa tím nhạt tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1YxoPgPC0V0zmg2E__jbake0b2xtQ294J_w400.webp" alt="Mẫu gel nude-hồng in họa tiết hoa đa sắc rực rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/13Oq-qgQtE-HOcLk2shUvN4Ld-bfQLBxo_w400.webp" alt="Mẫu gel trắng kem kết hợp vệt đen vàng, dáng móng vuông tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1E8Glkh8JcCRWoxysV5N5Ml6DWzn3n815_w400.webp" alt="Mẫu gel nude-trắng kết hợp vệt đen xanh dương cổ điển, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1BZ0ywzAJRMeKMBJlngWgv3wwwpqI9qb1_w400.webp" alt="Mẫu gel trắng trong phủ glitter đa sắc hồng tím xanh, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1i3-fxKYzR1RTGnycD_MI5fztD2GhcOnz_w400.webp" alt="Mẫu gel đỏ-cam gradient với họa tiết hoa trắng tinh tế, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1lA3rgvEgneNPIEpo06zCaFsScBuJGpqV_w400.webp" alt="Gel nude-hồng in họa tiết hoa đa sắc rực rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1kHExmNOQN7arVqJLYQ7FR8-cnmBCAJ1m_w400.webp" alt="Gel đỏ-nâu tôn với vệt hoa đỏ-trắng cá tính, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1NMlvk3Xqe92Pd5cW9pVrTsF3Jr8-vWHE_w400.webp" alt="Gel nâu đỏ sẫm với vệt họa tiết thanh lịch, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1qJqnt84BtdPSj0chvBtN2YSAmEQ41dO3_w400.webp" alt="Mẫu gel đỏ-nâu sẫm bóng, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="300-400" data-name="Mẫu 300 — 400k" data-range="300 — 400k">
-          <img src="/images/gallery/1PPR-FO6DjpTEv3462bTnMFpDoULaXCS6_w400.webp" alt="Gel nude-hồng nhạt tôn với vầng trắng và họa tiết hoa-chấm tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-
-        <!-- 400 — 500k -->
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="/images/gallery/1dRqOcrr6ysD2CLLBSDqQNjhGo5ajFaKF_w400.webp" alt="Gel trắng-nude in họa tiết lá đen-xanh tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="/images/gallery/1eNqvVO6_xFJdDzNls-d9pXgF76BZsj-8_w400.webp" alt="Mẫu gel nude-hồng với vệt glitter xanh-tím-hồng lấp lánh, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="/images/gallery/1GXvFnxAxKy_VGTAL9auoCdJ-aePzHhBa_w400.webp" alt="Gel nude-hồng phủ glitter bạc-hồng dày đặc lấp lánh, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
-          <img src="/images/gallery/1iKx-d2t8Hb1xcAHacfLyAvDcHPEnyNAv_w400.webp" alt="Mẫu gel bạc-chrome 3D nổi bậc lấp lánh, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
-          <img src="/images/gallery/1d8_e3C5_geWTBLhvPZHY7k2rceS9TaGx_w400.webp" alt="Mẫu gel nude-hồng in họa tiết đa sắc rục rỡ, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
-          <img src="/images/gallery/1-e7fyJ3PAa_UxECLk_CQ_hYes5Mcjq8D_w400.webp" alt="Mẫu gel ombre hồng nude với chi tiết đính đá và sọc vàng trên nền nude, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="/images/gallery/17xteQPdFIY5NTcTyq9HiqHR-eM4LlWw1_w400.webp" alt="Gel nâu-nude phủ glitter hồng xanh sáng bóng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="/images/gallery/1t3NVUXig-U5PBWF7PFJv-fe33KHJ58h4_w400.webp" alt="Gel trắng-nude in họa tiết hoa đa sắc tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="/images/gallery/1WPuqTuBISjmUVK69yQVFsR2ZFDKckS7K_w400.webp" alt="Mẫu gel nude-hồng với vệt chrome đa sắc bạc-hồng-xanh, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="460k">
-          <img src="/images/gallery/1PD4Rv5UnCMsrP87VcoLW__kpdVNZREKL_w400.webp" alt="Mẫu gel đen-nude với vệt foil bạc từng mảnh cá tính, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="480k">
-          <img src="/images/gallery/1vUbXq9XvIvY_4gGFndRqg6JFd2Ie56ka_w400.webp" alt="Gel trắng-nude với họa tiết phức tạp xanh-tím-trắng, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="490k">
-          <img src="/images/gallery/1g3Rd6IEhUxxQDblck4sh-aX8kbRVHVNJ_w400.webp" alt="Gel nude-hồng nhạt phủ glitter hồng-tím-xanh tinh tế, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="420k">
-          <img src="/images/gallery/1K0rZkCiM2hyEZCZQkJACvtkyBuqNHhUn_w400.webp" alt="Mẫu gel hồng-nude tôn với vệt đỏ đen họa tiết thanh nhã, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="440k">
-          <img src="/images/gallery/1QXDbRylzT3WAUWVc-yWkzaRbFAfRv3Z4_w400.webp" alt="Gel nâu-cam in họa tiết hoa đỏ rực rỡ trên nền ấm, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="400-500" data-name="Mẫu 400 — 500k" data-range="450k">
-          <img src="/images/gallery/1ROJpCAmJfjhtYadj686sDEplLbtKvs5t_w400.webp" alt="Mẫu nail vẽ hoa tay tông xanh dương và tím pastel kèm ngón nhũ lấp lánh, dáng móng ngắn tròn, làm tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-
-        <!-- 500 — 700k -->
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="/images/gallery/1UOpuen-QEHEk_6D8elQdkE_NkzRmAA8k_w400.webp" alt="Gel hồng-tím nhạt phủ glitter bạc-hồng lấp lánh, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="/images/gallery/1UlRElNo7nBvcqjbaecrq0S_UaNAc-ONb_w400.webp" alt="Mẫu gel đỏ-đen với họa tiết lá bạc cá tính, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="/images/gallery/1BJUfZkdGa6iAHEjA6JxTrQ13FadA_0av_w400.webp" alt="Gel nude-hồng in họa tiết báo hồng đen, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="/images/gallery/1eVbcKJoqQ-IANuT-PfR9NVJdwqyyPqbn_w400.webp" alt="Gel trắng-nude với họa tiết lá bạc 3D nổi bậc, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="/images/gallery/1411p1nQbvCn-ZI2IwCYqTreFOnE-XSgF_w400.webp" alt="Gel nude tuyến trong với vệt đen cong cá tính kết hợp đính đá lấp lánh, dáng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
-          <img src="/images/gallery/1iY6Ya2PYKLXJ53vQy4waAFEZCgEKivwm_w400.webp" alt="Mẫu gel nude-hồng in họa tiết hoa-sọc đỏ-vàng-cam, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="/images/gallery/1QpZfsvye-lf5HYSbDTELUgUwYlJKE8pR_w400.webp" alt="Mẫu gel trắng-nude in họa tiết lá đen tinh xảo, dáng móng oval tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="/images/gallery/1rIhThOBF47i43kiJrhslelS54OgYytIp_w400.webp" alt="Gel nude-hồng với vầng trắng và glitter bạc tinh tế, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="/images/gallery/1KAOglWrlGiCPP_jlbKPEKL00TVNIdFUW_w400.webp" alt="Gel nude trong in họa tiết lá bạc và đỏ tinh xảo, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="/images/gallery/1ZzGynGYREWDT7SVReAj5aJZTjTKfjr1D_w400.webp" alt="Mẫu gel trắng-nude in họa tiết lá bạc-xanh, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="/images/gallery/1bKBL_79FRCql-utY01i8AKVgTGdFAaRf_w400.webp" alt="Gel nude-hồng với vầng gradient trắng-xanh sáng, dáng móng almond tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="700k">
-          <img src="/images/gallery/1lY3pzege3isnu005Uq7WtKd7HXgTWibo_w400.webp" alt="Mẫu gel đen-chrome với họa tiết lá bạc 3D nổi bậc, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="550k">
-          <img src="/images/gallery/1juCmUppBVNxI3_AnhWk1brwMTz08K2V0_w400.webp" alt="Mẫu gel nude-cam với họa tiết lá bạc 3D nổi bậc, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="600k">
-          <img src="/images/gallery/1DNheloiqsUAp-DODjkM0u-tVjdTP04q4_w400.webp" alt="Gel nude-cam với họa tiết hoa hồng 3D nổi bậc, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="620k">
-          <img src="/images/gallery/185MiBYHWJD_pn1-WpWhA2xwbC7oGqIAW_w400.webp" alt="Mẫu gel đen bóng kết hợp glitter bạc nổi bật, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="650k">
-          <img src="/images/gallery/1XKmqO64qLuCp9feqwyyIp-_vEcfj5Yw0_w400.webp" alt="Gel đỏ-đen in họa tiết lá bạc cá tính, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="500-700" data-name="Mẫu 500 — 700k" data-range="680k">
-          <img src="/images/gallery/1tTYrEusS1g-Uo1OiglePhiFJgZBZX91D_w400.webp" alt="Mẫu gel trắng-nude với họa tiết lá-vân bạc-vàng, dáng móng stiletto tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-
-        <!-- 800k+ -->
-        <div class="nail-card" role="button" tabindex="0" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
-          <img src="/images/gallery/1zRAsj2CXBTJhTYfcy-dQb3T7d7VICl3N_w400.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
-          <img src="/images/gallery/1FPox5x2C_sBRAukxqoW7qYpxc3vhDRAW_w400.webp" alt="Ảnh portrait phụ nữ thể hiện vẻ đẹp sang trọng tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
-          <img src="/images/gallery/1LUv5qa6G92D7nT-OT-LG8D_MzeWeq9Lz_w400.webp" alt="Ảnh portrait phụ nữ thể hiện mẫu gel nâu-vàng tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
-          <img src="/images/gallery/1eLKb38MQVF2HsczIh_FIivil6ctR8Ei8_w400.webp" alt="Ảnh portrait 2 phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="800-plus" data-name="Mẫu 800k+" data-range="1500k">
-          <img src="/images/gallery/170RJ4AhOY7Pu18qj0OM1A6N8Osixm2lb_w400.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="800-plus" data-name="Mẫu 800k+" data-range="850k">
-          <img src="/images/gallery/1PhifhZ3HLjpFEvZsUbcmwYDOFNIXq1w7_w400.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="800-plus" data-name="Mẫu 800k+" data-range="900k">
-          <img src="/images/gallery/1x1smBa58U7JikT1R-c82bwe92SwqT1V__w400.webp" alt="Ảnh portrait phụ nữ với sơn gel hồng glitter tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="800-plus" data-name="Mẫu 800k+" data-range="1000k">
-          <img src="/images/gallery/1fzT5WTNVRtDsdCLTZ86CixJaPuNWtovm_w400.webp" alt="Ảnh portrait phụ nữ tại không gian của The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
-        <div class="nail-card" role="button" tabindex="0" data-price="800-plus" data-name="Mẫu 800k+" data-range="1200k">
-          <img src="/images/gallery/1x06I3HIQequQEbUv2cr1tQYrIwUQG9Ds_w400.webp" alt="Ảnh portrait phụ nữ thể hiện vẻ đẹp tại The Nail, Quận 10" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
+      </div>
+      <div class="gallery-more">
+        <a class="btn solid" href="/mau-mong/" data-en="See all nail designs →">Xem tất cả mẫu nail →</a>
       </div>
     </div>
   </section>
-
-  <!-- ===== MARQUEE BAND ===== -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>MÙA CƯỚI 2026 — LỊCH NAIL CÔ DÂU CÒN TRỐNG THÁNG 6</span>
-      <span class="sep">✦</span>
-      <span>ƯU ĐÃI HÈ — GIẢM 10% MẪU MARBLE & 3D</span>
-      <span class="sep">✦</span>
-      <span>ĐẶT TRƯỚC 7 NGÀY ĐỂ CHỌN GIỜ ĐẸP</span>
-      <span class="sep">✦</span>
-      <span>KHÁCH MỚI — TƯ VẤN MẪU MIỄN PHÍ QUA ZALO</span>
-      <span class="sep">✦</span>
-      <span>NHẮN 0931 415 099 — PHẢN HỒI TRONG 15 PHÚT</span>
-      <span class="sep">✦</span>
-      <span>MÙA CƯỚI 2026 — LỊCH NAIL CÔ DÂU CÒN TRỐNG THÁNG 6</span>
-      <span class="sep">✦</span>
-      <span>ƯU ĐÃI HÈ — GIẢM 10% MẪU MARBLE & 3D</span>
-      <span class="sep">✦</span>
-      <span>ĐẶT TRƯỚC 7 NGÀY ĐỂ CHỌN GIỜ ĐẸP</span>
-      <span class="sep">✦</span>
-      <span>KHÁCH MỚI — TƯ VẤN MẪU MIỄN PHÍ QUA ZALO</span>
-      <span class="sep">✦</span>
-      <span>NHẮN 0931 415 099 — PHẢN HỒI TRONG 15 PHÚT</span>
-      <span class="sep">✦</span>
-    </div>
-  </div>
-
 
   <!-- ===== MENU / POSTER THỰC ĐƠN ===== -->
   <section id="menu">
@@ -3344,9 +2673,73 @@
         <footer class="menu-foot">
           <span data-en="517/15 Nguyen Tri Phuong, Dien Hong Ward, HCMC">517/15 Nguyễn Tri Phương, P.Diên Hồng, TP HCM</span>
           <span class="menu-foot__sep" aria-hidden="true"></span>
-          <a href="tel:0931415099" data-en="093 14 15 099">093 14 15 099</a>
+          <a href="tel:0931415099" data-en="0931 415 099">0931 415 099</a>
         </footer>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== ĐÁNH GIÁ GOOGLE ===== -->
+  <section id="danh-gia">
+    <div class="container">
+      <div class="section-head">
+        <div class="label" data-en="— Guests say —">— Khách nói —</div>
+        <h2 data-en="What guests say about The Nail">Khách nói gì về The Nail</h2>
+        <div class="divider"></div>
+        <p data-en="97 Google reviews · average 4.99★ (updated 15/10/2026)">97 đánh giá trên Google · trung bình 4,99★ (cập nhật 15/10/2026)</p>
+      </div>
+      <div class="review-grid">
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 sao">★★★★★</div>
+          <p class="review-text">Tiệm dth lắm, tư vấn giá trước rõ ràng rồi mới chốt, bạn nv làm cho mình cũng dth, nhẹ nhàng, làm kĩ, lần sau sẽ quay lại</p>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">L</div>
+            <div class="review-meta"><div class="name">Lâm Viên N.</div><div class="date">14/09/2026</div></div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 sao">★★★★★</div>
+          <p class="review-text">Móng thật mình ngắn cụt nhưng tiệm làm vẫn đẹp và ưng ý lắm . Tìm được tìm nail hợp gu hợp ý hợp túi tiền . Rất rất đẹp luôn . Nhân viên và chủ nhiệt tình và dth. Mình sẽ tiếp tục quay lại</p>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">H</div>
+            <div class="review-meta"><div class="name">Hiền K.</div><div class="date">18/08/2026</div></div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 sao">★★★★★</div>
+          <p class="review-text">Tiệm quá chỉn chu từ bao tay, kẹo, nước cho khách. Nhân viên thân thiện siêu dễ thương còn làm rất tỉ mỉ, rất kiên nhẫn lắng nghe và sẵn sàng sửa cho đến lúc vừa ý mình. Nói chung là tuyệt</p>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">K</div>
+            <div class="review-meta"><div class="name">Klin</div><div class="date">23/07/2026</div></div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 sao">★★★★★</div>
+          <p class="review-text">Service rất là nice nhee, bạn làm siu kỹ và liên tục check với mình xem đã ưng chưaaaa, 10 đỉm lun, bạn cắt da êm và kĩ, sơn và đính đá đẹp, mắt mèo sáng</p>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">Q</div>
+            <div class="review-meta"><div class="name">Quỳnh D.</div><div class="date">09/08/2026</div></div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 sao">★★★★★</div>
+          <p class="review-text">Tiệm take care mình kĩ lắm ạ, cover 90-95% như mẫu. Mn nên ghé tiệm trải nghiệm nhé</p>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">T</div>
+            <div class="review-meta"><div class="name">Thương T.</div><div class="date">15/08/2026</div></div>
+          </div>
+        </article>
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 sao">★★★★★</div>
+          <p class="review-text">Tiệm nail xinh, dịch vụ tận tâm, làm cầu móng tròn đầy xinh lắm. Mình yêu cầu gì chị cũng chiều hết luôn</p>
+          <div class="review-author">
+            <div class="review-avatar" aria-hidden="true">T</div>
+            <div class="review-meta"><div class="name">Trúc Quỳnh N.</div><div class="date">26/08/2026</div></div>
+          </div>
+        </article>
+      </div>
+      <p class="review-note" data-en="Original Vietnamese reviews from Google">Đánh giá nguyên văn từ Google</p>
+      <div class="review-more"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=The+Nail+517%2F15+Nguy%E1%BB%85n+Tri+Ph%C6%B0%C6%A1ng+P.+Di%C3%AAn+H%E1%BB%93ng+Qu%E1%BA%ADn+10+TP.HCM" target="_blank" rel="noopener" data-en="See all reviews on Google">Xem tất cả đánh giá trên Google</a></div>
     </div>
   </section>
 
@@ -3486,6 +2879,44 @@
     </div>
   </section>
 
+  <section class="intro">
+    <div class="container">
+      <p>The Nail là tiệm nail nằm trong hẻm 517 Nguyễn Tri Phương, phường Diên Hồng, Quận 10, TP.HCM — cách ngã sáu Nguyễn Tri Phương vài phút chạy xe. Tiệm làm theo một cách riêng: không có menu mẫu đóng khung để khách chọn cho nhanh, mà bắt đầu từ ý tưởng của chính khách. Bạn mang tới một tấm ảnh, một màu áo, hay chỉ một cảm giác muốn có — phần còn lại là việc của thợ.</p>
+      <p>Vì làm theo hướng đó nên mỗi bộ móng ở đây mất nhiều thời gian hơn bình thường, và mỗi ngày tiệm chỉ nhận một số khách nhất định. Đổi lại, không có hai bộ móng nào giống nhau rời khỏi tiệm.</p>
+      <p>The Nail nhận sơn gel, sơn thạch, sơn nhũ, sơn mắt mèo, chrome, úp móng gel, refill, nối móng đắp gel, vẽ móng nghệ thuật, charm và đính đá. Sơn gel từ 70.000₫, một bộ hoàn chỉnh từ 220.000₫. Mở cửa cả tuần, 9:00 – 22:00.</p>
+      <p>Tiệm nằm trong hẻm nên hầu hết khách đến vì được giới thiệu hoặc vì tìm thấy một mẫu ưng ý. Nếu bạn ở Quận 10, Quận 5, Quận 11 hay Quận 3 và đang tìm chỗ làm móng chịu ngồi lâu với mình — nhắn Zalo 0931 415 099, gửi mẫu bạn thích, tiệm sẽ báo giá và thời gian trước khi bạn đến.</p>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-head">
+        <div class="label">— Giá trị của chúng tôi —</div>
+        <h2>Mỗi đôi tay — Một tác phẩm</h2>
+        <div class="divider"></div>
+        <p>Tại The Nail — tiệm nail trên đường Nguyễn Tri Phương, Quận 10 — chúng tôi tin rằng mỗi bộ móng là sự kết hợp giữa ý tưởng của bạn và tay nghề của chúng tôi.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-item">
+          <div class="icon">✦</div>
+          <h3 class="glitter">Cá nhân hoá</h3>
+          <p>Mỗi khách hàng là duy nhất. Mỗi bộ móng được điều chỉnh riêng theo gu, dáng tay và phong cách của bạn.</p>
+        </div>
+        <div class="about-item">
+          <div class="icon">✦</div>
+          <h3 class="glitter">Sáng tạo</h3>
+          <p>Không chỉ làm theo mẫu — chúng tôi cùng bạn kiến tạo nên thiết kế độc bản, mang dấu ấn của riêng bạn.</p>
+        </div>
+        <div class="about-item">
+          <div class="icon">✦</div>
+          <h3 class="glitter">Tỉ mỉ</h3>
+          <p>Từng đường nét được trau chuốt. Một bộ móng đẹp bắt nguồn từ sự kiên nhẫn — không vội, không qua loa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="faq">
     <div class="container">
       <h2>Câu hỏi thường gặp</h2>
@@ -3513,7 +2944,7 @@
       <a href="/ve-mong-nghe-thuat/">Vẽ móng nghệ thuật</a>
       <a href="/up-mong-gel/">Úp móng gel</a>
       <a href="/nail-nguyen-tri-phuong/">Nail Nguyễn Tri Phương</a>
-      <a href="/mau-mong/">Mẫu móng thật</a>
+      <a href="/mau-mong/">Mẫu nail</a>
     </nav>
     <div class="brand glitter">THE NAIL</div>
     <div>© 2026 thenail.vn · Quận 10, Sài Gòn · Tất cả quyền được bảo lưu</div>
@@ -3570,7 +3001,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
       <span>Menu</span>
     </a>
-    <a href="#gallery" class="mbar-item">
+    <a href="/mau-mong/" class="mbar-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg>
       <span>Mẫu</span>
     </a>
@@ -3578,28 +3009,16 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       <span>Liên hệ</span>
     </a>
+    <a href="https://zalo.me/0931415099" target="_blank" rel="noopener" class="mbar-item mbar-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/></svg>
+      <span data-en="Book" data-vi="Đặt lịch">Đặt lịch</span>
+    </a>
   </div>
 
   <!-- Overlay zoom: ảnh bay từ thẻ hero ra giữa màn hình khi hover -->
   <div class="card-zoom" id="card-zoom" aria-hidden="true">
     <img src="" alt="" referrerpolicy="no-referrer">
     <span class="cz-tag"></span>
-  </div>
-
-  <!-- ===== LIGHTBOX ===== -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Ảnh mẫu nail">
-    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Đóng">×</button>
-    <button class="lightbox-nav prev" id="lb-prev" aria-label="Ảnh trước">‹</button>
-    <button class="lightbox-nav next" id="lb-next" aria-label="Ảnh kế">›</button>
-    <div class="lightbox-content">
-      <div class="ph">
-        <img id="lb-img" src="" alt="" referrerpolicy="no-referrer">
-        <div class="lb-spinner" id="lb-spinner"></div>
-      </div>
-      <h3 id="lb-name">Tên mẫu</h3>
-      <div class="price" id="lb-price">000.000đ</div>
-      <div class="lb-counter"><span id="lb-current">1</span> / <span id="lb-total">1</span></div>
-    </div>
   </div>
 
 

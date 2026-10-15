@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://thenail.vn/sitemap.xml
+Sitemap: https://thenail.vn/mau-mong/sitemap.xml

@@ -376,21 +376,6 @@ test.describe('D. Chạy thật (runtime)', () => {
     });
   }
 
-  test('Xem ảnh gallery được: mở lightbox và đóng bằng Escape', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.locator('.loading-splash')).toHaveClass(/hidden/, { timeout: 6000 });
-
-    const theAnhDauTien = page.locator('.nail-card').first();
-    await theAnhDauTien.scrollIntoViewIfNeeded();
-    await theAnhDauTien.click();
-
-    const lightbox = page.locator('.lightbox');
-    await expect(lightbox, 'Click ảnh xong nhưng lightbox không mở (không có class "active")').toHaveClass(/active/, { timeout: 5000 });
-
-    await page.keyboard.press('Escape');
-    await expect(lightbox, 'Nhấn Escape nhưng lightbox không đóng (vẫn còn class "active")').not.toHaveClass(/active/, { timeout: 5000 });
-  });
-
   test('Đổi ngôn ngữ chạy được trên trang VI', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('.loading-splash')).toHaveClass(/hidden/, { timeout: 6000 });
@@ -400,16 +385,21 @@ test.describe('D. Chạy thật (runtime)', () => {
     await expect(page.locator('html'), 'Click nút đổi ngôn ngữ nhưng data-lang không đổi sang "en"').toHaveAttribute('data-lang', 'en', { timeout: 5000 });
   });
 
-  test('Bộ sưu tập ảnh đủ số lượng và không lỗi tải ảnh trong màn hình đầu', async ({ page }) => {
-    await page.goto('/');
-    const soLuongThe = await page.locator('.nail-card').count();
-    expect(soLuongThe, `Chỉ đếm được ${soLuongThe} thẻ ảnh, kỳ vọng >= 90`).toBeGreaterThanOrEqual(90);
-
-    const soAnhLoi = await page.evaluate(() => {
-      const imgs = Array.from(document.querySelectorAll('.nail-card img')).slice(0, 12);
-      return imgs.filter((img) => img.complete && img.naturalWidth === 0).length;
-    });
-    expect(soAnhLoi, 'Có ảnh trong màn hình đầu bị lỗi tải (naturalWidth = 0)').toBe(0);
+  test('Bộ sưu tập trang chủ có đúng 12 thẻ (VI + EN) và không lỗi tải ảnh', async ({ page }) => {
+    for (const duongDan of ['/', '/en/']) {
+      await page.goto(duongDan);
+      const soLuongThe = await page.locator('.nail-card').count();
+      expect(soLuongThe, `Trang ${duongDan}: đếm được ${soLuongThe} thẻ ảnh, kỳ vọng đúng 12`).toBe(12);
+      // Ảnh lazy: cuộn từng ảnh vào vùng nhìn, chờ tải xong, rồi mới đo (ảnh chưa tải không được tính là đạt)
+      const anh = page.locator('.nail-card img');
+      for (let i = 0; i < 12; i++) {
+        const im = anh.nth(i);
+        await im.scrollIntoViewIfNeeded();
+        await expect.poll(() => im.evaluate((el) => el.complete), { timeout: 10000 }).toBe(true);
+        const rong = await im.evaluate((el) => el.naturalWidth);
+        expect(rong, `Ảnh gallery thứ ${i + 1} trang ${duongDan} lỗi tải (naturalWidth = 0)`).toBeGreaterThan(0);
+      }
+    }
   });
 
   test('Form đặt lịch còn nguyên các ô nhập', async ({ page }) => {
@@ -467,5 +457,190 @@ test.describe('E. Dùng được trên điện thoại', () => {
     await kiemTraVungCham('.ni.phone a[href^="tel:"]', 'Link số điện thoại trên nav');
     await kiemTraVungCham('.lang-toggle', 'Nút đổi ngôn ngữ');
     await kiemTraVungCham('.map-actions a', 'Nút trong khu vực bản đồ');
+  });
+});
+
+// ===== F. Nâng cấp giao diện 15/10/2026 (CTA hero, gallery gọn + lọc, thẻ đánh giá) =====
+test.describe('F. Nâng cấp giao diện 15/10/2026', () => {
+  const cacTrang = [
+    { ten: 'VI', duongDan: '/' },
+    { ten: 'EN', duongDan: '/en/' },
+  ];
+
+  async function moTrang(page, duongDan) {
+    await page.goto(duongDan);
+    await expect(page.locator('.loading-splash')).toHaveClass(/hidden/, { timeout: 6000 });
+  }
+
+  for (const { ten, duongDan } of cacTrang) {
+    test(`Trang ${ten}: nút CTA hero bấm được ở desktop (nằm trong màn hình đầu, không bị che)`, async ({ page }) => {
+      await moTrang(page, duongDan);
+      const nut = page.locator('.hero-cta .btn');
+      expect(await nut.count(), 'Hero phải có 2 nút CTA').toBe(2);
+      for (let i = 0; i < 2; i++) {
+        const ok = await nut.nth(i).evaluate((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.bottom > window.innerHeight || r.top < 0) return false;
+          const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+          return !!top && (top === el || el.contains(top));
+        });
+        expect(ok, `Nút CTA #${i} nằm ngoài màn hình đầu hoặc bị phần tử khác che (pointer-events / z-index)`).toBe(true);
+      }
+    });
+
+    test(`Trang ${ten}: gallery chỉ 12 thẻ, không còn thanh lọc, có nút → /mau-mong/ dưới lưới`, async ({ page }) => {
+      await moTrang(page, duongDan);
+      await expect(page.locator('.nail-card')).toHaveCount(12);
+      await expect(page.locator('.tabs-wrap'), 'Không còn thanh lọc giá').toHaveCount(0);
+      await expect(page.locator('.tab'), 'Không còn tab lọc').toHaveCount(0);
+      await expect(page.locator('#g-more'), 'Không còn nút Xem thêm/Thu gọn').toHaveCount(0);
+      const hienHet = await page.evaluate(() => Array.from(document.querySelectorAll('.nail-card')).every((c) => getComputedStyle(c).display !== 'none'));
+      expect(hienHet, 'Cả 12 thẻ phải hiện').toBe(true);
+      const link = page.locator('#gallery .gallery-more a.btn[href="/mau-mong/"]');
+      await expect(link, 'Dưới lưới phải có nút dẫn tới /mau-mong/').toHaveCount(1);
+      // nút nằm SAU lưới trong DOM
+      const sau = await page.evaluate(() => {
+        const g = document.getElementById('gallery-grid');
+        const b = document.querySelector('#gallery .gallery-more');
+        return !!(g.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+      });
+      expect(sau, 'Nút phải nằm dưới lưới ảnh').toBe(true);
+    });
+  }
+
+  for (const { ten, duongDan } of cacTrang) {
+    test(`Trang ${ten}: 12 thẻ gallery là link thật tới trang chi tiết, id khớp tên file ảnh, không còn lightbox`, async ({ page }) => {
+      await page.goto(duongDan);
+      const the = await page.evaluate(() =>
+        Array.from(document.querySelectorAll('.nail-card')).map((c) => ({
+          tag: c.tagName,
+          href: c.getAttribute('href'),
+          src: c.querySelector('img').getAttribute('src'),
+          role: c.getAttribute('role'),
+        }))
+      );
+      expect(the.length).toBe(12);
+      for (const c of the) {
+        expect(c.tag, 'Thẻ ảnh phải là <a>').toBe('A');
+        expect(c.href, `href không đúng khuôn: ${c.href}`).toMatch(/^\/mau-mong\/anh\/[0-9a-f-]{36}\/$/);
+        const tam8 = (c.src.match(/-([0-9a-f]{8})_w\d+\.webp$/) || [])[1];
+        expect(tam8, `Không lấy được 8 ký tự cuối tên file: ${c.src}`).toBeTruthy();
+        expect(c.href.replace('/mau-mong/anh/', '').startsWith(tam8), `id ${c.href} phải bắt đầu bằng ${tam8}`).toBe(true);
+        expect(c.role, 'Không còn role=button').toBeNull();
+      }
+      await expect(page.locator('#lightbox'), 'Không còn #lightbox').toHaveCount(0);
+      // Trên web thật (Worker /mau-mong/ chạy): từng link phải mở được thật — bắt cả trường hợp id sai 1 ký tự.
+      // Cục bộ không có Worker nên bỏ phần này.
+      if (/thenail\.vn/.test(process.env.BASE_URL || 'https://thenail.vn')) {
+        for (const c of the) {
+          const res = await page.request.get(c.href);
+          expect(res.status(), `Link chi tiết ${c.href} phải trả 200`).toBe(200);
+        }
+      }
+    });
+  }
+
+  test('Trang chủ VI: h2 gallery là "Mẫu nail tiệm vừa làm"', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#gallery h2')).toHaveText('Mẫu nail tiệm vừa làm');
+  });
+
+  for (const { ten, duongDan } of cacTrang) {
+    test(`Trang ${ten}: có #danh-gia với 6 .review-card`, async ({ page }) => {
+      await page.goto(duongDan);
+      await expect(page.locator('#danh-gia')).toHaveCount(1);
+      await expect(page.locator('#danh-gia .review-card')).toHaveCount(6);
+    });
+
+    test(`Trang ${ten}: không còn chuỗi "ƯU ĐÃI HÈ" / "THÁNG 6" / "000.000đ" trong HTML`, async ({ request }) => {
+      const html = await (await request.get(duongDan)).text();
+      for (const s of ['ƯU ĐÃI HÈ', 'THÁNG 6', '000.000đ', '000,000 VND']) {
+        expect(html.includes(s), `HTML trang ${ten} còn chuỗi "${s}"`).toBe(false);
+      }
+    });
+  }
+});
+
+test.describe('H. Hiệu ứng nghiêng hero còn chạy (scene giữ hộp, JS gán transform)', () => {
+  for (const vp of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    for (const duongDan of ['/', '/en/']) {
+      test(`${duongDan} ở ${vp.width}px: #hero-scene có hộp và đang được xoay`, async ({ page }) => {
+        await page.setViewportSize(vp);
+        await page.goto(duongDan);
+        await expect(page.locator('.loading-splash')).toHaveClass(/hidden/, { timeout: 6000 });
+        const kq = await page.evaluate(() => {
+          const el = document.getElementById('hero-scene');
+          const cs = getComputedStyle(el);
+          return { display: cs.display, transform: cs.transform, inlineCo: /rotate/.test(el.style.transform) };
+        });
+        expect(kq.display, '#hero-scene không được display:contents').not.toBe('contents');
+        await expect.poll(() => page.evaluate(() => /rotate/.test(document.getElementById('hero-scene').style.transform)), { timeout: 8000 }).toBe(true);
+        await expect.poll(() => page.evaluate(() => getComputedStyle(document.getElementById('hero-scene')).transform), { timeout: 8000 }).not.toBe('none');
+      });
+    }
+  }
+});
+
+test.describe('G. Điện thoại 390×844: hero + thanh đáy', () => {
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+
+  for (const { ten, duongDan } of [{ ten: 'VI', duongDan: '/' }, { ten: 'EN', duongDan: '/en/' }]) {
+    test(`Trang ${ten}: dải ảnh hero ở đúng chỗ, nút CTA bấm được (không bị .mbar che)`, async ({ page }) => {
+      await page.goto(duongDan);
+      await expect(page.locator('.loading-splash')).toHaveClass(/hidden/, { timeout: 6000 });
+      // dải ảnh 2 hàng ngay dưới slogan: top ≈ 587 như bản HEAD (±10px), thấy đủ trong màn đầu
+      const dai = await page.locator('.hero-strip-m').boundingBox();
+      expect(Math.abs(dai.y - 587), `Dải ảnh hero lệch vị trí cũ: top=${dai.y}`).toBeLessThanOrEqual(10);
+      // CTA nằm NGAY DƯỚI dải
+      const nut = page.locator('.hero-cta .btn').first();
+      await nut.scrollIntoViewIfNeeded();
+      await page.evaluate(() => window.scrollBy(0, 150)); // đẩy nút lên khỏi vùng .mbar
+      const kq = await nut.evaluate((el) => {
+        const r = el.getBoundingClientRect();
+        const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+        const strip = document.querySelector('.hero-strip-m').getBoundingClientRect();
+        return { ok: !!top && (top === el || el.contains(top)), duoiDai: r.top >= strip.bottom - 1, tren: r.top, duoi: r.bottom };
+      });
+      expect(kq.duoiDai, 'Khối CTA phải nằm dưới dải ảnh').toBe(true);
+      expect(kq.ok, `Nút CTA bị che (top=${kq.tren}, bottom=${kq.duoi})`).toBe(true);
+    });
+
+    test(`Trang ${ten}: thanh đáy .mbar có 4 mục (mục 4 là Đặt lịch/Book → Zalo), mỗi mục ≥44px, không tràn`, async ({ page }) => {
+      await page.goto(duongDan);
+      await expect(page.locator('.loading-splash')).toHaveClass(/hidden/, { timeout: 6000 });
+      const muc = page.locator('.mbar .mbar-item');
+      expect(await muc.count()).toBe(4);
+      await expect(muc.nth(3)).toHaveAttribute('href', 'https://zalo.me/0931415099');
+      for (let i = 0; i < 4; i++) {
+        const b = await muc.nth(i).boundingBox();
+        expect(b.width, `Mục mbar #${i} rộng ${b.width}`).toBeGreaterThanOrEqual(44);
+        expect(b.height, `Mục mbar #${i} cao ${b.height}`).toBeGreaterThanOrEqual(44);
+        expect(b.x + b.width, `Mục mbar #${i} tràn phải`).toBeLessThanOrEqual(390);
+      }
+    });
+
+    test(`Trang ${ten}: nav chân trang (.foot-links) không bị ghim cố định trên điện thoại`, async ({ page }) => {
+      await page.goto(duongDan);
+      expect(await page.locator('footer nav.foot-links').evaluate((el) => getComputedStyle(el).position)).not.toBe('fixed');
+    });
+  }
+
+  test('9 trang con: .foot-links không bị ghim cố định', async ({ page }) => {
+    for (const d of ['bang-gia', 'son-thach', 'son-mat-meo-chrome', 've-mong-nghe-thuat', 'up-mong-gel', 'nail-nguyen-tri-phuong', 'mong-yeu-de-gay', 'chinh-sach-rieng-tu', 'dieu-khoan']) {
+      await page.goto('/' + d + '/');
+      const pos = await page.locator('footer nav.foot-links').evaluate((el) => getComputedStyle(el).position);
+      expect(pos, `Trang /${d}/: .foot-links đang ${pos}`).not.toBe('fixed');
+    }
+  });
+
+  test('375×667: CTA hero (ghi nhận, không ép): bấm được sau khi cuộn', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+    await expect(page.locator('.loading-splash')).toHaveClass(/hidden/, { timeout: 6000 });
+    const nut = page.locator('.hero-cta .btn').first();
+    await nut.scrollIntoViewIfNeeded();
+    await page.evaluate(() => window.scrollBy(0, 150));
+    const ok = await nut.evaluate((el) => { const r = el.getBoundingClientRect(); const t = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!t && (t === el || el.contains(t)); });
+    expect(ok).toBe(true);
   });
 });

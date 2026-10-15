@@ -1,85 +1,8 @@
 
-    // ===== TAB FILTER =====
-    const tabs = document.querySelectorAll('.tab');
-    const cards = document.querySelectorAll('.nail-card');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const filter = tab.dataset.filter;
-        cards.forEach(card => {
-          if (filter === 'all' || card.dataset.price === filter) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
+    // Trang chủ chỉ có 12 thẻ (bot chèn giữa 2 mốc GALLERY-TU-APP); xem đủ mẫu + giá ở /mau-mong/.
 
-    // ===== LIGHTBOX (with prev/next + keyboard + swipe) =====
-    const lightbox  = document.getElementById('lightbox');
-    const lbImg     = document.getElementById('lb-img');
-    const lbName    = document.getElementById('lb-name');
-    const lbPrice   = document.getElementById('lb-price');
-    const lbCurrent = document.getElementById('lb-current');
-    const lbTotal   = document.getElementById('lb-total');
-    const lbSpinner = document.getElementById('lb-spinner');
-    const lbPrev    = document.getElementById('lb-prev');
-    const lbNext    = document.getElementById('lb-next');
-
-    // Track which cards are currently visible (filter-aware)
-    function getVisibleCards() {
-      return Array.from(cards).filter(c => c.style.display !== 'none');
-    }
-    let lbIndex = -1;
-    let lbVisible = [];
-
-    function showLightboxAt(i) {
-      if (!lbVisible.length) return;
-      // Wrap around
-      lbIndex = ((i % lbVisible.length) + lbVisible.length) % lbVisible.length;
-      const card  = lbVisible[lbIndex];
-      const img   = card.querySelector('img');
-      const name  = card.dataset.name  || 'Mẫu nail';
-      const range = card.dataset.range || '';
-      if (img && lbImg) {
-        // Use w1400 (large) for lightbox quality
-        lbImg.src = img.src.replace('=w400', '=w1400');
-        lbImg.alt = name;
-        // Show spinner until the big image finishes
-        lbSpinner.classList.add('show');
-        lbImg.style.opacity = '0';
-        lbImg.onload = () => {
-          lbSpinner.classList.remove('show');
-          lbImg.style.opacity = '1';
-        };
-      }
-      lbName.textContent  = name;
-      lbPrice.textContent = range;
-      lbCurrent.textContent = (lbIndex + 1).toString();
-      lbTotal.textContent   = lbVisible.length.toString();
-    }
-
-    function openLightbox(card) {
-      lbVisible = getVisibleCards();
-      const i = lbVisible.indexOf(card);
-      if (i === -1) return;
-      lightbox.classList.add('active');
-      showLightboxAt(i);
-    }
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      lbImg.onload = null;
-    }
-    function lightboxPrev() { showLightboxAt(lbIndex - 1); }
-    function lightboxNext() { showLightboxAt(lbIndex + 1); }
-
-    // Wire up cards → open
-    cards.forEach(card => card.addEventListener('click', () => openLightbox(card)));
-
-    // Mark gallery imgs as .loaded when they finish so they fade in
-    // (CSS sets opacity:0 by default + transitions opacity on .loaded)
+    // Thẻ ảnh là <a href="/mau-mong/anh/<id>/">: bấm là sang trang chi tiết (không còn lightbox).
+    // Ảnh hiện dần: CSS để opacity:0 tới khi ảnh tải xong và gắn .loaded.
     document.querySelectorAll('.nail-card img').forEach(img => {
       if (img.complete && img.naturalWidth > 0) {
         img.classList.add('loaded');
@@ -88,61 +11,6 @@
         img.addEventListener('error', () => img.classList.add('loaded'));
       }
     });
-
-    // Wire up nav buttons
-    lbPrev.addEventListener('click', (e) => { e.stopPropagation(); lightboxPrev(); });
-    lbNext.addEventListener('click', (e) => { e.stopPropagation(); lightboxNext(); });
-
-    // Backdrop click to close
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    // Keyboard: Esc close, ←/→ navigate
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape')      closeLightbox();
-      if (e.key === 'ArrowLeft')   lightboxPrev();
-      if (e.key === 'ArrowRight')  lightboxNext();
-    });
-
-    // Touch swipe: left/right to navigate — but ONLY for single-finger gestures.
-    // Pinch-to-zoom (2+ fingers) was being misread as a swipe; we now cancel
-    // tracking the moment a second finger lands.
-    let swipeActive = false;
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchStartId = null;
-    lightbox.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) {
-        swipeActive  = true;
-        touchStartX  = e.touches[0].screenX;
-        touchStartY  = e.touches[0].screenY;
-        touchStartId = e.touches[0].identifier;
-      } else {
-        swipeActive = false;        // multi-touch — definitely not a swipe
-      }
-    }, { passive: true });
-    lightbox.addEventListener('touchmove', (e) => {
-      // If user adds a 2nd finger mid-gesture (pinch), cancel the swipe
-      if (e.touches.length > 1) swipeActive = false;
-    }, { passive: true });
-    lightbox.addEventListener('touchcancel', () => { swipeActive = false; }, { passive: true });
-    lightbox.addEventListener('touchend', (e) => {
-      if (!swipeActive) return;
-      swipeActive = false;
-      // Must be the same finger we started with, and all fingers up
-      if (e.touches.length > 0) return;
-      const t = Array.from(e.changedTouches).find(x => x.identifier === touchStartId);
-      if (!t) return;
-      const dx = t.screenX - touchStartX;
-      const dy = t.screenY - touchStartY;
-      // Horizontal swipe (filter out vertical scrolls and tiny accidental moves)
-      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-        if (dx > 0) lightboxPrev();
-        else        lightboxNext();
-      }
-    }, { passive: true });
 
     // ===== HAMBURGER MENU =====
     const navToggle = document.getElementById('nav-toggle');
@@ -570,15 +438,6 @@
     apply();
   })();
 
-  // GALLERY: thêm nhãn "Bộ sưu tập" vào thanh bộ lọc (thanh này sẽ ghim lại khi cuộn; tiêu đề lớn cuộn đi)
-  (function () {
-    var tw = document.querySelector('section#gallery .tabs-wrap');
-    if (!tw || tw.querySelector('.g-title')) return;
-    var t = document.createElement('span');
-    t.className = 'g-title'; t.textContent = 'Bộ sưu tập';
-    tw.insertBefore(t, tw.firstChild);
-  })();
-
   // ===== MOBILE: dải ảnh nail 2 HÀNG chạy ngược chiều (thay thẻ rải hero) + gợi ý cuộn xuống =====
   (function () {
     var hero = document.getElementById('hero'); if (!hero) return;
@@ -612,7 +471,7 @@
   // ===== MOBILE: reveal khi cuộn tới (fade-up + phóng nhẹ + stagger) — thay chuyển động stack =====
   (function () {
     if (window.innerWidth > 820 || !('IntersectionObserver' in window)) return;
-    var els = [].slice.call(document.querySelectorAll('.section-head, .about-item, .menu-cat, .menu-foot, .contact-info, .map-col, .booking-form, #gallery-grid .nail-card'));
+    var els = [].slice.call(document.querySelectorAll('.section-head, .about-item, .menu-cat, .menu-foot, .contact-info, .map-col, .booking-form, .review-card, #gallery-grid .nail-card'));
     if (!els.length) return;
     els.forEach(function (el) { el.classList.add('reveal-m'); });
     var io = new IntersectionObserver(function (entries) {
@@ -634,7 +493,7 @@
     var DICT = [
       ['nav .links a[href="#about"]', 'About'],
       ['nav .links a[href="#contact"]', 'Contact'],
-      ['nav .links a[href="#gallery"]', 'Gallery'],
+      ['nav .links a[href="/mau-mong/"]', 'Gallery'],
       ['nav .links a[href="#booking"]', 'Book now'],
       ['.nav-info .addr', '📍 District 10, HCMC'],
       ['section.about .section-head .label', '— Our values —'],
@@ -647,9 +506,6 @@
       ['.about-item:nth-of-type(3) h3', 'Meticulous'],
       ['.about-item:nth-of-type(3) p', 'Every detail refined. Beautiful nails come from patience — never rushed.'],
       ['section#gallery .section-head h2 em', 'Gallery'],
-      ['section#gallery .section-head p', 'Every hand, a signature. Find inspiration for your own style.'],
-      ['section#gallery .tabs-wrap .g-title', 'Gallery'],
-      ['.tabs-wrap .tab[data-filter="all"]', 'All'],
       ['section#booking .section-head .label', '— Booking —'],
       ['section#booking .section-head h2', 'Book your appointment'],
       ['section#booking .section-head p', 'Leave your details so we can hold your slot. Submitting opens Zalo with a ready message.'],
