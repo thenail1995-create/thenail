@@ -386,6 +386,8 @@ test.describe('D. Chạy thật (runtime)', () => {
   });
 
   test('Bộ sưu tập trang chủ có đúng 12 thẻ (VI + EN) và không lỗi tải ảnh', async ({ page }) => {
+    // 2 trang × 12 ảnh lazy, cuộn + chờ từng ảnh: máy chủ thử cục bộ (http.server một luồng) có lúc chậm hơn 30 s mặc định
+    test.setTimeout(120000);
     for (const duongDan of ['/', '/en/']) {
       await page.goto(duongDan);
       const soLuongThe = await page.locator('.nail-card').count();
